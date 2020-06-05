@@ -1,17 +1,49 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion "29.0.3"
+
+    signingConfigs {
+        release {
+            keyAlias 'feitianzhu'
+            keyPassword 'kaisa008'
+            storeFile file('../key/feitianzhu.jks')
+            storePassword 'kaisa008'
+        }
+        debug {
+            /*keyAlias 'feitianzhu'
+            keyPassword 'kaisa008'
+            storeFile file('../key/feitianzhu.jks')
+            storePassword 'kaisa008'*/
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('../key/debug.keystore')
+            storePassword 'android'
+        }
+    }
 
     defaultConfig {
         applicationId "com.feitianzhu.huangliwo"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+        multiDexEnabled true
+        signingConfig signingConfigs.release
+
+        ndk {
+            //设置支持的SO库架构
+            abiFilters 'armeabi'
+            abiFilters 'x86'
+        }
     }
 
     buildTypes {
@@ -19,19 +51,58 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            signingConfig signingConfigs.debug
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    repositories {
+        flatDir {
+            dirs 'libs' // aar目录
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dataBinding {
+        enabled = true
+    }
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.contains('release')) {
+                        def fileName = "bldby-${variant.name}-v${variant.versionName}-v${variant.versionCode}.apk"
+                        outputFileName = fileName
+                    } else if (outputFile != null && outputFile.name.contains('debug')) {
+                        def fileName = "bldby-${variant.name}-v${variant.versionName}-v${variant.versionCode}.apk"
+                        outputFileName = fileName
+                    }
+            }
     }
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:design:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'android.arch.navigation:navigation-fragment:1.0.0'
     implementation 'android.arch.navigation:navigation-ui:1.0.0'
     implementation 'android.arch.lifecycle:extensions:1.1.1'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
+//基类依赖library
+    implementation project(path: ':baselibrary')
+    //组件library
+    if (!rootProject.ext.isShopApplication) {
+        implementation project(path: ':shoplibrary')
+    }
+    annotationProcessor rootProject.ext.dependencies["router-compiler"]
 }

@@ -1,2 +1,4 @@
+include ':shoplibrary'
+include ':baselibrary'
 include ':app'
 rootProject.name = "bldby"
