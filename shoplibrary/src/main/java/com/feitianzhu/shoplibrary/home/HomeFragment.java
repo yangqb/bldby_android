@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.support.annotation.NonNull;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.feitianzhu.baselibrary.app.RouteShopConstants;
+import com.feitianzhu.baselibrary.constants.RouteShopConstants;
 import com.feitianzhu.baselibrary.core.view.basefragment.Basefragment;
 import com.feitianzhu.shoplibrary.databinding.FragmentHomeBinding;
 

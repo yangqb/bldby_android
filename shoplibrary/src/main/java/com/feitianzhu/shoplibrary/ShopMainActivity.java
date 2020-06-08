@@ -1,18 +1,14 @@
 package com.feitianzhu.shoplibrary;
 
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.feitianzhu.baselibrary.app.RouteConstants;
-import com.feitianzhu.baselibrary.app.RouteShopConstants;
+import com.feitianzhu.baselibrary.constants.RouteShopConstants;
 import com.feitianzhu.baselibrary.core.view.baseactivity.BaseActivity;
 import com.feitianzhu.baselibrary.core.view.basefragment.Basefragment;
 import com.feitianzhu.shoplibrary.databinding.ActivityShopMainBinding;
 
-@Route(path = RouteShopConstants.SHOPMAIN)
+//@Route(path = RouteShopConstants.SHOPMAIN)
 public class ShopMainActivity extends BaseActivity {
 
     private ActivityShopMainBinding binding;

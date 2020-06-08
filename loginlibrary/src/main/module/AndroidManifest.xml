@@ -1,12 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.feitianzhu.shoplibrary">
-
-    <application
-        android:name=".ShopApp"
-        android:allowBackup="true"
-        android:supportsRtl="true"
-        android:theme="@style/">
-        <activity android:name=".ShopMainActivity">
+    package="com.feitianzhu.loginlibrary">
+    <application>
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:theme="@style/AppTheme"
+            android:label="@string/title_activity_login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -14,4 +12,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

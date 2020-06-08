@@ -14,7 +14,7 @@ import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.callback.NavigationCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.feitianzhu.baselibrary.R;
-import com.feitianzhu.baselibrary.app.RouteConstants;
+import com.feitianzhu.baselibrary.constants.RouteConstants;
 import com.feitianzhu.baselibrary.app.GlobalUtil;
 import com.feitianzhu.baselibrary.core.view.basefragment.Basefragment;
 import com.gyf.immersionbar.ImmersionBar;

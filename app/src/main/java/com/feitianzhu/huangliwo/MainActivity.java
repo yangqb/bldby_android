@@ -1,23 +1,13 @@
 package com.feitianzhu.huangliwo;
 
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.launcher.ARouter;
-import com.feitianzhu.baselibrary.app.RouteConstants;
-import com.feitianzhu.baselibrary.app.RouteShopConstants;
+import com.feitianzhu.baselibrary.constants.RouteConstants;
+import com.feitianzhu.baselibrary.constants.RouteShopConstants;
 import com.feitianzhu.baselibrary.core.view.baseactivity.BaseActivity;
 import com.feitianzhu.baselibrary.core.view.basefragment.Basefragment;
 import com.feitianzhu.huangliwo.databinding.ActivityMainBinding;
