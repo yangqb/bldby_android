@@ -17,6 +17,7 @@ import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.feitianzhu.baselibrary.app.RouteConstants;
+import com.feitianzhu.baselibrary.app.RouteShopConstants;
 import com.feitianzhu.baselibrary.core.view.baseactivity.BaseActivity;
 import com.feitianzhu.baselibrary.core.view.basefragment.Basefragment;
 import com.feitianzhu.huangliwo.databinding.ActivityMainBinding;
@@ -37,8 +38,8 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initView() {
 
-        home = (Basefragment) startWith(RouteConstants.SHOPMAINFirst).withString("key1", "sdfsdfdsfsd").navigation();
-        classify = (Basefragment) startWith(RouteConstants.SHOPMAINCLASSIFY).withString("key1", "fenlei").navigation();
+        home = (Basefragment) startWith(RouteShopConstants.SHOPMAINFirst).withString("key1", "sdfsdfdsfsd").navigation();
+        classify = (Basefragment) startWith(RouteShopConstants.SHOPMAINCLASSIFY).withString("key1", "fenlei").navigation();
         loadMultipleRootFragment(R.id.root, 0, home, classify);
     }
 
