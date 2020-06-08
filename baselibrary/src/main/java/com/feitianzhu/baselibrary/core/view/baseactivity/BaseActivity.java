@@ -171,7 +171,7 @@ public abstract class BaseActivity extends SupportActivity implements Navigation
     public void popToRoot() {
         ARouter.getInstance()
                 .build(RouteConstants.APPMAIN)
-                .navigation();
+                .navigation(this, this);
     }
 
 
@@ -184,6 +184,7 @@ public abstract class BaseActivity extends SupportActivity implements Navigation
      * .withObject("map", map)
      * .navigation();
      * 也可直接获取fragment
+     *最后可以跳转时一定要使用navigation(this, this)才可以获取回调
      *
      * @param url
      * @return
@@ -195,7 +196,10 @@ public abstract class BaseActivity extends SupportActivity implements Navigation
 
     public Basefragment getFragment(String url) {
         // 获取Fragment
-        Basefragment fragment = (Basefragment) ARouter.getInstance().build(url).navigation();
+        Basefragment fragment = (Basefragment) ARouter
+                .getInstance()
+                .build(url)
+                .navigation(this, this);
         return fragment;
     }
 
@@ -210,7 +214,7 @@ public abstract class BaseActivity extends SupportActivity implements Navigation
                 .getInstance()
                 .build(url)
                 .with(bundle)
-                .navigation();
+                .navigation(this, this);
         return fragment;
     }
 
