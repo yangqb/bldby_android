@@ -16,7 +16,7 @@ import com.feitianzhu.shoplibrary.databinding.FragmentHomeBinding;
 public class HomeFragment extends Basefragment {
 
     @Autowired()
-    public String key1;
+    private String key;
     private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class HomeFragment extends Basefragment {
 
     @Override
     public void loadData() {
-        binding.textView.setText(key1);
+        binding.textView.setText(key);
     }
 
     @Override

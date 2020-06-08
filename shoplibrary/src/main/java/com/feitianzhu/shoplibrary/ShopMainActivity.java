@@ -13,7 +13,6 @@ public class ShopMainActivity extends BaseActivity {
     private ActivityShopMainBinding binding;
     private Basefragment classify;
 
-
     @Override
     public void bindIngView() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_shop_main);

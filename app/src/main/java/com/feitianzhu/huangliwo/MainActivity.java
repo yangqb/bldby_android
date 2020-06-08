@@ -27,9 +27,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView() {
-
-        home = (Basefragment) startWith(RouteShopConstants.SHOPMAINFirst).withString("key1", "sdfsdfdsfsd").navigation();
-        classify = (Basefragment) startWith(RouteShopConstants.SHOPMAINCLASSIFY).withString("key1", "fenlei").navigation();
+        home = (Basefragment) startWith(RouteShopConstants.SHOPMAINFirst).withString("key","sdjfsf").navigation(this,this);
+        classify = (Basefragment) startWith(RouteShopConstants.SHOPMAINCLASSIFY).withString("key", "fenlei").navigation();
         loadMultipleRootFragment(R.id.root, 0, home, classify);
     }
 

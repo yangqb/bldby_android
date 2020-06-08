@@ -15,8 +15,8 @@ import com.feitianzhu.shoplibrary.databinding.FragmentClassifyBinding;
 
 @Route(path = RouteShopConstants.SHOPMAINCLASSIFY)
 public class ClassifyFragment extends Basefragment {
-    @Autowired(name = "key1")
-    public String data;
+    @Autowired(name = "key")
+    public String key;
 
     private FragmentClassifyBinding binding;
 
@@ -35,7 +35,7 @@ public class ClassifyFragment extends Basefragment {
 
     @Override
     public void loadData() {
-        binding.textView.setText(data);
+        binding.textView.setText(key);
 
     }
 
