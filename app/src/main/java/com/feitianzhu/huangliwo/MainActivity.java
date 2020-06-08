@@ -8,8 +8,8 @@ import android.view.MenuItem;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.feitianzhu.baselibrary.constants.RouteConstants;
 import com.feitianzhu.baselibrary.constants.RouteShopConstants;
-import com.feitianzhu.baselibrary.core.view.baseactivity.BaseActivity;
-import com.feitianzhu.baselibrary.core.view.basefragment.Basefragment;
+import com.feitianzhu.baselibrary.core.ui.baseactivity.BaseActivity;
+import com.feitianzhu.baselibrary.core.ui.basefragment.Basefragment;
 import com.feitianzhu.huangliwo.databinding.ActivityMainBinding;
 
 @Route(path = RouteConstants.APPMAIN)

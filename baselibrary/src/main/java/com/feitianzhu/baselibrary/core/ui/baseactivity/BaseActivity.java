@@ -1,4 +1,4 @@
-package com.feitianzhu.baselibrary.core.view.baseactivity;
+package com.feitianzhu.baselibrary.core.ui.baseactivity;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -16,7 +16,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.feitianzhu.baselibrary.R;
 import com.feitianzhu.baselibrary.constants.RouteConstants;
 import com.feitianzhu.baselibrary.app.GlobalUtil;
-import com.feitianzhu.baselibrary.core.view.basefragment.Basefragment;
+import com.feitianzhu.baselibrary.core.ui.basefragment.Basefragment;
 import com.gyf.immersionbar.ImmersionBar;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.enums.PopupAnimation;

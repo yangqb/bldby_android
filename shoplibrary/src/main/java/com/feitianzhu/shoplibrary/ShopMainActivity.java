@@ -2,10 +2,9 @@ package com.feitianzhu.shoplibrary;
 
 import android.databinding.DataBindingUtil;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.feitianzhu.baselibrary.constants.RouteShopConstants;
-import com.feitianzhu.baselibrary.core.view.baseactivity.BaseActivity;
-import com.feitianzhu.baselibrary.core.view.basefragment.Basefragment;
+import com.feitianzhu.baselibrary.core.ui.baseactivity.BaseActivity;
+import com.feitianzhu.baselibrary.core.ui.basefragment.Basefragment;
 import com.feitianzhu.shoplibrary.databinding.ActivityShopMainBinding;
 
 //@Route(path = RouteShopConstants.SHOPMAIN)
