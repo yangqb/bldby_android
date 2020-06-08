@@ -16,7 +16,7 @@ import com.feitianzhu.shoplibrary.databinding.FragmentHomeBinding;
 public class HomeFragment extends Basefragment {
 
     @Autowired()
-    private String key;
+    public String key;
     private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

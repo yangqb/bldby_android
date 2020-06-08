@@ -3,7 +3,7 @@
     package="com.feitianzhu.shoplibrary">
 
     <application>
-        <activity android:name=".ShopMainActivity">
+        <activity android:name="com.feitianzhu.shoplibrary.ShopMainActivity">
         </activity>
     </application>
 
