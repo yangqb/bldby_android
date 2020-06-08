@@ -9,11 +9,11 @@ import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.feitianzhu.baselibrary.app.RouteConstants;
+import com.feitianzhu.baselibrary.app.RouteShopConstants;
 import com.feitianzhu.baselibrary.core.view.basefragment.Basefragment;
 import com.feitianzhu.shoplibrary.databinding.FragmentClassifyBinding;
 
-@Route(path = RouteConstants.SHOPMAINCLASSIFY)
+@Route(path = RouteShopConstants.SHOPMAINCLASSIFY)
 public class ClassifyFragment extends Basefragment {
     @Autowired(name = "key1")
     public String data;

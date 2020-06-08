@@ -7,11 +7,12 @@ import android.os.Bundle;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.feitianzhu.baselibrary.app.RouteConstants;
+import com.feitianzhu.baselibrary.app.RouteShopConstants;
 import com.feitianzhu.baselibrary.core.view.baseactivity.BaseActivity;
 import com.feitianzhu.baselibrary.core.view.basefragment.Basefragment;
 import com.feitianzhu.shoplibrary.databinding.ActivityShopMainBinding;
 
-@Route(path = RouteConstants.SHOPMAIN)
+@Route(path = RouteShopConstants.SHOPMAIN)
 public class ShopMainActivity extends BaseActivity {
 
     private ActivityShopMainBinding binding;
@@ -26,7 +27,7 @@ public class ShopMainActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        classify = (Basefragment) startWith(RouteConstants.SHOPMAINCLASSIFY).withString("key1", "fenlei").navigation();
+        classify = (Basefragment) startWith(RouteShopConstants.SHOPMAINCLASSIFY).withString("key1", "fenlei").navigation();
         loadRootFragment(R.id.root, classify);
     }
 
