@@ -4,7 +4,7 @@ import android.util.Log;
 
 
 import com.feitianzhu.baselibrary.R;
-import com.feitianzhu.baselibrary.core.GlobalUtil;
+import com.feitianzhu.baselibrary.app.GlobalUtil;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.enums.PopupAnimation;
 import com.lxj.xpopup.impl.LoadingPopupView;

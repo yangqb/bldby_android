@@ -2,7 +2,7 @@ package com.feitianzhu.baselibrary.core.util;
 
 import android.widget.Toast;
 
-import com.feitianzhu.baselibrary.core.GlobalUtil;
+import com.feitianzhu.baselibrary.app.GlobalUtil;
 
 import java.lang.ref.WeakReference;
 

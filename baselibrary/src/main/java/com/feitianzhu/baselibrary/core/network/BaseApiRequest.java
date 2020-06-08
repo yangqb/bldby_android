@@ -2,7 +2,7 @@ package com.feitianzhu.baselibrary.core.network;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONException;
-import com.feitianzhu.baselibrary.core.GlobalUtil;
+import com.feitianzhu.baselibrary.app.GlobalUtil;
 import com.feitianzhu.baselibrary.core.log.HttpLogUtil;
 import com.feitianzhu.baselibrary.core.network.networkcheck.NetWorkState;
 import com.feitianzhu.baselibrary.core.network.networkcheck.NetworkConnectChangedReceiver;

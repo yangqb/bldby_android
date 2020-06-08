@@ -1,7 +1,7 @@
 package com.feitianzhu.baselibrary.app.network;
 
 import com.alibaba.fastjson.TypeReference;
-import com.feitianzhu.baselibrary.core.NetworkConfig;
+import com.feitianzhu.baselibrary.app.NetworkConfig;
 import com.feitianzhu.baselibrary.core.network.BaseApiRequest;
 import com.feitianzhu.baselibrary.core.util.StringUtils;
 import com.feitianzhu.baselibrary.core.util.ToastUtil;

@@ -49,16 +49,16 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     //用于格式化日期,作为日志文件名的一部分
     private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 
-    private CrashHandler(Context context) {
-        mContext = context;
+    private CrashHandler() {
+
     }
 
-    public static CrashHandler getInstance(Context context) {
+    public static CrashHandler getInstance() {
         if (sCrashHandler == null) {
             synchronized (CrashHandler.class) {
                 if (sCrashHandler == null) {
                     //使用Application Context
-                    sCrashHandler = new CrashHandler(context.getApplicationContext());
+                    sCrashHandler = new CrashHandler();
                     //获取系统默认的UncaughtException处理器
                     mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
                     //设置该CrashHandler为程序的默认处理器
@@ -69,6 +69,9 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         return sCrashHandler;
     }
 
+    public void init(Context context) {
+        mContext = context;
+    }
 
     @Override
     public void uncaughtException(Thread thread, Throwable ex) {

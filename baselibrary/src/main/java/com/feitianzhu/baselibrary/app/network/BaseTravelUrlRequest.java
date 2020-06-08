@@ -1,7 +1,7 @@
 package com.feitianzhu.baselibrary.app.network;
 
 import com.alibaba.fastjson.TypeReference;
-import com.feitianzhu.baselibrary.core.NetworkConfig;
+import com.feitianzhu.baselibrary.app.NetworkConfig;
 
 /**
  * Created by bch on 2020/5/20

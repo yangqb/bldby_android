@@ -1,4 +1,6 @@
-package com.feitianzhu.baselibrary.core;
+package com.feitianzhu.baselibrary.app;
+
+import android.content.Context;
 
 public class NetworkConfig {
     private static volatile NetworkConfig singleton = null;
@@ -15,7 +17,7 @@ public class NetworkConfig {
     //public static final String BASE_URL = "http://192.168.0.9:8089/";//钟工本地地址
     //public static final String BASE_URL = "http://192.168.0.142:8089/"; //周工本地地址
 //    public static final String BASE_URL_JI = "http://192.168.0.198:8087/"; //计测试地址
-
+    private Context mContext;
 
     private NetworkConfig() {
     }
@@ -29,6 +31,10 @@ public class NetworkConfig {
             }
         }
         return singleton;
+    }
+
+    public void init(Context context) {
+        mContext = context;
     }
 
     public String getBaseUrl() {
@@ -45,6 +51,10 @@ public class NetworkConfig {
         return TICKET_BASE_URL;
     }
 
+    /**
+     * 返回true时测试网测试
+     * @return
+     */
     public boolean getIsDev() {
         return true;
     }

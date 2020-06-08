@@ -1,4 +1,4 @@
-package com.feitianzhu.baselibrary.core;
+package com.feitianzhu.baselibrary.app;
 
 /**
  * Created by bch on 2020/5/11

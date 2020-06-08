@@ -85,6 +85,7 @@ dependencies {
     api rootProject.ext.dependencies["fragmentation"]
     api rootProject.ext.dependencies["fragmentation-core"]
     api rootProject.ext.dependencies["xpopup"]
+    api rootProject.ext.dependencies["hawk"]
 
 
 

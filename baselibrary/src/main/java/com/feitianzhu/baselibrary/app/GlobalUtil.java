@@ -1,4 +1,4 @@
-package com.feitianzhu.baselibrary.core;
+package com.feitianzhu.baselibrary.app;
 
 import android.app.Application;
 import android.support.v4.app.FragmentActivity;
