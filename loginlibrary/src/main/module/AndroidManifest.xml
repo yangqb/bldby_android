@@ -2,7 +2,7 @@
     package="com.feitianzhu.loginlibrary">
     <application>
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name="com.feitianzhu.loginlibrary.ui.LoginActivity"
             android:theme="@style/AppTheme"
             android:label="@string/title_activity_login">
             <intent-filter>

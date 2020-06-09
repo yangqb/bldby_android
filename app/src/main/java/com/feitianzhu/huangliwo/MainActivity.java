@@ -1,7 +1,9 @@
 package com.feitianzhu.huangliwo;
 
 import android.databinding.DataBindingUtil;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
 

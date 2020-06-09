@@ -44,9 +44,9 @@ public abstract class BaseActivity extends SupportActivity implements Navigation
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setTheme(R.style.MyTransparent);
         super.onCreate(savedInstanceState);
         ARouter.getInstance().inject(this);
-
         GlobalUtil.setCurrentActivity(this);
         bindIngView();
         initView();
@@ -183,7 +183,7 @@ public abstract class BaseActivity extends SupportActivity implements Navigation
      * .withObject("map", map)
      * .navigation();
      * 也可直接获取fragment
-     *最后可以跳转时一定要使用navigation(this, this)才可以获取回调
+     * 最后可以跳转时一定要使用navigation(this, this)才可以获取回调
      *
      * @param url
      * @return
