@@ -1,6 +1,6 @@
 package com.feitianzhu.huangliwo;
 
-import com.feitianzhu.baselibrary.app.Baseapp;
+import com.feitianzhu.baselibrary.app.BaseApp;
 
-public class MyAPP extends Baseapp {
+public class MyAPP extends BaseApp {
 }

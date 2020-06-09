@@ -11,11 +11,13 @@ import android.util.DisplayMetrics;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.Postcard;
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.facade.callback.NavigationCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.feitianzhu.baselibrary.R;
 import com.feitianzhu.baselibrary.constants.RouteConstants;
 import com.feitianzhu.baselibrary.app.GlobalUtil;
+import com.feitianzhu.baselibrary.constants.RouteLoginConstants;
 import com.feitianzhu.baselibrary.core.ui.basefragment.Basefragment;
 import com.gyf.immersionbar.ImmersionBar;
 import com.lxj.xpopup.XPopup;
@@ -38,7 +40,8 @@ public abstract class BaseActivity extends SupportActivity implements Navigation
 
     // 获取Fragment
 //    Fragment fragment = (Fragment) ARouter.getInstance().build("/test/fragment").navigation();
-
+//    @Route(path = RouteConstants.APPMAIN, extras = RouteLoginConstants.SHOWCHECKLOGIN)
+    //当extras = RouteLoginConstants.SHOWCHECKLOGIN时
     LoadingPopupView loadingPopup;
 
 

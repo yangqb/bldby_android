@@ -1,11 +1,15 @@
 package com.feitianzhu.baselibrary.app.network;
 
 import com.alibaba.fastjson.TypeReference;
+import com.feitianzhu.baselibrary.R;
+import com.feitianzhu.baselibrary.app.GlobalUtil;
 import com.feitianzhu.baselibrary.app.NetworkConfig;
 import com.feitianzhu.baselibrary.core.network.BaseApiRequest;
 import com.feitianzhu.baselibrary.core.util.StringUtils;
 import com.feitianzhu.baselibrary.core.util.ToastUtil;
 import com.lxj.xpopup.impl.ConfirmPopupView;
+
+import static com.feitianzhu.baselibrary.app.GlobalUtil.getString;
 
 /**
  * Created by bch on 2020/5/11
@@ -83,27 +87,27 @@ public abstract class BaseRequest extends BaseApiRequest {
 //            SPUtils.putBoolean(GlobalUtil.getCurrentActivity(), Constant.LOGIN_DIALOG, false);
         } else if (errorCode == 404) {
             //找不到
-            ToastUtil.show("404 ,网络连接错误  重新加载");
+            ToastUtil.show(getString(R.string.network_error));
 
         } else if (errorCode == kErrorTypeNoNetworkConnect) {
             //网络不可用
-            ToastUtil.show("网络未开启,请打开网络");
+            ToastUtil.show(getString(R.string.network_error1));
 
         } else if (errorCode == kErrorTypeResponseHandleError) {
             //外部数据处理错误
-            ToastUtil.show("数据处理错误");
+            ToastUtil.show(getString(R.string.network_error2));
 
         } else if (errorCode == kErrorTypeResponsePraseError) {
             //json解析错误
-            ToastUtil.show("网络正在开小差 重新加载");
+            ToastUtil.show(getString(R.string.network_error3));
 
         } else if (errorCode == kErrorTypeNoNetworkCancel) {
-            ToastUtil.show("取消请求");
+//            ToastUtil.show("取消请求");
         } else if (!StringUtils.isEmpty(errorMsg)) {
             ToastUtil.show(errorMsg);
         } else {
             //未知情况
-            ToastUtil.show("网络错误,请重试" +errorCode +errorMsg);
+            ToastUtil.show(getString(R.string.network_error5));
         }
     }
 }

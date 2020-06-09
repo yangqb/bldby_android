@@ -7,7 +7,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.feitianzhu.baselibrary.core.errorlog.CrashHandler;
 import com.orhanobut.hawk.Hawk;
 
-public class Baseapp extends Application {
+public class BaseApp extends Application {
 
     @Override
     public void onCreate() {
@@ -32,7 +32,7 @@ public class Baseapp extends Application {
             @Override
             public void onCatchException(Throwable ex) {
                 if (NetworkConfig.getInstance().getIsDev()) {
-                    Toast.makeText(Baseapp.this, "未捕获的异常", Toast.LENGTH_LONG).show();
+                    Toast.makeText(BaseApp.this, "未捕获的异常", Toast.LENGTH_LONG).show();
                 }
             }
         });

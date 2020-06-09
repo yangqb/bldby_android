@@ -7,8 +7,11 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
 
+import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.feitianzhu.baselibrary.constants.RouteConstants;
+import com.feitianzhu.baselibrary.constants.RouteLoginConstants;
 import com.feitianzhu.baselibrary.constants.RouteShopConstants;
 import com.feitianzhu.baselibrary.core.ui.baseactivity.BaseActivity;
 import com.feitianzhu.baselibrary.core.ui.basefragment.Basefragment;
@@ -29,9 +32,11 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        home = (Basefragment) startWith(RouteShopConstants.SHOPMAINFirst).withString("key","sdjfsf").navigation(this,this);
+        home = (Basefragment) startWith(RouteShopConstants.SHOPMAINFirst).withString("key", "sdjfsf").navigation(this, this);
         classify = (Basefragment) startWith(RouteShopConstants.SHOPMAINCLASSIFY).withString("key", "fenlei").navigation();
         loadMultipleRootFragment(R.id.root, 0, home, classify);
+        Postcard build = ARouter.getInstance().build("url");
+        build.navigation(this, this);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.feitianzhu.shoplibrary;
 
-import com.feitianzhu.baselibrary.app.Baseapp;
+import com.feitianzhu.baselibrary.app.BaseApp;
 
-public class ShopApp extends Baseapp {
+public class ShopApp extends BaseApp {
 }
