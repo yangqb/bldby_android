@@ -12,4 +12,5 @@ public class RxCodeConstants {
      * 客服聊天通知
      */
     public static final int IM_MESSAGE = 1;
+    public static final int LOGINSTATUSCHANGE = 2;
 }
