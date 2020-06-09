@@ -65,7 +65,6 @@ dependencies {
     api rootProject.ext.dependencies["design"]
     api rootProject.ext.dependencies["cardview-v7"]
     api rootProject.ext.dependencies["support-v4"]
-    api rootProject.ext.dependencies["annotations"]
     api rootProject.ext.dependencies["recyclerview-v7"]
     api rootProject.ext.dependencies["constraint-layout"]
     api rootProject.ext.dependencies["multidex"]
@@ -88,6 +87,8 @@ dependencies {
     api rootProject.ext.dependencies["fragmentation-core"]
     api rootProject.ext.dependencies["xpopup"]
     api rootProject.ext.dependencies["hawk"]
+    api rootProject.ext.dependencies["support-annotations"]
+    api rootProject.ext.dependencies["extensions"]
 
 
 

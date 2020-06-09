@@ -28,9 +28,10 @@ ext {
             //            "palette"                  : "com.android.support:palette-v7:${version["androidSupportSdkVersion"]}",
             "support-v4"             : "com.android.support:support-v4:${version["androidSupportSdkVersion"]}",
             "cardview-v7"            : "com.android.support:cardview-v7:${version["androidSupportSdkVersion"]}",
-            "annotations"            : "com.android.support:support-annotations:${version["androidSupportSdkVersion"]}",
+            "support-annotations"            : "com.android.support:support-annotations:${version["androidSupportSdkVersion"]}",
             "recyclerview-v7"        : "com.android.support:recyclerview-v7:${version["androidSupportSdkVersion"]}",
             "constraint-layout"      : "com.android.support.constraint:constraint-layout:${version["constraintVersion"]}",
+            "extensions"             : 'android.arch.lifecycle:extensions:1.1.1',
             //            "percent"                  : "com.android.support:percent:${version["androidSupportSdkVersion"]}",
             //            "dynamic"                  : "com.android.support:support-dynamic-animation:${version["androidSupportSdkVersion"]}",
             "multidex"               : "com.android.support:multidex:1.0.3",
@@ -76,6 +77,7 @@ ext {
             "xpopup"                 : 'com.lxj:xpopup:1.8.10',
 
             "hawk"                   : "com.orhanobut:hawk:2.0.1",
+
 //             "butterknife"             : "com.jakewharton:butterknife:8.5.1",
 //             "butterknife-compiler"    : "com.jakewharton:butterknife-compiler:8.5.1",
 //            //network
