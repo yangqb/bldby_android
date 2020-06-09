@@ -44,7 +44,7 @@ public abstract class BaseActivity extends SupportActivity implements Navigation
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setTheme(R.style.MyTransparent);
+//        setTheme(R.style.MyTransparent);
         super.onCreate(savedInstanceState);
         ARouter.getInstance().inject(this);
         GlobalUtil.setCurrentActivity(this);
@@ -97,6 +97,9 @@ public abstract class BaseActivity extends SupportActivity implements Navigation
                 .navigationBarDarkIcon(true);
     }
 
+    public void onClickBack(View view) {
+        finish();
+    }
 
     protected void showloadDialog(String title) {
         if (loadingPopup == null) {
