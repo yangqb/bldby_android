@@ -1,1 +1,7 @@
-<resources></resources>
+<resources>
+    <string name="home_shoppingmall">线上商城</string>
+    <string name="home_business">线下商家</string>
+    <string name="home_aircraft">飞机出行</string>
+    <string name="home_servicestation">加油优惠</string>
+    <string name="home_welfare">优惠福利</string>
+</resources>

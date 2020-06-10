@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="home_head_yeallow">#FCB432</color>
+    <color name="home_line_backrogoud">#F8F8F8</color>
+    <color name="home_line_backgrey">#D8D8D8</color>
+    <color name="item_recyone_text">#333333</color>
+</resources>
