@@ -9,4 +9,30 @@
         <item name="android:backgroundDimEnabled">true</item><!-- 模糊 -->
         <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item> <!-- 窗口样式Dialog -->
     </style>
+    <declare-styleable name="CornerView">
+        <attr name="cornerRadius" />
+        <attr name="isCornerTopLeftRadius" format="boolean" />
+        <attr name="isCornerTopRightRadius" format="boolean" />
+        <attr name="isCornerBottomLeftRadius" format="boolean" />
+        <attr name="isCornerBottomRightRadius" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CornerButton">
+        <attr name="cornerRadius" />
+        <attr name="isCornerButtonTopLeftRadius" format="boolean" />
+        <attr name="isCornerButtonTopRightRadius" format="boolean" />
+        <attr name="isCornerButtonBottomLeftRadius" format="boolean" />
+        <attr name="isCornerButtonBottomRightRadius" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CornerTextView">
+        <attr name="cornerRadius" />
+    </declare-styleable>
+    <declare-styleable name="CornerLinearView">
+        <attr name="cornerRadius" format="dimension|reference" />
+        <attr name="isTopLeftRadius" format="boolean" />
+        <attr name="isTopRightRadius" format="boolean" />
+        <attr name="isBottomLeftRadius" format="boolean" />
+        <attr name="isBottomRightRadius" format="boolean" />
+    </declare-styleable>
 </resources>

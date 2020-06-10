@@ -45,7 +45,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    buildFeatures{
+    buildFeatures {
         dataBinding = true
 // for view binding :
 // viewBinding = true
@@ -90,7 +90,15 @@ dependencies {
     api rootProject.ext.dependencies["hawk"]
     api rootProject.ext.dependencies["support-annotations"]
     api rootProject.ext.dependencies["extensions"]
+    api rootProject.ext.dependencies["bottom-navigation"]
+    api rootProject.ext.dependencies["roundedimageview"]
     api rootProject.ext.dependencies["banner"]
+    api (rootProject.ext.dependencies["permissionsdispatcher"]) {
+        // if you don't use android.app.Fragment you can exclude support for them
+        exclude module: "support-v13"
+    }
+    annotationProcessor rootProject.ext.dependencies["permissionsdispatcher-processor"]
+
 
 
 }

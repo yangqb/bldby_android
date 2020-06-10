@@ -96,9 +96,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'android.arch.navigation:navigation-fragment:1.0.0'
-    implementation 'android.arch.navigation:navigation-ui:1.0.0'
-    implementation 'android.arch.lifecycle:extensions:1.1.1'
 
 //基类依赖library
     implementation project(path: ':baselibrary')
@@ -113,4 +110,6 @@ dependencies {
         implementation project(path: ':travellibrary')
     }
     annotationProcessor rootProject.ext.dependencies["router-compiler"]
+    annotationProcessor rootProject.ext.dependencies["permissionsdispatcher-processor"]
+
 }

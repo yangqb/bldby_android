@@ -1,11 +1,16 @@
 package com.feitianzhu.huangliwo;
 
+import android.Manifest;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.TabLayout;
+import android.support.v7.app.AlertDialog;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -19,12 +24,24 @@ import com.feitianzhu.baselibrary.core.ui.baseactivity.BaseActivity;
 import com.feitianzhu.baselibrary.core.ui.basefragment.Basefragment;
 import com.feitianzhu.huangliwo.databinding.ActivityMainBinding;
 
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.OnNeverAskAgain;
+import permissions.dispatcher.OnPermissionDenied;
+import permissions.dispatcher.OnShowRationale;
+import permissions.dispatcher.PermissionRequest;
+import permissions.dispatcher.RuntimePermissions;
+
 @Route(path = RouteConstants.APPMAIN)
 public class MainActivity extends BaseActivity {
 
     private ActivityMainBinding binding;
     private Basefragment home;
     private Basefragment classify;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public void bindIngView() {
@@ -47,52 +64,39 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initListener() {
-        binding.navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        binding.tabLayout.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case R.id.navigation_home:
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
                         showHideFragment(home);
                         break;
-                    case R.id.navigation_dashboard:
+                    case 1:
                         showHideFragment(classify);
                         break;
-                    case R.id.navigation_notifications:
+                    case 2:
                         showHideFragment(home);
                         break;
-                    case R.id.navigation_notifications1:
+                    case 3:
                         start(RouteTravelConstants.TRAVELMAIN);
 //                        showHideFragment(classify);
                         break;
                     default:
-                        return false;
+                        break;
                 }
-                return true;
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
-//        binding.navView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
-//            @Override
-//            public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
-//                switch (menuItem.getItemId()) {
-//                    case R.id.navigation_home:
-//                        menuItem.setIcon(R.mipmap.main_bottom_home_un);
-//                        break;
-//                    case R.id.navigation_dashboard:
-//                        menuItem.setIcon(R.mipmap.main_bottom_classify_un);
-//                        break;
-//                    case R.id.navigation_notifications:
-//                        menuItem.setIcon(R.mipmap.main_bottom_vip_un);
-//                        break;
-//                    case R.id.navigation_notifications1:
-//                        menuItem.setIcon(R.mipmap.main_bottom_center_un);
-////                        showHideFragment(classify);
-//                        break;
-//                    default:
-//                        break;
-//                }
-//
-//            }
-//        });
+
     }
 
 }
