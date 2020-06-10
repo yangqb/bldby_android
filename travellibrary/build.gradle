@@ -1,17 +1,16 @@
-if (rootProject.ext.isShopApplication) {
+if (rootProject.ext.isTravelApplication) {
     apply plugin: 'com.android.application'
-
 } else {
     apply plugin: 'com.android.library'
-
 }
+
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
 
     defaultConfig {
-        if (rootProject.ext.isShopApplication) {
+        if (rootProject.ext.isTravelApplication) {
             //组件模式下设置applicationId
-            applicationId "com.feitianzhu.shoplibrary"
+            applicationId "com.feitianzhu.travellibrary"
         }
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
@@ -34,16 +33,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    sourceSets {
-        main {
-            if (rootProject.ext.isShopApplication) {
-                manifest.srcFile 'src/main/module/AndroidManifest.xml'
-            } else {
-                manifest.srcFile 'src/main/AndroidManifest.xml'
-            }
-            jniLibs.srcDirs = ['libs']
-        }
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -53,10 +42,21 @@ android {
 // for view binding :
 // viewBinding = true
     }
+    sourceSets {
+        main {
+            if (rootProject.ext.isTravelApplication) {
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(path: ':baselibrary')
     annotationProcessor rootProject.ext.dependencies["router-compiler"]
+
 }

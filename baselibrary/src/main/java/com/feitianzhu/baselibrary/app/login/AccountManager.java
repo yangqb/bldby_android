@@ -42,6 +42,10 @@ public class AccountManager {
         return true;
     }
 
+    public boolean isVip() {
+        return true;
+    }
+
     public void setLoginSuccess(UserInfo userInfo) {
         this.userInfo = userInfo;
         Hawk.put(LOGINKEY, true);

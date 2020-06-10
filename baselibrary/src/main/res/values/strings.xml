@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">便利大本营</string>
     <string name="network_error">404 ,网络连接错误  重新加载</string>
     <string name="network_error1">网络未开启,请打开网络</string>
     <string name="network_error2">数据处理错误</string>
     <string name="network_error3">网络正在开小差 重新加载</string>
     <string name="network_error5">网络错误,请重试</string>
+    <string name="nofoundView">页面找不到</string>
 </resources>

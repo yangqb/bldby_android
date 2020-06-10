@@ -10,9 +10,11 @@ import android.view.MenuItem;
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.feitianzhu.baselibrary.app.login.AccountManager;
 import com.feitianzhu.baselibrary.constants.RouteConstants;
 import com.feitianzhu.baselibrary.constants.RouteLoginConstants;
 import com.feitianzhu.baselibrary.constants.RouteShopConstants;
+import com.feitianzhu.baselibrary.constants.RouteTravelConstants;
 import com.feitianzhu.baselibrary.core.ui.baseactivity.BaseActivity;
 import com.feitianzhu.baselibrary.core.ui.basefragment.Basefragment;
 import com.feitianzhu.huangliwo.databinding.ActivityMainBinding;
@@ -35,8 +37,7 @@ public class MainActivity extends BaseActivity {
         home = (Basefragment) startWith(RouteShopConstants.SHOPMAINFirst).withString("key", "sdjfsf").navigation(this, this);
         classify = (Basefragment) startWith(RouteShopConstants.SHOPMAINCLASSIFY).withString("key", "fenlei").navigation();
         loadMultipleRootFragment(R.id.root, 0, home, classify);
-        Postcard build = ARouter.getInstance().build("url");
-        build.navigation(this, this);
+
     }
 
     @Override
@@ -60,12 +61,13 @@ public class MainActivity extends BaseActivity {
                         showHideFragment(home);
                         break;
                     case R.id.navigation_notifications1:
-                        showHideFragment(classify);
+                        start(RouteTravelConstants.TRAVELMAIN);
+//                        showHideFragment(classify);
                         break;
                     default:
-                        break;
+                        return false;
                 }
-                return false;
+                return true;
             }
         });
     }

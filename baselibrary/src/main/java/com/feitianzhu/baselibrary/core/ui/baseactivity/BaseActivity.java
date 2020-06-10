@@ -19,6 +19,7 @@ import com.feitianzhu.baselibrary.constants.RouteConstants;
 import com.feitianzhu.baselibrary.app.GlobalUtil;
 import com.feitianzhu.baselibrary.constants.RouteLoginConstants;
 import com.feitianzhu.baselibrary.core.ui.basefragment.Basefragment;
+import com.feitianzhu.baselibrary.core.util.ToastUtil;
 import com.gyf.immersionbar.ImmersionBar;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.enums.PopupAnimation;
@@ -154,7 +155,9 @@ public abstract class BaseActivity extends SupportActivity implements Navigation
 
     public void start(String url) {
         // 使用两个参数的navigation方法，可以获取单次跳转的结果
-        ARouter.getInstance().build(url).navigation(this, this);
+        ARouter.getInstance()
+                .build(url)
+                .navigation(this, this);
 
     }
 
@@ -233,7 +236,7 @@ public abstract class BaseActivity extends SupportActivity implements Navigation
     //找不到的时候回调
     @Override
     public void onLost(Postcard postcard) {
-
+        ToastUtil.show(getString(R.string.nofoundView));
     }
 
     //跳转结束
@@ -245,6 +248,6 @@ public abstract class BaseActivity extends SupportActivity implements Navigation
     //被拦截
     @Override
     public void onInterrupt(Postcard postcard) {
-
+        ToastUtil.show("被拦截");
     }
 }
