@@ -4,4 +4,6 @@
     <color name="home_line_backrogoud">#F8F8F8</color>
     <color name="home_line_backgrey">#D8D8D8</color>
     <color name="item_recyone_text">#333333</color>
+    <color name="home_miaoshatext_color"> #2C0202 </color>
+    <color name="home_white">#FFFFFF</color>
 </resources>

@@ -15,6 +15,8 @@ import com.feitianzhu.baselibrary.constants.RouteShopConstants;
 import com.feitianzhu.baselibrary.core.ui.basefragment.Basefragment;
 import com.feitianzhu.shoplibrary.R;
 import com.feitianzhu.shoplibrary.adapter.HomeListAdapter;
+import com.feitianzhu.shoplibrary.adapter.HomeSeckilAdapter;
+import com.feitianzhu.shoplibrary.bean.News;
 import com.feitianzhu.shoplibrary.databinding.FragmentHomeBinding;
 import com.feitianzhu.shoplibrary.seach.SeachHeaderView;
 
@@ -45,6 +47,35 @@ public class HomeFragment extends Basefragment {
         initBanner();
         //首页飞机，商家，商城，油站方法（）
         initList();
+        //秒杀产品方法();
+        initseckill();
+    }
+
+    private void initseckill() {
+        binding.homeRecyfour.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+        List<News> newsList = new ArrayList();
+        newsList.add(new News("新闻标题1",R.mipmap.home_oilimg));
+        newsList.add(new News("新闻标题2",R.mipmap.home_bannerimg));
+        newsList.add(new News("新闻标题3",R.mipmap.home_flayimg));
+        newsList.add(new News("新闻标题4",R.mipmap.home_shoppiingimg));
+        HomeSeckilAdapter adaptertwo=new HomeSeckilAdapter(newsList);
+        binding.homeRecyfour.setAdapter(adaptertwo);
+    }
+
+    /*
+        不可展示页面
+     */
+    @Override
+    public void onSupportInvisible() {
+        super.onSupportInvisible();
+    }
+
+    /**
+     * 展示页面方法
+     */
+    @Override
+    public void onSupportVisible() {
+        super.onSupportVisible();
     }
 
     private void initList() {
