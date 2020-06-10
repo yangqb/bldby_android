@@ -10,9 +10,12 @@ import android.support.annotation.NonNull;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bumptech.glide.Glide;
 import com.feitianzhu.baselibrary.constants.RouteShopConstants;
+import com.feitianzhu.baselibrary.core.addresspick.AddressPickerUtil;
 import com.feitianzhu.baselibrary.core.ui.basefragment.Basefragment;
+import com.feitianzhu.baselibrary.core.util.ToastUtil;
 import com.feitianzhu.shoplibrary.R;
 import com.feitianzhu.shoplibrary.adapter.HomeListAdapter;
 import com.feitianzhu.shoplibrary.adapter.HomeSeckilAdapter;
@@ -35,7 +38,13 @@ public class HomeFragment extends Basefragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         binding.setViewModel(this);
-        SeachHeaderView seachHeaderView = new SeachHeaderView();
+        SeachHeaderView seachHeaderView = new SeachHeaderView(getActivity());
+        seachHeaderView.onOptionsSelectListener = new AddressPickerUtil.OnOptionsTextSelectListener() {
+            @Override
+            public void onOptionsSelect(String options1, String options2, String options3) {
+                ToastUtil.show(options1 + options2 + options3);
+            }
+        };
         binding.headers.addView(seachHeaderView.getView(getLayoutInflater()));
         return binding.getRoot();
     }
@@ -52,13 +61,13 @@ public class HomeFragment extends Basefragment {
     }
 
     private void initseckill() {
-        binding.homeRecyfour.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+        binding.homeRecyfour.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         List<News> newsList = new ArrayList();
-        newsList.add(new News("新闻标题1",R.mipmap.home_oilimg));
-        newsList.add(new News("新闻标题2",R.mipmap.home_bannerimg));
-        newsList.add(new News("新闻标题3",R.mipmap.home_flayimg));
-        newsList.add(new News("新闻标题4",R.mipmap.home_shoppiingimg));
-        HomeSeckilAdapter adaptertwo=new HomeSeckilAdapter(newsList);
+        newsList.add(new News("新闻标题1", R.mipmap.home_oilimg));
+        newsList.add(new News("新闻标题2", R.mipmap.home_bannerimg));
+        newsList.add(new News("新闻标题3", R.mipmap.home_flayimg));
+        newsList.add(new News("新闻标题4", R.mipmap.home_shoppiingimg));
+        HomeSeckilAdapter adaptertwo = new HomeSeckilAdapter(newsList);
         binding.homeRecyfour.setAdapter(adaptertwo);
     }
 

@@ -87,6 +87,8 @@ ext {
             "bottom-navigation"              : 'com.yinglan.alphatabs:library:1.0.8',
 //圆形图片库
             "roundedimageview"               : 'com.makeramen:roundedimageview:2.3.0',
+//弹窗类
+            "Android-PickerView"             : 'com.contrarywind:Android-PickerView:4.1.9',
 //             "butterknife"             : "com.jakewharton:butterknife:8.5.1",
 //             "butterknife-compiler"    : "com.jakewharton:butterknife-compiler:8.5.1",
 //            //network

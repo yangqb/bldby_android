@@ -9,7 +9,10 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.Postcard;
@@ -55,6 +58,7 @@ public class MainActivity extends BaseActivity {
     public void loadData() {
 
     }
+
     @Override
     public ImmersionBar getOpenImmersionBar() {
         return ImmersionBar.with(this)
@@ -70,6 +74,8 @@ public class MainActivity extends BaseActivity {
         binding.tabLayout.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                Log.e("TAG", "onTabSelected: " + tab.getPosition());
+
                 switch (tab.getPosition()) {
                     case 0:
                         showHideFragment(home);
@@ -91,15 +97,39 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
+                Log.e("TAG", "onTabUnselected: " + tab.getPosition());
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
+                Log.e("TAG", "onTabReselected: " + tab.getPosition());
 
             }
         });
 
     }
 
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+//            if (videoPlayActivity != null) {
+//                getSupportFragmentManager().popBackStack();
+//                diaglo.setVisibility(View.GONE);
+//
+//                videoPlayActivity = null;
+//                return false;
+//            }
+//
+//            long backPressed = System.currentTimeMillis();
+//            if (backPressed - lastBackPressed > QUIT_INTERVAL) {
+//                lastBackPressed = backPressed;
+//                ToastUtils.show("再按一次退出程序");
+//            } else {
+//                finish();
+//                System.exit(0);
+//            }
+//            return true;
+//        }
+//        return super.onKeyDown(keyCode, event);
+//    }
 }

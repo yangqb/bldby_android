@@ -20,14 +20,17 @@ public class LoginInterceptor implements IInterceptor {
     public void process(Postcard postcard, InterceptorCallback callback) {
         int extra = postcard.getExtra();
         Log.e("TAG", "process: " + "被拦截");
-        if (extra == RouteLoginConstants.SHOWCHECKLOGIN && AccountManager.isLogin()) {
+        if (extra == RouteLoginConstants.SHOWCHECKLOGIN && !AccountManager.isLogin()) {
 //TODO 去登陆页面
+            Log.e("TAG", "process: " + "被拦截11");
 
-//         ARouter.getInstance().build(url).navigation();
+            ARouter.getInstance().build(RouteLoginConstants.LOGINMAIN).navigation();
             // 处理完成，交还控制权
-            // callback.onInterrupt(new RuntimeException("我觉得有点异常"));
+            callback.onInterrupt(new RuntimeException("未登录"));
+        } else {
+            callback.onContinue(postcard);
+
         }
-        callback.onContinue(postcard);
     }
 
     @Override

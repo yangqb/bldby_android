@@ -7,4 +7,7 @@
     <string name="network_error3">网络正在开小差 重新加载</string>
     <string name="network_error5">网络错误,请重试</string>
     <string name="nofoundView">页面找不到</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="chooseAre">选择地区</string>
 </resources>
