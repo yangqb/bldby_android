@@ -15,6 +15,7 @@ import com.feitianzhu.shoplibrary.adapter.HomeListAdapter;
 import com.feitianzhu.shoplibrary.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -40,14 +41,12 @@ public class HomeFragment extends Basefragment {
     }
 
     private void initList() {
-        List<String> list=new ArrayList<>();
-        list.add(R.string.home_shoppingmall,"");
-        list.add(R.string.home_business,"");
-        list.add(R.string.home_aircraft,"");
-        list.add(R.string.home_servicestation,"");
-        list.add(R.string.home_welfare,"");
+        //图片集合
+        Integer[] integers = {R.mipmap.home_shoppiingimg,R.mipmap.home_shoppingimg,R.mipmap.home_flayimg,R.mipmap.home_oilimg};
+        //适配器设置
         binding.homeRecyone.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
-        HomeListAdapter adapter=new HomeListAdapter(list);
+        //适配器
+        HomeListAdapter adapter=new HomeListAdapter(Arrays.asList(integers));
         binding.homeRecyone.setAdapter(adapter);
     }
 
