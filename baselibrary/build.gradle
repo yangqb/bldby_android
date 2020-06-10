@@ -83,6 +83,7 @@ dependencies {
     api rootProject.ext.dependencies["immersionbar-components"]
     api rootProject.ext.dependencies["SmartRefreshLayout"]
     api rootProject.ext.dependencies["SmartRefreshHeader"]
+    api rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
     api rootProject.ext.dependencies["fragmentation"]
     api rootProject.ext.dependencies["fragmentation-core"]
     api rootProject.ext.dependencies["xpopup"]

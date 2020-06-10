@@ -70,6 +70,29 @@ public class MainActivity extends BaseActivity {
                 return true;
             }
         });
+//        binding.navView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+//            @Override
+//            public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
+//                switch (menuItem.getItemId()) {
+//                    case R.id.navigation_home:
+//                        menuItem.setIcon(R.mipmap.main_bottom_home_un);
+//                        break;
+//                    case R.id.navigation_dashboard:
+//                        menuItem.setIcon(R.mipmap.main_bottom_classify_un);
+//                        break;
+//                    case R.id.navigation_notifications:
+//                        menuItem.setIcon(R.mipmap.main_bottom_vip_un);
+//                        break;
+//                    case R.id.navigation_notifications1:
+//                        menuItem.setIcon(R.mipmap.main_bottom_center_un);
+////                        showHideFragment(classify);
+//                        break;
+//                    default:
+//                        break;
+//                }
+//
+//            }
+//        });
     }
 
 }

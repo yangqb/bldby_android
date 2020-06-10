@@ -25,60 +25,61 @@ ext {
 
     dependencies = [
             //            //support
-            "appcompat-v7"           : "com.android.support:appcompat-v7:${version["androidSupportSdkVersion"]}",
-            "design"                 : "com.android.support:design:${version["androidSupportSdkVersion"]}",
+            "appcompat-v7"                 : "com.android.support:appcompat-v7:${version["androidSupportSdkVersion"]}",
+            "design"                       : "com.android.support:design:${version["androidSupportSdkVersion"]}",
             //            "palette"                  : "com.android.support:palette-v7:${version["androidSupportSdkVersion"]}",
-            "support-v4"             : "com.android.support:support-v4:${version["androidSupportSdkVersion"]}",
-            "cardview-v7"            : "com.android.support:cardview-v7:${version["androidSupportSdkVersion"]}",
-            "support-annotations"            : "com.android.support:support-annotations:${version["androidSupportSdkVersion"]}",
-            "recyclerview-v7"        : "com.android.support:recyclerview-v7:${version["androidSupportSdkVersion"]}",
-            "constraint-layout"      : "com.android.support.constraint:constraint-layout:${version["constraintVersion"]}",
-            "extensions"             : 'android.arch.lifecycle:extensions:1.1.1',
+            "support-v4"                   : "com.android.support:support-v4:${version["androidSupportSdkVersion"]}",
+            "cardview-v7"                  : "com.android.support:cardview-v7:${version["androidSupportSdkVersion"]}",
+            "support-annotations"          : "com.android.support:support-annotations:${version["androidSupportSdkVersion"]}",
+            "recyclerview-v7"              : "com.android.support:recyclerview-v7:${version["androidSupportSdkVersion"]}",
+            "constraint-layout"            : "com.android.support.constraint:constraint-layout:${version["constraintVersion"]}",
+            "extensions"                   : 'android.arch.lifecycle:extensions:1.1.1',
             //            "percent"                  : "com.android.support:percent:${version["androidSupportSdkVersion"]}",
             //            "dynamic"                  : "com.android.support:support-dynamic-animation:${version["androidSupportSdkVersion"]}",
-            "multidex"               : "com.android.support:multidex:1.0.3",
+            "multidex"                     : "com.android.support:multidex:1.0.3",
             //
-            "navigation-fragment"    : 'android.arch.navigation:navigation-fragment:1.0.0',
-            "navigation-ui"          : 'android.arch.navigation:navigation-ui:1.0.0',
-            "extensions"             : 'android.arch.lifecycle:extensions:1.1.1',
+            "navigation-fragment"          : 'android.arch.navigation:navigation-fragment:1.0.0',
+            "navigation-ui"                : 'android.arch.navigation:navigation-ui:1.0.0',
+            "extensions"                   : 'android.arch.lifecycle:extensions:1.1.1',
             //网络请求
-            "logging-interceptor"    : 'com.squareup.okhttp3:logging-interceptor:4.7.2',
-            "okgo"                   : 'com.lzy.net:okgo:3.0.4',
-            "okrx2"                  : 'com.lzy.net:okrx2:2.0.2',
-            "okserver"               : 'com.lzy.net:okserver:2.0.5',
-            "rxandroid"              : 'io.reactivex.rxjava2:rxandroid:2.1.1',
-            "rxjava"                 : 'io.reactivex.rxjava2:rxjava:2.2.19',
+            "logging-interceptor"          : 'com.squareup.okhttp3:logging-interceptor:4.7.2',
+            "okgo"                         : 'com.lzy.net:okgo:3.0.4',
+            "okrx2"                        : 'com.lzy.net:okrx2:2.0.2',
+            "okserver"                     : 'com.lzy.net:okserver:2.0.5',
+            "rxandroid"                    : 'io.reactivex.rxjava2:rxandroid:2.1.1',
+            "rxjava"                       : 'io.reactivex.rxjava2:rxjava:2.2.19',
 //json解析
-            "gson"                   : 'com.google.code.gson:gson:2.8.6',
-            "fastjson"               : 'com.alibaba:fastjson:1.2.70',
+            "gson"                         : 'com.google.code.gson:gson:2.8.6',
+            "fastjson"                     : 'com.alibaba:fastjson:1.2.70',
 //权限请求
-            "xxpermissions"          : 'com.hjq:xxpermissions:6.2',
+            "xxpermissions"                : 'com.hjq:xxpermissions:6.2',
 //router 路由
-            "router"                 : "com.alibaba:arouter-api:1.4.1",
-            "router-compiler"        : "com.alibaba:arouter-compiler:1.2.2",
+            "router"                       : "com.alibaba:arouter-api:1.4.1",
+            "router-compiler"              : "com.alibaba:arouter-compiler:1.2.2",
 //
 //            //image
-            "glide"                  : "com.github.bumptech.glide:glide:${version["glideSdkVersion"]}",
-            "glide-compiler"         : "com.github.bumptech.glide:compiler:${version["glideSdkVersion"]}",
+            "glide"                        : "com.github.bumptech.glide:glide:${version["glideSdkVersion"]}",
+            "glide-compiler"               : "com.github.bumptech.glide:compiler:${version["glideSdkVersion"]}",
 
 //状态栏导航栏适配
             // 基础依赖包，必须要依赖
-            "immersionbar"           : 'com.gyf.immersionbar:immersionbar:3.0.0',
+            "immersionbar"                 : 'com.gyf.immersionbar:immersionbar:3.0.0',
 
             // fragment快速实现（可选）
-            "immersionbar-components": 'com.gyf.immersionbar:immersionbar-components:3.0.0',
+            "immersionbar-components"      : 'com.gyf.immersionbar:immersionbar-components:3.0.0',
 
 
-            "SmartRefreshLayout"     : 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0',
-            "SmartRefreshHeader"     : 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0',
+            "SmartRefreshLayout"           : 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0',
+            "SmartRefreshHeader"           : 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0',
+            "BaseRecyclerViewAdapterHelper": 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50',
             // appcompat-v7包是必须的
             // 如果不想继承SupportActivity/Fragment，自己定制Support，可仅依赖:
-            "fragmentation"          : 'me.yokeyword:fragmentation:1.3.8',
-            "fragmentation-core"     : 'me.yokeyword:fragmentation-core:1.3.8',
+            "fragmentation"                : 'me.yokeyword:fragmentation:1.3.8',
+            "fragmentation-core"           : 'me.yokeyword:fragmentation-core:1.3.8',
 //弹出窗
-            "xpopup"                 : 'com.lxj:xpopup:1.8.10',
+            "xpopup"                       : 'com.lxj:xpopup:1.8.10',
 
-            "hawk"                   : "com.orhanobut:hawk:2.0.1",
+            "hawk"                         : "com.orhanobut:hawk:2.0.1",
 
 //             "butterknife"             : "com.jakewharton:butterknife:8.5.1",
 //             "butterknife-compiler"    : "com.jakewharton:butterknife-compiler:8.5.1",
@@ -122,9 +123,9 @@ ext {
 //            "easypermissions"           : "pub.devrel:easypermissions:1.0.1",
 
 //test
-            "junit"                  : 'junit:junit:4.12',
-            "runner"                 : 'com.android.support.test:runner:1.0.2',
-            "espresso-core"          : 'com.android.support.test.espresso:espresso-core:3.0.2',
+            "junit"                        : 'junit:junit:4.12',
+            "runner"                       : 'com.android.support.test:runner:1.0.2',
+            "espresso-core"                : 'com.android.support.test.espresso:espresso-core:3.0.2',
 
 //testImplementation 'junit:junit:4.12'
 //androidTestImplementation 'com.android.support.test:runner:1.0.2'
