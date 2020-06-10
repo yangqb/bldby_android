@@ -11,6 +11,9 @@ import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.enums.PopupAnimation;
 import com.lxj.xpopup.impl.LoadingPopupView;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import me.yokeyword.fragmentation.SupportFragment;
 
 //获取数据三种方式
@@ -68,6 +71,39 @@ public abstract class Basefragment extends SupportFragment {
                 public void run() {
                 }
             });
+        }
+    }
+
+    @Override
+    public void onSupportVisible() {
+        super.onSupportVisible();
+        performTasksOnResumed();
+    }
+
+    private List<Runnable> taskListOnResumed = null;
+
+    /**
+     * 前台执行,即,fragment可见的时候执行
+     */
+    public final void postOnResumed(Runnable task) {
+        if (task != null) {
+            if (isSupportVisible()) {
+                task.run();
+            } else {
+                if (taskListOnResumed == null) {
+                    taskListOnResumed = new LinkedList<Runnable>();
+                }
+                taskListOnResumed.add(task);
+            }
+        }
+    }
+
+    private void performTasksOnResumed() {
+        if (taskListOnResumed != null) {
+            for (Runnable task : taskListOnResumed) {
+                task.run();
+            }
+            taskListOnResumed = null;
         }
     }
 

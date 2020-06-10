@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.feitianzhu.shoplibrary.home.HomeFragment" />
@@ -13,41 +14,42 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-                 <LinearLayout
-                     android:orientation="vertical"
-                     android:layout_width="match_parent"
-                     android:layout_height="@dimen/dp_100"
-                     >
 
-                 </LinearLayout>
+        <LinearLayout
+            android:id="@+id/headers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/home_rela"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_258"
-            android:background="@color/home_head_yeallow"
-            android:layout_marginTop="@dimen/dp_100"
-            >
-                  <com.zhpan.bannerview.BannerViewPager
-                      android:id="@+id/home_banner"
-                      android:layout_centerHorizontal="true"
-                      android:layout_width="@dimen/dp_345"
-                      android:layout_height="@dimen/dp_216"
-                      android:layout_marginTop="@dimen/dp_10"
-                      >
+            android:layout_below="@+id/headers"
+            android:background="@color/home_head_yeallow">
 
-                  </com.zhpan.bannerview.BannerViewPager>
+            <com.zhpan.bannerview.BannerViewPager
+                android:id="@+id/home_banner"
+                android:layout_width="@dimen/dp_345"
+                android:layout_height="@dimen/dp_216"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp_10">
+
+            </com.zhpan.bannerview.BannerViewPager>
 
         </RelativeLayout>
+
         <LinearLayout
             android:id="@+id/home_line"
-            android:layout_gravity="center_horizontal"
             android:layout_width="@dimen/dp_345"
             android:layout_height="@dimen/dp_109"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/line_back"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/dp_334"
-            >
+            android:background="@drawable/line_back">
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/home_recyone"
                 android:layout_width="match_parent"
@@ -55,34 +57,33 @@
 
             </android.support.v7.widget.RecyclerView>
         </LinearLayout>
+
         <LinearLayout
-            android:layout_below="@+id/home_line"
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/home_line"
             android:layout_marginTop="@dimen/dp_10"
-            >
+            android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:orientation="vertical">
-                   <android.support.v7.widget.RecyclerView
-                       android:id="@+id/home_recytwo"
-                       android:layout_width="@dimen/dp_345"
-                       android:layout_height="@dimen/dp_100"
-                       android:background="@drawable/line_backgroud"
-                       >
-                   </android.support.v7.widget.RecyclerView>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/home_recytwo"
+                    android:layout_width="@dimen/dp_345"
+                    android:layout_height="@dimen/dp_100"
+                    android:background="@drawable/line_backgroud"></android.support.v7.widget.RecyclerView>
+
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/home_recythree"
                     android:layout_width="@dimen/dp_345"
                     android:layout_height="@dimen/dp_100"
-                    android:background="@drawable/line_back"
                     android:layout_marginTop="@dimen/dp_10"
-                    android:visibility="gone"
-                    >
-                </android.support.v7.widget.RecyclerView>
+                    android:background="@drawable/line_back"
+                    android:visibility="gone"></android.support.v7.widget.RecyclerView>
 
             </LinearLayout>
         </LinearLayout>

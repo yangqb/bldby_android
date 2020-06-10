@@ -1,5 +1,6 @@
 package com.feitianzhu.shoplibrary.seach;
 
+import android.view.LayoutInflater;
 import android.view.View;
 
 import com.feitianzhu.shoplibrary.databinding.ViewSeachHeaderBinding;
@@ -10,8 +11,8 @@ public class SeachHeaderView {
 
     private ViewSeachHeaderBinding headerBinding;
 
-    private View getView(View view) {
-        headerBinding = ViewSeachHeaderBinding.bind(view);
+    public View getView(LayoutInflater view) {
+        headerBinding = ViewSeachHeaderBinding.inflate(view);
         headerBinding.setViewModel(this);
         return headerBinding.getRoot();
     }

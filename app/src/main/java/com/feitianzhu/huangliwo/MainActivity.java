@@ -23,13 +23,7 @@ import com.feitianzhu.baselibrary.constants.RouteTravelConstants;
 import com.feitianzhu.baselibrary.core.ui.baseactivity.BaseActivity;
 import com.feitianzhu.baselibrary.core.ui.basefragment.Basefragment;
 import com.feitianzhu.huangliwo.databinding.ActivityMainBinding;
-
-import permissions.dispatcher.NeedsPermission;
-import permissions.dispatcher.OnNeverAskAgain;
-import permissions.dispatcher.OnPermissionDenied;
-import permissions.dispatcher.OnShowRationale;
-import permissions.dispatcher.PermissionRequest;
-import permissions.dispatcher.RuntimePermissions;
+import com.gyf.immersionbar.ImmersionBar;
 
 @Route(path = RouteConstants.APPMAIN)
 public class MainActivity extends BaseActivity {
@@ -60,6 +54,15 @@ public class MainActivity extends BaseActivity {
     @Override
     public void loadData() {
 
+    }
+    @Override
+    public ImmersionBar getOpenImmersionBar() {
+        return ImmersionBar.with(this)
+                .fitsSystemWindows(true)
+                .statusBarDarkFont(true, 0.2f)
+                .navigationBarColor(R.color.white)
+                .statusBarColor(R.color.FCB432)
+                .navigationBarDarkIcon(true);
     }
 
     @Override

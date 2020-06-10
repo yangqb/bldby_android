@@ -51,10 +51,14 @@ public abstract class BaseActivity extends SupportActivity implements Navigation
         super.onCreate(savedInstanceState);
         ARouter.getInstance().inject(this);
         GlobalUtil.setCurrentActivity(this);
+        if (getOpenImmersionBar() != null) {
+            getOpenImmersionBar();
+        }
         bindIngView();
         initView();
         initListener();
         loadData();
+
 //        PushAgent.getInstance(this).onAppStart();
     }
 
