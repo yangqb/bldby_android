@@ -1,5 +1,6 @@
 package com.feitianzhu.baselibrary.app.webview;
 
+import android.arch.lifecycle.ViewModel;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -256,5 +257,9 @@ public class BaseWebviewActivity extends BaseActivity {
     @Override
     public void initListener() {
 
+    }
+
+    public void onClickBack(View view){
+        finish();
     }
 }
