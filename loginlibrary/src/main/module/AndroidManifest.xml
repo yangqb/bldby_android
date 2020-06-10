@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.feitianzhu.loginlibrary">
-    <application>
+    <application android:name=".ui.LoginApp">
         <activity
             android:name="com.feitianzhu.loginlibrary.ui.LoginActivity"
             android:theme="@style/AppTheme"
