@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="login_title_color">#333333</color>
+    <color name="login_line_color">#E4E4E4</color>
+    <color name="login_account_color">#333333</color>
+    <color name="login_account_hint_color">#ADADAD</color>
+    <color name="login_verification_code_color">#333333</color>
+    <color name="login_verification_code_hint_color">#ADADAD</color>
+    <color name="login_color_333333">#333333</color>
+    <color name="login_btn_norm">#FFEFD1</color>
+    <color name="login_btn_select">#FCB432</color>
+    <color name="login_color_999999">#999999</color>
+</resources>

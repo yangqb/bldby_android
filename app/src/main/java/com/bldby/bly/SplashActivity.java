@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bldby.baselibrary.constants.RouteConstants;
+import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
 import com.bldby.baselibrary.core.ui.basefragment.Basefragment;
 import com.bldby.bly.databinding.ActivityMainBinding;
@@ -56,7 +57,8 @@ public class SplashActivity extends BaseActivity {
 //获得权限
     @NeedsPermission({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
     void need() {
-        start(RouteConstants.APPMAIN);
+        //start(RouteConstants.APPMAIN);
+        start(RouteLoginConstants.LOGINMAIN);
         finish();
     }
 

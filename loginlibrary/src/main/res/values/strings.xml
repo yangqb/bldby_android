@@ -1,3 +1,11 @@
 <resources>
+    <string name="login_title_text">你想要的 有我就够了</string>
+    <string name="login_account_hint_text">请输入手机号</string>
+    <string name="login_code_hint_text">请输入短信验证码</string>
+    <string name="login_register_text">新用户注册</string>
+    <string name="login_forgot_password">忘记密码</string>
+    <string name="login_btn_text">登录</string>
+    <string name="login_protocols_private">登录即视为您已经阅读并同意用户协议和隐私政策</string>
+    <string name="login_other">其他方式登录</string>
 
 </resources>
