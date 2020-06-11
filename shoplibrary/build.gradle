@@ -11,7 +11,7 @@ android {
     defaultConfig {
         if (rootProject.ext.isShopApplication) {
             //组件模式下设置applicationId
-            applicationId "com.feitianzhu.shoplibrary"
+            applicationId "com..shoplibrary"
         }
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]

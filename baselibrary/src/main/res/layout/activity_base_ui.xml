@@ -5,7 +5,7 @@
 
         <variable
             name="viewmodel"
-            type="com.feitianzhu.baselibrary.core.ui.baseactivity.BaseUiActivity" />
+            type="com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity" />
     </data>
 
     <RelativeLayout

@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.feitianzhu.shoplibrary.ShopMainActivity" />
+            type="com.bldby.shoplibrary.ShopMainActivity" />
     </data>
 
     <android.support.constraint.ConstraintLayout

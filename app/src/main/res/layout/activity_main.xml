@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.feitianzhu.huangliwo.MainActivity" />
+            type="com.bldby.bly.MainActivity" />
     </data>
 
     <LinearLayout

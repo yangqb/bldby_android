@@ -57,7 +57,6 @@ dependencies {
     api rootProject.ext.dependencies["router"]
     annotationProcessor rootProject.ext.dependencies["router-compiler"]
 
-
     api(rootProject.ext.dependencies["appcompat-v7"]) {
         exclude module: "support-v4"
         exclude module: "support-annotations"
@@ -94,12 +93,20 @@ dependencies {
     api rootProject.ext.dependencies["roundedimageview"]
     api rootProject.ext.dependencies["banner"]
     api rootProject.ext.dependencies["Android-PickerView"]
-    api (rootProject.ext.dependencies["permissionsdispatcher"]) {
+    api rootProject.ext.dependencies["umsdk-analytics"]
+    api rootProject.ext.dependencies["umsdk-common"]
+//    api rootProject.ext.dependencies["share-core"]
+//    api rootProject.ext.dependencies["share-board"]
+//    api rootProject.ext.dependencies["share-qq"]
+//    api rootProject.ext.dependencies["share-wx"]
+
+    api(rootProject.ext.dependencies["permissionsdispatcher"]) {
         // if you don't use android.app.Fragment you can exclude support for them
         exclude module: "support-v13"
     }
     annotationProcessor rootProject.ext.dependencies["permissionsdispatcher-processor"]
-
-
+    api files('libs\\BaiduLBS_Android.jar')
+//    api files('libs\\alipaySdk-15.7.4-20200228192259.aar')
+    api rootProject.ext.dependencies["xlog"]
 
 }

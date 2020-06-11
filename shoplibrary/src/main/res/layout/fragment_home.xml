@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.feitianzhu.shoplibrary.home.HomeFragment" />
+            type="com.bldby.shoplibrary.home.HomeFragment" />
 
     </data>
 
@@ -134,7 +134,7 @@
                         android:textSize="12sp" />
                 </LinearLayout>
 
-                <com.feitianzhu.baselibrary.core.view.CornerLinearView
+                <com.bldby.baselibrary.core.view.CornerLinearView
                     android:layout_marginTop="@dimen/dp_10"
                     app:cornerRadius="@dimen/dp_10"
                     android:layout_width="match_parent"
@@ -164,7 +164,7 @@
                             android:textSize="@dimen/sp_12"
                             android:textColor="@color/home_miaoshatext_color"
                             />
-                        <com.feitianzhu.baselibrary.core.view.CornerTextView
+                        <com.bldby.baselibrary.core.view.CornerTextView
                             app:cornerRadius="@dimen/dp_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -174,7 +174,7 @@
                             android:textSize="@dimen/sp_10"
                             android:textColor="@color/home_white"
                             >
-                        </com.feitianzhu.baselibrary.core.view.CornerTextView>
+                        </com.bldby.baselibrary.core.view.CornerTextView>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -184,7 +184,7 @@
                             android:textColor="@color/item_recyone_text"
                             >
                         </TextView>
-                        <com.feitianzhu.baselibrary.core.view.CornerTextView
+                        <com.bldby.baselibrary.core.view.CornerTextView
                             app:cornerRadius="@dimen/dp_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -194,7 +194,7 @@
                             android:textSize="@dimen/sp_10"
                             android:textColor="@color/home_white"
                             >
-                        </com.feitianzhu.baselibrary.core.view.CornerTextView>
+                        </com.bldby.baselibrary.core.view.CornerTextView>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -204,7 +204,7 @@
                             android:textColor="@color/item_recyone_text"
                             >
                         </TextView>
-                        <com.feitianzhu.baselibrary.core.view.CornerTextView
+                        <com.bldby.baselibrary.core.view.CornerTextView
                             app:cornerRadius="@dimen/dp_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -214,7 +214,7 @@
                             android:textSize="@dimen/sp_10"
                             android:textColor="@color/home_white"
                             >
-                        </com.feitianzhu.baselibrary.core.view.CornerTextView>
+                        </com.bldby.baselibrary.core.view.CornerTextView>
                     </LinearLayout>
                        <android.support.v7.widget.RecyclerView
                            android:id="@+id/home_recyfour"
@@ -222,7 +222,7 @@
                            android:layout_height="wrap_content">
 
                        </android.support.v7.widget.RecyclerView>
-                </com.feitianzhu.baselibrary.core.view.CornerLinearView>
+                </com.bldby.baselibrary.core.view.CornerLinearView>
             </LinearLayout>
            </RelativeLayout>
         </android.support.v4.widget.NestedScrollView>

@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.feitianzhu.loginlibrary">
+    package="com.bldby.loginlibrary">
 
     <application>
         <activity
-            android:name="com.feitianzhu.loginlibrary.ui.LoginActivity"
-            android:theme="@style/AppTheme"
-            android:label="@string/title_activity_login">
-        </activity>
+            android:name="com.bldby.loginlibrary.ui.LoginActivity"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

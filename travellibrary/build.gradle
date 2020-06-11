@@ -6,11 +6,11 @@ if (rootProject.ext.isTravelApplication) {
 
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
-
+    resourcePrefix "trave_"
     defaultConfig {
         if (rootProject.ext.isTravelApplication) {
             //组件模式下设置applicationId
-            applicationId "com.feitianzhu.travellibrary"
+            applicationId "com.bldby.travellibrary"
         }
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]

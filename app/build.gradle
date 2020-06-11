@@ -6,15 +6,15 @@ android {
 
     signingConfigs {
         release {
-            keyAlias 'feitianzhu'
+            keyAlias 'bldby'
             keyPassword 'kaisa008'
-            storeFile file('../key/feitianzhu.jks')
+            storeFile file('../key/bldby.jks')
             storePassword 'kaisa008'
         }
         debug {
-            /*keyAlias 'feitianzhu'
+            /*keyAlias 'bldby'
             keyPassword 'kaisa008'
-            storeFile file('../key/feitianzhu.jks')
+            storeFile file('../key/.jks')
             storePassword 'kaisa008'*/
             keyAlias 'androiddebugkey'
             keyPassword 'android'
@@ -24,7 +24,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.feitianzhu.huangliwo"
+        applicationId "com.bldby.bly"
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]

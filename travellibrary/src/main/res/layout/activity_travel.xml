@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodel"
-            type="com.feitianzhu.travellibrary.activity.TravelActivity" />
+            type="com.bldby.travellibrary.activity.TravelActivity" />
     </data>
 
     <android.support.constraint.ConstraintLayout

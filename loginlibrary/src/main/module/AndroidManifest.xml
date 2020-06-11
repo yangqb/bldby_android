@@ -1,10 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.feitianzhu.loginlibrary">
+    package="com.bldby.loginlibrary">
     <application android:name=".ui.LoginApp">
         <activity
-            android:name="com.feitianzhu.loginlibrary.ui.LoginActivity"
+            android:name="com.bldby.loginlibrary.ui.LoginActivity"
             android:theme="@style/AppTheme"
-            android:label="@string/title_activity_login">
+>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

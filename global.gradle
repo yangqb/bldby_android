@@ -89,6 +89,22 @@ ext {
             "roundedimageview"               : 'com.makeramen:roundedimageview:2.3.0',
 //弹窗类
             "Android-PickerView"             : 'com.contrarywind:Android-PickerView:4.1.9',
+
+            // 友盟基础组件库（所有友盟业务SDK都依赖基础组件库）
+            "umsdk-analytics"                : 'com.umeng.umsdk:analytics:8.0.0',
+
+            //基础组件库依赖(必须)
+            "umsdk-common"                   : 'com.umeng.umsdk:common:2.2.5',
+
+            //友盟分享依赖
+            "share-core"                     : 'com.umeng.umsdk:share-core:7.0.2',
+            "share-board"                    : 'com.umeng.umsdk:share-board:7.0.2',
+
+            //友盟分享平台，其他需要下载sdk集成
+            "share-qq"                       : 'com.umeng.umsdk:share-qq:7.0.2',
+            "share-wx"                       : 'com.umeng.umsdk:share-wx:7.0.2',
+            "zxing-library"                  : 'cn.yipianfengye.android:zxing-library:2.2',
+            "xlog"                           : 'com.elvishew:xlog:1.6.1',
 //             "butterknife"             : "com.jakewharton:butterknife:8.5.1",
 //             "butterknife-compiler"    : "com.jakewharton:butterknife-compiler:8.5.1",
 //            //network

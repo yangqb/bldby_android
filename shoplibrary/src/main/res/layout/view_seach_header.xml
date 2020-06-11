@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.feitianzhu.shoplibrary.seach.SeachHeaderView" />
+            type="com.bldby.shoplibrary.seach.SeachHeaderView" />
     </data>
 
 
@@ -68,7 +68,7 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <com.feitianzhu.baselibrary.core.view.CornerView
+            <com.bldby.baselibrary.core.view.CornerView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_30"
                 android:background="@color/white"
@@ -88,7 +88,7 @@
                     android:textSize="@dimen/sp_14" />
 
 
-            </com.feitianzhu.baselibrary.core.view.CornerView>
+            </com.bldby.baselibrary.core.view.CornerView>
         </LinearLayout>
 
         <ImageView

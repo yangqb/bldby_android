@@ -7,11 +7,11 @@ if (rootProject.ext.isLoginApplication) {
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
 
-
+    resourcePrefix "login_"
     defaultConfig {
         if (rootProject.ext.isShopApplication) {
             //组件模式下设置applicationId
-            applicationId "com.feitianzhu.loginlibrary"
+            applicationId "com..loginlibrary"
         }
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]

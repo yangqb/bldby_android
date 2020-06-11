@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.feitianzhu.shoplibrary">
+    package="com.bldby.shoplibrary">
 
     <application>
-        <activity android:name="com.feitianzhu.shoplibrary.ShopMainActivity">
+        <activity android:name="com.bldby.shoplibrary.ShopMainActivity">
         </activity>
     </application>
 
