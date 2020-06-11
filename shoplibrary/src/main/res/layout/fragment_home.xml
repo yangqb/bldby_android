@@ -25,226 +25,221 @@
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_below="@+id/headers"
-            android:layout_height="match_parent">
-           <RelativeLayout
-               android:orientation="vertical"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/headers">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
                 <com.zhpan.bannerview.BannerViewPager
                     android:id="@+id/home_banner"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_258"
                     android:layout_centerHorizontal="true"
-                    android:background="@color/home_head_yeallow"
-                    >
+                    android:background="@color/home_head_yeallow">
 
                 </com.zhpan.bannerview.BannerViewPager>
-          <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="@dimen/dp_238"
-                   android:orientation="vertical">
-            <LinearLayout
-                android:id="@+id/home_line"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="@dimen/dp_15"
-                android:layout_marginRight="@dimen/dp_15"
-                android:background="@drawable/line_back">
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/home_recyone"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_109">
-
-                </android.support.v7.widget.RecyclerView>
-            </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginTop="@dimen/dp_238"
                     android:orientation="vertical">
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/home_recytwo"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_100"
-                        android:layout_marginRight="@dimen/dp_15"
-                        android:layout_marginLeft="@dimen/dp_15"
-                        android:background="@drawable/line_backgroud">
-
-                    </android.support.v7.widget.RecyclerView>
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/home_recythree"
-                        android:layout_width="@dimen/dp_345"
-                        android:layout_height="@dimen/dp_100"
-                        android:layout_marginTop="@dimen/dp_10"
-                        android:background="@drawable/line_back"
-                        android:visibility="gone">
-
-                    </android.support.v7.widget.RecyclerView>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_15"
-                    android:layout_marginRight="@dimen/dp_15"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/dp_10">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/home_bannerimg" />
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/home_tongzhi_line"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/dp_9"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/dp_15"
-                    android:layout_marginLeft="@dimen/dp_15"
-                    android:background="@drawable/line_backwhite"
-                    >
-                    <ImageView
-                        android:layout_marginLeft="@dimen/dp_10"
-                        android:layout_width="@dimen/dp_14"
-                        android:layout_height="@dimen/dp_14"
-                        android:layout_marginRight="@dimen/dp_6"
-                        android:layout_marginTop="@dimen/dp_12"
-                        android:src="@mipmap/home_tongzhiimg" />
-
-                    <TextView
-                        android:id="@+id/home_tongzhi_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="我看那个男是打电话了卡的行列阿萨德了看你的很难看的 看号地块那那块你那啥的看"
-                        android:textColor="@color/color_333333"
-                        android:layout_marginTop="@dimen/dp_10"
-                        android:layout_marginBottom="@dimen/dp_10"
-                        android:layout_marginRight="@dimen/dp_8"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <com.bldby.baselibrary.core.view.CornerLinearView
-                    android:layout_marginTop="@dimen/dp_10"
-                    app:cornerRadius="@dimen/dp_10"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_323"
-                    android:layout_marginRight="@dimen/dp_15"
-                    android:layout_marginLeft="@dimen/dp_15"
-                    android:background="@color/home_head_yeallow"
-                    android:orientation="vertical"
-                    >
-
-                    <ImageView
-                        android:layout_width="@dimen/dp_153"
-                        android:layout_height="@dimen/dp_25"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/dp_20"
-                        android:src="@mipmap/home_miaoshaimg" />
                     <LinearLayout
-                        android:layout_gravity="center_horizontal"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/home_line"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/home_miaoshatext"
-                            android:textSize="@dimen/sp_12"
-                            android:textColor="@color/home_miaoshatext_color"
-                            />
-                        <com.bldby.baselibrary.core.view.CornerTextView
-                            app:cornerRadius="@dimen/dp_2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@color/item_recyone_text"
-                            android:text="12"
-                            android:layout_marginLeft="@dimen/dp_3"
-                            android:textSize="@dimen/sp_10"
-                            android:textColor="@color/home_white"
-                            >
-                        </com.bldby.baselibrary.core.view.CornerTextView>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=":"
-                            android:layout_marginLeft="@dimen/dp_3"
-                            android:textSize="@dimen/sp_10"
-                            android:textColor="@color/item_recyone_text"
-                            >
-                        </TextView>
-                        <com.bldby.baselibrary.core.view.CornerTextView
-                            app:cornerRadius="@dimen/dp_2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@color/item_recyone_text"
-                            android:text="35"
-                            android:layout_marginLeft="@dimen/dp_3"
-                            android:textSize="@dimen/sp_10"
-                            android:textColor="@color/home_white"
-                            >
-                        </com.bldby.baselibrary.core.view.CornerTextView>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=":"
-                            android:layout_marginLeft="@dimen/dp_3"
-                            android:textSize="@dimen/sp_10"
-                            android:textColor="@color/item_recyone_text"
-                            >
-                        </TextView>
-                        <com.bldby.baselibrary.core.view.CornerTextView
-                            app:cornerRadius="@dimen/dp_2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@color/item_recyone_text"
-                            android:text="56"
-                            android:layout_marginLeft="@dimen/dp_3"
-                            android:textSize="@dimen/sp_10"
-                            android:textColor="@color/home_white"
-                            >
-                        </com.bldby.baselibrary.core.view.CornerTextView>
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:layout_marginRight="@dimen/dp_15"
+                        android:background="@drawable/line_back">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/home_recyone"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_109">
+
+                        </android.support.v7.widget.RecyclerView>
                     </LinearLayout>
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/home_recyfour"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dp_10"
-                        android:layout_marginTop="@dimen/dp_10">
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:orientation="vertical">
 
-                       </android.support.v7.widget.RecyclerView>
-                </com.bldby.baselibrary.core.view.CornerLinearView>
-                    </android.support.v7.widget.RecyclerView>
-                </com.feitianzhu.baselibrary.core.view.CornerLinearView>
-              <LinearLayout
-                  android:orientation="horizontal"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginTop="@dimen/dp_10"
-                  >
-              </LinearLayout>
-                  <android.support.v7.widget.RecyclerView
-                      android:id="@+id/home_recyfive"
-                      android:layout_width="match_parent"
-                      android:layout_height="@dimen/dp_93"
-                      android:layout_marginLeft="@dimen/dp_15"
-                      android:layout_marginRight="@dimen/dp_15"
-                      android:scrollbars="none"
-                      />
-            </LinearLayout>
-           </RelativeLayout>
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/home_recytwo"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_100"
+                            android:layout_marginLeft="@dimen/dp_15"
+                            android:layout_marginRight="@dimen/dp_15"
+                            android:background="@drawable/line_backgroud">
+
+                        </android.support.v7.widget.RecyclerView>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/home_recythree"
+                            android:layout_width="@dimen/dp_345"
+                            android:layout_height="@dimen/dp_100"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:background="@drawable/line_back"
+                            android:visibility="gone">
+
+                        </android.support.v7.widget.RecyclerView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_marginRight="@dimen/dp_15">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/home_bannerimg" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/home_tongzhi_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:layout_marginTop="@dimen/dp_9"
+                        android:layout_marginRight="@dimen/dp_15"
+                        android:background="@drawable/line_backwhite">
+
+                        <ImageView
+                            android:layout_width="@dimen/dp_14"
+                            android:layout_height="@dimen/dp_14"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:layout_marginTop="@dimen/dp_12"
+                            android:layout_marginRight="@dimen/dp_6"
+                            android:src="@mipmap/home_tongzhiimg" />
+
+                        <TextView
+                            android:id="@+id/home_tongzhi_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:layout_marginRight="@dimen/dp_8"
+                            android:layout_marginBottom="@dimen/dp_10"
+                            android:text="我看那个男是打电话了卡的行列阿萨德了看你的很难看的 看号地块那那块你那啥的看"
+                            android:textColor="@color/color_333333"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <com.bldby.baselibrary.core.view.CornerLinearView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_323"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_marginRight="@dimen/dp_15"
+                        android:background="@color/home_head_yeallow"
+                        android:orientation="vertical"
+                        app:cornerRadius="@dimen/dp_10">
+
+                        <ImageView
+                            android:layout_width="@dimen/dp_153"
+                            android:layout_height="@dimen/dp_25"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/dp_20"
+                            android:src="@mipmap/home_miaoshaimg" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/home_miaoshatext"
+                                android:textColor="@color/home_miaoshatext_color"
+                                android:textSize="@dimen/sp_12" />
+
+                            <com.bldby.baselibrary.core.view.CornerTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_3"
+                                android:background="@color/item_recyone_text"
+                                android:text="12"
+                                android:textColor="@color/home_white"
+                                android:textSize="@dimen/sp_10"
+                                app:cornerRadius="@dimen/dp_2"></com.bldby.baselibrary.core.view.CornerTextView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_3"
+                                android:text=":"
+                                android:textColor="@color/item_recyone_text"
+                                android:textSize="@dimen/sp_10"></TextView>
+
+                            <com.bldby.baselibrary.core.view.CornerTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_3"
+                                android:background="@color/item_recyone_text"
+                                android:text="35"
+                                android:textColor="@color/home_white"
+                                android:textSize="@dimen/sp_10"
+                                app:cornerRadius="@dimen/dp_2"></com.bldby.baselibrary.core.view.CornerTextView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_3"
+                                android:text=":"
+                                android:textColor="@color/item_recyone_text"
+                                android:textSize="@dimen/sp_10"></TextView>
+
+                            <com.bldby.baselibrary.core.view.CornerTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_3"
+                                android:background="@color/item_recyone_text"
+                                android:text="56"
+                                android:textColor="@color/home_white"
+                                android:textSize="@dimen/sp_10"
+                                app:cornerRadius="@dimen/dp_2"></com.bldby.baselibrary.core.view.CornerTextView>
+                        </LinearLayout>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/home_recyfour"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:layout_marginTop="@dimen/dp_10">
+
+                        </android.support.v7.widget.RecyclerView>
+                    </com.bldby.baselibrary.core.view.CornerLinearView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:orientation="horizontal"></LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/home_recyfive"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_93"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:layout_marginRight="@dimen/dp_15"
+                        android:scrollbars="none" />
+                </LinearLayout>
+            </RelativeLayout>
         </android.support.v4.widget.NestedScrollView>
     </RelativeLayout>
 </layout>

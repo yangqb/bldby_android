@@ -1,4 +1,4 @@
-package com.feitianzhu.shoplibrary.pagetransformer;
+package com.bldby.shoplibrary.pagetransformer;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -6,7 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.feitianzhu.shoplibrary.R;
+import com.bldby.shoplibrary.R;
 
 public class RotationPageTransformer implements ViewPager.PageTransformer {
 

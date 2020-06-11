@@ -1,10 +1,11 @@
-package com.feitianzhu.shoplibrary.pagetransformer;
+package com.bldby.shoplibrary.pagetransformer;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.feitianzhu.shoplibrary.R;
+import com.bldby.shoplibrary.R;
+
 
 /**
  * Fixme
@@ -15,7 +16,7 @@ import com.feitianzhu.shoplibrary.R;
  */
 
 public class MainStarViewHolder extends RecyclerView.ViewHolder {
-        public CustomViewPager mViewPager;
+        public com.bldby.shoplibrary.pagetransformer.CustomViewPager mViewPager;
         public TextView tvStarDesc;
         public View viewLeft;
         public View viewRight;

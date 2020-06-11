@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bldby.shoplibrary.adapter.MainAdapter;
 import com.bumptech.glide.Glide;
 import com.bldby.baselibrary.constants.RouteShopConstants;
 import com.bldby.baselibrary.core.addresspick.AddressPickerUtil;
@@ -70,7 +71,7 @@ public class HomeFragment extends Basefragment {
         strings.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1591807153324&di=8853ec3bab77fae766c186ee96ca34be&imgtype=0&src=http%3A%2F%2Fa0.att.hudong.com%2F64%2F76%2F20300001349415131407760417677.jpg");
         strings.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1591807153324&di=438e1cf9af20ad28f224332f87a24565&imgtype=0&src=http%3A%2F%2Fpic3.16pic.com%2F00%2F01%2F11%2F16pic_111395_b.jpg");
         binding.homeRecyfive.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        MainAdapter mainAdapter = new MainAdapter(getActivity(),strings);
+        MainAdapter mainAdapter = new MainAdapter(getActivity(), strings);
         binding.homeRecyfive.setAdapter(mainAdapter);
     }
 

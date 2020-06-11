@@ -1,4 +1,4 @@
-package com.feitianzhu.shoplibrary.adapter;
+package com.bldby.shoplibrary.adapter;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
@@ -9,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.feitianzhu.shoplibrary.R;
-import com.feitianzhu.shoplibrary.pagetransformer.CustomViewPager;
+import com.bldby.shoplibrary.R;
+import com.bldby.shoplibrary.pagetransformer.CustomViewPager;
 
 import java.util.List;
 

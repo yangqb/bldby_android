@@ -1,4 +1,4 @@
-package com.feitianzhu.shoplibrary.adapter;
+package com.bldby.shoplibrary.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -11,9 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.feitianzhu.shoplibrary.R;
-import com.feitianzhu.shoplibrary.pagetransformer.MainStarViewHolder;
-import com.feitianzhu.shoplibrary.pagetransformer.RotationPageTransformer;
+
+import com.bldby.shoplibrary.R;
+import com.bldby.shoplibrary.pagetransformer.MainStarViewHolder;
+import com.bldby.shoplibrary.pagetransformer.RotationPageTransformer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class MainAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_main_star1_adapter, viewGroup, false);
-        return new MainStarViewHolder(view);
+        return new com.bldby.shoplibrary.pagetransformer.MainStarViewHolder(view);
     }
 
     @Override

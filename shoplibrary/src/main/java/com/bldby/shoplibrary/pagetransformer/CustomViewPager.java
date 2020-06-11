@@ -1,4 +1,4 @@
-    package com.feitianzhu.shoplibrary.pagetransformer;
+    package com.bldby.shoplibrary.pagetransformer;
 
     import android.content.Context;
     import android.support.v4.view.ViewPager;
