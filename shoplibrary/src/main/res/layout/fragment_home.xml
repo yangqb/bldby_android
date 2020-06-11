@@ -15,18 +15,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/headers"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-        </LinearLayout>
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/headers">
+            android:layout_height="match_parent">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -36,15 +28,14 @@
                 <com.zhpan.bannerview.BannerViewPager
                     android:id="@+id/home_banner"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_258"
-                   >
+                    android:layout_height="@dimen/dp_302">
 
                 </com.zhpan.bannerview.BannerViewPager>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_238"
+                    android:layout_marginTop="@dimen/dp_280"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -240,5 +231,14 @@
                 </LinearLayout>
             </RelativeLayout>
         </android.support.v4.widget.NestedScrollView>
+
+        <LinearLayout
+            android:id="@+id/headers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.5"
+            android:orientation="vertical">
+
+        </LinearLayout>
     </RelativeLayout>
 </layout>

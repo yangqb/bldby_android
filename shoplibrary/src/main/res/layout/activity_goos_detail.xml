@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.bldby.shoplibrary.goods.GoosDetailActivity" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/nesc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".goods.GoosDetailActivity">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/one"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_500"
+                    android:background="@color/gray_dddddd">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/one2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_500"
+                    android:background="@color/FCB432">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/one3"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_500"
+                    android:background="@color/transparent_50">
+
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+        <RelativeLayout
+            android:id="@+id/titleBackground"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_45"
+            android:layout_alignParentTop="true"
+            android:background="@color/white">
+
+            <RelativeLayout
+                android:id="@+id/left_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/dp_10">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_15"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_centerInParent="true"
+                    android:onClick="@{viewmodel::onClickBack}"
+                    android:src="@drawable/ic_baseline_arrow_back_ios_24" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/title_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="同花顺感受到覆盖"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/sp_17"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</layout>
