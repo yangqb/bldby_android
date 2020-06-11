@@ -1,16 +1,19 @@
 package com.bldby.shoplibrary.home;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.annotation.NonNull;
+import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bldby.shoplibrary.adapter.MainAdapter;
+import com.bldby.shoplibrary.bean.Newss;
 import com.bumptech.glide.Glide;
 import com.bldby.baselibrary.constants.RouteShopConstants;
 import com.bldby.baselibrary.core.addresspick.AddressPickerUtil;
@@ -22,6 +25,12 @@ import com.bldby.shoplibrary.adapter.HomeSeckilAdapter;
 import com.bldby.shoplibrary.bean.News;
 import com.bldby.shoplibrary.databinding.FragmentHomeBinding;
 import com.bldby.shoplibrary.seach.SeachHeaderView;
+import com.bumptech.glide.request.RequestOptions;
+import com.zhpan.bannerview.BannerViewPager;
+import com.zhpan.bannerview.constants.IndicatorSlideMode;
+import com.zhpan.bannerview.constants.IndicatorStyle;
+import com.zhpan.bannerview.holder.ViewHolder;
+import com.zhpan.bannerview.utils.BannerUtils;
 
 
 import java.util.ArrayList;
@@ -35,6 +44,7 @@ public class HomeFragment extends Basefragment {
     @Autowired()
     public String key;
     private FragmentHomeBinding binding;
+    private ArrayList<String> strings;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
@@ -64,7 +74,7 @@ public class HomeFragment extends Basefragment {
     }
 
     private void initsuperposition() {
-        ArrayList<String> strings = new ArrayList<>();
+       strings = new ArrayList<>();
         strings.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1591807153325&di=5e2685ad705776197e74e26282d59b14&imgtype=0&src=http%3A%2F%2Fa3.att.hudong.com%2F14%2F75%2F01300000164186121366756803686.jpg");
         strings.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1591807153325&di=aae894d67911c5b8d30c534e3fa8473c&imgtype=0&src=http%3A%2F%2Fa2.att.hudong.com%2F36%2F48%2F19300001357258133412489354717.jpg");
         strings.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1591807153324&di=170de1efc18fdee973729871276f66de&imgtype=0&src=http%3A%2F%2Fa0.att.hudong.com%2F56%2F12%2F01300000164151121576126282411.jpg");
@@ -113,8 +123,41 @@ public class HomeFragment extends Basefragment {
     }
 
     private void initBanner() {
-
+        List<Newss> newsList = new ArrayList();
+        newsList.add(new Newss( "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3091499400,3624463792&fm=26&gp=0.jpg"));
+        newsList.add(new Newss( "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2672260965,918157271&fm=26&gp=0.jpg"));
+        newsList.add(new Newss( "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1181030711,3656844490&fm=26&gp=0.jpg"));
+        newsList.add(new Newss( "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=358521062,3376388299&fm=26&gp=0.jpg"));
+        newsList.add(new Newss( "https://t9.baidu.com/it/u=48721713,2194094744&fm=193"));
+        binding.homeBanner.setCanLoop(true)
+                .setAutoPlay(true)
+                .setIndicatorStyle(IndicatorStyle.CIRCLE)
+                .setIndicatorSlideMode(IndicatorSlideMode.SMOOTH)
+                .setIndicatorSliderRadius(BannerUtils.dp2px(2.5f))
+                .setIndicatorSliderColor(Color.parseColor("#CCCCCC"), Color.parseColor("#6C6D72"))
+                .setHolderCreator(HomeFragment.DataViewHolder::new).setOnPageClickListener(new BannerViewPager.OnPageClickListener() {
+            @Override
+            public void onPageClick(int position) {
+                //onClickBanner(position);
+            }
+        }).create(newsList);
+        binding.homeBanner.startLoop();
     }
+    public class DataViewHolder implements ViewHolder<Newss> {
+        private ImageView mImageView;
+
+        @Override
+        public int getLayoutId() {
+            return  R.layout.item_banner;
+        }
+
+        @Override
+        public void onBind(View itemView, Newss data, int position, int size) {
+            mImageView = itemView.findViewById(R.id.banner_image);
+            Glide.with(getActivity()).load(data.getPic()).into(mImageView);
+        }
+    }
+
 
     @Override
     public void loadData() {
