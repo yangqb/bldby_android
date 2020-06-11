@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bldby.shoplibrary.adapter.HomeMoreAdapter;
+import com.bldby.shoplibrary.adapter.HomeTodayAdapter;
 import com.bldby.shoplibrary.adapter.MainAdapter;
 import com.bldby.shoplibrary.bean.Newss;
 import com.bumptech.glide.Glide;
@@ -45,6 +47,7 @@ public class HomeFragment extends Basefragment {
     public String key;
     private FragmentHomeBinding binding;
     private ArrayList<String> strings;
+    private List<News> newsList;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
@@ -63,6 +66,11 @@ public class HomeFragment extends Basefragment {
 
     @Override
     public void initView() {
+        newsList = new ArrayList();
+        newsList.add(new News("新闻标题1", R.mipmap.home_oilimg));
+        newsList.add(new News("新闻标题2", R.mipmap.home_bannerimg));
+        newsList.add(new News("新闻标题3", R.mipmap.home_flayimg));
+        newsList.add(new News("新闻标题4", R.mipmap.home_shoppiingimg));
         //首页banner方法（）
         initBanner();
         //首页飞机，商家，商城，油站方法（）
@@ -71,6 +79,23 @@ public class HomeFragment extends Basefragment {
         initseckill();
         //图片叠加显示方法（）
         initsuperposition();
+        //更多商家方法（）
+        initmore();
+        //今日上新方法（）
+        inittoday();
+    }
+
+    private void inittoday() {
+        binding.homeRecyseven.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
+        HomeTodayAdapter adapter=new HomeTodayAdapter(newsList);
+        binding.homeRecyseven.setAdapter(adapter);
+
+    }
+
+    private void initmore() {
+        binding.homeRecysix.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+        HomeMoreAdapter adapter=new HomeMoreAdapter(newsList);
+        binding.homeRecysix.setAdapter(adapter);
     }
 
     private void initsuperposition() {
@@ -87,11 +112,6 @@ public class HomeFragment extends Basefragment {
 
     private void initseckill() {
         binding.homeRecyfour.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        List<News> newsList = new ArrayList();
-        newsList.add(new News("新闻标题1", R.mipmap.home_oilimg));
-        newsList.add(new News("新闻标题2", R.mipmap.home_bannerimg));
-        newsList.add(new News("新闻标题3", R.mipmap.home_flayimg));
-        newsList.add(new News("新闻标题4", R.mipmap.home_shoppiingimg));
         HomeSeckilAdapter adaptertwo = new HomeSeckilAdapter(newsList);
         binding.homeRecyfour.setAdapter(adaptertwo);
     }
