@@ -1,7 +1,6 @@
 package com.feitianzhu.shoplibrary.home;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +9,6 @@ import android.support.annotation.NonNull;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
-import com.bumptech.glide.Glide;
 import com.feitianzhu.baselibrary.constants.RouteShopConstants;
 import com.feitianzhu.baselibrary.core.addresspick.AddressPickerUtil;
 import com.feitianzhu.baselibrary.core.ui.basefragment.Basefragment;
@@ -19,6 +16,7 @@ import com.feitianzhu.baselibrary.core.util.ToastUtil;
 import com.feitianzhu.shoplibrary.R;
 import com.feitianzhu.shoplibrary.adapter.HomeListAdapter;
 import com.feitianzhu.shoplibrary.adapter.HomeSeckilAdapter;
+import com.feitianzhu.shoplibrary.adapter.MainAdapter;
 import com.feitianzhu.shoplibrary.bean.News;
 import com.feitianzhu.shoplibrary.databinding.FragmentHomeBinding;
 import com.feitianzhu.shoplibrary.seach.SeachHeaderView;
@@ -58,6 +56,20 @@ public class HomeFragment extends Basefragment {
         initList();
         //秒杀产品方法();
         initseckill();
+        //图片叠加显示方法（）
+        initsuperposition();
+    }
+
+    private void initsuperposition() {
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1591807153325&di=5e2685ad705776197e74e26282d59b14&imgtype=0&src=http%3A%2F%2Fa3.att.hudong.com%2F14%2F75%2F01300000164186121366756803686.jpg");
+        strings.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1591807153325&di=aae894d67911c5b8d30c534e3fa8473c&imgtype=0&src=http%3A%2F%2Fa2.att.hudong.com%2F36%2F48%2F19300001357258133412489354717.jpg");
+        strings.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1591807153324&di=170de1efc18fdee973729871276f66de&imgtype=0&src=http%3A%2F%2Fa0.att.hudong.com%2F56%2F12%2F01300000164151121576126282411.jpg");
+        strings.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1591807153324&di=8853ec3bab77fae766c186ee96ca34be&imgtype=0&src=http%3A%2F%2Fa0.att.hudong.com%2F64%2F76%2F20300001349415131407760417677.jpg");
+        strings.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1591807153324&di=438e1cf9af20ad28f224332f87a24565&imgtype=0&src=http%3A%2F%2Fpic3.16pic.com%2F00%2F01%2F11%2F16pic_111395_b.jpg");
+        binding.homeRecyfive.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        MainAdapter mainAdapter = new MainAdapter(getActivity(),strings);
+        binding.homeRecyfive.setAdapter(mainAdapter);
     }
 
     private void initseckill() {
