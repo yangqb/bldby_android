@@ -1,6 +1,7 @@
 package com.bldby.bly;
 
 import android.databinding.DataBindingUtil;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -10,8 +11,10 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bldby.baselibrary.constants.RouteConstants;
 import com.bldby.baselibrary.constants.RouteShopConstants;
 import com.bldby.baselibrary.constants.RouteTravelConstants;
+import com.bldby.baselibrary.core.share.ShareUtils;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
 import com.bldby.baselibrary.core.ui.basefragment.Basefragment;
+import com.bldby.baselibrary.core.util.ShareImageUtils;
 import com.bldby.bly.databinding.ActivityMainBinding;
 import com.gyf.immersionbar.ImmersionBar;
 
@@ -74,8 +77,10 @@ public class MainActivity extends BaseActivity {
                         showHideFragment(home);
                         break;
                     case 3:
-                        start(RouteTravelConstants.TRAVELMAIN);
+//                        start(RouteTravelConstants.TRAVELMAIN);
 //                        showHideFragment(classify);
+                        Bitmap bitmap = ShareImageUtils.viewToBitmap(binding.container);
+                        ShareUtils.shareImg(MainActivity.this, bitmap, "便利大本营");
                         break;
                     default:
                         break;

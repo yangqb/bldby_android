@@ -17,6 +17,7 @@ android {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
+        manifestPlaceholders = [qqappid: "1110519400"]
     }
 
     buildTypes {
@@ -35,7 +36,7 @@ android {
 //        exclude 'com.alipay'
 //        exclude 'com.baidu'
 //    }
-//    //use legacy for android 6.0
+    //use legacy for android 6.0
 //    useLibrary 'org.apache.http.legacy'
     lintOptions {
         checkReleaseBuilds false
@@ -95,10 +96,10 @@ dependencies {
     api rootProject.ext.dependencies["Android-PickerView"]
     api rootProject.ext.dependencies["umsdk-analytics"]
     api rootProject.ext.dependencies["umsdk-common"]
-//    api rootProject.ext.dependencies["share-core"]
-//    api rootProject.ext.dependencies["share-board"]
-//    api rootProject.ext.dependencies["share-qq"]
-//    api rootProject.ext.dependencies["share-wx"]
+    api rootProject.ext.dependencies["share-core"]
+    api rootProject.ext.dependencies["share-board"]
+    api rootProject.ext.dependencies["share-qq"]
+    api rootProject.ext.dependencies["share-wx"]
 
     api(rootProject.ext.dependencies["permissionsdispatcher"]) {
         // if you don't use android.app.Fragment you can exclude support for them

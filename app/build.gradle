@@ -6,20 +6,20 @@ android {
 
     signingConfigs {
         release {
-            keyAlias 'bldby'
-            keyPassword 'kaisa008'
+            keyAlias 'key0'
+            keyPassword 'bldby123'
             storeFile file('../key/bldby.jks')
-            storePassword 'kaisa008'
+            storePassword 'bldby123'
         }
         debug {
-            /*keyAlias 'bldby'
-            keyPassword 'kaisa008'
-            storeFile file('../key/.jks')
-            storePassword 'kaisa008'*/
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
-            storeFile file('../key/debug.keystore')
-            storePassword 'android'
+            keyAlias 'key0'
+            keyPassword 'bldby123'
+            storeFile file('../key/bldby.jks')
+            storePassword 'bldby123'
+//            keyAlias 'androiddebugkey'
+//            keyPassword 'android'
+//            storeFile file('../key/debug.keystore')
+//            storePassword 'android'
         }
     }
 
@@ -38,7 +38,7 @@ android {
         }
         multiDexEnabled true
         signingConfig signingConfigs.release
-
+        manifestPlaceholders = [qqappid: "1110519400"]
         ndk {
             //设置支持的SO库架构
             abiFilters 'armeabi'
@@ -92,6 +92,18 @@ android {
                     }
             }
     }
+//    aspectjx {
+//        //排除所有package路径中包含`android.support`的class文件及库（jar文件）
+//        exclude 'android.support'
+//        exclude 'com.taobao'
+//        exclude 'com.umeng'
+//        exclude 'com.android'
+//        exclude 'com.alibaba'
+//        exclude 'com.alipay'
+//        exclude 'com.baidu'
+//    }
+    //use legacy for android 6.0
+//    useLibrary 'org.apache.http.legacy'
 }
 
 dependencies {
