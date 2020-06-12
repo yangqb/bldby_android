@@ -114,9 +114,9 @@ public class HomeFragment extends Basefragment {
         strings.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1591807153324&di=8853ec3bab77fae766c186ee96ca34be&imgtype=0&src=http%3A%2F%2Fa0.att.hudong.com%2F64%2F76%2F20300001349415131407760417677.jpg");
         strings.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1591807153324&di=438e1cf9af20ad28f224332f87a24565&imgtype=0&src=http%3A%2F%2Fpic3.16pic.com%2F00%2F01%2F11%2F16pic_111395_b.jpg");
         binding.homeRecyfive.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-//        CarouselLayoutManager layoutManager = new CarouselLayoutManager(CarouselLayoutManager.HORIZONTAL);
+        CarouselLayoutManager layoutManager = new CarouselLayoutManager(CarouselLayoutManager.HORIZONTAL);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), CarouselLayoutManager.HORIZONTAL, false);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), CarouselLayoutManager.HORIZONTAL, false);
 //        layoutManager.setPostLayoutListener(new CarouselZoomPostLayoutListener());
 
         MainAdapter1 mainAdapter = new MainAdapter1(strings);
@@ -125,24 +125,6 @@ public class HomeFragment extends Basefragment {
         binding.homeRecyfive.setHasFixedSize(true);
         binding.homeRecyfive.setAdapter(mainAdapter);
         binding.homeRecyfive.addOnScrollListener(new CenterScrollListener());
-        binding.homeRecyfive.addItemDecoration(new RecyclerView.ItemDecoration() {
-            @Override
-            public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-                super.getItemOffsets(outRect, view, parent, state);
-//                if (parent.getChildAdapterPosition(view) != 0) {
-//                    outRect.left = 800;
-//                }
-//                if (parent.getChildAdapterPosition(view) != (strings.size() - 1)) {
-//                    outRect.right = -800;
-//                }
-            }
-
-            @Override
-            public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-                super.onDraw(c, parent, state);
-
-            }
-        });
     }
 
     private void initseckill() {
