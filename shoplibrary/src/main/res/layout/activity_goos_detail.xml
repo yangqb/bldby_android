@@ -558,6 +558,12 @@
             </com.bldby.baselibrary.core.view.CornerView>
         </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/dio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </RelativeLayout>
     </RelativeLayout>
 
 </layout>

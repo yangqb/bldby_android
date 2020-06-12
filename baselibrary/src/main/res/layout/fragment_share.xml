@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.bldby.baselibrary.core.share.ShareFragment" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent"
+        android:clickable="true"
+        android:onClick="@{viewModel::onBcak}">
+
+        <com.bldby.baselibrary.core.view.CornerLinearView
+            android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/white"
+            android:orientation="vertical"
+            app:cornerRadius="@dimen/dp_10"
+            app:isBottomLeftRadius="false"
+            app:isBottomRightRadius="false">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:gravity="center"
+                android:text="@string/shareTo"
+                android:textColor="#ff333333"
+                android:textSize="14sp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/item"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_70"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_20"
+                app:layoutManager="android.support.v7.widget.GridLayoutManager"
+                app:spanCount="4">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginTop="@dimen/dp_40"
+                android:layout_marginBottom="@dimen/dp_50"
+                android:gravity="center"
+                android:onClick="@{viewModel::onBcak}"
+                android:text="@string/cancel"
+                android:textColor="#ff333333"
+                android:textSize="14sp" />
+        </com.bldby.baselibrary.core.view.CornerLinearView>
+    </LinearLayout>
+</layout>

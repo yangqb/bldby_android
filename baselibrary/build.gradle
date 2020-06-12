@@ -17,7 +17,6 @@ android {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
-        manifestPlaceholders = [qqappid: "1110519400"]
     }
 
     buildTypes {
@@ -98,7 +97,7 @@ dependencies {
     api rootProject.ext.dependencies["umsdk-common"]
     api rootProject.ext.dependencies["share-core"]
     api rootProject.ext.dependencies["share-board"]
-    api rootProject.ext.dependencies["share-qq"]
+//    api rootProject.ext.dependencies["share-qq"]
     api rootProject.ext.dependencies["share-wx"]
 
     api(rootProject.ext.dependencies["permissionsdispatcher"]) {
@@ -109,6 +108,6 @@ dependencies {
     api files('libs\\BaiduLBS_Android.jar')
 //    api files('libs\\alipaySdk-15.7.4-20200228192259.aar')
     api rootProject.ext.dependencies["xlog"]
-    api rootProject.ext.dependencies["carousel"]
+    api rootProject.ext.dependencies["recyclercoverflow"]
 
 }
