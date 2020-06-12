@@ -16,6 +16,11 @@ import com.bldby.loginlibrary.databinding.ActivityLoginWechantBinding;
  * time: 9:34
  * email: 694125155@qq.com
  */
+
+/*
+ *
+ * 微信登录页面
+ * */
 @Route(path = RouteLoginConstants.LOGINWECHANT)
 public class WeChantLoginActivity extends BaseUiActivity {
     @Override

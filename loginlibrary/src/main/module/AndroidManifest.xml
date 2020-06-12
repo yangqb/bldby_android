@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bldby.loginlibrary">
+
     <application android:name=".ui.LoginApp">
         <activity
             android:name="com.bldby.loginlibrary.ui.LoginActivity"
@@ -10,8 +11,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.BindingAccountActivity"
-            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".ui.BindingAccountActivity"
+            android:theme="@style/AppTheme" />
         <activity android:name=".ui.RegisterActivity" />
         <activity android:name=".ui.InputInviteCodeActivity" />
     </application>

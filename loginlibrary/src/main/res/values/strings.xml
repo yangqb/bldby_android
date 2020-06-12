@@ -11,7 +11,7 @@
     <string name="login_biding_account_hint_text">请输入手机号</string>
     <string name="login_biding_code_hint_text">请输入短信验证码</string>
     <string name="login_biding_get_code">获取验证码</string>
-    <string name="register_title" tools:ignore="ResourceName">手机号快捷注册登陆</string>
+    <string name="register_title" tools:ignore="ResourceName">手机号快捷注册登录</string>
     <string name="register_error_text" tools:ignore="ResourceName">验证码错误</string>
     <string name="register_protocols_private" tools:ignore="ResourceName">已阅读并同意用户协议和隐私政策</string>
     <string name="login_invite_code_hint" tools:ignore="ResourceName">请输入邀请码</string>
@@ -20,5 +20,6 @@
     <string name="login_wx_btn_text">微信登录</string>
     <string name="login_wx_protocols_private">已阅读并同意用户协议和隐私政策</string>
     <string name="login_wx_text">手机号登录</string>
+    <string name="login_phone_error_text">请输入正确手机号</string>
 
 </resources>
