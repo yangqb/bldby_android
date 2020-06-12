@@ -108,6 +108,6 @@ dependencies {
     api files('libs\\BaiduLBS_Android.jar')
 //    api files('libs\\alipaySdk-15.7.4-20200228192259.aar')
     api rootProject.ext.dependencies["xlog"]
-    api rootProject.ext.dependencies["carousel"]
+    api rootProject.ext.dependencies["recyclercoverflow"]
 
 }

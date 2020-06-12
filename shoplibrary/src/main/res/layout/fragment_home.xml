@@ -224,12 +224,11 @@
 
                     </LinearLayout>
 
-                    <android.support.v7.widget.RecyclerView
+                    <recycler.coverflow.RecyclerCoverFlow
                         android:id="@+id/home_recyfive"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp_93"
                         android:layout_marginLeft="@dimen/dp_15"
-                        android:nestedScrollingEnabled="false"
                         android:layout_marginRight="@dimen/dp_15" />
 
                     <com.bldby.baselibrary.core.view.CornerLinearView
