@@ -127,7 +127,7 @@ public class HomeFragment extends Basefragment {
                 super.handleMessage(msg);
 //                mainAdapter.is
                 if (!binding.homeRecyfive.isFocused()) {
-                    if (binding.homeRecyfive.getCoverFlowLayout().getSelectedPos() >= strings.size() - 1) {
+                    if (binding.homeRecyfive.getCoverFlowLayout().getSelectedPos() >= newsList.size() - 1) {
                         binding.homeRecyfive.scrollToPosition(0);
                     } else {
                         binding.homeRecyfive.scrollToPosition(binding.homeRecyfive.getCoverFlowLayout().getSelectedPos() + 1);
