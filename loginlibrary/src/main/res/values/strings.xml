@@ -1,3 +1,24 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="login_title_text">你想要的 有我就够了</string>
+    <string name="login_account_hint_text">请输入手机号</string>
+    <string name="login_code_hint_text">请输入短信验证码</string>
+    <string name="login_register_text">新用户注册</string>
+    <string name="login_forgot_password">忘记密码</string>
+    <string name="login_btn_text">登录</string>
+    <string name="login_protocols_private">登录即视为您已经阅读并同意用户协议和隐私政策</string>
+    <string name="login_other">其他方式登录</string>
+    <string name="login_biding_title_name">关联手机号</string>
+    <string name="login_biding_account_hint_text">请输入手机号</string>
+    <string name="login_biding_code_hint_text">请输入短信验证码</string>
+    <string name="login_biding_get_code">获取验证码</string>
+    <string name="register_title" tools:ignore="ResourceName">手机号快捷注册登陆</string>
+    <string name="register_error_text" tools:ignore="ResourceName">验证码错误</string>
+    <string name="register_protocols_private" tools:ignore="ResourceName">已阅读并同意用户协议和隐私政策</string>
+    <string name="login_invite_code_hint" tools:ignore="ResourceName">请输入邀请码</string>
+    <string name="login_invite_title">邀请码</string>
+    <string name="login_wx_title_text">让商家生意不愁，让百姓生活无忧</string>
+    <string name="login_wx_btn_text">微信登录</string>
+    <string name="login_wx_protocols_private">已阅读并同意用户协议和隐私政策</string>
+    <string name="login_wx_text">手机号登录</string>
 
 </resources>
