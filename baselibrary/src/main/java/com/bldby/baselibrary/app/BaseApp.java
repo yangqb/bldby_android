@@ -4,24 +4,15 @@ import android.app.Application;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.bldby.baselibrary.AppidManifests;
 import com.bldby.baselibrary.app.util.XlogUtil;
 import com.bldby.baselibrary.core.errorlog.CrashHandler;
-import com.bldby.baselibrary.core.location.LocationUtils;
 import com.bldby.baselibrary.core.share.analyze.UMengAnalyze;
-import com.elvishew.xlog.LogConfiguration;
-import com.elvishew.xlog.LogItem;
-import com.elvishew.xlog.LogLevel;
-import com.elvishew.xlog.XLog;
-import com.elvishew.xlog.interceptor.BlacklistTagsFilterInterceptor;
-import com.elvishew.xlog.interceptor.Interceptor;
-import com.elvishew.xlog.printer.AndroidPrinter;
-import com.elvishew.xlog.printer.ConsolePrinter;
-import com.elvishew.xlog.printer.Printer;
-import com.elvishew.xlog.printer.file.FilePrinter;
-import com.elvishew.xlog.printer.file.backup.NeverBackupStrategy;
-import com.elvishew.xlog.printer.file.clean.FileLastModifiedCleanStrategy;
-import com.elvishew.xlog.printer.file.naming.DateFileNameGenerator;
 import com.orhanobut.hawk.Hawk;
+import com.umeng.socialize.PlatformConfig;
+
+import static com.bldby.baselibrary.AppidManifests.QQ_APP_AppSecret;
+import static com.bldby.baselibrary.AppidManifests.QQ_APP_ID;
 
 public class BaseApp extends Application {
 
@@ -55,6 +46,7 @@ public class BaseApp extends Application {
         UMengAnalyze.getInstance().init(this);
 //初始化日志器
         XlogUtil.XlogInit();
+        PlatformConfig.setWeixin(AppidManifests.WX_APP_ID, AppidManifests.WX_APP_AppSecret);
     }
 
 

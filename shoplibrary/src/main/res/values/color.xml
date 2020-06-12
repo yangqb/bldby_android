@@ -7,4 +7,7 @@
     <color name="home_miaoshatext_color"> #2C0202 </color>
     <color name="home_white">#FFFFFF</color>
     <color name="item_red">#EA362C</color>
+    <color name="item_gary">#999999</color>
+    <color name="left_vip">#292621</color>
+    <color name="left_black">#FBEAC8</color>
 </resources>

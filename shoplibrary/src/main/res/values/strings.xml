@@ -7,4 +7,16 @@
     <string name="seach">搜索</string>
     <string name="home_miaoshatext">距离结束</string>
     <string name="home_miaoshaprice">秒杀价</string>
+    <string name="goods_detail">商品详情</string>
+    <string name="goods_detail_buy">立即购买</string>
+    <string name="goods_detail_jion">加入购物车</string>
+    <string name="kefu">客服</string>
+    <string name="shopCar">购物车</string>
+    <string name="goods_detail_discounts">优惠</string>
+    <string name="yixuan">已选</string>
+    <string name="guigecanshu">商品规格参数</string>
+    <string name="goods_detail_get">领劵</string>
+    <string name="home_optimization">优选商家</string>
+    <string name="home_more">更多</string>
+    <string name="home_today">今日上新</string>
 </resources>

@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.bldby.shoplibrary.goods.GoosDetailActivity" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/F5F5F5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v4.widget.NestedScrollView
+                android:id="@+id/nesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:context=".goods.GoosDetailActivity">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.zhpan.bannerview.BannerViewPager
+                            android:id="@+id/banner"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="h,1:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                        </com.zhpan.bannerview.BannerViewPager>
+                    </android.support.constraint.ConstraintLayout>
+
+
+                    <com.bldby.baselibrary.core.view.CornerLinearView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        app:cornerRadius="@dimen/dp_10"
+                        app:isTopLeftRadius="false"
+                        app:isTopRightRadius="false">
+
+                        <android.support.constraint.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="@dimen/dp_15"
+                            android:paddingTop="@dimen/dp_10"
+                            android:paddingEnd="@dimen/dp_15"
+                            android:paddingBottom="@dimen/dp_10">
+
+                            <TextView
+                                android:id="@+id/price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="¥ 66起"
+                                android:textColor="#ffea362c"
+                                android:textSize="@dimen/sp_16"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textView8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="¥188 市场价参考价"
+                                android:textColor="#ff999999"
+                                android:textSize="@dimen/sp_10"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/price" />
+
+                            <TextView
+                                android:id="@+id/textView7"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="收藏"
+                                android:textColor="#ff333333"
+                                android:textSize="@dimen/sp_12"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+                            <com.bldby.baselibrary.core.view.CornerTextView
+                                android:id="@+id/textView9"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp_10"
+                                android:background="@color/black"
+                                android:paddingStart="@dimen/dp_6"
+                                android:paddingEnd="@dimen/dp_6"
+                                android:text="成为会员"
+                                android:textColor="#fffbeac8"
+                                android:textSize="@dimen/sp_12"
+                                app:cornerRadius="@dimen/dp_4"
+                                app:isTextBottomRightRadius="false"
+                                app:isTextTopRightRadius="false"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+                            <com.bldby.baselibrary.core.view.CornerTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="#FBEAC8"
+                                android:paddingStart="@dimen/dp_6"
+                                android:paddingEnd="@dimen/dp_6"
+                                android:text="奖励¥6起"
+                                android:textColor="#ffea362c"
+                                android:textSize="@dimen/sp_12"
+                                app:cornerRadius="@dimen/dp_4"
+                                app:isTextBottomLeftRadius="false"
+                                app:isTextTopLeftRadius="false"
+                                app:layout_constraintStart_toEndOf="@+id/textView9"
+                                app:layout_constraintTop_toTopOf="@+id/textView9" />
+
+                            <ImageView
+                                android:id="@+id/imageView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:src="@mipmap/goods_detail_collect"
+                                app:layout_constraintEnd_toEndOf="@+id/textView7"
+                                app:layout_constraintStart_toStartOf="@+id/textView7"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textView10"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp_19"
+                                android:ellipsize="end"
+                                android:lines="2"
+                                android:text="欧莱雅小黑瓶小样15ml（小样）欧莱雅小黑瓶小样15ml欧莱雅小黑瓶小样15ml欧莱雅小黑瓶……"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/dp_16"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView9">
+
+                            </TextView>
+
+                            <TextView
+                                android:id="@+id/textView11"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp_4"
+                                android:ellipsize="end"
+                                android:lines="1"
+                                android:text="商品介绍商品介绍商品介绍商品介绍商品介绍商品介绍商品……"
+                                android:textColor="@color/ff999999"
+                                android:textSize="@dimen/sp_12"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp_10"
+                                android:text="销量：666"
+                                android:textColor="@color/ff999999"
+                                android:textSize="@dimen/sp_12"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+                        </android.support.constraint.ConstraintLayout>
+                    </com.bldby.baselibrary.core.view.CornerLinearView>
+
+                    <com.bldby.baselibrary.core.view.CornerLinearView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_47"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/dp_15">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/goods_detail_discounts"
+                            android:textColor="#ff333333"
+                            android:textSize="@dimen/sp_12"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp_10"
+                            android:background="@drawable/shape_border_youhui_red"
+                            android:paddingStart="@dimen/dp_7"
+                            android:paddingTop="@dimen/dp_2"
+                            android:paddingEnd="@dimen/dp_7"
+                            android:paddingBottom="@dimen/dp_2"
+                            android:text="@string/goods_detail_get"
+                            android:textColor="@color/red"
+                            android:textSize="@dimen/sp_12"></TextView>
+
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/youhui"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp_5"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            app:layoutManager="android.support.v7.widget.LinearLayoutManager">
+
+                        </android.support.v7.widget.RecyclerView>
+
+                        <ImageView
+                            android:layout_width="@dimen/dp_30"
+                            android:layout_height="@dimen/dp_30"
+                            android:layout_marginEnd="@dimen/dp_15"
+                            android:scaleType="centerInside"
+                            android:src="@mipmap/goods_detail_more" />
+                    </com.bldby.baselibrary.core.view.CornerLinearView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_141"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:orientation="vertical">
+
+                        <com.bldby.baselibrary.core.view.CornerLinearView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="@dimen/dp_1"
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:gravity="center_vertical"
+                            app:cornerRadius="@dimen/dp_10"
+                            app:isBottomLeftRadius="false"
+                            app:isBottomRightRadius="false">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dp_15"
+                                android:text="@string/yixuan"
+                                android:textColor="@color/ff333333"
+                                android:textSize="@dimen/sp_12"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dp_20"
+                                android:layout_weight="1"
+                                android:text="@string/guigecanshu"
+                                android:textColor="@color/ff333333"
+                                android:textSize="@dimen/sp_12" />
+
+                            <ImageView
+                                android:id="@+id/imageView4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/dp_15"
+                                android:src="@mipmap/goods_detail_more" />
+                        </com.bldby.baselibrary.core.view.CornerLinearView>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="@dimen/dp_1"
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dp_15"
+                                android:text="发货"
+                                android:textColor="@color/ff333333"
+                                android:textSize="@dimen/sp_12"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dp_20"
+                                android:text="全国包邮 （不含西藏地区）"
+                                android:textColor="@color/ff333333"
+                                android:textSize="@dimen/sp_12" />
+                        </LinearLayout>
+
+                        <com.bldby.baselibrary.core.view.CornerLinearView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="@dimen/dp_1"
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:gravity="center_vertical"
+                            app:cornerRadius="@dimen/dp_10"
+                            app:isTopLeftRadius="false"
+                            app:isTopRightRadius="false">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dp_15"
+                                android:text="保障"
+                                android:textColor="@color/ff333333"
+                                android:textSize="@dimen/sp_12"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dp_20"
+                                android:text="所有商品资质齐全，正品保障"
+                                android:textColor="@color/ff333333"
+                                android:textSize="@dimen/sp_12" />
+
+
+                        </com.bldby.baselibrary.core.view.CornerLinearView>
+                    </LinearLayout>
+
+                    <com.bldby.baselibrary.core.view.CornerLinearView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_219"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        app:cornerRadius="@dimen/dp_10">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_47"
+                            android:gravity="center_vertical"
+                            android:paddingStart="@dimen/dp_15"
+                            android:paddingEnd="@dimen/dp_15">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="评价（666）"
+                                android:textColor="#ff333333"
+                                android:textSize="12sp" />
+
+                            <ImageView
+                                android:layout_width="@dimen/dp_30"
+                                android:layout_height="@dimen/dp_30"
+                                android:layout_marginEnd="@dimen/dp_15"
+                                android:scaleType="centerInside"
+                                android:src="@mipmap/goods_detail_more" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_1"
+                            android:background="@color/F5F5F5"></LinearLayout>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/evaluate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingStart="@dimen/dp_15"
+                            android:paddingEnd="@dimen/dp_15"
+                            android:paddingBottom="@dimen/dp_6"
+                            app:layoutManager="android.support.v7.widget.LinearLayoutManager">
+
+                        </android.support.v7.widget.RecyclerView>
+                    </com.bldby.baselibrary.core.view.CornerLinearView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_marginBottom="@dimen/dp_10"
+                        android:text="@string/goods_detail"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_14"
+                        android:textStyle="bold" />
+
+                    <WebView
+                        android:id="@+id/shopDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_200"
+                        android:layout_marginBottom="@dimen/dp_20">
+
+                    </WebView>
+                </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_48"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white"
+                android:elevation="@dimen/dp_5"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/dp_20"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/goods_detail_service" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/kefu"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_10" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/dp_20"
+                        android:gravity="center"
+
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/goods_detail_shopping_cart"
+                            tools:layout_editor_absoluteX="21dp" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/shopCar"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_10" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/FCB432"
+                    android:gravity="center"
+                    android:text="@string/goods_detail_buy"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/jionCar"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/FFEBC2"
+                    android:gravity="center"
+                    android:text="@string/goods_detail_jion"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/textView2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/titleBackground"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_45"
+                android:layout_alignParentTop="true"
+                android:alpha="0"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/title_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="同花顺感受到覆盖"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/sp_17"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <com.bldby.baselibrary.core.view.CornerView
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="@dimen/dp_30"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/dp_15"
+                android:background="@{viewmodel.backBackgroundButton}"
+                android:onClick="@{viewmodel::onClickBack}"
+                app:cornerRadius="@dimen/dp_20">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/back_waite"
+                    android:tint="@{viewmodel.backButton}" />
+            </com.bldby.baselibrary.core.view.CornerView>
+
+            <com.bldby.baselibrary.core.view.CornerView
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="@dimen/dp_30"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:background="@{viewmodel.backBackgroundButton}"
+                android:onClick="@{viewmodel::onClickShare}"
+                app:cornerRadius="@dimen/dp_20">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/goods_detail_share"
+                    android:tint="@{viewmodel.backButton}" />
+            </com.bldby.baselibrary.core.view.CornerView>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</layout>

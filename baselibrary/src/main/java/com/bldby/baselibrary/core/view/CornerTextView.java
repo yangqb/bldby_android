@@ -22,15 +22,26 @@ public class CornerTextView extends TextView {
         init();
     }
 
+    private boolean mTopLeftCornerRadius;
+    private boolean mTopRightCornerRadius;
+    private boolean mBottomLeftCornerRadius;
+    private boolean mBottomRightCornerRadius;
+
     public CornerTextView(Context context, AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
-    public CornerTextView(Context context, AttributeSet attrs, int defStyleAttr){
+    public CornerTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CornerTextView);
-        cornerRadius = typedArray.getDimension(R.styleable.CornerTextView_cornerRadius,0.f);
+        cornerRadius = typedArray.getDimension(R.styleable.CornerTextView_cornerRadius, 0.f);
+        mBottomLeftCornerRadius = typedArray.getBoolean(R.styleable.CornerTextView_isTextBottomLeftRadius, true);
+
+        mBottomRightCornerRadius = typedArray.getBoolean(R.styleable.CornerTextView_isTextBottomRightRadius, true);
+
+        mTopLeftCornerRadius = typedArray.getBoolean(R.styleable.CornerTextView_isTextTopLeftRadius, true);
+        mTopRightCornerRadius = typedArray.getBoolean(R.styleable.CornerTextView_isTextTopRightRadius, true);
         typedArray.recycle();
 
         init();
@@ -49,7 +60,9 @@ public class CornerTextView extends TextView {
         zonePaint.setColor(Color.WHITE);
     }
 
-    /** please set dp */
+    /**
+     * please set dp
+     */
     public void setcornerRadius(float cornerRadius) {
         float density = getResources().getDisplayMetrics().density;
         this.cornerRadius = cornerRadius * density;
@@ -68,6 +81,19 @@ public class CornerTextView extends TextView {
     public void draw(Canvas canvas) {
         canvas.saveLayer(roundRect, zonePaint, Canvas.ALL_SAVE_FLAG);
         canvas.drawRoundRect(roundRect, cornerRadius, cornerRadius, zonePaint);
+        //哪个角不是圆角我再把你用矩形画出来
+        if (!mTopLeftCornerRadius) {
+            canvas.drawRect(0, 0, cornerRadius, cornerRadius, zonePaint);
+        }
+        if (!mTopRightCornerRadius) {
+            canvas.drawRect(roundRect.right - cornerRadius, 0, roundRect.right, cornerRadius, zonePaint);
+        }
+        if (!mBottomLeftCornerRadius) {
+            canvas.drawRect(0, roundRect.bottom - cornerRadius, cornerRadius, roundRect.bottom, zonePaint);
+        }
+        if (!mBottomRightCornerRadius) {
+            canvas.drawRect(roundRect.right - cornerRadius, roundRect.bottom - cornerRadius, roundRect.right, roundRect.bottom, zonePaint);
+        }
         canvas.saveLayer(roundRect, maskPaint, Canvas.ALL_SAVE_FLAG);
         super.draw(canvas);
         canvas.restore();
