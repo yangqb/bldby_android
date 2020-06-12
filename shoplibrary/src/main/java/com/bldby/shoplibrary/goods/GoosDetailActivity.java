@@ -6,6 +6,7 @@ import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 import android.databinding.ObservableLong;
 import android.databinding.ViewDataBinding;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -21,8 +22,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bldby.baselibrary.constants.RouteConstants;
+import com.bldby.baselibrary.core.share.ShareFragment;
+import com.bldby.baselibrary.core.share.ShareMenu;
+import com.bldby.baselibrary.core.share.ShareUtils;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
+import com.bldby.baselibrary.core.ui.basefragment.Basefragment;
+import com.bldby.baselibrary.core.util.ShareImageUtils;
 import com.bldby.shoplibrary.R;
 import com.bldby.shoplibrary.databinding.ActivityGoosDetailBinding;
 import com.bldby.shoplibrary.goods.adapter.AdapterGoodsDetailEvaluate;
@@ -126,6 +133,11 @@ public class GoosDetailActivity extends BaseActivity {
     }
 
     public void onClickShare(View view) {
+        ShareFragment fragment = (ShareFragment) getFragment(RouteConstants.APPShare);
+        fragment.setBitmap(ShareImageUtils.viewToBitmap(dataBinding.titleBackground));
+//        fragment.setShareClassify(ShareMenu.Url, ShareMenu.WEIXIN);
+        loadRootFragment(R.id.dio, fragment);
+
     }
 
 }

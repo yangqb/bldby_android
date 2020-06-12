@@ -6,7 +6,7 @@
         android:allowBackup="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".goods.GoosDetailActivity">
+        <activity android:name="com.bldby.shoplibrary.goods.GoosDetailActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

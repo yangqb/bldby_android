@@ -78,9 +78,8 @@ public class MainActivity extends BaseActivity {
                         break;
                     case 3:
 //                        start(RouteTravelConstants.TRAVELMAIN);
-//                        showHideFragment(classify);
-                        Bitmap bitmap = ShareImageUtils.viewToBitmap(binding.container);
-                        ShareUtils.shareImg(MainActivity.this, bitmap, "便利大本营");
+                        showHideFragment(classify);
+
                         break;
                     default:
                         break;

@@ -1,4 +1,4 @@
-package com.bldby.baselibrary.core.share.analyze;
+package com.bldby.baselibrary.core.analyze;
 
 import android.content.Context;
 import android.util.Log;

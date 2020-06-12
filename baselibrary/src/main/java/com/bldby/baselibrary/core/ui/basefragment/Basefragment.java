@@ -107,6 +107,10 @@ public abstract class Basefragment extends SupportFragment {
         }
     }
 
+    public void onBcak(View view) {
+        pop();
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();

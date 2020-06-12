@@ -57,8 +57,8 @@ public class SplashActivity extends BaseActivity {
 //获得权限
     @NeedsPermission({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
     void need() {
-        //start(RouteConstants.APPMAIN);
-        start(RouteLoginConstants.LOGINMAIN);
+        start(RouteConstants.APPMAIN);
+//        start(RouteLoginConstants.LOGINMAIN);
         finish();
     }
 

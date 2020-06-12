@@ -7,12 +7,11 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.bldby.baselibrary.AppidManifests;
 import com.bldby.baselibrary.app.util.XlogUtil;
 import com.bldby.baselibrary.core.errorlog.CrashHandler;
-import com.bldby.baselibrary.core.share.analyze.UMengAnalyze;
+import com.bldby.baselibrary.core.analyze.UMengAnalyze;
 import com.orhanobut.hawk.Hawk;
 import com.umeng.socialize.PlatformConfig;
-
-import static com.bldby.baselibrary.AppidManifests.QQ_APP_AppSecret;
-import static com.bldby.baselibrary.AppidManifests.QQ_APP_ID;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareConfig;
 
 public class BaseApp extends Application {
 
@@ -46,6 +45,13 @@ public class BaseApp extends Application {
         UMengAnalyze.getInstance().init(this);
 //初始化日志器
         XlogUtil.XlogInit();
+
+        //微信登录是否每次授权============
+        UMShareConfig config = new UMShareConfig();
+        config.isNeedAuthOnGetUserInfo(true);
+        UMShareAPI.get(this).setShareConfig(config);
+        //微信登录是否每次授权===========
+
         PlatformConfig.setWeixin(AppidManifests.WX_APP_ID, AppidManifests.WX_APP_AppSecret);
     }
 

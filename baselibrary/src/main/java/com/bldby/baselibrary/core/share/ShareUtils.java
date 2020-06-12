@@ -3,6 +3,7 @@ package com.bldby.baselibrary.core.share;
 import android.Manifest;
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.support.annotation.Nullable;
 
 import com.bldby.baselibrary.core.util.ToastUtil;
 import com.hjq.permissions.OnPermission;
@@ -15,12 +16,30 @@ import com.umeng.socialize.media.UMImage;
 import java.util.List;
 
 public class ShareUtils {
-    public static void shareImg(Activity activity, Bitmap bitmap, String text) {
-        requestPermission(activity, bitmap, text);
+    private UMShareListener listener;
+    private Activity activity;
+
+    public ShareUtils(Activity activity) {
+        this.activity = activity;
     }
 
+    public UMShareListener getListener() {
+        return listener;
+    }
 
-    public static void requestPermission(Activity activity, Bitmap bitmap, String text) {
+    public void setListener(@Nullable UMShareListener listener) {
+        this.listener = listener;
+    }
+
+    public void shareImg(Bitmap bitmap, String text, SHARE_MEDIA share_media) {
+        requestPermission(bitmap, text, share_media);
+    }
+
+    public void shareText(String text, SHARE_MEDIA share_media) {
+        requestPermission(null, text, share_media);
+    }
+
+    private void requestPermission(Bitmap bitmap, String text, SHARE_MEDIA share_media) {
         String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_EXTERNAL_STORAGE};
         XXPermissions.with(activity)
                 // 可设置被拒绝后继续申请，直到用户授权或者永久拒绝
@@ -34,7 +53,7 @@ public class ShareUtils {
                     @Override
                     public void hasPermission(List<String> granted, boolean all) {
                         if (all) {
-                            doShare(activity, bitmap, text);
+                            doShare(bitmap, text, share_media);
                         } else {
                             ToastUtil.show("获取权限成功，部分权限未正常授予");
                         }
@@ -53,9 +72,16 @@ public class ShareUtils {
                 });
     }
 
-    public static void doShare(Activity activity, Bitmap bitmap, String text) {
-        UMImage image = new UMImage(activity, bitmap);//网络图片
-        new ShareAction(activity).withMedia(image).withText(text).setDisplayList(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE)
+    public void doShare(Bitmap bitmap, String text, SHARE_MEDIA share_media) {
+        ShareAction shareAction = new ShareAction(activity);
+        if (bitmap != null) {
+            UMImage image = new UMImage(activity, bitmap);//网络图片
+            shareAction.withMedia(image);
+            shareAction.withText(text);
+        } else {
+            shareAction.withText(text);
+        }
+        shareAction.setDisplayList(share_media)
                 .setCallback(new UMShareListener() {
                     @Override
                     public void onStart(SHARE_MEDIA share_media) {
@@ -76,6 +102,6 @@ public class ShareUtils {
                     public void onCancel(SHARE_MEDIA share_media) {
                         ToastUtil.show("取消分享");
                     }
-                }).open();
+                }).share();
     }
 }
