@@ -23,6 +23,7 @@ android {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
+        //manifestPlaceholders = [qqappid: "1110519400"] //其他library运行时需要配置这个（友盟分享）
         consumerProguardFiles "consumer-rules.pro"
 
     }

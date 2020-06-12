@@ -6,5 +6,6 @@ public class RouteLoginConstants {
     public static final String BIDINGACCOUNT = "/login/biding";
     public static final String REGISTER = "/login/register";
     public static final String LOGINWECHANT = "/login/wechant";
+    public static final String LOGININVITE = "/login/invite";
 
 }

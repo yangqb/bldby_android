@@ -1,9 +1,14 @@
 package com.bldby.loginlibrary.ui;
 
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
 import com.bldby.loginlibrary.R;
 import com.bldby.loginlibrary.databinding.ActivityInviteCodeBinding;
@@ -15,10 +20,17 @@ import com.bldby.loginlibrary.databinding.ActivityInviteCodeBinding;
  * time: 19:30
  * email: 694125155@qq.com
  */
+
+/*
+ * 填写邀请码页面
+ * */
+@Route(path = RouteLoginConstants.LOGININVITE)
 public class InputInviteCodeActivity extends BaseUiActivity {
+    private ActivityInviteCodeBinding binding;
+
     @Override
     protected View initContentView(LayoutInflater layoutInflater, ViewGroup viewGroup) {
-        ActivityInviteCodeBinding binding = ActivityInviteCodeBinding.inflate(layoutInflater, viewGroup, false);
+        binding = ActivityInviteCodeBinding.inflate(layoutInflater, viewGroup, false);
         binding.setViewModel(this);
         return binding.getRoot();
     }
@@ -36,6 +48,25 @@ public class InputInviteCodeActivity extends BaseUiActivity {
 
     @Override
     public void initListener() {
+        binding.editInviteCode.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!TextUtils.isEmpty(s.toString())) {
+                    binding.loginBtn.setEnabled(true);
+                } else {
+                    binding.loginBtn.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 }

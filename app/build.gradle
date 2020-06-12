@@ -38,7 +38,7 @@ android {
         }
         multiDexEnabled true
         signingConfig signingConfigs.release
-        manifestPlaceholders = [qqappid: "1110519400"]
+        manifestPlaceholders = [qqappid: "1110519400"] //其他library运行时需要配置这个（友盟分享）
         ndk {
             //设置支持的SO库架构
             abiFilters 'armeabi'
@@ -73,7 +73,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    buildFeatures{
+    buildFeatures {
         dataBinding = true
 // for view binding :
 // viewBinding = true
