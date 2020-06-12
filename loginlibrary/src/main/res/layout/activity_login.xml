@@ -21,10 +21,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
+            android:id="@+id/wx_login_btn"
             android:layout_width="@dimen/dp_48"
             android:layout_height="@dimen/dp_48"
             android:layout_marginTop="@dimen/dp_10"
             android:background="@mipmap/wx_login"
+            android:onClick="@{viewModel.onClick}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/login_other" />
@@ -42,9 +44,11 @@
             app:layout_constraintTop_toBottomOf="@id/logoImg" />
 
         <TextView
+            android:id="@+id/register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_12"
+            android:onClick="@{viewModel.onClickRegister}"
             android:text="@string/login_register_text"
             android:textColor="@color/login_color_333333"
             android:textSize="@dimen/sp_12"
@@ -68,10 +72,12 @@
             android:layout_marginStart="@dimen/dp_30"
             android:layout_marginTop="@dimen/dp_68"
             android:layout_marginEnd="@dimen/dp_30"
-            android:background="@drawable/select_login_btn"
+            android:background="@drawable/login_select_btn_bg"
+            android:enabled="false"
             android:gravity="center"
+            android:onClick="@{v->viewModel.onClickLogin(inputPhone,inputPassword)}"
             android:text="@string/login_btn_text"
-            android:textColor="@color/login_color_999999"
+            android:textColor="@color/login_select_btn_text"
             android:textSize="@dimen/sp_16"
             app:layout_constraintTop_toBottomOf="@id/edit_verification_code" />
 
@@ -148,6 +154,7 @@
             android:gravity="start|center_vertical"
             android:hint="@string/login_code_hint_text"
             android:inputType="number"
+            android:text="@={inputPassword}"
             android:textColor="@color/login_verification_code_color"
             android:textColorHint="@color/login_verification_code_hint_color"
             android:textSize="@dimen/sp_14"
@@ -164,6 +171,7 @@
             android:gravity="start|center_vertical"
             android:hint="@string/login_account_hint_text"
             android:inputType="phone"
+            android:text="@={inputPhone}"
             android:textColor="@color/login_account_color"
             android:textColorHint="@color/login_account_hint_color"
             android:textSize="@dimen/sp_14"
@@ -177,5 +185,14 @@
         <variable
             name="viewModel"
             type="com.bldby.loginlibrary.ui.LoginActivity" />
+
+        <variable
+            name="inputPhone"
+            type="String" />
+
+        <variable
+            name="inputPassword"
+            type="String" />
+
     </data>
 </layout>

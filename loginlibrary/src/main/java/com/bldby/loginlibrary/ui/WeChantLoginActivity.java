@@ -7,29 +7,27 @@ import android.view.ViewGroup;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
-import com.bldby.loginlibrary.R;
-import com.bldby.loginlibrary.databinding.ActivityBidingAccountBinding;
+import com.bldby.loginlibrary.databinding.ActivityLoginWechantBinding;
 
 /**
  * package name: com.bldby.loginlibrary.ui
  * user: yangqinbo
- * date: 2020/6/11
- * time: 14:42
+ * date: 2020/6/12
+ * time: 9:34
  * email: 694125155@qq.com
  */
-@Route(path = RouteLoginConstants.BIDINGACCOUNT)
-public class BindingAccountActivity extends BaseUiActivity {
+@Route(path = RouteLoginConstants.LOGINWECHANT)
+public class WeChantLoginActivity extends BaseUiActivity {
     @Override
     protected View initContentView(LayoutInflater layoutInflater, ViewGroup viewGroup) {
-        ActivityBidingAccountBinding biding = ActivityBidingAccountBinding.inflate(layoutInflater, viewGroup, false);
-        biding.setViewModel(this);
-        return biding.getRoot();
+        ActivityLoginWechantBinding binding = ActivityLoginWechantBinding.inflate(layoutInflater, viewGroup, false);
+        binding.setViewModel(this);
+        return binding.getRoot();
     }
 
     @Override
     public void initView() {
-        initTitle(getString(R.string.login_biding_title_name));
-        setTitleBackground(R.color.white);
+
     }
 
     @Override

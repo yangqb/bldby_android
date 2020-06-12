@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="login_title_color">#333333</color>
     <color name="login_line_color">#E4E4E4</color>
     <color name="login_account_color">#333333</color>
@@ -7,7 +7,16 @@
     <color name="login_verification_code_color">#333333</color>
     <color name="login_verification_code_hint_color">#ADADAD</color>
     <color name="login_color_333333">#333333</color>
-    <color name="login_btn_norm">#FFEFD1</color>
-    <color name="login_btn_select">#FCB432</color>
+    <color name="login_btn_norm">#FCB432</color>
+    <color name="login_btn_select">#FFEFD1</color>
     <color name="login_color_999999">#999999</color>
+    <color name="login_biding_norm_color">#FF6100</color>
+    <color name="login_biding_select_color">#FFFFFF</color>
+    <color name="login_biding_btn_norm">#FFECC9</color>
+    <color name="login_biding_btn_select">#ADADAD</color>
+    <color name="register_error_color" tools:ignore="ResourceName">#EA362C</color>
+    <color name="login_invite_code_color" tools:ignore="ResourceName">#333333</color>
+    <color name="login_invite_code_hint_color" tools:ignore="ResourceName">#ADADAD</color>
+    <color name="login_wx_title_color">#333333</color>
+    <color name="login_wx_color">#999999</color>
 </resources>

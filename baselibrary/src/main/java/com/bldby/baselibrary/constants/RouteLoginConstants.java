@@ -4,5 +4,7 @@ public class RouteLoginConstants {
     public static final int SHOWCHECKLOGIN = 0;
     public static final String LOGINMAIN = "/login/main";
     public static final String BIDINGACCOUNT = "/login/biding";
+    public static final String REGISTER = "/login/register";
+    public static final String LOGINWECHANT = "/login/wechant";
 
 }

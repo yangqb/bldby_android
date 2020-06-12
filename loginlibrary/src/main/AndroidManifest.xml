@@ -6,6 +6,10 @@
         <activity
             android:name="com.bldby.loginlibrary.ui.LoginActivity"
             android:theme="@style/AppTheme"></activity>
+        <activity android:name=".ui.BindingAccountActivity"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".ui.RegisterActivity" />
+        <activity android:name=".ui.InputInviteCodeActivity" />
     </application>
 
 </manifest>

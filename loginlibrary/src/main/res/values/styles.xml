@@ -1,4 +1,8 @@
 <resources>
 
     <style name="login_AppTheme" parent="Theme.AppCompat.Light" />
+
+    <style name="login_MyCheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/login_select_checkbox</item>
+    </style>
 </resources>
