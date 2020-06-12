@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
@@ -16,10 +17,10 @@ import android.widget.ImageView;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.azoft.carousellayoutmanager.CarouselLayoutManager;
-import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener;
 import com.azoft.carousellayoutmanager.CenterScrollListener;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bldby.shoplibrary.adapter.HomeMoreAdapter;
+import com.bldby.shoplibrary.adapter.HomeRecommendAdapter;
 import com.bldby.shoplibrary.adapter.HomeTodayAdapter;
 import com.bldby.shoplibrary.adapter.MainAdapter;
 import com.bldby.shoplibrary.adapter.MainAdapter1;
@@ -58,6 +59,7 @@ public class HomeFragment extends Basefragment {
     private List<News> newsList;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        //绑定布局
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         binding.setViewModel(this);
         SeachHeaderView seachHeaderView = new SeachHeaderView(getActivity());
@@ -85,12 +87,20 @@ public class HomeFragment extends Basefragment {
         initList();
         //秒杀产品方法();
         initseckill();
-        //图片叠加显示方法（）
+        //3D画廊效果方法（）
         initsuperposition();
         //更多商家方法（）
         initmore();
         //今日上新方法（）
         inittoday();
+        //为你推荐方法()
+        initrecommend();
+    }
+
+    private void initrecommend() {
+        binding.homeRecyehgite.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        HomeRecommendAdapter adapter=new HomeRecommendAdapter(newsList);
+        binding.homeRecyehgite.setAdapter(adapter);
     }
 
     private void inittoday() {
