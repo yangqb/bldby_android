@@ -4,6 +4,7 @@ ext {
     isShopApplication = false
     isLoginApplication = false
     isTravelApplication = false
+    isAirTicketApplication = false
 
 
     android = [

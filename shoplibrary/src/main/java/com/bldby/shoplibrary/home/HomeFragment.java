@@ -4,11 +4,15 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.annotation.NonNull;
@@ -35,6 +39,7 @@ import com.bldby.shoplibrary.bean.News;
 import com.bldby.shoplibrary.databinding.FragmentHomeBinding;
 import com.bldby.shoplibrary.seach.SeachHeaderView;
 import com.bumptech.glide.request.RequestOptions;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zhpan.bannerview.BannerViewPager;
 import com.zhpan.bannerview.constants.IndicatorSlideMode;
 import com.zhpan.bannerview.constants.IndicatorStyle;
@@ -98,8 +103,8 @@ public class HomeFragment extends Basefragment {
     }
 
     private void initrecommend() {
-        binding.homeRecyehgite.setLayoutManager(new GridLayoutManager(getActivity(),2));
-        HomeRecommendAdapter adapter=new HomeRecommendAdapter(newsList);
+        binding.homeRecyehgite.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        HomeRecommendAdapter adapter = new HomeRecommendAdapter(newsList);
         binding.homeRecyehgite.setAdapter(adapter);
     }
 
@@ -127,8 +132,32 @@ public class HomeFragment extends Basefragment {
         MainAdapter1 mainAdapter = new MainAdapter1(strings);
         binding.homeRecyfive.setLoop();
         binding.homeRecyfive.setAlphaItem(true);
+        binding.homeRecyfive.setGreyItem(true);
         binding.homeRecyfive.setHasFixedSize(true);
         binding.homeRecyfive.setAdapter(mainAdapter);
+        Handler handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+//                mainAdapter.is
+                if (!binding.homeRecyfive.isFocused()) {
+                    if (binding.homeRecyfive.getCoverFlowLayout().getSelectedPos() >= strings.size() - 1) {
+                        binding.homeRecyfive.scrollToPosition(0);
+                    } else {
+                        binding.homeRecyfive.scrollToPosition(binding.homeRecyfive.getCoverFlowLayout().getSelectedPos() + 1);
+                    }
+                }
+                sendEmptyMessageDelayed(0, 2000);
+            }
+        };
+        handler.sendEmptyMessageDelayed(0, 2000);
+        mainAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                ToastUtil.show("sdfsd");
+
+            }
+        });
     }
 
     private void initseckill() {

@@ -22,7 +22,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bldby.baselibrary.constants.RouteConstants;
+import com.bldby.baselibrary.constants.RouteShopConstants;
 import com.bldby.baselibrary.core.share.ShareFragment;
 import com.bldby.baselibrary.core.share.ShareMenu;
 import com.bldby.baselibrary.core.share.ShareUtils;
@@ -37,6 +39,9 @@ import com.bldby.shoplibrary.goods.adapter.AdapterGoodsDetailGetDiscounts;
 
 import java.util.ArrayList;
 
+import static com.bldby.baselibrary.constants.RouteShopConstants.SHOPGOODSDETAIL;
+
+@Route(path = SHOPGOODSDETAIL)
 public class GoosDetailActivity extends BaseActivity {
 
     private ActivityGoosDetailBinding dataBinding;

@@ -16,7 +16,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
- * package name: com.feitianzhu.huangliwo.utils
+ * package name: com.bldby.huangliwo.utils
  * user: yangqinbo
  * date: 2020/1/7
  * time: 9:51
