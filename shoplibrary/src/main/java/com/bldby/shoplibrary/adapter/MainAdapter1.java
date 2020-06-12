@@ -13,8 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bldby.shoplibrary.R;
-import com.bldby.shoplibrary.pagetransformer.MainStarViewHolder;
-import com.bldby.shoplibrary.pagetransformer.RotationPageTransformer;
+import com.bldby.shoplibrary.bean.News;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -22,17 +21,17 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainAdapter1 extends BaseQuickAdapter<String, BaseViewHolder> {
+public class MainAdapter1 extends BaseQuickAdapter<News, BaseViewHolder> {
 
 
-    public MainAdapter1(@Nullable List<String> data) {
+    public MainAdapter1(@Nullable List<News> data) {
         super(R.layout.item_banner1, data);
     }
 
     @Override
-    protected void convert(@NonNull BaseViewHolder helper, String item) {
+    protected void convert(@NonNull BaseViewHolder helper, News data) {
         Glide.with(mContext)
-                .load(item)
+                .load(data.getPic())
                 .into((ImageView) helper.getView(R.id.banner_image));
     }
 
