@@ -17,6 +17,7 @@
 
 
         <android.support.v4.widget.NestedScrollView
+            android:id="@+id/nesc"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -383,7 +384,6 @@
             android:id="@+id/headers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:alpha="0.5"
             android:orientation="vertical">
 
         </LinearLayout>

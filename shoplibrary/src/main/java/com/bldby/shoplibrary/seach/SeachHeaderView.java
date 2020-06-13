@@ -2,7 +2,12 @@ package com.bldby.shoplibrary.seach;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.databinding.ObservableField;
+import android.databinding.ObservableFloat;
+import android.databinding.ObservableInt;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -12,6 +17,7 @@ import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bldby.baselibrary.app.GlobalUtil;
 import com.bldby.baselibrary.core.addresspick.AddressPickerUtil;
+import com.bldby.shoplibrary.R;
 import com.bldby.shoplibrary.databinding.ViewSeachHeaderBinding;
 
 import org.jetbrains.annotations.NotNull;
@@ -24,18 +30,25 @@ import java.io.StringWriter;
 
 public class SeachHeaderView {
 
-    private ViewSeachHeaderBinding headerBinding;
+    public ViewSeachHeaderBinding headerBinding;
     Activity context;
     public AddressPickerUtil.OnOptionsTextSelectListener onOptionsSelectListener;
+    public ObservableField<ColorStateList> backButton = new ObservableField<ColorStateList>();
+    public ObservableField<Drawable> backBackground = new ObservableField<Drawable>();
+    public ObservableFloat backBackgroundAlpha = new ObservableFloat(0f);
 
-    public View getView(LayoutInflater view) {
-        headerBinding = ViewSeachHeaderBinding.inflate(view);
-        headerBinding.setViewModel(this);
+    public View getView() {
+
         return headerBinding.getRoot();
     }
 
-    public SeachHeaderView(Activity context) {
+    public SeachHeaderView(Activity context, LayoutInflater view) {
         this.context = context;
+        headerBinding = ViewSeachHeaderBinding.inflate(view);
+        headerBinding.setViewModel(this);
+        backBackground.set(context.getResources().getDrawable(R.color.transparent));
+        backButton.set(context.getResources().getColorStateList(R.color.white));
+
     }
 
     public void onClickLocaltioned(View view) {

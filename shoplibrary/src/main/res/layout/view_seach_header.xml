@@ -10,95 +10,116 @@
             type="com.bldby.shoplibrary.seach.SeachHeaderView" />
     </data>
 
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/FCB432"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingStart="@dimen/dp_15"
-        android:paddingTop="@dimen/dp_7"
-        android:paddingEnd="@dimen/dp_14"
-        android:paddingBottom="@dimen/dp_7">
-
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/iv_head"
-            android:layout_width="@dimen/dp_32"
-            android:layout_height="@dimen/dp_32"
-            android:layout_gravity="center_vertical"
-            android:background="@color/white"
-            app:riv_border_color="@color/white"
-            app:riv_border_width="1dp"
-            app:riv_corner_radius="@dimen/dp_16"
-            app:riv_oval="true"
-            tools:src="@mipmap/main_seach_icon" />
+        android:layout_height="@dimen/dp_45">
 
         <LinearLayout
-            android:id="@+id/ll_location"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginRight="8dp"
-            android:ellipsize="end"
-            android:onClick="@{viewModel::onClickLocaltioned}"
-            android:orientation="horizontal"
-            android:singleLine="true">
-
-            <TextView
-                android:id="@+id/txt_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/dp_6"
-                android:drawableRight="@mipmap/main_pull_icon"
-                android:drawablePadding="@dimen/dp_3"
-                android:text="北京"
-                android:textColor="@color/color_333333"
-                android:textSize="@dimen/sp_12"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/search"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/dp_35"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1.0"
-            android:gravity="center"
+            android:id="@+id/root"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_45"
+            android:alpha="@{viewModel.backBackgroundAlpha}"
+            android:background="@color/FCB432"
             android:orientation="horizontal">
 
-            <com.bldby.baselibrary.core.view.CornerView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_30"
-                android:background="@color/white"
-                app:cornerRadius="@dimen/dp_15">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:drawableLeft="@mipmap/main_seach_icon"
-                    android:drawablePadding="5dp"
-                    android:gravity="center_vertical"
-                    android:text="@string/seach"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#999999"
-                    android:textSize="@dimen/sp_14" />
-
-
-            </com.bldby.baselibrary.core.view.CornerView>
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/iv_home_nv_right"
-            android:layout_width="@dimen/dp_22"
-            android:layout_height="@dimen/dp_22"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="8dp"
-            android:scaleType="centerInside"
-            android:src="@mipmap/main_zxing" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/dp_15"
+            android:paddingTop="@dimen/dp_7"
+            android:paddingEnd="@dimen/dp_14"
+            android:paddingBottom="@dimen/dp_7">
 
-    </LinearLayout>
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/iv_head"
+                android:layout_width="@dimen/dp_32"
+                android:layout_height="@dimen/dp_32"
+                android:layout_gravity="center_vertical"
+                android:background="@color/white"
+                app:riv_border_color="@color/white"
+                app:riv_border_width="1dp"
+                app:riv_corner_radius="@dimen/dp_16"
+                app:riv_oval="true"
+                tools:src="@mipmap/main_seach_icon" />
+
+            <LinearLayout
+                android:id="@+id/ll_location"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="8dp"
+                android:ellipsize="end"
+                android:onClick="@{viewModel::onClickLocaltioned}"
+                android:orientation="horizontal"
+                android:singleLine="true">
+
+                <TextView
+                    android:id="@+id/txt_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dp_6"
+                    android:text="北京"
+                    android:textColor="@{viewModel.backButton}"
+                    android:textSize="@dimen/sp_12"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="8dp"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/main_pull_icon"
+                    android:tint="@{viewModel.backButton}" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/search"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_35"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.bldby.baselibrary.core.view.CornerView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_30"
+                    android:background="@color/white"
+                    app:cornerRadius="@dimen/dp_15">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:drawableLeft="@mipmap/main_seach_icon"
+                        android:drawablePadding="5dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/seach"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#999999"
+                        android:textSize="@dimen/sp_14" />
+
+
+                </com.bldby.baselibrary.core.view.CornerView>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_home_nv_right"
+                android:layout_width="@dimen/dp_22"
+                android:layout_height="@dimen/dp_22"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="8dp"
+                android:scaleType="centerInside"
+                android:src="@mipmap/main_zxing"
+                android:tint="@{viewModel.backButton}" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 </layout>

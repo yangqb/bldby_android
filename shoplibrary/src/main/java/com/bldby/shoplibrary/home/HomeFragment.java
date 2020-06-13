@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
@@ -55,19 +56,20 @@ public class HomeFragment extends Basefragment {
     private FragmentHomeBinding binding;
     private ArrayList<String> strings;
     private List<News> newsList;
+    private SeachHeaderView seachHeaderView;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //绑定布局
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         binding.setViewModel(this);
-        SeachHeaderView seachHeaderView = new SeachHeaderView(getActivity());
+        seachHeaderView = new SeachHeaderView(getActivity(), getLayoutInflater());
         seachHeaderView.onOptionsSelectListener = new AddressPickerUtil.OnOptionsTextSelectListener() {
             @Override
             public void onOptionsSelect(String options1, String options2, String options3) {
                 ToastUtil.show(options1 + options2 + options3);
             }
         };
-        binding.headers.addView(seachHeaderView.getView(getLayoutInflater()));
+        binding.headers.addView(seachHeaderView.getView());
         return binding.getRoot();
     }
 
@@ -93,6 +95,22 @@ public class HomeFragment extends Basefragment {
         inittoday();
         //为你推荐方法()
         initrecommend();
+        binding.nesc.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView nestedScrollView, int i, int i1, int i2, int i3) {
+                int height = binding.homeBanner.getHeight();
+
+                if (i1 > height) {
+                    seachHeaderView.backBackgroundAlpha.set(1);
+                    seachHeaderView.backButton.set(getResources().getColorStateList(R.color.black));
+                } else {
+                    float i4 = (float) i1 / height;
+                    seachHeaderView.backButton.set(getResources().getColorStateList(R.color.white));
+                    seachHeaderView.backBackgroundAlpha.set(i4);
+                }
+            }
+        });
+
     }
 
     private void initrecommend() {
