@@ -5,4 +5,5 @@ public class RouteShopConstants {
     public static final String SHOPMAINFirst = "/shop/first";
     public static final String SHOPMAINCLASSIFY = "/shop/classify";
     public static final String SHOPGOODSDETAIL = "/shop/goodsDetail";
+    public static final String SHOPGOODSEVALUATE = "/shop/evaluate";
 }

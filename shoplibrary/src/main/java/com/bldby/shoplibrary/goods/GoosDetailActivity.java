@@ -83,6 +83,7 @@ public class GoosDetailActivity extends BaseActivity {
 
     @Override
     public void loadData() {
+        //设置不同的字号
         String price = "¥ " + "99" + "起";
         Spannable sp = new SpannableString(price);
         sp.setSpan(new AbsoluteSizeSpan(12, true), 0, 2, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
@@ -97,16 +98,17 @@ public class GoosDetailActivity extends BaseActivity {
         dataBinding.nesc.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView nestedScrollView, int i, int i1, int i2, int i3) {
+                //获取banner高度
                 int height = dataBinding.banner.getHeight();
-                Log.e("TAG", "onScrollChange: " + height + ".." + i1 + ".." + ".." + i3);
 
                 if (i1 > height) {
+                    //banner完全被遮住
                     dataBinding.titleBackground.setAlpha(1);
                     backButton.set(getResources().getColorStateList(R.color.black));
                     backBackgroundButton.set(getResources().getDrawable(R.color.white));
                 } else {
+                    //计算被遮住的比例
                     float i4 = (float) i1 / height;
-                    Log.e("TAG", "onScrollChange: " + i4);
                     backButton.set(getResources().getColorStateList(R.color.white));
                     backBackgroundButton.set(getResources().getDrawable(R.color.goods_detail_back));
                     dataBinding.titleBackground.setAlpha(i4);
@@ -118,31 +120,38 @@ public class GoosDetailActivity extends BaseActivity {
                     Log.e("TAG", "onScrollChange: ");
                     dataBinding.titleName.setText("第一个");
                 }
-//                else if (dataBinding.one2.getLocalVisibleRect(scrollRect)) {
-//                    ////子控件完全不在可视范围内
-//                    Log.e("TAG", "onScrollChange:00 ");
-//                    dataBinding.titleName.setText("第2个");
-//                } else if (dataBinding.one3.getLocalVisibleRect(scrollRect)) {
-//                    ////子控件完全不在可视范围内
-//                    Log.e("TAG", "onScrollChange:00 ");
-//                    dataBinding.titleName.setText("第3个");
-//                }
-
-
             }
         });
     }
 
+    /**
+     * 退出
+     *
+     * @param view
+     */
     public void onClickBack(View view) {
         finish();
     }
 
+    /**
+     * 去分享页面
+     *
+     * @param view
+     */
     public void onClickShare(View view) {
         ShareFragment fragment = (ShareFragment) getFragment(RouteConstants.APPShare);
         fragment.setBitmap(ShareImageUtils.viewToBitmap(dataBinding.titleBackground));
 //        fragment.setShareClassify(ShareMenu.Url, ShareMenu.WEIXIN);
         loadRootFragment(R.id.dio, fragment);
-
     }
 
+    /**
+     * 去评价页面
+     *
+     * @param view
+     */
+    public void onClickToEva(View view) {
+        start(RouteShopConstants.SHOPGOODSEVALUATE);
+
+    }
 }

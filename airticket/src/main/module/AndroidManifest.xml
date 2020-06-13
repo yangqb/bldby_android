@@ -1,22 +1,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.bldby.shoplibrary">
+    package="com.bldby.airticket">
 
     <application
-        android:name=".ShopApp"
+        android:name="com.bldby.baselibrary.app.BaseApp"
         android:allowBackup="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".goods.EvaluateActivity"></activity>
-
-        <activity android:name="com.bldby.shoplibrary.goods.GoosDetailActivity">
+        <activity android:name="com.bldby.airticket.AirMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".ShopMainActivity">
-
         </activity>
     </application>
 </manifest>
