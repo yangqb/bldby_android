@@ -1,5 +1,7 @@
 package com.bldby.shoplibrary.goods;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.res.ColorStateList;
 import android.databinding.DataBindingUtil;
 import android.databinding.ObservableField;
@@ -10,6 +12,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,11 +36,24 @@ import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
 import com.bldby.baselibrary.core.ui.basefragment.Basefragment;
 import com.bldby.baselibrary.core.util.ShareImageUtils;
 import com.bldby.shoplibrary.R;
+import com.bldby.shoplibrary.bean.News;
 import com.bldby.shoplibrary.databinding.ActivityGoosDetailBinding;
 import com.bldby.shoplibrary.goods.adapter.AdapterGoodsDetailEvaluate;
 import com.bldby.shoplibrary.goods.adapter.AdapterGoodsDetailGetDiscounts;
+import com.bldby.shoplibrary.goods.model.BannerViewHolder;
+import com.bldby.shoplibrary.goods.model.ShopDetailModel;
+import com.bldby.shoplibrary.home.HomeFragment;
+import com.zhpan.bannerview.BannerViewPager;
+import com.zhpan.bannerview.constants.IndicatorSlideMode;
+import com.zhpan.bannerview.constants.IndicatorStyle;
+import com.zhpan.bannerview.holder.HolderCreator;
+import com.zhpan.bannerview.holder.ViewHolder;
+import com.zhpan.bannerview.utils.BannerUtils;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import cc.shinichi.library.ImagePreview;
 
 import static com.bldby.baselibrary.constants.RouteShopConstants.SHOPGOODSDETAIL;
 
@@ -49,11 +65,14 @@ public class GoosDetailActivity extends BaseActivity {
     public ObservableField<Drawable> backBackgroundButton = new ObservableField<Drawable>();
     private AdapterGoodsDetailGetDiscounts detailGetDiscounts;
     private AdapterGoodsDetailEvaluate adapterGoodsDetailEvaluate;
+    private ShopDetailModel detailModel;
+    private ArrayList<String> newsList;
 
     @Override
     public void bindIngView() {
         dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_goos_detail);
         dataBinding.setViewmodel(this);
+        detailModel = ViewModelProviders.of(this).get(ShopDetailModel.class);
     }
 
     @Override
@@ -83,14 +102,77 @@ public class GoosDetailActivity extends BaseActivity {
 
     @Override
     public void loadData() {
-        //设置不同的字号
-        String price = "¥ " + "99" + "起";
-        Spannable sp = new SpannableString(price);
-        sp.setSpan(new AbsoluteSizeSpan(12, true), 0, 2, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-        sp.setSpan(new AbsoluteSizeSpan(16, true), 2, price.length() - 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-        sp.setSpan(new AbsoluteSizeSpan(12, true), price.length() - 1, price.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-        dataBinding.price.setText(sp);
+        newsList = new ArrayList();
 
+        newsList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592150018281&di=191016011e26f8f035cddb89f08f5e90&imgtype=0&src=http%3A%2F%2Fbos.pgzs.com%2Frbpiczy%2FWallpaper%2F2011%2F12%2F8%2Faa69906a9dc34b8d8fad0e0650a03863-2.jpg");
+        newsList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592150018281&di=191016011e26f8f035cddb89f08f5e90&imgtype=0&src=http%3A%2F%2Fbos.pgzs.com%2Frbpiczy%2FWallpaper%2F2011%2F12%2F8%2Faa69906a9dc34b8d8fad0e0650a03863-2.jpg");
+        newsList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592150018281&di=191016011e26f8f035cddb89f08f5e90&imgtype=0&src=http%3A%2F%2Fbos.pgzs.com%2Frbpiczy%2FWallpaper%2F2011%2F12%2F8%2Faa69906a9dc34b8d8fad0e0650a03863-2.jpg");
+        BannerViewHolder bannerViewHolder = new BannerViewHolder(GoosDetailActivity.this);
+        dataBinding.banner.setCanLoop(true)
+                .setAutoPlay(true)
+                .setIndicatorStyle(IndicatorStyle.CIRCLE)
+                .setIndicatorSlideMode(IndicatorSlideMode.SMOOTH)
+                .setIndicatorSliderRadius(BannerUtils.dp2px(2.5f))
+                .setIndicatorSliderColor(Color.parseColor("#CCCCCC"), Color.parseColor("#6C6D72"))
+                .setHolderCreator(new HolderCreator() {
+                    @Override
+                    public ViewHolder createViewHolder() {
+                        return bannerViewHolder;
+                    }
+                }).setOnPageClickListener(new BannerViewPager.OnPageClickListener() {
+            @Override
+            public void onPageClick(int position) {
+                onClickBanner(position);
+            }
+        }).create(newsList);
+        dataBinding.banner.startLoop();
+
+        detailModel.getElapsedTime().observeForever(new Observer<Long>() {
+            @Override
+            public void onChanged(@Nullable Long aLong) {
+
+            }
+        });
+        detailModel.getElapsedTime().observe(this, new Observer<Long>() {
+
+            @Override
+            public void onChanged(@Nullable Long aLong) {
+                Log.e("TAG", "onChanged: " + aLong);
+                //设置不同的字号
+                String price = "¥ " + aLong + "起";
+                Spannable sp = new SpannableString(price);
+                sp.setSpan(new AbsoluteSizeSpan(12, true), 0, 2, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                sp.setSpan(new AbsoluteSizeSpan(16, true), 2, price.length() - 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                sp.setSpan(new AbsoluteSizeSpan(12, true), price.length() - 1, price.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                dataBinding.price.setText(sp);
+
+            }
+        });
+    }
+
+    public void onClickBanner(int pos) {
+        ImagePreview
+                .getInstance()
+                // 上下文，必须是activity，不需要担心内存泄漏，本框架已经处理好；
+                .setContext(this)
+                .setEnableDragClose(true) //下拉图片关闭
+                // 设置从第几张开始看（索引从0开始）
+                .setIndex(pos)
+                .setShowErrorToast(true)//加载失败提示
+                //=================================================================================================
+                // 有三种设置数据集合的方式，根据自己的需求进行三选一：
+                // 1：第一步生成的imageInfo List
+                //.setImageInfoList(imageInfoList)
+
+                // 2：直接传url List
+                .setImageList(newsList)
+
+                // 3：只有一张图片的情况，可以直接传入这张图片的url
+                //.setImage(String image)
+                //=================================================================================================
+
+                // 开启预览
+                .start();
     }
 
     @Override

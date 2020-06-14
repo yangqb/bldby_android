@@ -2,9 +2,9 @@ ext {
 //    false:作为Lib组件存在， true:作为application存在
     isBaseApplication = false  //这个不建议改
     isShopApplication = true
-    isLoginApplication = true
+    isLoginApplication = false
     isTravelApplication = false
-    isAirTicketApplication = true
+    isAirTicketApplication = false
 
 
     android = [
@@ -63,7 +63,9 @@ ext {
 //            //image
             "glide"                          : "com.github.bumptech.glide:glide:${version["glideSdkVersion"]}",
             "glide-compiler"                 : "com.github.bumptech.glide:compiler:${version["glideSdkVersion"]}",
-
+            "okhttp3-integration"            : 'com.github.bumptech.glide:okhttp3-integration:4.8.0',
+            //查看加载大图和长图片
+            "BigImageViewPager"              : 'com.github.SherlockGougou:BigImageViewPager:v4_4.1.1',
 //状态栏导航栏适配
             // 基础依赖包，必须要依赖
             "immersionbar"                   : 'com.gyf.immersionbar:immersionbar:3.0.0',
@@ -107,6 +109,7 @@ ext {
             "share-wx"                       : 'com.umeng.umsdk:share-wx:7.0.2',
             "zxing-library"                  : 'cn.yipianfengye.android:zxing-library:2.2',
             "xlog"                           : 'com.elvishew:xlog:1.6.1',
+
 //             "butterknife"             : "com.jakewharton:butterknife:8.5.1",
 //             "butterknife-compiler"    : "com.jakewharton:butterknife-compiler:8.5.1",
 //            //network

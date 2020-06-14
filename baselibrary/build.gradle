@@ -51,7 +51,7 @@ android {
 // viewBinding = true
     }
 }
-
+//annotationProcessor 如果要使用这个字段导入的依赖需要在每一个模块的gradle里都导入
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api rootProject.ext.dependencies["router"]
@@ -77,7 +77,9 @@ dependencies {
     api rootProject.ext.dependencies["fastjson"]
     api rootProject.ext.dependencies["xxpermissions"]
     api rootProject.ext.dependencies["glide"]
-    api rootProject.ext.dependencies["glide-compiler"]
+
+    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
+
     api rootProject.ext.dependencies["immersionbar"]
     api rootProject.ext.dependencies["immersionbar-components"]
     api rootProject.ext.dependencies["SmartRefreshLayout"]
@@ -109,5 +111,7 @@ dependencies {
 //    api files('libs\\alipaySdk-15.7.4-20200228192259.aar')
     api rootProject.ext.dependencies["xlog"]
     api rootProject.ext.dependencies["recyclercoverflow"]
+    api rootProject.ext.dependencies["BigImageViewPager"]
+    api rootProject.ext.dependencies["okhttp3-integration"]
 
 }
