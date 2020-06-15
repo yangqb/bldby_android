@@ -9,6 +9,7 @@ import com.bldby.baselibrary.core.network.networkcheck.NetworkConnectChangedRece
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.convert.StringConvert;
 import com.lzy.okgo.exception.HttpException;
+import com.lzy.okgo.request.PostRequest;
 import com.lzy.okgo.request.base.Request;
 import com.lzy.okrx2.adapter.ObservableBody;
 
@@ -24,6 +25,8 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 /**
  * Created by bch on 2020/5/11
@@ -67,6 +70,7 @@ public abstract class BaseApiRequest extends AbsApiRequest {
      */
     public String requestTag;
     private ApiCallBack listener;
+    private RequestLevel requestLevel;
 
     @Override
     public void onStart() {
@@ -80,14 +84,16 @@ public abstract class BaseApiRequest extends AbsApiRequest {
         }
     }
 
+    public static final MediaType JSONBody = MediaType.parse("application/json");
+
     /**
-     * 默认使用post请求
+     * 设置请求类型
      *
      * @return
      */
     @Override
-    public boolean usePost() {
-        return true;
+    public RequestLevel getRequestLevel() {
+        return RequestLevel.POST;
     }
 
     //Okgo 3.0 升级以后的方法
@@ -98,13 +104,17 @@ public abstract class BaseApiRequest extends AbsApiRequest {
      * @param usePost
      * @return
      */
-    private Request<String, ? extends Request> getRequest(boolean usePost) {
+    private Request<String, ? extends Request> getRequest(RequestLevel usePost) {
         HttpLogUtil.e(getAPIName(), "是否post" + usePost);
-
-        if (usePost) {
-            return OkGo.post(getApiUrl());
-        } else {
-            return OkGo.get(getApiUrl());
+        switch (usePost) {
+            case GET:
+                return OkGo.get(getApiUrl());
+            case JSONBody:
+                return OkGo.post(getApiUrl());
+            case POST:
+                return OkGo.post(getApiUrl());
+            default:
+                return OkGo.post(getApiUrl());
         }
     }
 
@@ -118,7 +128,12 @@ public abstract class BaseApiRequest extends AbsApiRequest {
         requestTag = this.hashCode() + "";
         req.tag(requestTag);
         Map<String, Object> build = appendParams(new ParamsBuilder()).build();
-        req.params(ParamsBuilder.getHttpParams(build));
+
+        if (requestLevel == RequestLevel.JSONBody) {
+            ((PostRequest) req).upRequestBody(RequestBody.create(JSON.toJSON(build).toString(), JSONBody));
+        } else {
+            req.params(ParamsBuilder.getHttpParams(build));
+        }
         req.converter(new StringConvert());
         //添加头参数
         req.headers(addHeads(OkGo.getInstance().getCommonHeaders()));
@@ -141,12 +156,13 @@ public abstract class BaseApiRequest extends AbsApiRequest {
             handleError(kErrorTypeNoNetworkConnect, "网络未开启,请打开网络");
             return;
         }
+        requestLevel = getRequestLevel();
         try {
             //请求流程处理
-            Observable.just(usePost())                   //观察判断是否使用http post
-                    .map(new Function<Boolean, Request>() {
+            Observable.just(requestLevel)                   //观察判断是否使用http post
+                    .map(new Function<RequestLevel, Request>() {
                         @Override
-                        public Request apply(Boolean aBoolean) throws Exception {
+                        public Request apply(RequestLevel aBoolean) throws Exception {
                             //返回okgo request对象
                             return getRequest(aBoolean);
                         }
