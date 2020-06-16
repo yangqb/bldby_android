@@ -9,14 +9,16 @@ import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.bldby.baselibrary.app.login.model.UserInfo;
+import com.bldby.baselibrary.app.util.UserInfoUtils;
 import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
 import com.bldby.loginlibrary.R;
 import com.bldby.loginlibrary.databinding.ActivityInviteCodeBinding;
-import com.bldby.loginlibrary.model.LoginRequestModel;
-import com.bldby.loginlibrary.request.BidingAccountRequest;
-import com.bldby.loginlibrary.request.LoginRequest;
+import com.bldby.loginlibrary.model.UserModel;
+import com.bldby.loginlibrary.request.BidingInviteCodeRequest;
+import com.bldby.loginlibrary.request.UserInfoRequest;
 
 /**
  * package name: com.bldby.loginlibrary.ui
@@ -59,14 +61,54 @@ public class InputInviteCodeActivity extends BaseUiActivity {
      * 填写邀请码登录
      * */
     public void onLogin(String inviteCode) {
-        BidingAccountRequest request = new BidingAccountRequest();
+        BidingInviteCodeRequest request = new BidingInviteCodeRequest();
         request.parentId = inviteCode;
         request.accessToken = token;
         request.userId = userId;
-        request.call(new ApiCallBack() {
+        request.call(new ApiCallBack<Boolean>() {
             @Override
-            public void onAPIResponse(Object response) {
+            public void onAPIResponse(Boolean response) {
+                getUserInfo(userId, token);
+            }
 
+            @Override
+            public void onAPIError(int errorCode, String errorMsg) {
+
+            }
+        });
+    }
+
+    /*
+     * 获取用户信息保存
+     * */
+    public void getUserInfo(String userId, String accessToken) {
+        UserInfoRequest request = new UserInfoRequest();
+        request.userId = userId;
+        request.accessToken = accessToken;
+        request.call(new ApiCallBack<UserModel>() {
+            @Override
+            public void onAPIResponse(UserModel response) {
+                UserInfo userInfo = UserInfoUtils.getUserInfo(InputInviteCodeActivity.this);
+                userInfo.headImg = response.headImg;
+                userInfo.nickName = response.nickName;
+                userInfo.accountType = response.accountType;
+                userInfo.parentId = response.parentId;
+                userInfo.uid = response.uid;
+                userInfo.clientType = response.clientType;
+                userInfo.balance = response.balance;
+                userInfo.totalConsume = response.totalConsume;
+                userInfo.phone = response.phone;
+                userInfo.inviteCode = response.inviteCode;
+                userInfo.totalPoints = response.totalPoints;
+                userInfo.isFrozen = response.isFrozen;
+                userInfo.registerDate = response.registerDate;
+                userInfo.openid = response.openid;
+                userInfo.subordinateCount = response.subordinateCount;
+                userInfo.unionid = response.unionid;
+                userInfo.canWd = response.userInfo.canWd;
+                userInfo.paypass = response.userInfo.paypass;
+                userInfo.personSign = response.userInfo.personSign;
+                UserInfoUtils.saveUserInfo(InputInviteCodeActivity.this, userInfo);
             }
 
             @Override

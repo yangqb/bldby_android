@@ -49,7 +49,7 @@ public class RegisterCodeRequest extends BaseLoginRequest {
 
     @Override
     public TypeReference getDatatype() {
-        return new TypeReference() {
+        return new TypeReference<Boolean>() {
         };
     }
 }

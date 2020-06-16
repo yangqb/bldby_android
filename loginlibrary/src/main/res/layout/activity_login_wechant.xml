@@ -35,6 +35,7 @@
             android:layout_height="@dimen/dp_48"
             android:layout_marginTop="@dimen/dp_20"
             android:background="@mipmap/login_phone"
+            android:onClick="@{viewModel.onPhoneLogin}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/login_other" />

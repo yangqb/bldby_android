@@ -11,10 +11,13 @@ import android.view.ViewGroup;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bldby.baselibrary.app.util.RegUtils;
 import com.bldby.baselibrary.constants.RouteLoginConstants;
+import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
 import com.bldby.baselibrary.core.util.ToastUtil;
 import com.bldby.loginlibrary.R;
 import com.bldby.loginlibrary.databinding.ActivityBidingAccountBinding;
+import com.bldby.loginlibrary.request.BidingAccountRequest;
+import com.bldby.loginlibrary.request.RegisterCodeRequest;
 
 /**
  * package name: com.bldby.loginlibrary.ui
@@ -32,6 +35,7 @@ public class BindingAccountActivity extends BaseUiActivity {
     private ActivityBidingAccountBinding biding;
     private String phone = "";
     private String code = "";
+    private boolean isGetCode = true; //倒计时按钮是否可以点击
     private CountDownTimer mTimer = new CountDownTimer(6000 * 10, 1000) {
 
         @Override
@@ -41,6 +45,7 @@ public class BindingAccountActivity extends BaseUiActivity {
 
         @Override
         public void onFinish() {
+            isGetCode = true;
             biding.btnCode.setEnabled(true);
             biding.btnCode.setText(R.string.login_biding_get_code);
         }
@@ -71,8 +76,23 @@ public class BindingAccountActivity extends BaseUiActivity {
         if (!RegUtils.isPhone(phone)) {
             ToastUtil.show(R.string.login_phone_error_text);
         } else {
+            isGetCode = false;
             biding.btnCode.setEnabled(false);
             mTimer.start();
+            RegisterCodeRequest codeRequest = new RegisterCodeRequest();
+            codeRequest.phone = phone;
+            codeRequest.type = "7";
+            codeRequest.call(new ApiCallBack() {
+                @Override
+                public void onAPIResponse(Object response) {
+
+                }
+
+                @Override
+                public void onAPIError(int errorCode, String errorMsg) {
+
+                }
+            });
         }
     }
 
@@ -80,7 +100,21 @@ public class BindingAccountActivity extends BaseUiActivity {
      * 绑定手机号，跳转至邀请码页面
      * */
     public void onBidingAccount(String phone, String code) {
-        start(RouteLoginConstants.LOGININVITE);
+        BidingAccountRequest request = new BidingAccountRequest();
+        request.phone = phone;
+        request.smsCode = code;
+        request.call(new ApiCallBack() {
+            @Override
+            public void onAPIResponse(Object response) {
+                //手机号未绑定其他微信
+                start(RouteLoginConstants.LOGININVITE);
+            }
+
+            @Override
+            public void onAPIError(int errorCode, String errorMsg) {
+
+            }
+        });
     }
 
     @Override
@@ -98,6 +132,12 @@ public class BindingAccountActivity extends BaseUiActivity {
                     biding.loginBtn.setEnabled(true);
                 } else {
                     biding.loginBtn.setEnabled(false);
+                }
+
+                if (RegUtils.isPhone(phone) && isGetCode) {
+                    biding.btnCode.setEnabled(true);
+                } else {
+                    biding.btnCode.setEnabled(false);
                 }
             }
 
