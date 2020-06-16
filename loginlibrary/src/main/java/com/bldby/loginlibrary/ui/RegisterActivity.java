@@ -32,8 +32,10 @@ import com.bldby.baselibrary.core.util.ToastUtil;
 import com.bldby.loginlibrary.R;
 import com.bldby.loginlibrary.databinding.ActivityRegisterBinding;
 import com.bldby.loginlibrary.model.LoginRequestModel;
+import com.bldby.loginlibrary.model.UserModel;
 import com.bldby.loginlibrary.request.LoginRequest;
 import com.bldby.loginlibrary.request.RegisterCodeRequest;
+import com.bldby.loginlibrary.request.UserInfoRequest;
 import com.google.gson.Gson;
 
 /**
@@ -113,9 +115,9 @@ public class RegisterActivity extends BaseUiActivity {
             RegisterCodeRequest codeRequest = new RegisterCodeRequest();
             codeRequest.phone = phone;
             codeRequest.type = "1";
-            codeRequest.call(new ApiCallBack() {
+            codeRequest.call(new ApiCallBack<Boolean>() {
                 @Override
-                public void onAPIResponse(Object response) {
+                public void onAPIResponse(Boolean response) {
 
                 }
 
@@ -146,7 +148,49 @@ public class RegisterActivity extends BaseUiActivity {
                 UserInfoUtils.saveUserInfo(RegisterActivity.this, response);
                 if (response.isBindCode == 0) {
                     startWith(RouteLoginConstants.LOGININVITE).withString("token", response.accessToken).withString("userId", response.userId).navigation();
+                } else {
+                    getUserInfo(response.userId, response.accessToken);
                 }
+            }
+
+            @Override
+            public void onAPIError(int errorCode, String errorMsg) {
+
+            }
+        });
+    }
+
+    /*
+     * 获取用户信息保存
+     * */
+    public void getUserInfo(String userId, String accessToken) {
+        UserInfoRequest request = new UserInfoRequest();
+        request.userId = userId;
+        request.accessToken = accessToken;
+        request.call(new ApiCallBack<UserModel>() {
+            @Override
+            public void onAPIResponse(UserModel response) {
+                UserInfo userInfo = UserInfoUtils.getUserInfo(RegisterActivity.this);
+                userInfo.headImg = response.headImg;
+                userInfo.nickName = response.nickName;
+                userInfo.accountType = response.accountType;
+                userInfo.parentId = response.parentId;
+                userInfo.uid = response.uid;
+                userInfo.clientType = response.clientType;
+                userInfo.balance = response.balance;
+                userInfo.totalConsume = response.totalConsume;
+                userInfo.phone = response.phone;
+                userInfo.inviteCode = response.inviteCode;
+                userInfo.totalPoints = response.totalPoints;
+                userInfo.isFrozen = response.isFrozen;
+                userInfo.registerDate = response.registerDate;
+                userInfo.openid = response.openid;
+                userInfo.subordinateCount = response.subordinateCount;
+                userInfo.unionid = response.unionid;
+                userInfo.canWd = response.userInfo.canWd;
+                userInfo.paypass = response.userInfo.paypass;
+                userInfo.personSign = response.userInfo.personSign;
+                UserInfoUtils.saveUserInfo(RegisterActivity.this, userInfo);
             }
 
             @Override

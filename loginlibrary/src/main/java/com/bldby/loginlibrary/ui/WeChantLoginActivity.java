@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.bldby.baselibrary.app.login.model.UserInfo;
 import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
@@ -51,6 +52,10 @@ public class WeChantLoginActivity extends BaseUiActivity {
      * 微信登录授权
      * */
     public void weChantAuth(View view) {
+        if (!binding.checkbox.isChecked()) {
+            ToastUtil.show(R.string.login_agree_protocols);
+            return;
+        }
         if (UMShareAPI.get(this).isInstall(this, SHARE_MEDIA.WEIXIN)) {
             reqWeiXin();
         } else {
@@ -99,12 +104,15 @@ public class WeChantLoginActivity extends BaseUiActivity {
         weChantLoginRequest.nickname = wxUserInfo.nickname;
         weChantLoginRequest.openid = wxUserInfo.openid;
         weChantLoginRequest.unionid = wxUserInfo.unionid;
-        weChantLoginRequest.call(new ApiCallBack() {
+        weChantLoginRequest.call(new ApiCallBack<UserInfo>() {
             @Override
-            public void onAPIResponse(Object response) {
+            public void onAPIResponse(UserInfo response) {
                 //未绑定手机号
-                start(RouteLoginConstants.BIDINGACCOUNT);
-                //此微信已绑定过注册的账号直接登录
+                if (response.isBindPhone == 0) {
+                    start(RouteLoginConstants.BIDINGACCOUNT);
+                } else {
+                    //此微信已绑定过注册的账号直接登录
+                }
             }
 
             @Override
@@ -112,6 +120,13 @@ public class WeChantLoginActivity extends BaseUiActivity {
 
             }
         });
+    }
+
+    /*
+     * 手机号登录
+     * */
+    public void onPhoneLogin(View view) {
+        finish();
     }
 
     @Override
