@@ -15,7 +15,7 @@ public class BaseApiResponse extends JsonAwareObject {
      * 后台返回的状态码
      */
     public int getCode() {
-        return 0;
+        return 200;
     }
 
     /**

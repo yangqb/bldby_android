@@ -43,7 +43,6 @@
             android:background="@null"
             android:gravity="start|center_vertical"
             android:hint="@string/login_invite_code_hint"
-            android:inputType="number"
             android:text="@={inviteCode}"
             android:textColor="@color/login_invite_code_color"
             android:textColorHint="@color/login_invite_code_hint_color"

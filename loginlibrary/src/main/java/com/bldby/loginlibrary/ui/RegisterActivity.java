@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bldby.baselibrary.app.login.model.UserInfo;
 import com.bldby.baselibrary.app.util.RegUtils;
+import com.bldby.baselibrary.app.util.UserInfoUtils;
 import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.network.ApiLifeCallBack;
@@ -50,6 +51,7 @@ public class RegisterActivity extends BaseUiActivity {
     private ActivityRegisterBinding binding;
     private String phone = "";
     private String code = "";
+    private boolean isGetCode = true; //倒计时按钮是否可以点击
 
     private CountDownTimer mTimer = new CountDownTimer(6000 * 10, 1000) {
 
@@ -60,6 +62,7 @@ public class RegisterActivity extends BaseUiActivity {
 
         @Override
         public void onFinish() {
+            isGetCode = true;
             binding.btnCode.setEnabled(true);
             binding.btnCode.setText(R.string.login_biding_get_code);
         }
@@ -104,6 +107,7 @@ public class RegisterActivity extends BaseUiActivity {
         if (!RegUtils.isPhone(phone)) {
             ToastUtil.show(R.string.login_phone_error_text);
         } else {
+            isGetCode = false;
             binding.btnCode.setEnabled(false);
             mTimer.start();
             RegisterCodeRequest codeRequest = new RegisterCodeRequest();
@@ -127,6 +131,11 @@ public class RegisterActivity extends BaseUiActivity {
      * 跳转邀请码页面
      * */
     public void onClickRegister(String phone, String code) {
+        if (!binding.checkbox.isChecked()) {
+            ToastUtil.show(R.string.login_agree_protocols);
+            return;
+        }
+
         LoginRequest request = new LoginRequest();
         request.mobile = phone;
         request.mode = "1";
@@ -134,7 +143,8 @@ public class RegisterActivity extends BaseUiActivity {
         request.call(new ApiCallBack<UserInfo>() {
             @Override
             public void onAPIResponse(UserInfo response) {
-                startWith(RouteLoginConstants.LOGININVITE).withString("phone", phone).navigation();
+                UserInfoUtils.saveUserInfo(RegisterActivity.this, response);
+                startWith(RouteLoginConstants.LOGININVITE).withString("token", response.accessToken).withString("userId", response.userId).navigation();
             }
 
             @Override
@@ -160,7 +170,7 @@ public class RegisterActivity extends BaseUiActivity {
                 } else {
                     binding.loginBtn.setEnabled(false);
                 }
-                if (RegUtils.isPhone(phone)) {
+                if (RegUtils.isPhone(phone) && isGetCode) {
                     binding.btnCode.setEnabled(true);
                 } else {
                     binding.btnCode.setEnabled(false);
