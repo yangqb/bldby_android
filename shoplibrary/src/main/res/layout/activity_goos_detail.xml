@@ -94,7 +94,7 @@
                                 android:textColor="#ff333333"
                                 android:textSize="@dimen/sp_12"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                                app:layout_constraintTop_toBottomOf="@+id/collect" />
 
                             <com.bldby.baselibrary.core.view.CornerTextView
                                 android:id="@+id/textView9"
@@ -129,10 +129,12 @@
                                 app:layout_constraintTop_toTopOf="@+id/textView9" />
 
                             <ImageView
-                                android:id="@+id/imageView3"
+                                android:id="@+id/collect"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
+                                android:clickable="true"
+                                android:onClick="@{viewmodel::onClickToSku}"
                                 android:src="@mipmap/goods_detail_collect"
                                 app:layout_constraintEnd_toEndOf="@+id/textView7"
                                 app:layout_constraintStart_toStartOf="@+id/textView7"
@@ -239,6 +241,7 @@
                         android:orientation="vertical">
 
                         <com.bldby.baselibrary.core.view.CornerLinearView
+                            android:id="@+id/sku"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_marginTop="@dimen/dp_1"
