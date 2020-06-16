@@ -34,6 +34,8 @@ import okhttp3.RequestBody;
  * Created by bch on 2020/5/11
  */
 public abstract class BaseApiRequest extends AbsApiRequest {
+    public static final MediaType JSONBody = MediaType.parse("application/json; charset=utf-8");
+
 
     /**
      * 数据解析错误(已正常返回) json错误
@@ -86,7 +88,6 @@ public abstract class BaseApiRequest extends AbsApiRequest {
         }
     }
 
-    public static final MediaType JSONBody = MediaType.parse("application/json");
 
     /**
      * 设置请求类型
@@ -130,7 +131,6 @@ public abstract class BaseApiRequest extends AbsApiRequest {
         requestTag = this.hashCode() + "";
         req.tag(requestTag);
         Map<String, Object> build = appendParams(new ParamsBuilder()).build();
-
         if (requestLevel == RequestLevel.JSONBody) {
             ((PostRequest) req).upRequestBody(RequestBody.create(JSON.toJSON(build).toString(), JSONBody));
         } else {
