@@ -88,7 +88,7 @@ public class InputInviteCodeActivity extends BaseUiActivity {
         request.call(new ApiCallBack<UserModel>() {
             @Override
             public void onAPIResponse(UserModel response) {
-                UserInfo userInfo = UserInfoUtils.getUserInfo(RegisterActivity.this);
+                UserInfo userInfo = UserInfoUtils.getUserInfo(InputInviteCodeActivity.this);
                 userInfo.headImg = response.headImg;
                 userInfo.nickName = response.nickName;
                 userInfo.accountType = response.accountType;
@@ -108,7 +108,7 @@ public class InputInviteCodeActivity extends BaseUiActivity {
                 userInfo.canWd = response.userInfo.canWd;
                 userInfo.paypass = response.userInfo.paypass;
                 userInfo.personSign = response.userInfo.personSign;
-                UserInfoUtils.saveUserInfo(RegisterActivity.this, userInfo);
+                UserInfoUtils.saveUserInfo(InputInviteCodeActivity.this, userInfo);
             }
 
             @Override
@@ -116,28 +116,29 @@ public class InputInviteCodeActivity extends BaseUiActivity {
 
             }
         });
-
-        @Override
-        public void initListener () {
-            binding.editInviteCode.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    if (!TextUtils.isEmpty(s.toString())) {
-                        binding.loginBtn.setEnabled(true);
-                    } else {
-                        binding.loginBtn.setEnabled(false);
-                    }
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-
-                }
-            });
-        }
     }
+
+    @Override
+    public void initListener() {
+        binding.editInviteCode.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!TextUtils.isEmpty(s.toString())) {
+                    binding.loginBtn.setEnabled(true);
+                } else {
+                    binding.loginBtn.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+}
