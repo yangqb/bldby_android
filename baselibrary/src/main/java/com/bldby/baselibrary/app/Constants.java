@@ -9,4 +9,5 @@ package com.bldby.baselibrary.app;
  */
 public class Constants {
     public static String USER_DATA = "user_data";
+
 }

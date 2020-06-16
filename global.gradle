@@ -1,8 +1,8 @@
 ext {
 //    false:作为Lib组件存在， true:作为application存在
     isBaseApplication = false  //这个不建议改
-    isShopApplication = true
-    isLoginApplication = true
+    isShopApplication = false
+    isLoginApplication = false
     isTravelApplication = false
     isAirTicketApplication = false
 
@@ -155,6 +155,8 @@ ext {
             "junit"                          : 'junit:junit:4.12',
             "runner"                         : 'com.android.support.test:runner:1.0.2',
             "espresso-core"                  : 'com.android.support.test.espresso:espresso-core:3.0.2',
+            "flexbox"                        :'com.google.android:flexbox:1.0.0',
+
 
 //testImplementation 'junit:junit:4.12'
 //androidTestImplementation 'com.android.support.test:runner:1.0.2'

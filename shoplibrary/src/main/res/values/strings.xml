@@ -19,4 +19,9 @@
     <string name="home_optimization">优选商家</string>
     <string name="home_more">更多</string>
     <string name="home_today">今日上新</string>
+    <string name="shop_seach_delete">搜索</string>
+    <string name="shop_seach_text">输入关键字进行搜索</string>
+    <string name="shop_seach_history">搜索历史</string>
+    <string name="shop_xiaoliang">销量</string>
+    <string name="shop_price">价格</string>
 </resources>

@@ -2,6 +2,7 @@ package com.bldby.shoplibrary.seach;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.databinding.ObservableField;
 import android.databinding.ObservableFloat;
@@ -48,7 +49,13 @@ public class SeachHeaderView {
         headerBinding.setViewModel(this);
         backBackground.set(context.getResources().getDrawable(R.color.transparent));
         backButton.set(context.getResources().getColorStateList(R.color.white));
-
+        headerBinding.homeSeach.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                context.startActivity(new Intent(context,SeachActivity.class));
+               // context. overridePendingTransition(R.anim.slid_left_in, R.anim.fade_outt);
+            }
+        });
     }
 
     public void onClickLocaltioned(View view) {

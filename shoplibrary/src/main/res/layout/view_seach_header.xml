@@ -87,6 +87,7 @@
                 android:orientation="horizontal">
 
                 <com.bldby.baselibrary.core.view.CornerView
+                    android:id="@+id/home_seach"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_30"
                     android:background="@color/white"

@@ -1,23 +1,35 @@
 package com.bldby.travellibrary.activity;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.SystemClock;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.bldby.baselibrary.app.Constants;
+import com.bldby.baselibrary.app.login.model.UserInfo;
+import com.bldby.baselibrary.app.util.MyPoint;
+import com.bldby.baselibrary.app.util.SPUtils;
+import com.bldby.baselibrary.app.util.UserInfoUtils;
 import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.constants.RouteTravelConstants;
+import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
 import com.bldby.travellibrary.R;
 import com.bldby.travellibrary.activity.adapter.Distance2Adapter;
 import com.bldby.travellibrary.activity.adapter.DistanceAdapter;
+import com.bldby.travellibrary.activity.model.OilListBean;
 import com.bldby.travellibrary.activity.model.TravelModel;
+import com.bldby.travellibrary.activity.request.OilStationsUrlRequest;
 import com.bldby.travellibrary.databinding.ActivityTravelBinding;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
@@ -37,6 +49,12 @@ public class TravelActivity extends BaseActivity {
     private String oilnumbersum;
     private String[] kms;
     private String[] split;
+    private String longitude;
+    private String latitude;
+    private int pageNo = 1;
+    private String token;
+
+    //private MineInfoModel userInfo;
     @Override
     public void bindIngView() {
         dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_travel);
@@ -70,8 +88,118 @@ public class TravelActivity extends BaseActivity {
                 finish();
             }
         });
-        //团油距离，油号的点击方法（）
+        //团油距离，油号的点击弹框方法（）
         initonclick();
+        //赋值方法
+        initoil();
+        //smart刷新加载方法（）
+        initswipeLayout();
+        //String string = SPUtils.getString(TravelActivity.this, Constants.USER_DATA);
+        UserInfo userInfo = UserInfoUtils.getUserInfo(TravelActivity.this);
+        token = userInfo.accessToken;
+    }
+
+    private void initswipeLayout() {
+    }
+
+    private void initoil() {
+        dinstancenumber = (String) dataBinding.distance.getText();
+        oilnumbersum = (String) dataBinding.oilnumber.getText();
+        if (RouteTravelConstants.mPoint != null) {
+            MyPoint myPoint = RouteTravelConstants.mPoint;
+            longitude = myPoint.longitude + "";
+            latitude = myPoint.latitude + "";
+        }
+        initwork(dinstancenumber, oilnumbersum, true, pageNo);
+        
+    }
+
+    private void initwork(String dinstancenumber, String oilnumbersum, boolean b, int pageNo) {
+        kms = dinstancenumber.split("km");
+        split = oilnumbersum.split("#");
+        dataBinding.oilrecy.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        /*OilStationsUrlRequest oilStationsRequest = new OilStationsUrlRequest(longitude, latitude, Integer.valueOf(kms[0]), Integer.valueOf(split[0]), pagenum, pageNo);
+        oilStationsRequest.userId = SPUtils.getString(this, Constant.SP_LOGIN_USERID);
+        oilStationsRequest.accessToken = SPUtils.getString(this, Constant.SP_ACCESS_TOKEN);
+        oilStationsRequest.isShowLoading = true;
+        oilStationsRequest.call(new ApiCallBack<List<OilListBean>>() {
+
+            @Override
+            public void onAPIResponse(List<OilListBean> response) {
+                if (response != null && response.size() > 0) {
+                    if (isLoadM) {
+                        myoiladapter.addData(response);
+                    } else {
+                        myoiladapter.setNewData(response);
+                    }
+                    if (!isLoadMore) {
+                        swipeLayout.finishRefresh();
+                        myoiladapter.notifyDataSetChanged();
+                    } else {
+                        myoiladapter.notifyDataSetChanged();
+                        swipeLayout.finishLoadMore();
+                    }
+                    myoiladapter.chengtextcolor1(oilnumbersum);
+                    myoiladapter.notifyDataSetChanged();
+                    myoiladapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                            OilListBean oilListBean = myoiladapter.getData().get(position);
+                            token = SPUtils.getString(TravelHomeActivity.this, Constant.SP_ACCESS_TOKEN);
+                            if (token == null || TextUtils.isEmpty(token)) {
+                                Intent intent = new Intent(TravelHomeActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                            } else {
+                                TraveDetailActivity.toTraveDetailActivity(TravelHomeActivity.this, oilListBean);
+                                *//**
+                                 * 是否是会员判断
+                                 *//*
+                              *//*  if (UserInfoUtils.getUserInfo(TravelHomeActivity.this).getAccountType() != 0) {
+                                } else {
+                                    View inflate = getLayoutInflater().inflate(R.layout.oil_dialog_item, null);
+                                    TextView dilagimagedimiss = inflate.findViewById(R.id.dilagimagedimiss);
+                                    TextView dilagimageupdate = inflate.findViewById(R.id.dilagimageupdate);
+                                    MyDialog myDialog = new MyDialog(TravelHomeActivity.this, 0, 0, inflate, R.style.DialogTheme);
+                                    myDialog.setCancelable(true);
+                                    dilagimagedimiss.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            myDialog.dismiss();
+                                        }
+                                    });
+                                    dilagimageupdate.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            Intent intent = new Intent(TravelHomeActivity.this, VipActivity.class);
+                                            intent.putExtra(VipActivity.MINE_INFO, userInfo);
+                                            startActivity(intent);
+                                            myDialog.dismiss();
+                                        }
+                                    });
+                                    myDialog.show();
+                                }*//*
+                            }
+                        }
+                    });
+                } else {
+                    if (!isLoadMore) {
+                        swipeLayout.finishRefresh(true);
+                    } else {
+                        swipeLayout.finishLoadMore(true);
+                    }
+                }
+            }
+
+            @Override
+            public void onAPIError(int errorCode, String errorMsg) {
+                Log.e("TAG", "onAPIError: ");
+                if (!isLoadMore) {
+                    swipeLayout.finishRefresh(false);
+                } else {
+                    swipeLayout.finishLoadMore(false);
+                }
+            }
+        });*/
     }
 
     private void initonclick() {
