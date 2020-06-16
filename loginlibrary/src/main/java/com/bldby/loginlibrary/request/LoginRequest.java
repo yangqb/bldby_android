@@ -1,8 +1,10 @@
 package com.bldby.loginlibrary.request;
 
 import com.alibaba.fastjson.TypeReference;
+import com.bldby.baselibrary.app.login.model.UserInfo;
 import com.bldby.baselibrary.app.network.BaseLoginRequest;
 import com.bldby.baselibrary.core.network.ParamsBuilder;
+import com.bldby.baselibrary.core.network.RequestLevel;
 
 /**
  * package name: com.bldby.loginlibrary.request
@@ -15,7 +17,9 @@ import com.bldby.baselibrary.core.network.ParamsBuilder;
  * 验证码登录接口
  * */
 public class LoginRequest extends BaseLoginRequest {
-    public String jsonStr;
+    public String mobile;
+    public String mode;
+    public String verifyCode;
 
     @Override
     public String getAPIName() {
@@ -24,13 +28,20 @@ public class LoginRequest extends BaseLoginRequest {
 
 
     @Override
+    public RequestLevel getRequestLevel() {
+        return RequestLevel.JSONBody;
+    }
+
+    @Override
     public ParamsBuilder appendParams(ParamsBuilder builder) {
-        return super.appendParams(builder);
+        return builder.append("mobile", mobile).append("mode", mode).append("verifyCode", verifyCode);
     }
 
     @Override
     public TypeReference getDatatype() {
-        return null;
+        return new TypeReference<UserInfo>() {
+
+        };
     }
 
 }

@@ -21,14 +21,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.bldby.baselibrary.app.login.model.UserInfo;
 import com.bldby.baselibrary.app.util.RegUtils;
 import com.bldby.baselibrary.constants.RouteLoginConstants;
+import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.network.ApiLifeCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
 import com.bldby.baselibrary.core.util.ToastUtil;
 import com.bldby.loginlibrary.R;
 import com.bldby.loginlibrary.databinding.ActivityRegisterBinding;
+import com.bldby.loginlibrary.model.LoginRequestModel;
+import com.bldby.loginlibrary.request.LoginRequest;
 import com.bldby.loginlibrary.request.RegisterCodeRequest;
+import com.google.gson.Gson;
 
 /**
  * package name: com.bldby.loginlibrary.ui
@@ -104,17 +109,7 @@ public class RegisterActivity extends BaseUiActivity {
             RegisterCodeRequest codeRequest = new RegisterCodeRequest();
             codeRequest.phone = phone;
             codeRequest.type = "1";
-            codeRequest.call(new ApiLifeCallBack() {
-                @Override
-                public void onStart() {
-
-                }
-
-                @Override
-                public void onFinsh() {
-
-                }
-
+            codeRequest.call(new ApiCallBack() {
                 @Override
                 public void onAPIResponse(Object response) {
 
@@ -132,7 +127,21 @@ public class RegisterActivity extends BaseUiActivity {
      * 跳转邀请码页面
      * */
     public void onClickRegister(String phone, String code) {
-        startWith(RouteLoginConstants.LOGININVITE).withString("phone", phone).withString("code", code).navigation();
+        LoginRequest request = new LoginRequest();
+        request.mobile = phone;
+        request.mode = "1";
+        request.verifyCode = code;
+        request.call(new ApiCallBack<UserInfo>() {
+            @Override
+            public void onAPIResponse(UserInfo response) {
+                startWith(RouteLoginConstants.LOGININVITE).withString("phone", phone).navigation();
+            }
+
+            @Override
+            public void onAPIError(int errorCode, String errorMsg) {
+
+            }
+        });
     }
 
     @Override

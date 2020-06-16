@@ -13,6 +13,7 @@ import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
 import com.bldby.loginlibrary.R;
 import com.bldby.loginlibrary.databinding.ActivityInviteCodeBinding;
+import com.bldby.loginlibrary.model.LoginRequestModel;
 import com.bldby.loginlibrary.request.LoginRequest;
 
 /**
@@ -31,8 +32,6 @@ public class InputInviteCodeActivity extends BaseUiActivity {
     private ActivityInviteCodeBinding binding;
     @Autowired
     public String phone;
-    @Autowired
-    public String code;
 
     @Override
     protected View initContentView(LayoutInflater layoutInflater, ViewGroup viewGroup) {
@@ -53,7 +52,7 @@ public class InputInviteCodeActivity extends BaseUiActivity {
     }
 
     public void onLogin(String inviteCode) {
-        LoginRequest request = new LoginRequest();
+
     }
 
     @Override

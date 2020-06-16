@@ -4,6 +4,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.bldby.baselibrary.app.network.BaseLoginRequest;
 import com.bldby.baselibrary.app.util.MD5Utils;
 import com.bldby.baselibrary.core.network.ParamsBuilder;
+import com.bldby.baselibrary.core.network.RequestLevel;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -25,8 +26,8 @@ public class RegisterCodeRequest extends BaseLoginRequest {
     }
 
     @Override
-    public boolean usePost() {
-        return false;
+    public RequestLevel getRequestLevel() {
+        return RequestLevel.GET;
     }
 
     /*
