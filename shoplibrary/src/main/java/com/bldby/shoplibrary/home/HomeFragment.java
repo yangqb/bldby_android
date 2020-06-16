@@ -1,5 +1,6 @@
 package com.bldby.shoplibrary.home;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,10 +20,13 @@ import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
 import com.bldby.shoplibrary.adapter.HomeMoreAdapter;
 import com.bldby.shoplibrary.adapter.HomeRecommendAdapter;
 import com.bldby.shoplibrary.adapter.HomeTodayAdapter;
 import com.bldby.shoplibrary.adapter.MainAdapter1;
+import com.bldby.shoplibrary.goods.GoosDetailActivity;
 import com.bumptech.glide.Glide;
 import com.bldby.baselibrary.constants.RouteShopConstants;
 import com.bldby.baselibrary.core.addresspick.AddressPickerUtil;
@@ -89,7 +93,7 @@ public class HomeFragment extends Basefragment {
         initseckill();
         //3D画廊效果方法（）
         initsuperposition();
-        //更多商家方法（）
+        //优选商家方法（）
         initmore();
         //今日上新方法（）
         inittoday();
@@ -199,8 +203,8 @@ public class HomeFragment extends Basefragment {
         binding.homeRecyone.setAdapter(adapter);
     }
 
-    private void initBanner() {
-        binding.homeBanner.setCanLoop(true)
+    private void initBanner() {        binding.homeBanner.setCanLoop(true)
+
                 .setAutoPlay(true)
                 .setIndicatorStyle(IndicatorStyle.CIRCLE)
                 .setIndicatorSlideMode(IndicatorSlideMode.SMOOTH)

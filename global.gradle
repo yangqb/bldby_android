@@ -1,9 +1,9 @@
 ext {
 //    false:作为Lib组件存在， true:作为application存在
     isBaseApplication = false  //这个不建议改
-    isShopApplication = true
+    isShopApplication = false
     isLoginApplication = false
-    isTravelApplication = false
+    isTravelApplication = true
     isAirTicketApplication = false
 
 
