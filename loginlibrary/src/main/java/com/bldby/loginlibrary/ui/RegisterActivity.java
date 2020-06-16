@@ -144,7 +144,9 @@ public class RegisterActivity extends BaseUiActivity {
             @Override
             public void onAPIResponse(UserInfo response) {
                 UserInfoUtils.saveUserInfo(RegisterActivity.this, response);
-                startWith(RouteLoginConstants.LOGININVITE).withString("token", response.accessToken).withString("userId", response.userId).navigation();
+                if (response.isBindCode == 0) {
+                    startWith(RouteLoginConstants.LOGININVITE).withString("token", response.accessToken).withString("userId", response.userId).navigation();
+                }
             }
 
             @Override

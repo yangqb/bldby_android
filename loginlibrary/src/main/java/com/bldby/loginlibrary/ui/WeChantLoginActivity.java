@@ -6,9 +6,18 @@ import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bldby.baselibrary.constants.RouteLoginConstants;
+import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
+import com.bldby.baselibrary.core.util.ToastUtil;
 import com.bldby.loginlibrary.R;
 import com.bldby.loginlibrary.databinding.ActivityLoginWechantBinding;
+import com.bldby.loginlibrary.model.WXUserInfo;
+import com.bldby.loginlibrary.request.WeChantLoginRequest;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+
+import java.util.Map;
 
 /**
  * package name: com.bldby.loginlibrary.ui
@@ -41,10 +50,68 @@ public class WeChantLoginActivity extends BaseUiActivity {
     /*
      * 微信登录授权
      * */
-    public void weChantLogin(View view) {
-        //未绑定手机号
-        start(RouteLoginConstants.BIDINGACCOUNT);
-        //此微信已绑定过注册的账号直接登录
+    public void weChantAuth(View view) {
+        if (UMShareAPI.get(this).isInstall(this, SHARE_MEDIA.WEIXIN)) {
+            reqWeiXin();
+        } else {
+            ToastUtil.show(R.string.login_install_wx);
+        }
+    }
+
+    public void reqWeiXin() {
+        UMShareAPI.get(this).getPlatformInfo(this, SHARE_MEDIA.WEIXIN, new UMAuthListener() {
+            @Override
+            public void onStart(SHARE_MEDIA share_media) {
+
+            }
+
+            @Override
+            public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
+                WXUserInfo wxUserInfo = new WXUserInfo();
+                wxUserInfo.city = map.get("city");
+                wxUserInfo.country = map.get("country");
+                wxUserInfo.headimgurl = map.get("iconurl");
+                wxUserInfo.nickname = map.get("name");
+                wxUserInfo.openid = map.get("openid");
+                //wxUserInfo.privilege
+                wxUserInfo.province = map.get("province");
+                //wxUserInfo.sex = 1;
+                wxUserInfo.unionid = map.get("unionid");
+                wxLogin(wxUserInfo);
+            }
+
+            @Override
+            public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
+                ToastUtil.show(R.string.login_auth_error + throwable.getMessage());
+            }
+
+            @Override
+            public void onCancel(SHARE_MEDIA share_media, int i) {
+                ToastUtil.show(R.string.login_cancel);
+            }
+        });
+    }
+
+    public void wxLogin(WXUserInfo wxUserInfo) {
+        WeChantLoginRequest weChantLoginRequest = new WeChantLoginRequest();
+        weChantLoginRequest.headImg = wxUserInfo.headimgurl;
+        weChantLoginRequest.mode = "2";
+        weChantLoginRequest.nickname = wxUserInfo.nickname;
+        weChantLoginRequest.openid = wxUserInfo.openid;
+        weChantLoginRequest.unionid = wxUserInfo.unionid;
+        weChantLoginRequest.call(new ApiCallBack() {
+            @Override
+            public void onAPIResponse(Object response) {
+                //未绑定手机号
+                start(RouteLoginConstants.BIDINGACCOUNT);
+                //此微信已绑定过注册的账号直接登录
+            }
+
+            @Override
+            public void onAPIError(int errorCode, String errorMsg) {
+
+            }
+        });
     }
 
     @Override

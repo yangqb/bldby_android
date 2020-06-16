@@ -11,7 +11,7 @@ public class UserInfo implements Serializable {
     public String userId;
 
     public String password;
-    public String isBindPhone;//":1,
-    public String isBindCode;//":0,
+    public int isBindPhone;//":1,
+    public int isBindCode;//":0,
 
 }
