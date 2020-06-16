@@ -22,5 +22,8 @@
     <string name="login_wx_text">手机号登录</string>
     <string name="login_phone_error_text">请输入正确手机号</string>
     <string name="login_agree_protocols">请确认已阅读并同意用户协议和隐私政策</string>
+    <string name="login_install_wx">请先安装微信</string>
+    <string name="login_auth_error">授权失败</string>
+    <string name="login_cancel">取消登录</string>
 
 </resources>

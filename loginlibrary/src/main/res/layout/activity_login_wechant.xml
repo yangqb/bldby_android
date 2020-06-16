@@ -60,7 +60,7 @@
             android:layout_marginEnd="@dimen/dp_30"
             android:background="@drawable/login_shape_wx_btn_bg"
             android:gravity="center"
-            android:onClick="@{viewModel.weChantLogin}"
+            android:onClick="@{viewModel.weChantAuth}"
             android:text="@string/login_wx_btn_text"
             android:textColor="@color/login_select_btn_text"
             android:textSize="@dimen/sp_16"
