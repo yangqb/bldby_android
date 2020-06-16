@@ -23,10 +23,12 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bldby.baselibrary.app.util.RegUtils;
 import com.bldby.baselibrary.constants.RouteLoginConstants;
+import com.bldby.baselibrary.core.network.ApiLifeCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
 import com.bldby.baselibrary.core.util.ToastUtil;
 import com.bldby.loginlibrary.R;
 import com.bldby.loginlibrary.databinding.ActivityRegisterBinding;
+import com.bldby.loginlibrary.request.RegisterCodeRequest;
 
 /**
  * package name: com.bldby.loginlibrary.ui
@@ -70,6 +72,7 @@ public class RegisterActivity extends BaseUiActivity {
         initTitle(getString(R.string.register_title));
         setTitleBackground(R.color.white);
         binding.loginBtn.setEnabled(false);
+        binding.btnCode.setEnabled(false);
         String str1 = "已阅读并同意";
         String str2 = "用户协议";
         String str3 = "和";
@@ -83,6 +86,13 @@ public class RegisterActivity extends BaseUiActivity {
     }
 
     /*
+     * 微信登录跳转
+     * */
+    public void onWeChantLogin(View view) {
+        start(RouteLoginConstants.LOGINWECHANT);
+    }
+
+    /*
      *获取验证码
      * */
     public void getCode(String phone) {
@@ -91,6 +101,30 @@ public class RegisterActivity extends BaseUiActivity {
         } else {
             binding.btnCode.setEnabled(false);
             mTimer.start();
+            RegisterCodeRequest codeRequest = new RegisterCodeRequest();
+            codeRequest.phone = phone;
+            codeRequest.type = "1";
+            codeRequest.call(new ApiLifeCallBack() {
+                @Override
+                public void onStart() {
+
+                }
+
+                @Override
+                public void onFinsh() {
+
+                }
+
+                @Override
+                public void onAPIResponse(Object response) {
+
+                }
+
+                @Override
+                public void onAPIError(int errorCode, String errorMsg) {
+
+                }
+            });
         }
     }
 
@@ -98,7 +132,7 @@ public class RegisterActivity extends BaseUiActivity {
      * 跳转邀请码页面
      * */
     public void onClickRegister(String phone, String code) {
-        start(RouteLoginConstants.LOGININVITE);
+        startWith(RouteLoginConstants.LOGININVITE).withString("phone", phone).withString("code", code).navigation();
     }
 
     @Override
@@ -112,10 +146,15 @@ public class RegisterActivity extends BaseUiActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 phone = s.toString();
-                if (!TextUtils.isEmpty(phone) && !TextUtils.isEmpty(code)) {
+                if (!TextUtils.isEmpty(phone) && !TextUtils.isEmpty(code) && RegUtils.isPhone(phone)) {
                     binding.loginBtn.setEnabled(true);
                 } else {
                     binding.loginBtn.setEnabled(false);
+                }
+                if (RegUtils.isPhone(phone)) {
+                    binding.btnCode.setEnabled(true);
+                } else {
+                    binding.btnCode.setEnabled(false);
                 }
             }
 
@@ -134,7 +173,7 @@ public class RegisterActivity extends BaseUiActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 code = s.toString();
-                if (!TextUtils.isEmpty(phone) && !TextUtils.isEmpty(code)) {
+                if (!TextUtils.isEmpty(phone) && !TextUtils.isEmpty(code) && RegUtils.isPhone(phone)) {
                     binding.loginBtn.setEnabled(true);
                 } else {
                     binding.loginBtn.setEnabled(false);
