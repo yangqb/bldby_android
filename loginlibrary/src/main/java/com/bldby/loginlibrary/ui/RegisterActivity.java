@@ -21,12 +21,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.bldby.baselibrary.app.login.model.UserInfo;
 import com.bldby.baselibrary.app.util.RegUtils;
+import com.bldby.baselibrary.app.util.UserInfoUtils;
 import com.bldby.baselibrary.constants.RouteLoginConstants;
+import com.bldby.baselibrary.core.network.ApiCallBack;
+import com.bldby.baselibrary.core.network.ApiLifeCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
 import com.bldby.baselibrary.core.util.ToastUtil;
 import com.bldby.loginlibrary.R;
 import com.bldby.loginlibrary.databinding.ActivityRegisterBinding;
+import com.bldby.loginlibrary.model.LoginRequestModel;
+import com.bldby.loginlibrary.request.LoginRequest;
+import com.bldby.loginlibrary.request.RegisterCodeRequest;
+import com.google.gson.Gson;
 
 /**
  * package name: com.bldby.loginlibrary.ui
@@ -43,6 +51,7 @@ public class RegisterActivity extends BaseUiActivity {
     private ActivityRegisterBinding binding;
     private String phone = "";
     private String code = "";
+    private boolean isGetCode = true; //倒计时按钮是否可以点击
 
     private CountDownTimer mTimer = new CountDownTimer(6000 * 10, 1000) {
 
@@ -53,6 +62,7 @@ public class RegisterActivity extends BaseUiActivity {
 
         @Override
         public void onFinish() {
+            isGetCode = true;
             binding.btnCode.setEnabled(true);
             binding.btnCode.setText(R.string.login_biding_get_code);
         }
@@ -70,6 +80,7 @@ public class RegisterActivity extends BaseUiActivity {
         initTitle(getString(R.string.register_title));
         setTitleBackground(R.color.white);
         binding.loginBtn.setEnabled(false);
+        binding.btnCode.setEnabled(false);
         String str1 = "已阅读并同意";
         String str2 = "用户协议";
         String str3 = "和";
@@ -83,14 +94,36 @@ public class RegisterActivity extends BaseUiActivity {
     }
 
     /*
+     * 微信登录跳转
+     * */
+    public void onWeChantLogin(View view) {
+        start(RouteLoginConstants.LOGINWECHANT);
+    }
+
+    /*
      *获取验证码
      * */
     public void getCode(String phone) {
         if (!RegUtils.isPhone(phone)) {
             ToastUtil.show(R.string.login_phone_error_text);
         } else {
+            isGetCode = false;
             binding.btnCode.setEnabled(false);
             mTimer.start();
+            RegisterCodeRequest codeRequest = new RegisterCodeRequest();
+            codeRequest.phone = phone;
+            codeRequest.type = "1";
+            codeRequest.call(new ApiCallBack() {
+                @Override
+                public void onAPIResponse(Object response) {
+
+                }
+
+                @Override
+                public void onAPIError(int errorCode, String errorMsg) {
+
+                }
+            });
         }
     }
 
@@ -98,7 +131,27 @@ public class RegisterActivity extends BaseUiActivity {
      * 跳转邀请码页面
      * */
     public void onClickRegister(String phone, String code) {
-        start(RouteLoginConstants.LOGININVITE);
+        if (!binding.checkbox.isChecked()) {
+            ToastUtil.show(R.string.login_agree_protocols);
+            return;
+        }
+
+        LoginRequest request = new LoginRequest();
+        request.mobile = phone;
+        request.mode = "1";
+        request.verifyCode = code;
+        request.call(new ApiCallBack<UserInfo>() {
+            @Override
+            public void onAPIResponse(UserInfo response) {
+                UserInfoUtils.saveUserInfo(RegisterActivity.this, response);
+                startWith(RouteLoginConstants.LOGININVITE).withString("token", response.accessToken).withString("userId", response.userId).navigation();
+            }
+
+            @Override
+            public void onAPIError(int errorCode, String errorMsg) {
+
+            }
+        });
     }
 
     @Override
@@ -112,10 +165,15 @@ public class RegisterActivity extends BaseUiActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 phone = s.toString();
-                if (!TextUtils.isEmpty(phone) && !TextUtils.isEmpty(code)) {
+                if (!TextUtils.isEmpty(phone) && !TextUtils.isEmpty(code) && RegUtils.isPhone(phone)) {
                     binding.loginBtn.setEnabled(true);
                 } else {
                     binding.loginBtn.setEnabled(false);
+                }
+                if (RegUtils.isPhone(phone) && isGetCode) {
+                    binding.btnCode.setEnabled(true);
+                } else {
+                    binding.btnCode.setEnabled(false);
                 }
             }
 
@@ -134,7 +192,7 @@ public class RegisterActivity extends BaseUiActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 code = s.toString();
-                if (!TextUtils.isEmpty(phone) && !TextUtils.isEmpty(code)) {
+                if (!TextUtils.isEmpty(phone) && !TextUtils.isEmpty(code) && RegUtils.isPhone(phone)) {
                     binding.loginBtn.setEnabled(true);
                 } else {
                     binding.loginBtn.setEnabled(false);

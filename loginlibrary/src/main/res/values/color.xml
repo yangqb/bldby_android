@@ -19,4 +19,5 @@
     <color name="login_invite_code_hint_color" tools:ignore="ResourceName">#ADADAD</color>
     <color name="login_wx_title_color">#333333</color>
     <color name="login_wx_color">#999999</color>
+    <color name="login_wx_btn_bg">#5AC53A</color>
 </resources>

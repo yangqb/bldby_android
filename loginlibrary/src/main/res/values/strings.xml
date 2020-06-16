@@ -21,5 +21,6 @@
     <string name="login_wx_protocols_private">已阅读并同意用户协议和隐私政策</string>
     <string name="login_wx_text">手机号登录</string>
     <string name="login_phone_error_text">请输入正确手机号</string>
+    <string name="login_agree_protocols">请确认已阅读并同意用户协议和隐私政策</string>
 
 </resources>

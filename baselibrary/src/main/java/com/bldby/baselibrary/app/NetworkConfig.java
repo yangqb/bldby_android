@@ -9,8 +9,9 @@ public class NetworkConfig {
     public static final String TICKET_BASE_URL = "http://182.92.177.234:8087/"; //机票正式
 
 
-    public static final String DEV_BASE_URL = "http://8.129.218.83:8088/"; //测试地址
+    //public static final String DEV_BASE_URL = "http://8.129.218.83:8088/"; //测试地址
     public static final String DEV_TICKET_BASE_URL = "http://8.129.218.83:8087/"; //机票测试
+    public static final String DEV_BASE_URL = "http://219.234.82.84:10005/";//登录注册测试
 
 
     //public static final String TICKET_BASE_URL = "http://192.168.0.7:8087/"; //周工机票本地
@@ -53,6 +54,7 @@ public class NetworkConfig {
 
     /**
      * 返回true时测试网测试
+     *
      * @return
      */
     public boolean getIsDev() {

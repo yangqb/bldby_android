@@ -5,11 +5,19 @@
     <application>
         <activity
             android:name="com.bldby.loginlibrary.ui.LoginActivity"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".ui.BindingAccountActivity"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".ui.RegisterActivity" />
-        <activity android:name=".ui.InputInviteCodeActivity" />
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.BindingAccountActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.RegisterActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.InputInviteCodeActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.WeChantLoginActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

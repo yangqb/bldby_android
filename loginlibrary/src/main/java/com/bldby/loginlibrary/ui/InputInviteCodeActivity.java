@@ -7,11 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bldby.baselibrary.constants.RouteLoginConstants;
+import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
 import com.bldby.loginlibrary.R;
 import com.bldby.loginlibrary.databinding.ActivityInviteCodeBinding;
+import com.bldby.loginlibrary.model.LoginRequestModel;
+import com.bldby.loginlibrary.request.BidingAccountRequest;
+import com.bldby.loginlibrary.request.LoginRequest;
 
 /**
  * package name: com.bldby.loginlibrary.ui
@@ -27,6 +32,10 @@ import com.bldby.loginlibrary.databinding.ActivityInviteCodeBinding;
 @Route(path = RouteLoginConstants.LOGININVITE)
 public class InputInviteCodeActivity extends BaseUiActivity {
     private ActivityInviteCodeBinding binding;
+    @Autowired
+    public String token;
+    @Autowired
+    public String userId;
 
     @Override
     protected View initContentView(LayoutInflater layoutInflater, ViewGroup viewGroup) {
@@ -44,6 +53,27 @@ public class InputInviteCodeActivity extends BaseUiActivity {
     @Override
     public void loadData() {
 
+    }
+
+    /*
+     * 填写邀请码登录
+     * */
+    public void onLogin(String inviteCode) {
+        BidingAccountRequest request = new BidingAccountRequest();
+        request.parentId = inviteCode;
+        request.accessToken = token;
+        request.userId = userId;
+        request.call(new ApiCallBack() {
+            @Override
+            public void onAPIResponse(Object response) {
+
+            }
+
+            @Override
+            public void onAPIError(int errorCode, String errorMsg) {
+
+            }
+        });
     }
 
     @Override
