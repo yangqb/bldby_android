@@ -35,6 +35,7 @@
                     <android.support.constraint.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
+
                         <com.zhpan.bannerview.BannerViewPager
                             android:id="@+id/banner"
                             android:layout_width="0dp"
@@ -244,6 +245,8 @@
                             android:layout_weight="1"
                             android:background="@color/white"
                             android:gravity="center_vertical"
+                            android:clickable="true"
+                            android:onClick="@{viewmodel::onClickToSku}"
                             app:cornerRadius="@dimen/dp_10"
                             app:isBottomLeftRadius="false"
                             app:isBottomRightRadius="false">

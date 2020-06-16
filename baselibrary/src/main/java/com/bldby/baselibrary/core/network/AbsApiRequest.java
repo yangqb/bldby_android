@@ -59,7 +59,7 @@ public abstract class AbsApiRequest {
      *
      * @return
      */
-    public abstract boolean usePost();
+    public abstract RequestLevel getRequestLevel();
 
     /**
      * 开始请求

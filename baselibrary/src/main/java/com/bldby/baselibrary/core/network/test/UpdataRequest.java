@@ -3,6 +3,7 @@ package com.bldby.baselibrary.core.network.test;
 import com.alibaba.fastjson.TypeReference;
 import com.bldby.baselibrary.app.network.BaseRequest;
 import com.bldby.baselibrary.core.network.ParamsBuilder;
+import com.bldby.baselibrary.core.network.RequestLevel;
 
 
 /**
@@ -26,8 +27,8 @@ public class UpdataRequest extends BaseRequest {
     }
 
     @Override
-    public boolean usePost() {
-        return false;
+    public RequestLevel getRequestLevel() {
+        return RequestLevel.GET;
     }
 
     @Override

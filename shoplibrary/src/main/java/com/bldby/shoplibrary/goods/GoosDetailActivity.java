@@ -236,4 +236,15 @@ public class GoosDetailActivity extends BaseActivity {
         start(RouteShopConstants.SHOPGOODSEVALUATE);
 
     }
+
+    /**
+     * 去商品规格页
+     *
+     * @param view
+     */
+    public void onClickToSku(View view) {
+
+        Basefragment fragment = getFragment(RouteShopConstants.SHOPGOODSSKU);
+        loadRootFragment(R.id.dio, fragment);
+    }
 }
