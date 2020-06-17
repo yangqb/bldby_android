@@ -24,14 +24,15 @@ import com.bldby.travellibrary.databinding.ActivityOilOrderBinding;
 
 import java.util.List;
 
-@Route(path = RouteTravelConstants.TRAVELORDER , extras = RouteLoginConstants.SHOWCHECKLOGIN)
+@Route(path = RouteTravelConstants.TRAVELORDER)
+//, extras = RouteLoginConstants.SHOWCHECKLOGIN
 public class OilOrderActivity extends BaseActivity {
 
     private ActivityOilOrderBinding oilOrderBinding;
 
     @Override
     public void bindIngView() {
-        oilOrderBinding = DataBindingUtil.setContentView(this,R.layout.activity_oil_order);
+        oilOrderBinding = DataBindingUtil.setContentView(this, R.layout.activity_oil_order);
         oilOrderBinding.setViewmodel(this);
     }
 
@@ -51,7 +52,7 @@ public class OilOrderActivity extends BaseActivity {
         oilOrderBinding.recyclerView.setAdapter(traveFormAdapter);
         traveFormAdapter.notifyDataSetChanged();
 
-        UserInfo userInfo=new UserInfo();
+        UserInfo userInfo = new UserInfo();
         String phone = userInfo.phone;
         oilOrderBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         OilOrderUrlRequest oilOrderRequest = new OilOrderUrlRequest(50, 1, phone);

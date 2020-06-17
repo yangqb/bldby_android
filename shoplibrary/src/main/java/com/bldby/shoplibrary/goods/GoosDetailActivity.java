@@ -243,17 +243,17 @@ public class GoosDetailActivity extends BaseActivity {
      *
      * @param view
      */
-   /* public void onClickToSku(View view) {
+ public void onClickToSku(View view) {
         switch (view.getId()) {
-            case R.id.collect:
-                ToastUtil.show("collect");
-                break;
-            case R.id.sku:
-                ToastUtil.show("sku");
-                break;
+//            case R.id.collect:
+//                ToastUtil.show("collect");
+//                break;
+//            case R.id.sku:
+//                ToastUtil.show("sku");
+//                break;
         }
 //        Basefragment fragment = getFragment(RouteShopConstants.SHOPGOODSSKU);
 //
 //        loadRootFragment(R.id.dio, fragment);
-    }*/
+    }
 }

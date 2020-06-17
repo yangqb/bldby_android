@@ -200,6 +200,10 @@ public abstract class BaseActivity extends SupportActivity implements Navigation
         return build;
     }
 
+//    又返回参数的跳转
+//    startActivityForResult();
+//    navigation(Context mContext, int requestCode, NavigationCallback callback)
+
     public Basefragment getFragment(String url) {
         // 获取Fragment
         Basefragment fragment = (Basefragment) ARouter
