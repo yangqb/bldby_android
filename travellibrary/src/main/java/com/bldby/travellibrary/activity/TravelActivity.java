@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -27,6 +28,7 @@ import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
 import com.bldby.travellibrary.R;
 import com.bldby.travellibrary.activity.adapter.Distance2Adapter;
 import com.bldby.travellibrary.activity.adapter.DistanceAdapter;
+import com.bldby.travellibrary.activity.adapter.MyOilAdapter;
 import com.bldby.travellibrary.activity.model.OilListBean;
 import com.bldby.travellibrary.activity.model.TravelModel;
 import com.bldby.travellibrary.activity.request.OilStationsUrlRequest;
@@ -53,6 +55,9 @@ public class TravelActivity extends BaseActivity {
     private String latitude;
     private int pageNo = 1;
     private String token;
+    private int pagenum = 20;
+    private MyOilAdapter myoiladapter;
+    private boolean isLoadMore;
 
     //private MineInfoModel userInfo;
     @Override
@@ -63,6 +68,22 @@ public class TravelActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        dataBinding.titleName.setText(R.string.oil_name);
+        dataBinding.oilOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                start(RouteTravelConstants.TRAVELORDER);
+
+            }
+        });
+        View mEmptyView = View.inflate(TravelActivity.this, R.layout.view_common_nodata, null);
+        ImageView img_empty = (ImageView) mEmptyView.findViewById(R.id.img_empty);
+        img_empty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         dinstance.add("5km");
         dinstance.add("10km");
         dinstance.add("15km");
@@ -97,6 +118,10 @@ public class TravelActivity extends BaseActivity {
         //String string = SPUtils.getString(TravelActivity.this, Constants.USER_DATA);
         UserInfo userInfo = UserInfoUtils.getUserInfo(TravelActivity.this);
         token = userInfo.accessToken;
+        myoiladapter = new MyOilAdapter(null);
+        myoiladapter.setEmptyView(mEmptyView);
+        dataBinding.oilrecy.setAdapter(myoiladapter);
+        myoiladapter.notifyDataSetChanged();
     }
 
     private void initswipeLayout() {
@@ -114,13 +139,14 @@ public class TravelActivity extends BaseActivity {
         
     }
 
-    private void initwork(String dinstancenumber, String oilnumbersum, boolean b, int pageNo) {
+    private void initwork(String dinstancenumber, String oilnumbersum, boolean isLoadM, int pageNo) {
+        UserInfo userInfo = new UserInfo();
         kms = dinstancenumber.split("km");
         split = oilnumbersum.split("#");
         dataBinding.oilrecy.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        /*OilStationsUrlRequest oilStationsRequest = new OilStationsUrlRequest(longitude, latitude, Integer.valueOf(kms[0]), Integer.valueOf(split[0]), pagenum, pageNo);
-        oilStationsRequest.userId = SPUtils.getString(this, Constant.SP_LOGIN_USERID);
-        oilStationsRequest.accessToken = SPUtils.getString(this, Constant.SP_ACCESS_TOKEN);
+        OilStationsUrlRequest oilStationsRequest = new OilStationsUrlRequest(longitude, latitude, Integer.valueOf(kms[0]), Integer.valueOf(split[0]), pagenum, pageNo);
+        oilStationsRequest.userId = userInfo.userId;
+        oilStationsRequest.accessToken = userInfo.accessToken;
         oilStationsRequest.isShowLoading = true;
         oilStationsRequest.call(new ApiCallBack<List<OilListBean>>() {
 
@@ -133,11 +159,11 @@ public class TravelActivity extends BaseActivity {
                         myoiladapter.setNewData(response);
                     }
                     if (!isLoadMore) {
-                        swipeLayout.finishRefresh();
+                      //  swipeLayout.finishRefresh();
                         myoiladapter.notifyDataSetChanged();
                     } else {
                         myoiladapter.notifyDataSetChanged();
-                        swipeLayout.finishLoadMore();
+                        //swipeLayout.finishLoadMore();
                     }
                     myoiladapter.chengtextcolor1(oilnumbersum);
                     myoiladapter.notifyDataSetChanged();
@@ -145,16 +171,18 @@ public class TravelActivity extends BaseActivity {
                         @Override
                         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                             OilListBean oilListBean = myoiladapter.getData().get(position);
-                            token = SPUtils.getString(TravelHomeActivity.this, Constant.SP_ACCESS_TOKEN);
+
+                            String accessToken = userInfo.accessToken;
+                            token = accessToken;
                             if (token == null || TextUtils.isEmpty(token)) {
-                                Intent intent = new Intent(TravelHomeActivity.this, LoginActivity.class);
-                                startActivity(intent);
+                                /*Intent intent = new Intent(TravelHomeActivity.this, LoginActivity.class);
+                                startActivity(intent);*/
                             } else {
-                                TraveDetailActivity.toTraveDetailActivity(TravelHomeActivity.this, oilListBean);
-                                *//**
+                              //  TraveDetailActivity.toTraveDetailActivity(TravelHomeActivity.this, oilListBean);
+                                /**
                                  * 是否是会员判断
-                                 *//*
-                              *//*  if (UserInfoUtils.getUserInfo(TravelHomeActivity.this).getAccountType() != 0) {
+                                 */
+                              /*  if (UserInfoUtils.getUserInfo(TravelHomeActivity.this).getAccountType() != 0) {
                                 } else {
                                     View inflate = getLayoutInflater().inflate(R.layout.oil_dialog_item, null);
                                     TextView dilagimagedimiss = inflate.findViewById(R.id.dilagimagedimiss);
@@ -177,15 +205,15 @@ public class TravelActivity extends BaseActivity {
                                         }
                                     });
                                     myDialog.show();
-                                }*//*
+                                }*/
                             }
                         }
                     });
                 } else {
                     if (!isLoadMore) {
-                        swipeLayout.finishRefresh(true);
+                        //swipeLayout.finishRefresh(true);
                     } else {
-                        swipeLayout.finishLoadMore(true);
+                       // swipeLayout.finishLoadMore(true);
                     }
                 }
             }
@@ -194,12 +222,12 @@ public class TravelActivity extends BaseActivity {
             public void onAPIError(int errorCode, String errorMsg) {
                 Log.e("TAG", "onAPIError: ");
                 if (!isLoadMore) {
-                    swipeLayout.finishRefresh(false);
+                    //swipeLayout.finishRefresh(false);
                 } else {
-                    swipeLayout.finishLoadMore(false);
+                    //swipeLayout.finishLoadMore(false);
                 }
             }
-        });*/
+        });
     }
 
     private void initonclick() {
