@@ -16,27 +16,22 @@ import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.bldby.baselibrary.app.login.model.UserInfo;
 import com.bldby.baselibrary.app.util.RegUtils;
-import com.bldby.baselibrary.app.util.UserInfoUtils;
 import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.core.network.ApiCallBack;
-import com.bldby.baselibrary.core.network.ApiLifeCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
 import com.bldby.baselibrary.core.util.ToastUtil;
 import com.bldby.loginlibrary.R;
 import com.bldby.loginlibrary.databinding.ActivityRegisterBinding;
-import com.bldby.loginlibrary.model.LoginRequestModel;
+import com.bldby.loginlibrary.model.UserInfo;
 import com.bldby.loginlibrary.model.UserModel;
 import com.bldby.loginlibrary.request.LoginRequest;
 import com.bldby.loginlibrary.request.RegisterCodeRequest;
 import com.bldby.loginlibrary.request.UserInfoRequest;
-import com.google.gson.Gson;
+import com.bldby.loginlibrary.util.UserInfoUtils;
 
 /**
  * package name: com.bldby.loginlibrary.ui

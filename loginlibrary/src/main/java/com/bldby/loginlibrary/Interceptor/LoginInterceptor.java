@@ -8,8 +8,8 @@ import com.alibaba.android.arouter.facade.annotation.Interceptor;
 import com.alibaba.android.arouter.facade.callback.InterceptorCallback;
 import com.alibaba.android.arouter.facade.template.IInterceptor;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.bldby.baselibrary.app.login.AccountManager;
 import com.bldby.baselibrary.constants.RouteLoginConstants;
+import com.bldby.loginlibrary.AccountManager;
 
 /**
  * priority为优先级 越小越高 登录定位第一级

@@ -26,17 +26,20 @@ public class AccountManager {
         accountManager.init();
         return accountManager;
     }
-//已经登陆打开APP获取用户信息
+
+    //已经登陆打开APP获取用户信息
     private void init() {
         this.userInfo = Hawk.get(LOGINKEYUSERINFO);
     }
 
     /**
      * 是否登陆
+     *
      * @return
      */
     public static boolean isLogin() {
-        return Hawk.get(LOGINKEY, false);
+//        return Hawk.get(LOGINKEY, false);
+        return true;
     }
 
     /**
@@ -54,6 +57,7 @@ public class AccountManager {
 
     /**
      * 是不是vip
+     *
      * @return
      */
     public boolean isVip() {
@@ -62,6 +66,7 @@ public class AccountManager {
 
     /**
      * 登录成功设置用户信息
+     *
      * @param userInfo
      */
     public void setLoginSuccess(UserModel userInfo) {
@@ -74,6 +79,7 @@ public class AccountManager {
 
     /**
      * 修改用户信息
+     *
      * @param userInfo
      */
     public void updataLoginInfo(UserModel userInfo) {
@@ -83,6 +89,7 @@ public class AccountManager {
 
     /**
      * 获取用户信息
+     *
      * @return
      */
     public UserModel getUserInfo() {

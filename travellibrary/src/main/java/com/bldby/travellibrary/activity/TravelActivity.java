@@ -1,7 +1,6 @@
 package com.bldby.travellibrary.activity;
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.SystemClock;
 import android.support.v7.widget.GridLayoutManager;
@@ -16,15 +15,13 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.bldby.baselibrary.app.Constants;
-import com.bldby.baselibrary.app.login.model.UserInfo;
 import com.bldby.baselibrary.app.util.MyPoint;
-import com.bldby.baselibrary.app.util.SPUtils;
-import com.bldby.baselibrary.app.util.UserInfoUtils;
 import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.constants.RouteTravelConstants;
 import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
+import com.bldby.loginlibrary.model.UserInfo;
+import com.bldby.loginlibrary.util.UserInfoUtils;
 import com.bldby.travellibrary.R;
 import com.bldby.travellibrary.activity.adapter.Distance2Adapter;
 import com.bldby.travellibrary.activity.adapter.DistanceAdapter;

@@ -14,7 +14,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bldby.baselibrary.app.login.model.UserInfo;
+import com.bldby.loginlibrary.model.UserInfo;
 import com.bldby.travellibrary.R;
 import com.bldby.travellibrary.activity.model.OilListBean;
 import com.chad.library.adapter.base.BaseQuickAdapter;
