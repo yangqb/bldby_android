@@ -1,11 +1,11 @@
-package com.bldby.baselibrary.app.login;
+package com.bldby.loginlibrary;
 
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bldby.baselibrary.app.RxCodeConstants;
-import com.bldby.baselibrary.app.login.model.UserInfo;
 import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.core.rxbus.RxBus;
+import com.bldby.loginlibrary.model.UserModel;
 import com.orhanobut.hawk.Hawk;
 
 /**
@@ -17,7 +17,7 @@ public class AccountManager {
     private static final String LOGINKEY = "LOGINKEY";
     //保存登录信息的可以
     private static final String LOGINKEYUSERINFO = "LOGINKEYUSERINFO";
-    private UserInfo userInfo = new UserInfo();
+    private UserModel userInfo = new UserModel();
 
     private AccountManager() {
     }
@@ -64,7 +64,7 @@ public class AccountManager {
      * 登录成功设置用户信息
      * @param userInfo
      */
-    public void setLoginSuccess(UserInfo userInfo) {
+    public void setLoginSuccess(UserModel userInfo) {
         this.userInfo = userInfo;
         Hawk.put(LOGINKEY, true);
         Hawk.put(LOGINKEYUSERINFO, userInfo);
@@ -76,7 +76,7 @@ public class AccountManager {
      * 修改用户信息
      * @param userInfo
      */
-    public void updataLoginInfo(UserInfo userInfo) {
+    public void updataLoginInfo(UserModel userInfo) {
         this.userInfo = userInfo;
         Hawk.put(LOGINKEYUSERINFO, userInfo);
     }
@@ -85,7 +85,7 @@ public class AccountManager {
      * 获取用户信息
      * @return
      */
-    public UserInfo getUserInfo() {
+    public UserModel getUserInfo() {
         return userInfo;
     }
 
