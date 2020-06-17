@@ -69,7 +69,9 @@ public class TravelActivity extends BaseActivity {
         dataBinding.oilOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                start(RouteTravelConstants.TRAVELORDER);
+               // startActivity(new Intent(TravelActivity.this,OilDeiltaActivity.class));
+                start(RouteTravelConstants.TRAVELDETAIL);
+               // start(RouteTravelConstants.TRAVELORDER);
 
             }
         });

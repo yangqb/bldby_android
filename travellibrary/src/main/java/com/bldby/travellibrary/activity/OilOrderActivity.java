@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.bldby.baselibrary.app.login.model.UserInfo;
 import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.constants.RouteTravelConstants;
 import com.bldby.baselibrary.core.network.ApiCallBack;
@@ -24,7 +25,7 @@ import com.bldby.travellibrary.databinding.ActivityOilOrderBinding;
 
 import java.util.List;
 
-@Route(path = RouteTravelConstants.TRAVELORDER, extras = RouteLoginConstants.SHOWCHECKLOGIN)
+@Route(path = RouteTravelConstants.TRAVELORDER)
 public class OilOrderActivity extends BaseActivity {
 
     private ActivityOilOrderBinding oilOrderBinding;
