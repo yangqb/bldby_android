@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.bldby.baselibrary.app.login.model.UserInfo;
 import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.constants.RouteTravelConstants;
 import com.bldby.baselibrary.core.network.ApiCallBack;
