@@ -142,11 +142,11 @@ public class RegisterActivity extends BaseUiActivity {
         request.call(new ApiCallBack<UserInfo>() {
             @Override
             public void onAPIResponse(UserInfo response) {
-                AccountManager.getInstance().setLoginSuccess(response);
                 if (response.isBindCode == 0) {
                     //未填写过邀请码
                     startWith(RouteLoginConstants.LOGININVITE).withString("token", response.accessToken).withString("userId", response.userId).navigation();
                 } else {
+                    AccountManager.getInstance().setLoginSuccess(response);
                     getUserInfo(response.userId, response.accessToken);
                 }
             }

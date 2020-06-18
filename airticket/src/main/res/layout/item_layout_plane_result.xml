@@ -50,7 +50,7 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:text="虹桥T2"
-                        android:textColor="@color/color_999999"
+                        android:textColor="@color/color_333333"
                         android:textSize="13sp" />
 
                 </LinearLayout>
@@ -64,6 +64,11 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/k02_11quwang" />
+
                     <TextView
                         android:id="@+id/flightTimes"
                         android:layout_width="wrap_content"
@@ -71,11 +76,6 @@
                         android:text="2小时15分"
                         android:textColor="@color/color_999999"
                         android:textSize="9sp" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@mipmap/k02_11quwang" />
 
                     <TextView
                         android:id="@+id/stopCity"
@@ -110,21 +110,11 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:text="虹桥T2"
-                        android:textColor="@color/color_999999"
+                        android:textColor="@color/color_333333"
                         android:textSize="13sp" />
 
                 </LinearLayout>
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/crossDays"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="+1天"
-                android:textColor="@color/color_289cef"
-                android:textSize="12sp"
-                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -137,7 +127,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="495"
-                    android:textColor="@color/color_ff8300"
+                    android:textColor="@color/color_EA362C"
                     android:textSize="21sp" />
 
                 <TextView
@@ -145,7 +135,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="经济舱3.5折"
-                    android:textColor="@color/color_999999"
+                    android:textColor="@color/color_333333"
                     android:textSize="10sp" />
 
                 <TextView
@@ -154,11 +144,21 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="儿童￥200 婴儿￥200"
-                    android:textColor="@color/color_999999"
+                    android:textColor="@color/color_333333"
                     android:textSize="10sp"
                     android:visibility="gone" />
 
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/crossDays"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="+1天"
+                android:textColor="@color/color_289cef"
+                android:textSize="12sp"
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -166,15 +166,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp">
-
-            <TextView
-                android:id="@+id/flightNum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="吉祥航HO1252 空客321(中)"
-                android:textColor="@color/color_999999"
-                android:textSize="11sp" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -186,32 +177,32 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:visibility="gone"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="18dp"
-                        android:background="@drawable/shape_detail_left_vip"
+                        android:layout_height="14dp"
+                        android:background="@drawable/shape_air_left_vip"
                         android:gravity="end|center_vertical"
-                        android:paddingLeft="5dp"
+                        android:paddingLeft="8dp"
                         android:paddingRight="5dp"
                         android:text="成为会员"
-                        android:textColor="@color/color_333333"
+                        android:textColor="@color/color_FBEAC8"
                         android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/tv_rebate"
                         android:layout_width="wrap_content"
-                        android:layout_height="18dp"
-                        android:background="@drawable/shape_detail_right_vip"
+                        android:layout_height="14dp"
+                        android:background="@drawable/shape_air_right_vip"
                         android:ellipsize="end"
                         android:gravity="center_vertical"
                         android:maxLines="1"
                         android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
+                        android:paddingRight="8dp"
                         android:text="省¥0.00"
-                        android:textColor="@color/color_333333"
+                        android:textColor="@color/color_EA362C"
                         android:textSize="10sp" />
 
                 </LinearLayout>
@@ -219,17 +210,26 @@
                 <TextView
                     android:id="@+id/vip_rebate"
                     android:layout_width="wrap_content"
+                    android:layout_height="14dp"
                     android:layout_centerVertical="true"
-                    android:layout_height="18dp"
-                    android:background="@drawable/shape_detail_rebate"
+                    android:background="@drawable/shape_air_vip"
                     android:gravity="center"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
                     android:text="省¥0.00"
-                    android:textColor="@color/color_333333"
+                    android:textColor="@color/color_EA362C"
                     android:textSize="10sp"
                     android:visibility="gone" />
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/flightNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="吉祥航HO1252 空客321(中)"
+                android:textColor="@color/color_999999"
+                android:textSize="11sp" />
         </RelativeLayout>
 
     </LinearLayout>

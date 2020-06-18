@@ -4,6 +4,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.bldby.airticket.model.GoBackFlightInfo;
 import com.bldby.baselibrary.app.network.BaseAirRequest;
 import com.bldby.baselibrary.core.network.ParamsBuilder;
+import com.bldby.baselibrary.core.network.RequestLevel;
 
 /**
  * package name: com.bldby.airticket.request
@@ -26,6 +27,11 @@ public class DomesticGoBackSearchRequest extends BaseAirRequest {
     @Override
     public String getAPIName() {
         return "wfSearchFlight";
+    }
+
+    @Override
+    public RequestLevel getRequestLevel() {
+        return RequestLevel.GET;
     }
 
     @Override

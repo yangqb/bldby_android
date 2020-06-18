@@ -4,6 +4,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.bldby.airticket.model.SearchInternationalFlightModel;
 import com.bldby.baselibrary.app.network.BaseAirRequest;
 import com.bldby.baselibrary.core.network.ParamsBuilder;
+import com.bldby.baselibrary.core.network.RequestLevel;
 
 import java.util.List;
 
@@ -32,6 +33,11 @@ public class InternationGoBackSearchRequest extends BaseAirRequest {
     @Override
     public String getAPIName() {
         return "ntsSearchFlight";
+    }
+
+    @Override
+    public RequestLevel getRequestLevel() {
+        return RequestLevel.GET;
     }
 
     @Override
