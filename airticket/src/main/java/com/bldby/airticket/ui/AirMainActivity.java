@@ -80,6 +80,7 @@ public class AirMainActivity extends BaseActivity {
             }
             reversal = !reversal;
         } else if (view.getId() == R.id.search) {
+            //搜索
             if (TextUtils.isEmpty(arrCode) || TextUtils.isEmpty(depCode)) {
                 ToastUtil.show(R.string.air_city_no_select);
                 return;
@@ -101,7 +102,8 @@ public class AirMainActivity extends BaseActivity {
                 startWith(RouteAirConstants.AIRSEARCHFLIGHT).withInt("searchType", searchType).withSerializable("flightInfo", customFightCityInfo).navigation();
             }
         } else if (view.getId() == R.id.ll_order) {
-               /* token = SPUtils.getString(this, Constant.SP_ACCESS_TOKEN);
+            //机票订单
+              /* token = SPUtils.getString(this, Constant.SP_ACCESS_TOKEN);
                 if (token == null || TextUtils.isEmpty(token)) {
                     intent = new Intent(PlaneHomeActivity.this, LoginActivity.class);
                     startActivity(intent);
@@ -110,7 +112,8 @@ public class AirMainActivity extends BaseActivity {
                 intent = new Intent(PlaneHomeActivity.this, PlaneOrderListActivity.class);
                 startActivity(intent);*/
         } else if (view.getId() == R.id.ll_select_check_in) {
-             /*intent = new Intent(PlaneHomeActivity.this, LazyWebActivity.class);
+            //值机
+               /*intent = new Intent(PlaneHomeActivity.this, LazyWebActivity.class);
                 intent.putExtra(Constant.URL, "http://touch.qunar.com/flight/seat/?isDistribution=true&theme=pure&distributorKey=8e0e4887-6aee-491a-a829-19bb72b47162&channel=web.batour.demo");
                 intent.putExtra(Constant.H5_TITLE, "值机选座");
                 startActivity(intent);*/
@@ -121,50 +124,46 @@ public class AirMainActivity extends BaseActivity {
      * 选择机票(单程，往返)具体的searchType类型由选择的城市决定
      * */
     public void onClickAirType(View view) {
-        switch (view.getId()) {
+        if (view.getId() == R.id.btn_domestic) {
             //国内
-            case R.id.btn_domestic:
-                dataBinding.btnDomestic.setTextColor(getResources().getColor(R.color.color_333333));
-                dataBinding.btnInternational.setTextColor(getResources().getColor(R.color.color_666666));
-                dataBinding.btnComeGo.setTextColor(getResources().getColor(R.color.color_666666));
-                dataBinding.line1.setBackgroundColor(getResources().getColor(R.color.color_fed228));
-                dataBinding.line2.setBackgroundColor(getResources().getColor(R.color.white));
-                dataBinding.line3.setBackgroundColor(getResources().getColor(R.color.white));
-                dataBinding.llComeDate.setVisibility(View.INVISIBLE);
-                searchType = 0;
-                break;
-            case R.id.btn_international:
-                //国际
-                dataBinding.btnDomestic.setTextColor(getResources().getColor(R.color.color_666666));
-                dataBinding.btnInternational.setTextColor(getResources().getColor(R.color.color_333333));
-                dataBinding.btnComeGo.setTextColor(getResources().getColor(R.color.color_666666));
-                dataBinding.line1.setBackgroundColor(getResources().getColor(R.color.white));
-                dataBinding.line2.setBackgroundColor(getResources().getColor(R.color.color_fed228));
-                dataBinding.line3.setBackgroundColor(getResources().getColor(R.color.white));
-                dataBinding.llComeDate.setVisibility(View.INVISIBLE);
-                searchType = 1;
-                break;
-            case R.id.btn_come_go:
-                //往返
-                String[] strings = goDate.split("-");
-                Calendar calendar = Calendar.getInstance();//创建一个实例
-                calendar.set(Integer.valueOf(strings[0]), Integer.valueOf(strings[1]) - 1, Integer.valueOf(strings[2]));//实例化一个Calendar。 年、月、日、时、分、秒
-                calendar.add(Calendar.DAY_OF_YEAR, 2);//给当前日期加上指定天数，这里加答的是2天
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);// HH:mm:ss
-                if (TextUtils.isEmpty(comeDate)) {
-                    comeDate = simpleDateFormat.format(calendar.getTime());
-                    dataBinding.endDate.setText(comeDate);
-                    dataBinding.endWeek.setText(DateUtil.strToWeek("yyyy-MM-dd", comeDate));
-                }
-                dataBinding.btnDomestic.setTextColor(getResources().getColor(R.color.color_666666));
-                dataBinding.btnInternational.setTextColor(getResources().getColor(R.color.color_666666));
-                dataBinding.btnComeGo.setTextColor(getResources().getColor(R.color.color_333333));
-                dataBinding.line1.setBackgroundColor(getResources().getColor(R.color.white));
-                dataBinding.line2.setBackgroundColor(getResources().getColor(R.color.white));
-                dataBinding.line3.setBackgroundColor(getResources().getColor(R.color.color_fed228));
-                searchType = 2;
-                dataBinding.llComeDate.setVisibility(View.VISIBLE);
-                break;
+            dataBinding.btnDomestic.setTextColor(getResources().getColor(R.color.color_333333));
+            dataBinding.btnInternational.setTextColor(getResources().getColor(R.color.color_666666));
+            dataBinding.btnComeGo.setTextColor(getResources().getColor(R.color.color_666666));
+            dataBinding.line1.setBackgroundColor(getResources().getColor(R.color.color_fed228));
+            dataBinding.line2.setBackgroundColor(getResources().getColor(R.color.white));
+            dataBinding.line3.setBackgroundColor(getResources().getColor(R.color.white));
+            dataBinding.llComeDate.setVisibility(View.INVISIBLE);
+            searchType = 0;
+        } else if (view.getId() == R.id.btn_international) {
+            //国际
+            dataBinding.btnDomestic.setTextColor(getResources().getColor(R.color.color_666666));
+            dataBinding.btnInternational.setTextColor(getResources().getColor(R.color.color_333333));
+            dataBinding.btnComeGo.setTextColor(getResources().getColor(R.color.color_666666));
+            dataBinding.line1.setBackgroundColor(getResources().getColor(R.color.white));
+            dataBinding.line2.setBackgroundColor(getResources().getColor(R.color.color_fed228));
+            dataBinding.line3.setBackgroundColor(getResources().getColor(R.color.white));
+            dataBinding.llComeDate.setVisibility(View.INVISIBLE);
+            searchType = 1;
+        } else if (view.getId() == R.id.btn_come_go) {
+            //往返
+            String[] strings = goDate.split("-");
+            Calendar calendar = Calendar.getInstance();//创建一个实例
+            calendar.set(Integer.valueOf(strings[0]), Integer.valueOf(strings[1]) - 1, Integer.valueOf(strings[2]));//实例化一个Calendar。 年、月、日、时、分、秒
+            calendar.add(Calendar.DAY_OF_YEAR, 2);//给当前日期加上指定天数，这里加答的是2天
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);// HH:mm:ss
+            if (TextUtils.isEmpty(comeDate)) {
+                comeDate = simpleDateFormat.format(calendar.getTime());
+                dataBinding.endDate.setText(comeDate);
+                dataBinding.endWeek.setText(DateUtil.strToWeek("yyyy-MM-dd", comeDate));
+            }
+            dataBinding.btnDomestic.setTextColor(getResources().getColor(R.color.color_666666));
+            dataBinding.btnInternational.setTextColor(getResources().getColor(R.color.color_666666));
+            dataBinding.btnComeGo.setTextColor(getResources().getColor(R.color.color_333333));
+            dataBinding.line1.setBackgroundColor(getResources().getColor(R.color.white));
+            dataBinding.line2.setBackgroundColor(getResources().getColor(R.color.white));
+            dataBinding.line3.setBackgroundColor(getResources().getColor(R.color.color_fed228));
+            searchType = 2;
+            dataBinding.llComeDate.setVisibility(View.VISIBLE);
         }
     }
 
@@ -172,13 +171,12 @@ public class AirMainActivity extends BaseActivity {
      * 出行城市选择
      * */
     public void onSelectCity(View view) {
-        switch (view.getId()) {
-            case R.id.depCityName:
-                start(RouteAirConstants.SELECTCITY, AirConstants.REQUEST_DEP_CITY_CODE);
-                break;
-            case R.id.arrCityName:
-                start(RouteAirConstants.SELECTCITY, AirConstants.REQUEST_ARR_CITY_CODE);
-                break;
+        if (view.getId() == R.id.depCityName) {
+            start(RouteAirConstants.SELECTCITY, AirConstants.REQUEST_DEP_CITY_CODE);
+
+        } else if (view.getId() == R.id.arrCityName) {
+            start(RouteAirConstants.SELECTCITY, AirConstants.REQUEST_ARR_CITY_CODE);
+
         }
     }
 
