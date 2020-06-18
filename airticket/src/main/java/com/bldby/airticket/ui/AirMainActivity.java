@@ -66,46 +66,42 @@ public class AirMainActivity extends BaseActivity {
 
 
     public void onClickBtn(View view) {
-        switch (view.getId()) {
-            case R.id.reversalCity:
-                if (reversal) {
-                    dataBinding.arrCityName.setText(tvEndCity);
-                    dataBinding.depCityName.setText(tvStartCity);
-                    depCodeData = depCode;
-                    arrCodeData = arrCode;
-                } else {
-                    dataBinding.depCityName.setText(tvEndCity);
-                    dataBinding.arrCityName.setText(tvStartCity);
-                    depCodeData = arrCode;
-                    arrCodeData = depCode;
-                }
-                reversal = !reversal;
-                break;
-            case R.id.search://搜索
-                if (TextUtils.isEmpty(arrCode) || TextUtils.isEmpty(depCode)) {
-                    ToastUtil.show(R.string.air_city_no_select);
-                    return;
-                }
-                if (searchType == 1 || searchType == 3) {
-                    ToastUtil.show(R.string.air_city_select_error);
-                    return;
-                }
-                CustomFightCityInfo customFightCityInfo = new CustomFightCityInfo();
-                customFightCityInfo.depCityName = dataBinding.depCityName.getText().toString();
-                customFightCityInfo.depAirPortCode = depCodeData;
-                customFightCityInfo.goDate = goDate;
-                customFightCityInfo.arrCityName = dataBinding.arrCityName.getText().toString();
-                customFightCityInfo.arrAirPortCode = arrCodeData;
-                customFightCityInfo.backDate = comeDate;
-                if (searchType == 2 || searchType == 3) {
-                    startWith(RouteAirConstants.AIRSEARCHFLIGHT2).withInt("searchType",searchType).withSerializable("flightInfo",customFightCityInfo).navigation();
-                } else {
-                    startWith(RouteAirConstants.AIRSEARCHFLIGHT).withInt("searchType",searchType).withSerializable("flightInfo",customFightCityInfo).navigation();
-                }
-                break;
-            case R.id.ll_order: //机票订单
+        if (view.getId() == R.id.reversalCity) {
+            if (reversal) {
+                dataBinding.arrCityName.setText(tvEndCity);
+                dataBinding.depCityName.setText(tvStartCity);
+                depCodeData = depCode;
+                arrCodeData = arrCode;
+            } else {
+                dataBinding.depCityName.setText(tvEndCity);
+                dataBinding.arrCityName.setText(tvStartCity);
+                depCodeData = arrCode;
+                arrCodeData = depCode;
+            }
+            reversal = !reversal;
+        } else if (view.getId() == R.id.search) {
+            if (TextUtils.isEmpty(arrCode) || TextUtils.isEmpty(depCode)) {
+                ToastUtil.show(R.string.air_city_no_select);
+                return;
+            }
+            if (searchType == 1 || searchType == 3) {
+                ToastUtil.show(R.string.air_city_select_error);
+                return;
+            }
+            CustomFightCityInfo customFightCityInfo = new CustomFightCityInfo();
+            customFightCityInfo.depCityName = dataBinding.depCityName.getText().toString();
+            customFightCityInfo.depAirPortCode = depCodeData;
+            customFightCityInfo.goDate = goDate;
+            customFightCityInfo.arrCityName = dataBinding.arrCityName.getText().toString();
+            customFightCityInfo.arrAirPortCode = arrCodeData;
+            customFightCityInfo.backDate = comeDate;
+            if (searchType == 2 || searchType == 3) {
+                startWith(RouteAirConstants.AIRSEARCHFLIGHT2).withInt("searchType", searchType).withSerializable("flightInfo", customFightCityInfo).navigation();
+            } else {
+                startWith(RouteAirConstants.AIRSEARCHFLIGHT).withInt("searchType", searchType).withSerializable("flightInfo", customFightCityInfo).navigation();
+            }
+        } else if (view.getId() == R.id.ll_order) {
                /* token = SPUtils.getString(this, Constant.SP_ACCESS_TOKEN);
-
                 if (token == null || TextUtils.isEmpty(token)) {
                     intent = new Intent(PlaneHomeActivity.this, LoginActivity.class);
                     startActivity(intent);
@@ -113,13 +109,11 @@ public class AirMainActivity extends BaseActivity {
                 }
                 intent = new Intent(PlaneHomeActivity.this, PlaneOrderListActivity.class);
                 startActivity(intent);*/
-                break;
-            case R.id.ll_select_check_in://值机
-                /*intent = new Intent(PlaneHomeActivity.this, LazyWebActivity.class);
+        } else if (view.getId() == R.id.ll_select_check_in) {
+             /*intent = new Intent(PlaneHomeActivity.this, LazyWebActivity.class);
                 intent.putExtra(Constant.URL, "http://touch.qunar.com/flight/seat/?isDistribution=true&theme=pure&distributorKey=8e0e4887-6aee-491a-a829-19bb72b47162&channel=web.batour.demo");
                 intent.putExtra(Constant.H5_TITLE, "值机选座");
                 startActivity(intent);*/
-                break;
         }
     }
 
