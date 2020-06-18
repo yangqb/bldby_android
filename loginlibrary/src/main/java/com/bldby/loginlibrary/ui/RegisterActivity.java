@@ -168,13 +168,32 @@ public class RegisterActivity extends BaseUiActivity {
         request.call(new ApiCallBack<UserInfo>() {
             @Override
             public void onAPIResponse(UserInfo response) {
-                AccountManager.getInstance().setLoginSuccess(response);
-
+                UserInfo userInfo = AccountManager.getInstance().getUserInfo();
+                userInfo.headImg = response.headImg;
+                userInfo.nickName = response.nickName;
+                userInfo.accountType = response.accountType;
+                userInfo.parentId = response.parentId;
+                userInfo.clientType = response.clientType;
+                userInfo.balance = response.balance;
+                userInfo.totalConsume = response.totalConsume;
+                userInfo.phone = response.phone;
+                userInfo.inviteCode = response.inviteCode;
+                userInfo.totalPoints = response.totalPoints;
+                userInfo.isFrozen = response.isFrozen;
+                userInfo.registerDate = response.registerDate;
+                userInfo.openid = response.openid;
+                userInfo.subordinateCount = response.subordinateCount;
+                userInfo.unionid = response.unionid;
+                userInfo.canWd = response.userInfo.canWd;
+                userInfo.paypass = response.userInfo.paypass;
+                userInfo.personSign = response.userInfo.personSign;
+                AccountManager.getInstance().updataLoginInfo(response);
+                start(RouteAirConstants.MAIN);
             }
 
             @Override
             public void onAPIError(int errorCode, String errorMsg) {
-
+                start(RouteAirConstants.MAIN);
             }
         });
     }

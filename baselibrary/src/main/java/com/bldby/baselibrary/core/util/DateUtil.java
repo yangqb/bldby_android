@@ -147,4 +147,13 @@ public class DateUtil {
         return result;
     }
 
+    /*
+     * 将YYYY-MM-dd转换成MM-dd
+     * */
+    public static String strToStr(String str) {
+        String[] result = str.split("-");
+        return result[1] + "-" + result[2];
+
+    }
+
 }
