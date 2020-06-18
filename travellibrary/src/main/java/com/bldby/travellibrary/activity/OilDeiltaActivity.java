@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bldby.baselibrary.app.util.SPUtils;
@@ -19,6 +20,7 @@ import com.bldby.baselibrary.constants.RouteTravelConstants;
 import com.bldby.baselibrary.core.network.ApiLifeCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
 import com.bldby.baselibrary.core.util.StringUtils;
+import com.bldby.baselibrary.core.util.ToastUtil;
 import com.bldby.loginlibrary.model.UserInfo;
 import com.bldby.travellibrary.R;
 import com.bldby.travellibrary.activity.adapter.Distance1Adapter;
@@ -106,7 +108,7 @@ public class OilDeiltaActivity extends BaseActivity {
         oilDeiltaBinding.gun.setAdapter(distanceAdapter2);
         OilStationsDetailUrlRequest oilStationsDetailRequest = new OilStationsDetailUrlRequest();
         oilStationsDetailRequest.isShowLoading = true;
-        oilStationsDetailRequest.gasIds = oilListBean.getGasId();
+        oilStationsDetailRequest.gasIds = "1";
         oilStationsDetailRequest.phone = userInfo.phone;
         oilStationsDetailRequest.userId = userInfo.userId;
         oilStationsDetailRequest.accessToken = userInfo.accessToken;
@@ -251,6 +253,74 @@ public class OilDeiltaActivity extends BaseActivity {
                 }
             }
         });
+    }
+    //1.百度地图包名
+    public static final String BAIDUMAP_PACKAGENAME = "com.baidu.BaiduMap";
+    //2.高德地图包名
+    public static final String AUTONAVI_PACKAGENAME = "com.autonavi.minimap";
+    private List<String> mapList = new ArrayList<>();
+
+    public List<String> appHasMap(Context context) {
+        if (isAvilible(context, BAIDUMAP_PACKAGENAME)) {
+            mapList.add("百度地图");
+        }
+        if (isAvilible(context, AUTONAVI_PACKAGENAME)) {
+            mapList.add("高德地图");
+        }
+        return mapList;
+    }
+
+    public void onClickedTOMap(View view) {
+        if (mapList.size() <= 0) {
+            ToastUtil.show("请先安装百度地图或高德地图");
+            return;
+        } else {
+           /* new XPopup.Builder(this)
+                    .asCustom(new CustomRefundView(TraveDetailActivity.this)
+                            .setData(mapList)
+                            .setOnItemClickListener(new CustomRefundView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(int position) {
+                                    if ("百度地图".equals(mapList.get(position))) {
+                                        Intent i1 = new Intent();
+                                        i1.setData(Uri.parse("baidumap://map/geocoder?src=andr.baidu.openAPIdemo&address=" + oilListBean.getGasAddress()));
+                                        startActivity(i1);
+                                    } else if ("高德地图".equals(mapList.get(position))) {
+                                        Intent intent_gdmap = new Intent();
+                                        intent_gdmap.setAction("android.intent.action.VIEW");
+                                        intent_gdmap.setPackage("com.autonavi.minimap");
+                                        intent_gdmap.addCategory("android.intent.category.DEFAULT");
+                                        intent_gdmap.setData(Uri.parse("androidamap://poi?sourceApplication=com.feitianzhu.huangliwo&keywords=" + oilListBean.getGasAddress() + oilListBean.getGasName() + "&dev=0"));
+                                        startActivity(intent_gdmap);
+                                    }
+                                }
+                            }))
+                    .show();*/
+        }
+    }
+    /**
+     * 检查手机上是否安装了指定的软件
+     *
+     * @param context
+     * @param packageName：应用包名
+     * @return
+     */
+    public static boolean isAvilible(Context context, String packageName) {
+        //获取packagemanager
+        final PackageManager packageManager = context.getPackageManager();
+        //获取所有已安装程序的包信息
+        List<PackageInfo> packageInfos = packageManager.getInstalledPackages(0);
+        //用于存储所有已安装程序的包名
+        List<String> packageNames = new ArrayList<String>();
+        //从pinfo中将包名字逐一取出，压入pName list中
+        if (packageInfos != null) {
+            for (int i = 0; i < packageInfos.size(); i++) {
+                String packName = packageInfos.get(i).packageName;
+                packageNames.add(packName);
+            }
+        }
+        //判断packageNames中是否有目标程序的包名，有TRUE，没有FALSE
+        return packageNames.contains(packageName);
     }
 
     @Override
