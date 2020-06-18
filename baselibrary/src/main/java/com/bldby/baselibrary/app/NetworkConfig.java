@@ -47,9 +47,9 @@ public class NetworkConfig {
 
     public String getTicketBaseUrl() {
         if (getIsDev()) {
-            return DEV_TICKET_BASE_URL;
+            return TICKET_BASE_URL;
         }
-        return TICKET_BASE_URL;
+        return DEV_TICKET_BASE_URL;
     }
 
     public String getAirBaseUrl() {

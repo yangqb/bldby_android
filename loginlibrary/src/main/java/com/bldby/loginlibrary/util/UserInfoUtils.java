@@ -1,9 +1,10 @@
-package com.bldby.baselibrary.app.util;
+package com.bldby.loginlibrary.util;
 
 import android.content.Context;
 
 import com.bldby.baselibrary.app.Constants;
-import com.bldby.baselibrary.app.login.model.UserInfo;
+import com.bldby.baselibrary.app.util.SPUtils;
+import com.bldby.loginlibrary.model.UserInfo;
 import com.google.gson.Gson;
 
 /**

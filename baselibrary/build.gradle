@@ -116,5 +116,7 @@ dependencies {
     api rootProject.ext.dependencies["recyclercoverflow"]
     api rootProject.ext.dependencies["BigImageViewPager"]
     api rootProject.ext.dependencies["okhttp3-integration"]
+    api rootProject.ext.dependencies["flexbox"]
+
 
 }

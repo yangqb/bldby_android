@@ -94,7 +94,7 @@
                                 android:textColor="#ff333333"
                                 android:textSize="@dimen/sp_12"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                                app:layout_constraintTop_toBottomOf="@+id/collect" />
 
                             <com.bldby.baselibrary.core.view.CornerTextView
                                 android:id="@+id/textView9"
@@ -129,10 +129,11 @@
                                 app:layout_constraintTop_toTopOf="@+id/textView9" />
 
                             <ImageView
-                                android:id="@+id/imageView3"
+                                android:id="@+id/collect"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
+                                android:clickable="true"
                                 android:src="@mipmap/goods_detail_collect"
                                 app:layout_constraintEnd_toEndOf="@+id/textView7"
                                 app:layout_constraintStart_toStartOf="@+id/textView7"
@@ -239,6 +240,7 @@
                         android:orientation="vertical">
 
                         <com.bldby.baselibrary.core.view.CornerLinearView
+                            android:id="@+id/sku"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_marginTop="@dimen/dp_1"
@@ -246,7 +248,6 @@
                             android:background="@color/white"
                             android:gravity="center_vertical"
                             android:clickable="true"
-                            android:onClick="@{viewmodel::onClickToSku}"
                             app:cornerRadius="@dimen/dp_10"
                             app:isBottomLeftRadius="false"
                             app:isBottomRightRadius="false">
@@ -362,7 +363,7 @@
                                 android:layout_width="@dimen/dp_30"
                                 android:layout_height="@dimen/dp_30"
                                 android:layout_marginEnd="@dimen/dp_15"
-                                android:onClick="@{viewmodel::onClickToEva}"
+                                android:onClick="@{viewmodel.onClickToEva}"
                                 android:scaleType="centerInside"
                                 android:src="@mipmap/goods_detail_more" />
                         </LinearLayout>

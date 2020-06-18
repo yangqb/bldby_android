@@ -3,7 +3,9 @@
     package="com.bldby.shoplibrary">
 
     <application>
-        <activity android:name=".goods.EvaluateActivity"></activity>
+        <activity android:name=".goods.GoodsSeachActivity"></activity>
+        <activity android:name=".seach.SeachActivity"></activity>
+        <activity android:name=".goods.EvaluateActivity" />
         <activity android:name=".goods.GoosDetailActivity" />
         <activity android:name=".ShopMainActivity" />
     </application>

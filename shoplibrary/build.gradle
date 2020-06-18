@@ -58,6 +58,10 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(path: ':baselibrary')
+    if (rootProject.ext.isShopApplication) {
+        implementation project(path: ':loginlibrary')
+    }
+
     annotationProcessor rootProject.ext.dependencies["router-compiler"]
 
 }

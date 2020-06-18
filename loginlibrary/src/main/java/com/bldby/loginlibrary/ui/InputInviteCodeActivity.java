@@ -9,16 +9,16 @@ import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.bldby.baselibrary.app.login.model.UserInfo;
-import com.bldby.baselibrary.app.util.UserInfoUtils;
 import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
 import com.bldby.loginlibrary.R;
 import com.bldby.loginlibrary.databinding.ActivityInviteCodeBinding;
 import com.bldby.loginlibrary.model.BaseUserInfo;
+import com.bldby.loginlibrary.model.UserInfo;
 import com.bldby.loginlibrary.request.BidingInviteCodeRequest;
 import com.bldby.loginlibrary.request.UserInfoRequest;
+import com.bldby.loginlibrary.util.UserInfoUtils;
 
 /**
  * package name: com.bldby.loginlibrary.ui

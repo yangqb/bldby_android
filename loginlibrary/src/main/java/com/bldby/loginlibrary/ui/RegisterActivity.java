@@ -19,9 +19,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.bldby.baselibrary.app.login.model.UserInfo;
 import com.bldby.baselibrary.app.util.RegUtils;
-import com.bldby.baselibrary.app.util.UserInfoUtils;
 import com.bldby.baselibrary.constants.RouteAirConstants;
 import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.core.network.ApiCallBack;
@@ -33,6 +31,9 @@ import com.bldby.loginlibrary.model.BaseUserInfo;
 import com.bldby.loginlibrary.request.LoginRequest;
 import com.bldby.loginlibrary.request.RegisterCodeRequest;
 import com.bldby.loginlibrary.request.UserInfoRequest;
+import com.bldby.loginlibrary.model.UserInfo;
+import com.bldby.loginlibrary.util.UserInfoUtils;
+
 
 /**
  * package name: com.bldby.loginlibrary.ui

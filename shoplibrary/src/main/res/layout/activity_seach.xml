@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.bldby.shoplibrary.seach.SeachActivity" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".seach.SeachActivity"
+        android:orientation="vertical"
+        >
+
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="@dimen/dp_44"
+                  android:orientation="horizontal"
+                  android:background="@color/home_head_yeallow"
+                  >
+                  <LinearLayout
+                      android:id="@+id/seach_deletetext"
+                      android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:gravity="center"
+                      >
+                      <ImageView
+                          android:layout_width="@dimen/dp_20"
+                          android:layout_height="@dimen/dp_20"
+                          android:src="@drawable/ic_baseline_arrow_back_ios_24"
+                          android:layout_marginLeft="@dimen/dp_15"
+                          />
+                  </LinearLayout>
+                  <LinearLayout
+                      android:layout_gravity="center_vertical"
+                      android:id="@+id/edit_parent_view"
+                      android:layout_width="@dimen/dp_260"
+                      android:layout_height="@dimen/dp_30"
+                      android:layout_marginLeft="@dimen/dp_10"
+                      android:background="@drawable/shop_shape_search"
+                      android:gravity="center_vertical"
+                      android:paddingLeft="10dp"
+                      android:paddingRight="10dp">
+
+                      <ImageView
+                          android:layout_width="@dimen/dp_14"
+                          android:layout_height="@dimen/dp_14"
+                          android:src="@mipmap/shop_seachimg" />
+
+                      <EditText
+                          android:id="@+id/et_keyword"
+                          android:layout_width="match_parent"
+                          android:layout_height="match_parent"
+                          android:background="@null"
+                          android:focusable="true"
+                          android:focusableInTouchMode="true"
+                          android:hint="@string/shop_seach_text"
+                          android:imeOptions="actionSearch"
+                          android:paddingLeft="10dp"
+                          android:singleLine="true"
+                          android:textColor="@color/color_333333"
+                          android:textColorHint="@color/item_gary"
+                          android:textSize="@dimen/sp_14" />
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:id="@+id/seach_text"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:gravity="center"
+                      >
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="@string/shop_seach_delete"
+                          android:textSize="@dimen/sp_14"
+                          android:textColor="@color/item_recyone_text"
+                          />
+                  </LinearLayout>
+              </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/shop_seach_history"
+                android:textColor="@color/item_recyone_text"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_8"
+                android:textStyle="bold"
+                />
+            <ImageView
+                android:id="@+id/seach_garbage"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
+                android:src="@mipmap/seach_garbageimg"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_10"
+                />
+        </RelativeLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/historyRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="15dp">
+
+        </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

@@ -35,6 +35,7 @@ import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
 import com.bldby.baselibrary.core.ui.basefragment.Basefragment;
 import com.bldby.baselibrary.core.util.ShareImageUtils;
+import com.bldby.baselibrary.core.util.ToastUtil;
 import com.bldby.shoplibrary.R;
 import com.bldby.shoplibrary.bean.News;
 import com.bldby.shoplibrary.databinding.ActivityGoosDetailBinding;
@@ -242,9 +243,17 @@ public class GoosDetailActivity extends BaseActivity {
      *
      * @param view
      */
-    public void onClickToSku(View view) {
-
-        Basefragment fragment = getFragment(RouteShopConstants.SHOPGOODSSKU);
-        loadRootFragment(R.id.dio, fragment);
+ public void onClickToSku(View view) {
+        switch (view.getId()) {
+//            case R.id.collect:
+//                ToastUtil.show("collect");
+//                break;
+//            case R.id.sku:
+//                ToastUtil.show("sku");
+//                break;
+        }
+//        Basefragment fragment = getFragment(RouteShopConstants.SHOPGOODSSKU);
+//
+//        loadRootFragment(R.id.dio, fragment);
     }
 }

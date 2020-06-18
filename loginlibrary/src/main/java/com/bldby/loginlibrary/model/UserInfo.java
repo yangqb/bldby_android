@@ -1,4 +1,4 @@
-package com.bldby.baselibrary.app.login.model;
+package com.bldby.loginlibrary.model;
 
 import java.io.Serializable;
 
