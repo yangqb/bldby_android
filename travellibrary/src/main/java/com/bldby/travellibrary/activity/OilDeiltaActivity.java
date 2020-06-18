@@ -6,12 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.constants.RouteTravelConstants;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
 import com.bldby.travellibrary.R;
 import com.bldby.travellibrary.databinding.ActivityOilDeiltaBinding;
 import com.bldby.travellibrary.databinding.ActivityOilOrderBinding;
-@Route(path = RouteTravelConstants.TRAVELDETAIL)
+@Route(path = RouteTravelConstants.TRAVELDETAIL, extras = RouteLoginConstants.SHOWCHECKLOGIN)
 public class OilDeiltaActivity extends BaseActivity {
 
 

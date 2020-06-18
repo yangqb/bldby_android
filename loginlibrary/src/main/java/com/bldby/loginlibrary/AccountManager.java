@@ -5,7 +5,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.bldby.baselibrary.app.RxCodeConstants;
 import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.core.rxbus.RxBus;
-import com.bldby.loginlibrary.model.UserModel;
+import com.bldby.loginlibrary.model.UserInfo;
 import com.orhanobut.hawk.Hawk;
 
 /**
@@ -17,7 +17,7 @@ public class AccountManager {
     private static final String LOGINKEY = "LOGINKEY";
     //保存登录信息的可以
     private static final String LOGINKEYUSERINFO = "LOGINKEYUSERINFO";
-    private UserModel userInfo = new UserModel();
+    private UserInfo userInfo = new UserInfo();
 
     private AccountManager() {
     }
@@ -29,7 +29,7 @@ public class AccountManager {
 
     //已经登陆打开APP获取用户信息
     private void init() {
-        this.userInfo = Hawk.get(LOGINKEYUSERINFO);
+        this.userInfo = Hawk.get(LOGINKEYUSERINFO,new UserInfo());
     }
 
     /**
@@ -38,8 +38,8 @@ public class AccountManager {
      * @return
      */
     public static boolean isLogin() {
-//        return Hawk.get(LOGINKEY, false);
-        return true;
+        return Hawk.get(LOGINKEY, false);
+//        return true;
     }
 
     /**
@@ -69,7 +69,7 @@ public class AccountManager {
      *
      * @param userInfo
      */
-    public void setLoginSuccess(UserModel userInfo) {
+    public void setLoginSuccess(UserInfo userInfo) {
         this.userInfo = userInfo;
         Hawk.put(LOGINKEY, true);
         Hawk.put(LOGINKEYUSERINFO, userInfo);
@@ -82,7 +82,7 @@ public class AccountManager {
      *
      * @param userInfo
      */
-    public void updataLoginInfo(UserModel userInfo) {
+    public void updataLoginInfo(UserInfo userInfo) {
         this.userInfo = userInfo;
         Hawk.put(LOGINKEYUSERINFO, userInfo);
     }
@@ -92,7 +92,7 @@ public class AccountManager {
      *
      * @return
      */
-    public UserModel getUserInfo() {
+    public UserInfo getUserInfo() {
         return userInfo;
     }
 
