@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.bldby.baselibrary.constants.RouteTravelConstants;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
 import com.bldby.shoplibrary.adapter.HomeMoreAdapter;
 import com.bldby.shoplibrary.adapter.HomeRecommendAdapter;
@@ -51,6 +52,8 @@ import com.zhpan.bannerview.utils.BannerUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static com.bldby.baselibrary.constants.RouteShopConstants.SHOPGOODSDETAIL;
 
 
 @Route(path = RouteShopConstants.SHOPMAINFirst)
@@ -166,7 +169,7 @@ public class HomeFragment extends Basefragment {
         mainAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                startActivity(new Intent(getActivity(),GoosDetailActivity.class));
+                startTo(SHOPGOODSDETAIL);
                 ToastUtil.show("sdfsd");
 
             }
@@ -203,9 +206,16 @@ public class HomeFragment extends Basefragment {
         //适配器
         HomeListAdapter adapter = new HomeListAdapter(Arrays.asList(integers));
         binding.homeRecyone.setAdapter(adapter);
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
+                startTo(RouteTravelConstants.TRAVELMAIN);
+            }
+        });
     }
 
-    private void initBanner() {        binding.homeBanner.setCanLoop(true)
+    private void initBanner() {
+        binding.homeBanner.setCanLoop(true)
 
                 .setAutoPlay(true)
                 .setIndicatorStyle(IndicatorStyle.CIRCLE)

@@ -59,7 +59,7 @@ public class AirCalendarActivity extends BaseUiActivity {
 
     @Override
     public void initView() {
-        initRightText(getString(R.string.air_date_select_ok));
+        setRightText(getString(R.string.air_date_select_ok));
         CustomPainter innerPainter = new CustomPainter(binding.miui10Calendar);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);// HH:mm:ss
         Calendar rightNow = Calendar.getInstance();
