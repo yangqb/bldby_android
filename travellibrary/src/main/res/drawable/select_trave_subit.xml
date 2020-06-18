@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android" tools:ignore="ResourceName">
-    <item android:state_enabled="true" android:color="#EA362C"/>
-    <item android:state_enabled="false" android:color="@android:color/darker_gray"/>
+    <item android:drawable="@drawable/shape_trave_submit" android:state_enabled="true" />
+    <item android:drawable="@drawable/shape_trave_unsubmit" android:state_enabled="false" />
 </selector>
