@@ -32,7 +32,6 @@ import com.bldby.travellibrary.databinding.ActivityOilOrderBinding;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
-import com.hjq.toast.ToastUtils;
 import com.lxj.xpopup.XPopup;
 
 import java.text.DecimalFormat;

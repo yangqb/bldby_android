@@ -111,7 +111,8 @@ ext {
             "share-wx"                       : 'com.umeng.umsdk:share-wx:7.0.2',
             "zxing-library"                  : 'cn.yipianfengye.android:zxing-library:2.2',
             "xlog"                           : 'com.elvishew:xlog:1.6.1',
-
+            "pinyin"                         : 'com.github.SilenceDut:jpinyin:v1.0',
+            "calendar"                       : 'com.necer.ncalendar:ncalendar:4.3.8',
 //             "butterknife"             : "com.jakewharton:butterknife:8.5.1",
 //             "butterknife-compiler"    : "com.jakewharton:butterknife-compiler:8.5.1",
 //            //network
