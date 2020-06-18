@@ -1,6 +1,7 @@
 package com.bldby.airticket.request;
 
 import com.alibaba.fastjson.TypeReference;
+import com.bldby.airticket.model.GoBackFlightInfo;
 import com.bldby.baselibrary.app.network.BaseAirRequest;
 import com.bldby.baselibrary.core.network.ParamsBuilder;
 
@@ -12,8 +13,8 @@ import com.bldby.baselibrary.core.network.ParamsBuilder;
  * email: 694125155@qq.com
  */
 /*
-* 国内往返
-* */
+ * 国内往返
+ * */
 public class DomesticGoBackSearchRequest extends BaseAirRequest {
     public String depCity;
     public String arrCity;
@@ -21,6 +22,7 @@ public class DomesticGoBackSearchRequest extends BaseAirRequest {
     public String backDate;
     public String exTrack;
     public int sort;//排序：1为价格最低 2为时间最早
+
     @Override
     public String getAPIName() {
         return "wfSearchFlight";
@@ -28,11 +30,13 @@ public class DomesticGoBackSearchRequest extends BaseAirRequest {
 
     @Override
     public ParamsBuilder appendParams(ParamsBuilder builder) {
-        return super.appendParams(builder);
+        return super.appendParams(builder.append("depCity", depCity).append("arrCity", arrCity).append("goDate", goDate).append("backDate", backDate).append("exTrack", exTrack).append("sort", sort));
     }
 
     @Override
     public TypeReference getDatatype() {
-        return null;
+        return new TypeReference<GoBackFlightInfo>() {
+
+        };
     }
 }

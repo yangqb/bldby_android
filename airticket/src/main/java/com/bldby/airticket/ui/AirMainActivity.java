@@ -104,7 +104,6 @@ public class AirMainActivity extends BaseActivity {
         } else if (view.getId() == R.id.ll_order) {
             //机票订单
               /* token = SPUtils.getString(this, Constant.SP_ACCESS_TOKEN);
-
                 if (token == null || TextUtils.isEmpty(token)) {
                     intent = new Intent(PlaneHomeActivity.this, LoginActivity.class);
                     startActivity(intent);

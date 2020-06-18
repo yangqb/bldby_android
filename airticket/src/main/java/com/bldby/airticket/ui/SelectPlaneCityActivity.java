@@ -156,25 +156,22 @@ public class SelectPlaneCityActivity extends BaseAirUiActivity {
     }
 
     public void onClickSelectCity(View view) {
-        switch (view.getId()) {
-            case R.id.btn_domestic:
-                type = 0;
-                binding.cnCityView.setVisibility(View.VISIBLE);
-                binding.interCityView.setVisibility(View.GONE);
-                binding.btnDomestic.setTextColor(getResources().getColor(R.color.color_333333));
-                binding.btnInternational.setTextColor(getResources().getColor(R.color.color_666666));
-                binding.line1.setBackgroundColor(getResources().getColor(R.color.color_fed228));
-                binding.line2.setBackgroundColor(getResources().getColor(R.color.white));
-                break;
-            case R.id.btn_international:
-                binding.cnCityView.setVisibility(View.GONE);
-                binding.interCityView.setVisibility(View.VISIBLE);
-                type = 1;
-                binding.btnDomestic.setTextColor(getResources().getColor(R.color.color_666666));
-                binding.btnInternational.setTextColor(getResources().getColor(R.color.color_333333));
-                binding.line1.setBackgroundColor(getResources().getColor(R.color.white));
-                binding.line2.setBackgroundColor(getResources().getColor(R.color.color_fed228));
-                break;
+        if (view.getId() == R.id.btn_domestic) {
+            type = 0;
+            binding.cnCityView.setVisibility(View.VISIBLE);
+            binding.interCityView.setVisibility(View.GONE);
+            binding.btnDomestic.setTextColor(getResources().getColor(R.color.color_333333));
+            binding.btnInternational.setTextColor(getResources().getColor(R.color.color_666666));
+            binding.line1.setBackgroundColor(getResources().getColor(R.color.color_fed228));
+            binding.line2.setBackgroundColor(getResources().getColor(R.color.white));
+        } else if (view.getId() == R.id.btn_international) {
+            binding.cnCityView.setVisibility(View.GONE);
+            binding.interCityView.setVisibility(View.VISIBLE);
+            type = 1;
+            binding.btnDomestic.setTextColor(getResources().getColor(R.color.color_666666));
+            binding.btnInternational.setTextColor(getResources().getColor(R.color.color_333333));
+            binding.line1.setBackgroundColor(getResources().getColor(R.color.white));
+            binding.line2.setBackgroundColor(getResources().getColor(R.color.color_fed228));
         }
     }
 

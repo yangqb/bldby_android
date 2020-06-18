@@ -184,31 +184,26 @@ public class SearchFlightActivity2 extends BaseAirUiActivity {
 
 
     public void onClickBtn(View view) {
-        switch (view.getId()) {
-            case R.id.depDate:
-            case R.id.arrDate:
-                startWith(RouteAirConstants.SELECTDATE)
-                        .withString("goDate", flightInfo.goDate)
-                        .withString("comeDate", flightInfo.backDate)
-                        .withInt("searchType", searchType)
-                        .navigation(SearchFlightActivity2.this, AirConstants.REQUEST_DATE__CODE);
-                break;
-            case R.id.sortPrice:
-                binding.tvTimeTitle.setTextColor(getResources().getColor(R.color.color_333333));
-                binding.line2.setBackgroundColor(getResources().getColor(R.color.white));
-                binding.tvPriceTitle.setTextColor(getResources().getColor(R.color.color_ff8300));
-                binding.line1.setBackgroundColor(getResources().getColor(R.color.color_ff8300));
-                sortType = 1;
-                loadData();
-                break;
-            case R.id.sortTime:
-                binding.tvTimeTitle.setTextColor(getResources().getColor(R.color.color_ff8300));
-                binding.line2.setBackgroundColor(getResources().getColor(R.color.color_ff8300));
-                binding.tvPriceTitle.setTextColor(getResources().getColor(R.color.color_333333));
-                binding.line1.setBackgroundColor(getResources().getColor(R.color.white));
-                sortType = 2;
-                loadData();
-                break;
+        if(view.getId() == R.id.depDate || view.getId()==R.id.arrDate){
+            startWith(RouteAirConstants.SELECTDATE)
+                    .withString("goDate", flightInfo.goDate)
+                    .withString("comeDate", flightInfo.backDate)
+                    .withInt("searchType", searchType)
+                    .navigation(SearchFlightActivity2.this, AirConstants.REQUEST_DATE__CODE);
+        }else if(view.getId() == R.id.sortPrice){
+            binding.tvTimeTitle.setTextColor(getResources().getColor(R.color.color_333333));
+            binding.line2.setBackgroundColor(getResources().getColor(R.color.white));
+            binding.tvPriceTitle.setTextColor(getResources().getColor(R.color.color_ff8300));
+            binding.line1.setBackgroundColor(getResources().getColor(R.color.color_ff8300));
+            sortType = 1;
+            loadData();
+        }else if(view.getId() == R.id.sortTime){
+            binding.tvTimeTitle.setTextColor(getResources().getColor(R.color.color_ff8300));
+            binding.line2.setBackgroundColor(getResources().getColor(R.color.color_ff8300));
+            binding.tvPriceTitle.setTextColor(getResources().getColor(R.color.color_333333));
+            binding.line1.setBackgroundColor(getResources().getColor(R.color.white));
+            sortType = 2;
+            loadData();
         }
     }
 

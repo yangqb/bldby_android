@@ -52,7 +52,7 @@
                                 android:layout_height="wrap_content"
                                 android:onClick="@{viewModel.onClickAirType}"
                                 android:paddingTop="20dp"
-                                android:text="国内"
+                                android:text="@string/air_home_domestic"
                                 android:textColor="@color/color_333333"
                                 android:textSize="15sp" />
 
@@ -63,7 +63,7 @@
                                 android:layout_centerHorizontal="true"
                                 android:onClick="@{viewModel.onClickAirType}"
                                 android:paddingTop="20dp"
-                                android:text="国际/中国港澳台"
+                                android:text="@string/air_home_internation"
                                 android:textColor="@color/color_333333"
                                 android:textSize="15sp" />
 
@@ -74,7 +74,7 @@
                                 android:layout_alignParentEnd="true"
                                 android:onClick="@{viewModel.onClickAirType}"
                                 android:paddingTop="20dp"
-                                android:text="往返"
+                                android:text="@string/air_home_go_back"
                                 android:textColor="@color/color_333333"
                                 android:textSize="15sp" />
 
@@ -132,7 +132,7 @@
                             android:maxWidth="100dp"
                             android:maxLines="1"
                             android:onClick="@{viewModel.onSelectCity}"
-                            android:text="北京"
+                            android:text="@string/air_home_depcity"
                             android:textColor="@color/color_333333"
                             android:textSize="26sp" />
 
@@ -146,7 +146,7 @@
                             android:maxWidth="100dp"
                             android:maxLines="1"
                             android:onClick="@{viewModel.onSelectCity}"
-                            android:text="上海"
+                            android:text="@string/air_home_arrcity"
                             android:textColor="@color/color_333333"
                             android:textSize="26sp" />
 
@@ -170,7 +170,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="5dp"
-                                android:text="02月16日"
+                                android:text=""
                                 android:textColor="@color/color_333333"
                                 android:textSize="18sp" />
 
@@ -178,7 +178,7 @@
                                 android:id="@+id/startWeek"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="周六"
+                                android:text=""
                                 android:textColor="@color/color_333333"
                                 android:textSize="14sp" />
                         </LinearLayout>
@@ -245,7 +245,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="机票订单"
+                            android:text="@string/air_home_order"
                             android:textColor="@color/color_333333"
                             android:textSize="14sp" />
 
@@ -268,7 +268,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="值机选座"
+                            android:text="@string/air_home_check_in"
                             android:textColor="@color/color_333333"
                             android:textSize="14sp" />
 
@@ -284,7 +284,7 @@
                     android:background="@drawable/shape_air_home_search"
                     android:gravity="center"
                     android:onClick="@{viewModel.onClickBtn}"
-                    android:text="搜索"
+                    android:text="@string/air_home_search"
                     android:textColor="@color/color_333333"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
