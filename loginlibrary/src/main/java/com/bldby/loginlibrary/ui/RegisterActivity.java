@@ -28,12 +28,11 @@ import com.bldby.baselibrary.core.util.ToastUtil;
 import com.bldby.loginlibrary.AccountManager;
 import com.bldby.loginlibrary.R;
 import com.bldby.loginlibrary.databinding.ActivityRegisterBinding;
-import com.bldby.loginlibrary.model.BaseUserInfo;
+import com.bldby.loginlibrary.model.UserInfo;
 import com.bldby.loginlibrary.request.LoginRequest;
 import com.bldby.loginlibrary.request.RegisterCodeRequest;
 import com.bldby.loginlibrary.request.UserInfoRequest;
 import com.bldby.loginlibrary.model.UserInfo;
-import com.bldby.loginlibrary.util.UserInfoUtils;
 
 
 /**
@@ -143,11 +142,11 @@ public class RegisterActivity extends BaseUiActivity {
         request.call(new ApiCallBack<UserInfo>() {
             @Override
             public void onAPIResponse(UserInfo response) {
-                if (response.isBindCode == 0) {//未填写过邀请码
-                    AccountManager.getInstance().updataLoginInfo(response);
+                AccountManager.getInstance().setLoginSuccess(response);
+                if (response.isBindCode == 0) {
+                    //未填写过邀请码
                     startWith(RouteLoginConstants.LOGININVITE).withString("token", response.accessToken).withString("userId", response.userId).navigation();
                 } else {
-                    AccountManager.getInstance().setLoginSuccess(response);
                     getUserInfo(response.userId, response.accessToken);
                 }
             }
@@ -166,9 +165,9 @@ public class RegisterActivity extends BaseUiActivity {
         UserInfoRequest request = new UserInfoRequest();
         request.userId = userId;
         request.accessToken = accessToken;
-        request.call(new ApiCallBack<BaseUserInfo>() {
+        request.call(new ApiCallBack<UserInfo>() {
             @Override
-            public void onAPIResponse(BaseUserInfo response) {
+            public void onAPIResponse(UserInfo response) {
                 UserInfo userInfo = AccountManager.getInstance().getUserInfo();
                 userInfo.headImg = response.headImg;
                 userInfo.nickName = response.nickName;
@@ -188,8 +187,7 @@ public class RegisterActivity extends BaseUiActivity {
                 userInfo.canWd = response.userInfo.canWd;
                 userInfo.paypass = response.userInfo.paypass;
                 userInfo.personSign = response.userInfo.personSign;
-                AccountManager.getInstance().updataLoginInfo(userInfo);
-                //UserInfoUtils.saveUserInfo(RegisterActivity.this, userInfo);
+                AccountManager.getInstance().updataLoginInfo(response);
                 start(RouteAirConstants.MAIN);
             }
 

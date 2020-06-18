@@ -18,6 +18,8 @@
         <activity
             android:name=".ui.SearchFlightActivity2"
             android:theme="@style/AppTheme" />
+        <activity android:name=".ui.AirFlightDetailActivity"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

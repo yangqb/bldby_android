@@ -29,7 +29,7 @@ public class AccountManager {
 
     //已经登陆打开APP获取用户信息
     private void init() {
-        this.userInfo = Hawk.get(LOGINKEYUSERINFO);
+        this.userInfo = Hawk.get(LOGINKEYUSERINFO,new UserInfo());
     }
 
     /**
@@ -38,8 +38,8 @@ public class AccountManager {
      * @return
      */
     public static boolean isLogin() {
-//        return Hawk.get(LOGINKEY, false);
-        return true;
+        return Hawk.get(LOGINKEY, false);
+//        return true;
     }
 
     /**

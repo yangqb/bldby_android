@@ -13,6 +13,12 @@ public class UserInfo implements Serializable {
     public int isBindPhone;//":1,
     public int isBindCode;//":0,
 
+    public String canWd;//":1是否可以提现（0否 1是） ,
+    public String paypass;// (string, optional): 支付密码 ,
+    public String personSign; //(string, optional): 个性签名 ,
+
+    public UserData userInfo;
+
     public String headImg;//":"http://bldby-pro.oss-cn-beijing.aliyuncs.com/user/default_headimg.png?OSSAccessKeyId=LTAI4GHEkb4SUqKsjoLMcw1d&Expires=7779392034789&Signature=LY6fSJKVZ1k1xB1znu8JQmHMNQs%3D",
     public String nickName;//":"便利大本营0321",
     public int accountType;//":0,账户类型，参考NetBodyEnum枚举类 ,
@@ -27,9 +33,13 @@ public class UserInfo implements Serializable {
     public double totalPoints;//":0,共盈利 ,
     public int isFrozen;//":0,是否冻结（1：是，0否） ,
     public String registerDate;//":"2020-06-16 10:07:13"
-    public String unionid;// (string, optional): 用户统一标识。针对一个微信开放平台帐号下的应用，同一用户的unionid是唯一的。 ,
-    public String canWd;//":1是否可以提现（0否 1是） ,
-    public String paypass;// (string, optional): 支付密码 ,
-    public String personSign; //(string, optional): 个性签名 ,
+    public String unionid;// (string, optional): 用户统一标识。针对一个微信开放平台帐号下的应用，同一用户的unionid是唯一的。
 
+    public static class UserData {
+        public String uid;//":6,用户id
+        public String id;//":4,
+        public String canWd;//":1是否可以提现（0否 1是） ,
+        public String paypass;// (string, optional): 支付密码 ,
+        public String personSign; //(string, optional): 个性签名 ,
+    }
 }

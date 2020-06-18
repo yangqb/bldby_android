@@ -20,8 +20,8 @@ import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.constants.RouteTravelConstants;
 import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
+import com.bldby.loginlibrary.AccountManager;
 import com.bldby.loginlibrary.model.UserInfo;
-import com.bldby.loginlibrary.util.UserInfoUtils;
 import com.bldby.travellibrary.R;
 import com.bldby.travellibrary.activity.adapter.Distance2Adapter;
 import com.bldby.travellibrary.activity.adapter.DistanceAdapter;
@@ -115,7 +115,7 @@ public class TravelActivity extends BaseActivity {
         //smart刷新加载方法（）
         initswipeLayout();
         //String string = SPUtils.getString(TravelActivity.this, Constants.USER_DATA);
-        UserInfo userInfo = UserInfoUtils.getUserInfo(TravelActivity.this);
+        UserInfo userInfo = AccountManager.getInstance().getUserInfo();
         token = userInfo.accessToken;
         myoiladapter = new MyOilAdapter(null);
         myoiladapter.setEmptyView(mEmptyView);

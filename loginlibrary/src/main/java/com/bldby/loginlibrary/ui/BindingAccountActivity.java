@@ -14,6 +14,7 @@ import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
 import com.bldby.baselibrary.core.util.ToastUtil;
+import com.bldby.loginlibrary.AccountManager;
 import com.bldby.loginlibrary.R;
 import com.bldby.loginlibrary.databinding.ActivityBidingAccountBinding;
 import com.bldby.loginlibrary.request.BidingAccountRequest;
@@ -107,6 +108,7 @@ public class BindingAccountActivity extends BaseUiActivity {
             @Override
             public void onAPIResponse(Object response) {
                 //手机号未绑定其他微信
+                //AccountManager.getInstance().setLoginSuccess();
                 startWith(RouteLoginConstants.LOGININVITE).withString("token", "").withString("userId", "").navigation();
             }
 

@@ -13,10 +13,10 @@ import android.widget.TextView;
 
 import com.bldby.airticket.R;
 import com.bldby.airticket.model.MultipleGoSearchFightInfo;
-import com.bldby.baselibrary.app.login.model.UserInfo;
-import com.bldby.baselibrary.app.util.UserInfoUtils;
 import com.bldby.baselibrary.core.util.DateUtil;
 import com.bldby.baselibrary.core.util.MathUtils;
+import com.bldby.loginlibrary.AccountManager;
+import com.bldby.loginlibrary.model.UserInfo;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -46,7 +46,8 @@ public class SearchPlaneResultAdapter extends BaseMultiItemQuickAdapter<Multiple
     @Override
     protected void convert(@NonNull BaseViewHolder helper, MultipleGoSearchFightInfo item) {
         helper.addOnClickListener(R.id.ll_rebate);
-        UserInfo userInfo = UserInfoUtils.getUserInfo(mContext);
+
+        UserInfo userInfo = AccountManager.getInstance().getUserInfo();
         if (userInfo.accountType != 0) {
             helper.setGone(R.id.ll_rebate, false);
             helper.setGone(R.id.vip_rebate, true);

@@ -25,5 +25,6 @@
     <string name="login_install_wx">请先安装微信</string>
     <string name="login_auth_error">授权失败</string>
     <string name="login_cancel">取消登录</string>
+    <string name="login_skip">跳过</string>
 
 </resources>

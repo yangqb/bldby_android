@@ -6,6 +6,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -15,12 +16,9 @@ import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
 import com.bldby.loginlibrary.AccountManager;
 import com.bldby.loginlibrary.R;
 import com.bldby.loginlibrary.databinding.ActivityInviteCodeBinding;
-import com.bldby.loginlibrary.model.BaseUserInfo;
 import com.bldby.loginlibrary.model.UserInfo;
 import com.bldby.loginlibrary.request.BidingInviteCodeRequest;
 import com.bldby.loginlibrary.request.UserInfoRequest;
-import com.bldby.loginlibrary.util.UserInfoUtils;
-import com.orhanobut.hawk.Hawk;
 
 /**
  * package name: com.bldby.loginlibrary.ui
@@ -51,6 +49,7 @@ public class InputInviteCodeActivity extends BaseUiActivity {
     @Override
     public void initView() {
         initTitle(getString(R.string.login_invite_title));
+        setRightText(getString(R.string.login_skip));
         setTitleBackground(R.color.white);
     }
 
@@ -87,9 +86,9 @@ public class InputInviteCodeActivity extends BaseUiActivity {
         UserInfoRequest request = new UserInfoRequest();
         request.userId = userId;
         request.accessToken = accessToken;
-        request.call(new ApiCallBack<BaseUserInfo>() {
+        request.call(new ApiCallBack<UserInfo>() {
             @Override
-            public void onAPIResponse(BaseUserInfo response) {
+            public void onAPIResponse(UserInfo response) {
                 UserInfo userInfo = AccountManager.getInstance().getUserInfo();
                 userInfo.headImg = response.headImg;
                 userInfo.nickName = response.nickName;
@@ -109,16 +108,17 @@ public class InputInviteCodeActivity extends BaseUiActivity {
                 userInfo.canWd = response.userInfo.canWd;
                 userInfo.paypass = response.userInfo.paypass;
                 userInfo.personSign = response.userInfo.personSign;
-                //UserInfoUtils.saveUserInfo(InputInviteCodeActivity.this, userInfo);
-                AccountManager.getInstance().setLoginSuccess(userInfo);
+                AccountManager.getInstance().updataLoginInfo(userInfo);
             }
 
             @Override
             public void onAPIError(int errorCode, String errorMsg) {
 
+
             }
         });
     }
+
 
     @Override
     public void initListener() {
@@ -142,5 +142,17 @@ public class InputInviteCodeActivity extends BaseUiActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onClickRight(View view) {
+        super.onClickRight(view);
+        finish();
+    }
+
+    @Override
+    protected void initRightImg(ImageView view) {
+        super.initRightImg(view);
+//        view.setBackgroundResource(R.drawable.fragmentation_help);
     }
 }

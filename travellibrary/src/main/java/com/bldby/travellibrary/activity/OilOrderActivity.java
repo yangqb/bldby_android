@@ -24,7 +24,7 @@ import com.bldby.travellibrary.databinding.ActivityOilOrderBinding;
 
 import java.util.List;
 
-@Route(path = RouteTravelConstants.TRAVELORDER)
+@Route(path = RouteTravelConstants.TRAVELORDER, extras = RouteLoginConstants.SHOWCHECKLOGIN)
 public class OilOrderActivity extends BaseActivity {
 
     private ActivityOilOrderBinding oilOrderBinding;

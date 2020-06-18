@@ -59,6 +59,10 @@ public abstract class BaseAirUiActivity extends BaseActivity {
         finish();
     }
 
+    public void onClickRightBtn(View view) {
+
+    }
+
     //容器
     protected abstract View initContentView(LayoutInflater layoutInflater, ViewGroup viewGroup);
 

@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.bldby.baselibrary.app.login.model.UserInfo;
 import com.bldby.baselibrary.app.util.SPUtils;
 import com.bldby.baselibrary.constants.RouteShopConstants;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
