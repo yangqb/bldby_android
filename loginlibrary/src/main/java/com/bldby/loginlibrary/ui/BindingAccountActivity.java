@@ -107,7 +107,7 @@ public class BindingAccountActivity extends BaseUiActivity {
             @Override
             public void onAPIResponse(Object response) {
                 //手机号未绑定其他微信
-                start(RouteLoginConstants.LOGININVITE);
+                startWith(RouteLoginConstants.LOGININVITE).withString("token", "").withString("userId", "").navigation();
             }
 
             @Override

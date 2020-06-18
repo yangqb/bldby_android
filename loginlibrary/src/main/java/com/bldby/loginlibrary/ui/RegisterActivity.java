@@ -25,6 +25,7 @@ import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
 import com.bldby.baselibrary.core.util.ToastUtil;
+import com.bldby.loginlibrary.AccountManager;
 import com.bldby.loginlibrary.R;
 import com.bldby.loginlibrary.databinding.ActivityRegisterBinding;
 import com.bldby.loginlibrary.model.BaseUserInfo;
@@ -142,10 +143,11 @@ public class RegisterActivity extends BaseUiActivity {
         request.call(new ApiCallBack<UserInfo>() {
             @Override
             public void onAPIResponse(UserInfo response) {
-                UserInfoUtils.saveUserInfo(RegisterActivity.this, response);
                 if (response.isBindCode == 0) {//未填写过邀请码
+                    AccountManager.getInstance().updataLoginInfo(response);
                     startWith(RouteLoginConstants.LOGININVITE).withString("token", response.accessToken).withString("userId", response.userId).navigation();
                 } else {
+                    AccountManager.getInstance().setLoginSuccess(response);
                     getUserInfo(response.userId, response.accessToken);
                 }
             }
@@ -167,7 +169,7 @@ public class RegisterActivity extends BaseUiActivity {
         request.call(new ApiCallBack<BaseUserInfo>() {
             @Override
             public void onAPIResponse(BaseUserInfo response) {
-                UserInfo userInfo = UserInfoUtils.getUserInfo(RegisterActivity.this);
+                UserInfo userInfo = AccountManager.getInstance().getUserInfo();
                 userInfo.headImg = response.headImg;
                 userInfo.nickName = response.nickName;
                 userInfo.accountType = response.accountType;
@@ -186,13 +188,14 @@ public class RegisterActivity extends BaseUiActivity {
                 userInfo.canWd = response.userInfo.canWd;
                 userInfo.paypass = response.userInfo.paypass;
                 userInfo.personSign = response.userInfo.personSign;
-                UserInfoUtils.saveUserInfo(RegisterActivity.this, userInfo);
+                AccountManager.getInstance().updataLoginInfo(userInfo);
+                //UserInfoUtils.saveUserInfo(RegisterActivity.this, userInfo);
                 start(RouteAirConstants.MAIN);
             }
 
             @Override
             public void onAPIError(int errorCode, String errorMsg) {
-
+                start(RouteAirConstants.MAIN);
             }
         });
     }

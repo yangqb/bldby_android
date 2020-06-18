@@ -12,6 +12,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
+import com.bldby.loginlibrary.AccountManager;
 import com.bldby.loginlibrary.R;
 import com.bldby.loginlibrary.databinding.ActivityInviteCodeBinding;
 import com.bldby.loginlibrary.model.BaseUserInfo;
@@ -19,6 +20,7 @@ import com.bldby.loginlibrary.model.UserInfo;
 import com.bldby.loginlibrary.request.BidingInviteCodeRequest;
 import com.bldby.loginlibrary.request.UserInfoRequest;
 import com.bldby.loginlibrary.util.UserInfoUtils;
+import com.orhanobut.hawk.Hawk;
 
 /**
  * package name: com.bldby.loginlibrary.ui
@@ -88,7 +90,7 @@ public class InputInviteCodeActivity extends BaseUiActivity {
         request.call(new ApiCallBack<BaseUserInfo>() {
             @Override
             public void onAPIResponse(BaseUserInfo response) {
-                UserInfo userInfo = UserInfoUtils.getUserInfo(InputInviteCodeActivity.this);
+                UserInfo userInfo = AccountManager.getInstance().getUserInfo();
                 userInfo.headImg = response.headImg;
                 userInfo.nickName = response.nickName;
                 userInfo.accountType = response.accountType;
@@ -107,7 +109,8 @@ public class InputInviteCodeActivity extends BaseUiActivity {
                 userInfo.canWd = response.userInfo.canWd;
                 userInfo.paypass = response.userInfo.paypass;
                 userInfo.personSign = response.userInfo.personSign;
-                UserInfoUtils.saveUserInfo(InputInviteCodeActivity.this, userInfo);
+                //UserInfoUtils.saveUserInfo(InputInviteCodeActivity.this, userInfo);
+                AccountManager.getInstance().setLoginSuccess(userInfo);
             }
 
             @Override
