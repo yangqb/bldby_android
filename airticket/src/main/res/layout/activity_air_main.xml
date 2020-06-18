@@ -1,18 +1,303 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".AirMainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_f8f8f8"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:background="@mipmap/air_bg" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="185dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/shape_air_home_bg"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/btn_domestic"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:onClick="@{viewModel.onClickAirType}"
+                                android:paddingTop="20dp"
+                                android:text="国内"
+                                android:textColor="@color/color_333333"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/btn_international"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:onClick="@{viewModel.onClickAirType}"
+                                android:paddingTop="20dp"
+                                android:text="国际/中国港澳台"
+                                android:textColor="@color/color_333333"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/btn_come_go"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:onClick="@{viewModel.onClickAirType}"
+                                android:paddingTop="20dp"
+                                android:text="往返"
+                                android:textColor="@color/color_333333"
+                                android:textSize="15sp" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="7dp">
+
+                            <View
+                                android:id="@+id/line1"
+                                android:layout_width="28.5dp"
+                                android:layout_height="2.5dp"
+                                android:background="@color/color_fed228" />
+
+                            <View
+                                android:id="@+id/line2"
+                                android:layout_width="28.5dp"
+                                android:layout_height="2.5dp"
+                                android:layout_centerInParent="true"
+                                android:background="@color/white" />
+
+                            <View
+                                android:id="@+id/line3"
+                                android:layout_width="28.5dp"
+                                android:layout_height="2.5dp"
+                                android:layout_alignParentEnd="true"
+                                android:background="@color/white" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp">
+
+                        <ImageView
+                            android:id="@+id/reversalCity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_centerVertical="true"
+                            android:background="@mipmap/air_icon"
+                            android:onClick="@{viewModel.onClickBtn}" />
+
+                        <TextView
+                            android:id="@+id/depCityName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:ellipsize="end"
+                            android:maxWidth="100dp"
+                            android:maxLines="1"
+                            android:onClick="@{viewModel.onSelectCity}"
+                            android:text="北京"
+                            android:textColor="@color/color_333333"
+                            android:textSize="26sp" />
+
+                        <TextView
+                            android:id="@+id/arrCityName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:ellipsize="end"
+                            android:maxWidth="100dp"
+                            android:maxLines="1"
+                            android:onClick="@{viewModel.onSelectCity}"
+                            android:text="上海"
+                            android:textColor="@color/color_333333"
+                            android:textSize="26sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_select_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp">
+
+                        <LinearLayout
+                            android:id="@+id/ll_goDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{viewModel.onSelectDate}"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/startDate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:text="02月16日"
+                                android:textColor="@color/color_333333"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/startWeek"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="周六"
+                                android:textColor="@color/color_333333"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_comeDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:onClick="@{viewModel.onSelectDate}"
+                            android:orientation="horizontal"
+                            android:visibility="invisible">
+
+                            <TextView
+                                android:id="@+id/endDate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:text="02月16日"
+                                android:textColor="@color/color_333333"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/endWeek"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="周六"
+                                android:textColor="@color/color_333333"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/ll_order_check"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_72"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/search">
+
+                    <LinearLayout
+                        android:id="@+id/ll_order"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="@{viewModel.onClickBtn}"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/dp_24"
+                            android:layout_height="@dimen/dp_24"
+                            android:background="@mipmap/air_order_icon" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="机票订单"
+                            android:textColor="@color/color_333333"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_select_check_in"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="@{viewModel.onClickBtn}"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/dp_24"
+                            android:layout_height="@dimen/dp_24"
+                            android:background="@mipmap/air_check_in" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="值机选座"
+                            android:textColor="@color/color_333333"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/search"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:layout_marginTop="44dp"
+                    android:background="@drawable/shape_air_home_search"
+                    android:gravity="center"
+                    android:onClick="@{viewModel.onClickBtn}"
+                    android:text="搜索"
+                    android:textColor="@color/color_333333"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.bldby.airticket.ui.AirMainActivity" />
+    </data>
+</layout>

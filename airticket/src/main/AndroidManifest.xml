@@ -3,7 +3,21 @@
     package="com.bldby.airticket">
 
     <application>
-        <activity android:name=".AirMainActivity"></activity>
+        <activity
+            android:name="com.bldby.airticket.ui.AirMainActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.SelectPlaneCityActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.AirCalendarActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.SearchFlightActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.SearchFlightActivity2"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

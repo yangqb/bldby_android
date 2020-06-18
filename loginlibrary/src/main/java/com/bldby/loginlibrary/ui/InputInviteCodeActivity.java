@@ -14,8 +14,8 @@ import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
 import com.bldby.loginlibrary.R;
 import com.bldby.loginlibrary.databinding.ActivityInviteCodeBinding;
+import com.bldby.loginlibrary.model.BaseUserInfo;
 import com.bldby.loginlibrary.model.UserInfo;
-import com.bldby.loginlibrary.model.UserModel;
 import com.bldby.loginlibrary.request.BidingInviteCodeRequest;
 import com.bldby.loginlibrary.request.UserInfoRequest;
 import com.bldby.loginlibrary.util.UserInfoUtils;
@@ -85,15 +85,14 @@ public class InputInviteCodeActivity extends BaseUiActivity {
         UserInfoRequest request = new UserInfoRequest();
         request.userId = userId;
         request.accessToken = accessToken;
-        request.call(new ApiCallBack<UserModel>() {
+        request.call(new ApiCallBack<BaseUserInfo>() {
             @Override
-            public void onAPIResponse(UserModel response) {
+            public void onAPIResponse(BaseUserInfo response) {
                 UserInfo userInfo = UserInfoUtils.getUserInfo(InputInviteCodeActivity.this);
                 userInfo.headImg = response.headImg;
                 userInfo.nickName = response.nickName;
                 userInfo.accountType = response.accountType;
                 userInfo.parentId = response.parentId;
-                userInfo.uid = response.uid;
                 userInfo.clientType = response.clientType;
                 userInfo.balance = response.balance;
                 userInfo.totalConsume = response.totalConsume;

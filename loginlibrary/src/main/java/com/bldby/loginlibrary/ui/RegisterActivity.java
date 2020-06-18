@@ -20,18 +20,20 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bldby.baselibrary.app.util.RegUtils;
+import com.bldby.baselibrary.constants.RouteAirConstants;
 import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
 import com.bldby.baselibrary.core.util.ToastUtil;
 import com.bldby.loginlibrary.R;
 import com.bldby.loginlibrary.databinding.ActivityRegisterBinding;
-import com.bldby.loginlibrary.model.UserInfo;
-import com.bldby.loginlibrary.model.UserModel;
+import com.bldby.loginlibrary.model.BaseUserInfo;
 import com.bldby.loginlibrary.request.LoginRequest;
 import com.bldby.loginlibrary.request.RegisterCodeRequest;
 import com.bldby.loginlibrary.request.UserInfoRequest;
+import com.bldby.loginlibrary.model.UserInfo;
 import com.bldby.loginlibrary.util.UserInfoUtils;
+
 
 /**
  * package name: com.bldby.loginlibrary.ui
@@ -41,7 +43,7 @@ import com.bldby.loginlibrary.util.UserInfoUtils;
  * email: 694125155@qq.com
  */
 /*
- * 注册页面
+ * 注册登录页面
  * */
 @Route(path = RouteLoginConstants.REGISTER)
 public class RegisterActivity extends BaseUiActivity {
@@ -141,7 +143,7 @@ public class RegisterActivity extends BaseUiActivity {
             @Override
             public void onAPIResponse(UserInfo response) {
                 UserInfoUtils.saveUserInfo(RegisterActivity.this, response);
-                if (response.isBindCode == 0) {
+                if (response.isBindCode == 0) {//未填写过邀请码
                     startWith(RouteLoginConstants.LOGININVITE).withString("token", response.accessToken).withString("userId", response.userId).navigation();
                 } else {
                     getUserInfo(response.userId, response.accessToken);
@@ -162,15 +164,14 @@ public class RegisterActivity extends BaseUiActivity {
         UserInfoRequest request = new UserInfoRequest();
         request.userId = userId;
         request.accessToken = accessToken;
-        request.call(new ApiCallBack<UserModel>() {
+        request.call(new ApiCallBack<BaseUserInfo>() {
             @Override
-            public void onAPIResponse(UserModel response) {
+            public void onAPIResponse(BaseUserInfo response) {
                 UserInfo userInfo = UserInfoUtils.getUserInfo(RegisterActivity.this);
                 userInfo.headImg = response.headImg;
                 userInfo.nickName = response.nickName;
                 userInfo.accountType = response.accountType;
                 userInfo.parentId = response.parentId;
-                userInfo.uid = response.uid;
                 userInfo.clientType = response.clientType;
                 userInfo.balance = response.balance;
                 userInfo.totalConsume = response.totalConsume;
@@ -186,6 +187,7 @@ public class RegisterActivity extends BaseUiActivity {
                 userInfo.paypass = response.userInfo.paypass;
                 userInfo.personSign = response.userInfo.personSign;
                 UserInfoUtils.saveUserInfo(RegisterActivity.this, userInfo);
+                start(RouteAirConstants.MAIN);
             }
 
             @Override
