@@ -159,6 +159,15 @@ public abstract class BaseActivity extends SupportActivity implements Navigation
 
     }
 
+    /*
+     * 需要上个页面回调返回参数的
+     * */
+    public void start(String url, int requestCode) {
+        ARouter.getInstance()
+                .build(url)
+                .navigation(this, requestCode, this);
+    }
+
     /**
      * 设置传递参数
      *

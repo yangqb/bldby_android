@@ -31,6 +31,7 @@ public abstract class BaseUiActivity extends BaseActivity {
 
     /**
      * 取消顶部颜色交由子页面控制
+     *
      * @param color
      */
     public void setTitleBackground(@ColorRes int color) {
@@ -54,6 +55,10 @@ public abstract class BaseUiActivity extends BaseActivity {
         finish();
     }
 
+    public void onClickRight(View view) {
+
+    }
+
     //容器
     protected abstract View initContentView(LayoutInflater layoutInflater, ViewGroup viewGroup);
 
@@ -69,5 +74,15 @@ public abstract class BaseUiActivity extends BaseActivity {
         }
     }
 
+    /*
+     * 创建右侧标题
+     * */
+    protected void initRightText(String rightText) {
+        if (!StringUtils.isEmpty(rightText)) {
+            viewDataBinding.rightText.setText(rightText);
+        } else {
+            viewDataBinding.rightText.setText("");
+        }
+    }
 
 }

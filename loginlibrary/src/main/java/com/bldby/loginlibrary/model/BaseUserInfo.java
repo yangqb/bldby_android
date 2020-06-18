@@ -9,7 +9,7 @@ import java.io.Serializable;
  * time: 15:35
  * email: 694125155@qq.com
  */
-public class UserModel implements Serializable {
+public class BaseUserInfo implements Serializable {
     public UserData userInfo;
     public String headImg;//":"http://bldby-pro.oss-cn-beijing.aliyuncs.com/user/default_headimg.png?OSSAccessKeyId=LTAI4GHEkb4SUqKsjoLMcw1d&Expires=7779392034789&Signature=LY6fSJKVZ1k1xB1znu8JQmHMNQs%3D",
     public String nickName;//":"便利大本营0321",

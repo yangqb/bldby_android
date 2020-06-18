@@ -1,5 +1,7 @@
 package com.bldby.baselibrary.core.util;
 
+import android.annotation.SuppressLint;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -109,6 +111,40 @@ public class DateUtil {
         for (int f : fields) {
             c.set(f, 0);
         }
+    }
+
+    /*
+     *
+     * 2011-02-03得到周几
+     * */
+    @SuppressLint("SimpleDateFormat")
+    public static String strToWeek(String pattern, String strDate) {
+        SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+        Calendar c = Calendar.getInstance();
+        try {
+            c.setTime(formatter.parse(strDate));
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
+        String week = sdf.format(c.getTime());
+        String result = week.substring(week.length() - 1);
+        return "周" + result;
+    }
+
+    /*
+     * 将分钟转换成小时
+     * */
+    public static String minToHour(String str) {
+        String result = "";
+        if (Integer.valueOf(str) > 60) {
+            int hour = Integer.valueOf(str) / 60;
+            int min = Integer.valueOf(str) % 60;
+            result = hour + "小时" + min + "分钟";
+        } else {
+            result = str + "分钟";
+        }
+        return result;
     }
 
 }

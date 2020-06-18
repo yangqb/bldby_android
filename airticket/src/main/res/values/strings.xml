@@ -1,1 +1,11 @@
-<resources></resources>
+<resources>
+    <string name="str_hint_search_city">请输入城市名或拼音</string>
+    <string name="str_cancel">取消</string>
+    <string name="str_retry_location">重新定位</string>
+    <string name="str_is_location">正在定位</string>
+    <string name="air_city_select_error">疫情期间暂不支持国际/中国港澳台业务</string>
+    <string name="air_date_select_ok">确定</string>
+    <string name="air_date_no_select">请选择日期</string>
+    <string name="air_city_no_select">请选择城市</string>
+
+</resources>

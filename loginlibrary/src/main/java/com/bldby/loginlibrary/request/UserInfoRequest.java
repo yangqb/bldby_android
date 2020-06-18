@@ -4,7 +4,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.bldby.baselibrary.app.network.BaseLoginRequest;
 import com.bldby.baselibrary.core.network.ParamsBuilder;
 import com.bldby.baselibrary.core.network.RequestLevel;
-import com.bldby.loginlibrary.model.UserModel;
+import com.bldby.loginlibrary.model.BaseUserInfo;
 
 /**
  * package name: com.bldby.loginlibrary.request
@@ -38,7 +38,7 @@ public class UserInfoRequest extends BaseLoginRequest {
 
     @Override
     public TypeReference getDatatype() {
-        return new TypeReference<UserModel>() {
+        return new TypeReference<BaseUserInfo>() {
 
         };
     }

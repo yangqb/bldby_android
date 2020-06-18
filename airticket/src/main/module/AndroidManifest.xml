@@ -6,12 +6,24 @@
         android:allowBackup="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.bldby.airticket.AirMainActivity">
+        <activity android:name="com.bldby.airticket.ui.AirMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.SelectPlaneCityActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.AirCalendarActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.SearchFlightActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.SearchFlightActivity2"
+            android:theme="@style/AppTheme" />
     </application>
 </manifest>

@@ -17,7 +17,6 @@ public class UserInfo implements Serializable {
     public String nickName;//":"便利大本营0321",
     public int accountType;//":0,账户类型，参考NetBodyEnum枚举类 ,
     public String parentId;//":"6HLRAC",邀请人邀请码 ,
-    public String uid;//":6,
     public int clientType;//":5,客户端类型（1：android，2：ios，3：其他） ,
     public double balance;//":0,余额
     public String openid;// (string, optional): 微信平台用户唯一标识 ,
