@@ -57,6 +57,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(path: ':baselibrary')
+    implementation project(path: ':loginlibrary')
 
     if (rootProject.ext.isTravelApplication) {
         implementation project(path: ':loginlibrary')

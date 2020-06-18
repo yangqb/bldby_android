@@ -2,8 +2,11 @@ ext {
 //    false:作为Lib组件存在， true:作为application存在
     isBaseApplication = false  //这个不建议改
     isLoginApplication = false  //登录作为逻辑基础组件,运行其他项目都要依赖这个组件
+
+
+
     isShopApplication = false
-    isTravelApplication = true
+    isTravelApplication = false
     isAirTicketApplication = true
 
     android = [
@@ -110,7 +113,6 @@ ext {
             "xlog"                           : 'com.elvishew:xlog:1.6.1',
             "pinyin"                         : 'com.github.SilenceDut:jpinyin:v1.0',
             "calendar"                       : 'com.necer.ncalendar:ncalendar:4.3.8',
-
 //             "butterknife"             : "com.jakewharton:butterknife:8.5.1",
 //             "butterknife-compiler"    : "com.jakewharton:butterknife-compiler:8.5.1",
 //            //network
@@ -156,7 +158,7 @@ ext {
             "junit"                          : 'junit:junit:4.12',
             "runner"                         : 'com.android.support.test:runner:1.0.2',
             "espresso-core"                  : 'com.android.support.test.espresso:espresso-core:3.0.2',
-            "flexbox"                        : 'com.google.android:flexbox:1.0.0',
+            "flexbox"                        :'com.google.android:flexbox:1.0.0',
 
 
 //testImplementation 'junit:junit:4.12'

@@ -5,8 +5,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.alibaba.android.arouter.facade.Postcard;
+import com.alibaba.android.arouter.facade.callback.NavigationCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bldby.baselibrary.R;
+import com.bldby.baselibrary.constants.RouteConstants;
+import com.bldby.baselibrary.core.util.ToastUtil;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.enums.PopupAnimation;
 import com.lxj.xpopup.impl.LoadingPopupView;
@@ -25,7 +29,7 @@ import me.yokeyword.fragmentation.SupportFragment;
 //    public long key1;
 //3.通过Bundle获取
 //    getIntent().getExtras().getLong("key1")
-public abstract class Basefragment extends SupportFragment {
+public abstract class Basefragment extends SupportFragment implements NavigationCallback {
     LoadingPopupView loadingPopup;
 
     @Override
@@ -115,5 +119,116 @@ public abstract class Basefragment extends SupportFragment {
     public void onDestroy() {
         super.onDestroy();
         loadingPopup = null;
+    }
+
+    public void startTo(String url) {
+        // 使用两个参数的navigation方法，可以获取单次跳转的结果
+        ARouter.getInstance()
+                .build(url)
+                .navigation(getActivity(), this);
+
+    }
+
+    /*
+     * 需要上个页面回调返回参数的
+     * */
+    public void startTo(String url, int requestCode) {
+        ARouter.getInstance()
+                .build(url)
+                .navigation(getActivity(), requestCode, this);
+    }
+
+    /**
+     * 设置传递参数
+     *
+     * @param url
+     * @param bundle
+     */
+    public void startTo(String url, Bundle bundle) {
+        Postcard build = ARouter.getInstance().build(url);
+        build.with(bundle);
+        build.navigation(getActivity(), this);
+    }
+
+    /**
+     * 退出所有activity到mainActivity
+     */
+    public void popToRoot() {
+        ARouter.getInstance()
+                .build(RouteConstants.APPMAIN)
+                .navigation(getActivity(), this);
+    }
+
+
+    /**
+     * 自定义参数 需要手动调用 .navigation(this, this)
+     * ARouter.getInstance().build("/test/1")
+     * .withLong("key1", 666L)
+     * .withString("key3", "888")
+     * .withSerializable("key4", new Test("Jack", "Rose"))
+     * .withObject("map", map)
+     * .navigation();
+     * 也可直接获取fragment
+     * 最后可以跳转时一定要使用navigation(this, this)才可以获取回调
+     *
+     * @param url
+     * @return
+     */
+    public Postcard startWith(String url) {
+        Postcard build = ARouter.getInstance().build(url);
+        return build;
+    }
+
+//    又返回参数的跳转
+//    startActivityForResult();
+//    navigation(Context mContext, int requestCode, NavigationCallback callback)
+
+    public Basefragment getFragment(String url) {
+        // 获取Fragment
+        Basefragment fragment = (Basefragment) ARouter
+                .getInstance()
+                .build(url)
+                .navigation(getActivity(), this);
+        return fragment;
+    }
+
+    /**
+     * 设置传递参数
+     *
+     * @param url
+     * @param bundle
+     */
+    public Basefragment getFragmentWithBundle(String url, Bundle bundle) {
+        Basefragment fragment = (Basefragment) ARouter
+                .getInstance()
+                .build(url)
+                .with(bundle)
+                .navigation(getActivity(), this);
+        return fragment;
+    }
+
+
+    //跳转成功返回
+    @Override
+    public void onFound(Postcard postcard) {
+
+    }
+
+    //找不到的时候回调
+    @Override
+    public void onLost(Postcard postcard) {
+        ToastUtil.show(getString(R.string.nofoundView));
+    }
+
+    //跳转结束
+    @Override
+    public void onArrival(Postcard postcard) {
+
+    }
+
+    //被拦截
+    @Override
+    public void onInterrupt(Postcard postcard) {
+        ToastUtil.show("被拦截");
     }
 }
