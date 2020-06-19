@@ -8,6 +8,7 @@ ext {
     isShopApplication = false
     isTravelApplication = false
     isAirTicketApplication = true
+    isCenterApplication = false;
 
     android = [
             compileSdkVersion: 28,

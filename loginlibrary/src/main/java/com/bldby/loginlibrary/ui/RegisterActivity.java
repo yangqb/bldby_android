@@ -188,12 +188,12 @@ public class RegisterActivity extends BaseUiActivity {
                 userInfo.paypass = response.userInfo.paypass;
                 userInfo.personSign = response.userInfo.personSign;
                 AccountManager.getInstance().updataLoginInfo(response);
-                start(RouteAirConstants.MAIN);
+                finish();
             }
 
             @Override
             public void onAPIError(int errorCode, String errorMsg) {
-                start(RouteAirConstants.MAIN);
+
             }
         });
     }

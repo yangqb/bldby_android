@@ -53,27 +53,27 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="18dp"
+                            android:layout_height="14dp"
                             android:background="@drawable/shape_air_left_vip"
                             android:gravity="end|center_vertical"
-                            android:paddingLeft="5dp"
+                            android:paddingLeft="8dp"
                             android:paddingRight="5dp"
                             android:text="成为会员"
-                            android:textColor="@color/color_333333"
+                            android:textColor="@color/color_FBEAC8"
                             android:textSize="10sp" />
 
                         <TextView
                             android:id="@+id/tv_rebate"
                             android:layout_width="wrap_content"
-                            android:layout_height="18dp"
+                            android:layout_height="14dp"
                             android:background="@drawable/shape_air_right_vip"
                             android:ellipsize="end"
                             android:gravity="center_vertical"
                             android:maxLines="1"
                             android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
+                            android:paddingRight="8dp"
                             android:text="省¥0.00"
-                            android:textColor="@color/color_333333"
+                            android:textColor="@color/color_EA362C"
                             android:textSize="10sp" />
 
                     </LinearLayout>
@@ -82,13 +82,13 @@
                         android:id="@+id/vip_rebate"
                         android:layout_width="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_height="18dp"
+                        android:layout_height="14dp"
                         android:background="@drawable/shape_air_vip"
                         android:gravity="center"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
                         android:text="省¥0.00"
-                        android:textColor="@color/color_333333"
+                        android:textColor="@color/color_EA362C"
                         android:textSize="10sp"
                         android:visibility="gone" />
                 </RelativeLayout>
@@ -105,11 +105,11 @@
                 android:textSize="11sp" />
         </LinearLayout>
 
-<!--android:background="@drawable/shape_fed428_r5"-->
         <LinearLayout
             android:id="@+id/btn_reserve"
             android:layout_width="48dp"
             android:layout_height="44dp"
+            android:background="@drawable/shape_air_detail_btn"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:gravity="center"
