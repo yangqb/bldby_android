@@ -7,13 +7,13 @@ import com.bldby.baselibrary.core.network.BaseApiResponse;
  * Created by bch on 2020/5/11
  * 通用请求返回公共处理类
  */
-public class BaseResponse extends BaseApiResponse {
+public class Base0Response extends BaseApiResponse {
     @JSONField(name = "data")
     public Object data;
 
     @JSONField(name = "code")
     public int code = -1;
-//
+    //
     @JSONField(name = "msg")
     public String msg;
 //
@@ -28,11 +28,11 @@ public class BaseResponse extends BaseApiResponse {
         return code;
     }
 
-    public String getMessage(){
+    public String getMessage() {
         return msg;
     }
 
     public boolean isRequestSuccess() {
-        return (code == 200);
+        return (code == 0);
     }
 }

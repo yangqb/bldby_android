@@ -12,5 +12,25 @@
         android:layout_height="match_parent"
         tools:context=".goods.EvaluateActivity">
 
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/smartRe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srlEnableLoadMore="true"
+            android:paddingStart="@dimen/dp_15"
+            android:paddingEnd="@dimen/dp_15"
+            app:srlEnableRefresh="true">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </android.support.v7.widget.RecyclerView>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
     </android.support.constraint.ConstraintLayout>
 </layout>

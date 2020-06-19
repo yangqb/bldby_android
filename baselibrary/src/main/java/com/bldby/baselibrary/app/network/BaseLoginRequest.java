@@ -3,6 +3,8 @@ package com.bldby.baselibrary.app.network;
 import com.alibaba.fastjson.TypeReference;
 import com.bldby.baselibrary.app.NetworkConfig;
 
+import static com.bldby.baselibrary.app.NetworkConfig.DEV_LOGIN_BASE_URL;
+
 /**
  * package name: com.bldby.baselibrary.app.network
  * user: yangqinbo
@@ -13,7 +15,8 @@ import com.bldby.baselibrary.app.NetworkConfig;
 public abstract class BaseLoginRequest extends BaseRequest {
     @Override
     public String getAPIBaseURL() {
-        return NetworkConfig.getInstance().getBaseUrl();
+        return DEV_LOGIN_BASE_URL;
+//        return NetworkConfig.getInstance().getBaseUrl();
     }
 
     @Override
