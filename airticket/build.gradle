@@ -58,6 +58,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(path: ':baselibrary')
     implementation project(path: ':loginlibrary')
+    implementation project(path: ':centerlibrary')
     annotationProcessor rootProject.ext.dependencies["router-compiler"]
 
     if (rootProject.ext.isAirTicketApplication) {

@@ -124,6 +124,9 @@ dependencies {
     if (!rootProject.ext.isAirTicketApplication) {
         implementation project(path: ':airticket')
     }
+    if (!rootProject.ext.isCenterApplication) {
+        implementation project(path: ':centerlibrary')
+    }
     annotationProcessor rootProject.ext.dependencies["router-compiler"]
     annotationProcessor rootProject.ext.dependencies["permissionsdispatcher-processor"]
 

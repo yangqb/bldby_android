@@ -8,6 +8,7 @@ import android.support.design.widget.TabLayout;
 import android.util.Log;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.bldby.baselibrary.constants.RouteCenterConstants;
 import com.bldby.baselibrary.constants.RouteConstants;
 import com.bldby.baselibrary.constants.RouteShopConstants;
 import com.bldby.baselibrary.constants.RouteTravelConstants;
@@ -24,6 +25,7 @@ public class MainActivity extends BaseActivity {
     private ActivityMainBinding binding;
     private Basefragment home;
     private Basefragment classify;
+    private Basefragment center;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,7 +42,8 @@ public class MainActivity extends BaseActivity {
     public void initView() {
         home = (Basefragment) startWith(RouteShopConstants.SHOPMAINFirst).withString("key", "sdjfsf").navigation(this, this);
         classify = (Basefragment) startWith(RouteShopConstants.SHOPMAINCLASSIFY).withString("key", "fenlei").navigation();
-        loadMultipleRootFragment(R.id.root, 0, home, classify);
+        center = (Basefragment) startWith(RouteCenterConstants.CENTERMAIN).withString("key", "center").navigation();
+        loadMultipleRootFragment(R.id.root, 0, home, classify, center);
 
     }
 
@@ -78,7 +81,7 @@ public class MainActivity extends BaseActivity {
                         break;
                     case 3:
 //                        start(RouteTravelConstants.TRAVELMAIN);
-                        showHideFragment(classify);
+                        showHideFragment(center);
 
                         break;
                     default:

@@ -17,5 +17,7 @@
     <color name="color_cccccc">#cccccc</color>
     <color name="color_EA362C">#EA362C</color>
     <color name="color_FBEAC8">#FBEAC8</color>
+    <color name="bg_yellow">#FED428</color>
+    <color name="color_F1EFEF">#F1EFEF</color>
 
 </resources>

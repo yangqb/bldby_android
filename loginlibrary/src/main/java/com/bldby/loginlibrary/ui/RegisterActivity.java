@@ -180,7 +180,7 @@ public class RegisterActivity extends BaseUiActivity {
 
             @Override
             public void onAPIError(int errorCode, String errorMsg) {
-                start(RouteAirConstants.MAIN);
+
             }
         });
     }
