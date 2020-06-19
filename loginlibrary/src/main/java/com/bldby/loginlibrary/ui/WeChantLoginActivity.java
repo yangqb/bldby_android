@@ -9,8 +9,10 @@ import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
 import com.bldby.baselibrary.core.util.ToastUtil;
+import com.bldby.loginlibrary.AccountManager;
 import com.bldby.loginlibrary.R;
 import com.bldby.loginlibrary.databinding.ActivityLoginWechantBinding;
+import com.bldby.loginlibrary.model.LoginInfo;
 import com.bldby.loginlibrary.model.UserInfo;
 import com.bldby.loginlibrary.model.WXUserInfo;
 import com.bldby.loginlibrary.request.WeChantLoginRequest;
@@ -82,6 +84,9 @@ public class WeChantLoginActivity extends BaseUiActivity {
                 wxUserInfo.province = map.get("province");
                 //wxUserInfo.sex = 1;
                 wxUserInfo.unionid = map.get("unionid");
+                UserInfo userInfo = AccountManager.getInstance().getUserInfo();
+                userInfo.wxUserInfo = wxUserInfo;
+                AccountManager.getInstance().setLoginSuccess(userInfo);
                 wxLogin(wxUserInfo);
             }
 
@@ -104,9 +109,9 @@ public class WeChantLoginActivity extends BaseUiActivity {
         weChantLoginRequest.nickname = wxUserInfo.nickname;
         weChantLoginRequest.openid = wxUserInfo.openid;
         weChantLoginRequest.unionid = wxUserInfo.unionid;
-        weChantLoginRequest.call(new ApiCallBack<UserInfo>() {
+        weChantLoginRequest.call(new ApiCallBack<LoginInfo>() {
             @Override
-            public void onAPIResponse(UserInfo response) {
+            public void onAPIResponse(LoginInfo response) {
                 //未绑定手机号
                 if (response.isBindPhone == 0) {
                     start(RouteLoginConstants.BIDINGACCOUNT);

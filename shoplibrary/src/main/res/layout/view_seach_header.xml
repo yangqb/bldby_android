@@ -35,7 +35,7 @@
             android:paddingBottom="@dimen/dp_7">
 
             <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/iv_head"
+                android:id="@+id/img"
                 android:layout_width="@dimen/dp_32"
                 android:layout_height="@dimen/dp_32"
                 android:layout_gravity="center_vertical"

@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.bldby.baselibrary.constants.RouteAirConstants;
 import com.bldby.baselibrary.constants.RouteTravelConstants;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
 import com.bldby.shoplibrary.adapter.HomeMoreAdapter;
@@ -209,7 +210,15 @@ public class HomeFragment extends Basefragment {
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                startTo(RouteTravelConstants.TRAVELMAIN);
+                switch (i){
+                    case 2:
+                        startTo(RouteAirConstants.MAIN);
+                        break;
+                    case 3:
+                        startTo(RouteTravelConstants.TRAVELMAIN);
+                        break;
+                }
+
             }
         });
     }

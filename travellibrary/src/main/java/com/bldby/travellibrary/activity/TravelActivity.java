@@ -2,7 +2,9 @@ package com.bldby.travellibrary.activity;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
+import android.os.Handler;
 import android.os.SystemClock;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,6 +33,8 @@ import com.bldby.travellibrary.activity.model.TravelModel;
 import com.bldby.travellibrary.activity.request.OilStationsUrlRequest;
 import com.bldby.travellibrary.databinding.ActivityTravelBinding;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +78,12 @@ public class TravelActivity extends BaseActivity {
 
             }
         });
+        dataBinding.travBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         View mEmptyView = View.inflate(TravelActivity.this, R.layout.view_common_nodata, null);
         ImageView img_empty = (ImageView) mEmptyView.findViewById(R.id.img_empty);
         img_empty.setOnClickListener(new View.OnClickListener() {
@@ -113,9 +123,9 @@ public class TravelActivity extends BaseActivity {
         initoil();
         //smart刷新加载方法（）
         initswipeLayout();
+
         //String string = SPUtils.getString(TravelActivity.this, Constants.USER_DATA);
-        UserInfo userInfo = AccountManager.getInstance().getUserInfo();
-        token = userInfo.accessToken;
+        token = AccountManager.getInstance().getToken();
         myoiladapter = new MyOilAdapter(null);
         myoiladapter.setEmptyView(mEmptyView);
         dataBinding.oilrecy.setAdapter(myoiladapter);
@@ -123,6 +133,30 @@ public class TravelActivity extends BaseActivity {
     }
 
     private void initswipeLayout() {
+
+        dataBinding.swipeLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull final RefreshLayout refreshLayout) {
+                //延迟3秒关闭
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshLayout.finishLoadMore();
+                    }
+                }, 3000);
+
+            }
+
+            @Override
+            public void onRefresh(@NonNull final RefreshLayout refreshLayout) {
+                //2，刷新完成关闭，正常情况是请求接口完成关闭
+                //3,如果需要在网络请求结束后关闭，则调用
+//                smart.finishRefresh();
+//                smart.finishLoadMore();
+                refreshLayout.finishRefresh();
+                refreshLayout.setNoMoreData(true);
+            }
+        });
     }
 
     private void initoil() {
@@ -138,13 +172,12 @@ public class TravelActivity extends BaseActivity {
     }
 
     private void initwork(String dinstancenumber, String oilnumbersum, boolean isLoadM, int pageNo) {
-        UserInfo userInfo = new UserInfo();
         kms = dinstancenumber.split("km");
         split = oilnumbersum.split("#");
         dataBinding.oilrecy.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         OilStationsUrlRequest oilStationsRequest = new OilStationsUrlRequest(longitude, latitude, Integer.valueOf(kms[0]), Integer.valueOf(split[0]), pagenum, pageNo);
-        oilStationsRequest.userId = userInfo.userId;
-        oilStationsRequest.accessToken = userInfo.accessToken;
+        oilStationsRequest.userId = AccountManager.getInstance().getUserId();
+        oilStationsRequest.accessToken = AccountManager.getInstance().getToken();
         oilStationsRequest.isShowLoading = true;
         oilStationsRequest.call(new ApiCallBack<List<OilListBean>>() {
 
@@ -170,7 +203,7 @@ public class TravelActivity extends BaseActivity {
                         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                             OilListBean oilListBean = myoiladapter.getData().get(position);
 
-                            String accessToken = userInfo.accessToken;
+                            String accessToken = AccountManager.getInstance().getToken();
                             token = accessToken;
                             if (token == null || TextUtils.isEmpty(token)) {
                                 /*Intent intent = new Intent(TravelHomeActivity.this, LoginActivity.class);

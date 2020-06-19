@@ -228,8 +228,8 @@ public class AirReserveActivity extends BaseAirUiActivity {
     public void loadData() {
 
         AddressListRequest request = new AddressListRequest();
-        request.accessToken = userInfo.accessToken;
-        request.userId = userInfo.userId;
+        request.accessToken = userInfo.loginInfo.accessToken;
+        request.userId = userInfo.loginInfo.userId;
         request.call(new ApiLifeCallBack<AddressInfo>() {
             @Override
             public void onStart() {

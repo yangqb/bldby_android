@@ -26,7 +26,7 @@ public class HomeListAdapter extends BaseQuickAdapter<Integer, BaseViewHolder> {
         loadImg(integer, img);
         switch (baseViewHolder.getAdapterPosition()){
             case 0:
-                textview.setText(R.string.home_shoppingmall);
+                textview.setText(R.string.s_home_shoppingmall);
                 break;
             case 1:
                 textview.setText(R.string.home_business);

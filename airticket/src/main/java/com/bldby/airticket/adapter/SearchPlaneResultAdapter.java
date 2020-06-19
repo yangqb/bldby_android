@@ -46,9 +46,7 @@ public class SearchPlaneResultAdapter extends BaseMultiItemQuickAdapter<Multiple
     @Override
     protected void convert(@NonNull BaseViewHolder helper, MultipleGoSearchFightInfo item) {
         helper.addOnClickListener(R.id.ll_rebate);
-
-        UserInfo userInfo = AccountManager.getInstance().getUserInfo();
-        if (userInfo.accountType != 0) {
+        if (AccountManager.getInstance().getUserInfo().accountInfo.accountType != 0) {
             helper.setGone(R.id.ll_rebate, false);
             helper.setGone(R.id.vip_rebate, true);
         } else {

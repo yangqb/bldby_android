@@ -15,6 +15,7 @@ import com.bldby.baselibrary.constants.RouteTravelConstants;
 import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
+import com.bldby.loginlibrary.AccountManager;
 import com.bldby.loginlibrary.model.UserInfo;
 import com.bldby.travellibrary.R;
 import com.bldby.travellibrary.activity.adapter.TraveFormAdapter;
@@ -51,12 +52,10 @@ public class OilOrderActivity extends BaseActivity {
         oilOrderBinding.recyclerView.setAdapter(traveFormAdapter);
         traveFormAdapter.notifyDataSetChanged();
 
-        UserInfo userInfo = new UserInfo();
-        String phone = userInfo.phone;
         oilOrderBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        OilOrderUrlRequest oilOrderRequest = new OilOrderUrlRequest(50, 1, phone);
-        oilOrderRequest.userId = userInfo.userId;
-        oilOrderRequest.accessToken = userInfo.accessToken;
+        OilOrderUrlRequest oilOrderRequest = new OilOrderUrlRequest(50, 1, AccountManager.getInstance().getUserPhone());
+        oilOrderRequest.userId = AccountManager.getInstance().getUserId();
+        oilOrderRequest.accessToken = AccountManager.getInstance().getToken();
         oilOrderRequest.call(new ApiCallBack<List<OilOrederBean>>() {
             @Override
             public void onAPIResponse(List<OilOrederBean> response) {

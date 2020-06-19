@@ -4,11 +4,18 @@
     <color name="home_line_backrogoud">#F8F8F8</color>
     <color name="home_line_backgrey">#D8D8D8</color>
     <color name="item_recyone_text">#333333</color>
-    <color name="home_miaoshatext_color"> #2C0202 </color>
+    <color name="home_miaoshatext_color">#2C0202</color>
     <color name="home_white">#FFFFFF</color>
     <color name="item_red">#EA362C</color>
     <color name="item_gary">#999999</color>
     <color name="left_vip">#292621</color>
     <color name="left_black">#FBEAC8</color>
     <color name="item_grayfive">#F5F5F5</color>
+    <color name="goods_detail_back">#4D333333</color>
+    <color name="F5F5F5">#F5F5F5</color>
+    <color name="FFEBC2">#FFEBC2</color>
+    <color name="FCB432">#FCB432</color>
+    <color name="ff999999">#ff999999</color>
+    <color name="ff333333">#ff333333</color>
+    <color name="ffea362c">#ffea362c</color>
 </resources>

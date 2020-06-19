@@ -8,7 +8,7 @@
     android:paddingBottom="@dimen/dp_4">
 
     <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/iv_head"
+        android:id="@+id/img"
         android:layout_width="@dimen/dp_24"
         android:layout_height="@dimen/dp_24"
         android:layout_gravity="center_vertical"
@@ -28,9 +28,9 @@
         android:text="小桌子"
         android:textColor="@color/ff333333"
         android:textSize="@dimen/sp_12"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_head"
-        app:layout_constraintStart_toEndOf="@+id/iv_head"
-        app:layout_constraintTop_toTopOf="@+id/iv_head" />
+        app:layout_constraintBottom_toBottomOf="@+id/img"
+        app:layout_constraintStart_toEndOf="@+id/img"
+        app:layout_constraintTop_toTopOf="@+id/img" />
 
     <TextView
         android:layout_width="match_parent"

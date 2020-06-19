@@ -1,9 +1,12 @@
 package com.bldby.shoplibrary.goods.request;
 
 import com.alibaba.fastjson.TypeReference;
+import com.bldby.baselibrary.app.network.BasePagingRequest;
 import com.bldby.baselibrary.app.network.BaseRequest;
+import com.bldby.baselibrary.core.network.ParamsBuilder;
+import com.bldby.shoplibrary.goods.model.GoodsComment;
 
-public class GoodsCommentRequest extends BaseRequest {
+public class GoodsCommentRequest extends BasePagingRequest {
     @Override
     public String getAPIName() {
         return "goodsApi/goodsComment";
@@ -11,6 +14,7 @@ public class GoodsCommentRequest extends BaseRequest {
 
     @Override
     public TypeReference getDatatype() {
-        return null;
+        return new TypeReference<GoodsComment>() {
+        };
     }
 }

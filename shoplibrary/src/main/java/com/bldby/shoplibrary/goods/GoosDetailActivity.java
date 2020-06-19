@@ -28,6 +28,7 @@ import android.view.ViewGroup;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bldby.baselibrary.constants.RouteConstants;
 import com.bldby.baselibrary.constants.RouteShopConstants;
+import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.share.ShareFragment;
 import com.bldby.baselibrary.core.share.ShareMenu;
 import com.bldby.baselibrary.core.share.ShareUtils;
@@ -42,7 +43,9 @@ import com.bldby.shoplibrary.databinding.ActivityGoosDetailBinding;
 import com.bldby.shoplibrary.goods.adapter.AdapterGoodsDetailEvaluate;
 import com.bldby.shoplibrary.goods.adapter.AdapterGoodsDetailGetDiscounts;
 import com.bldby.shoplibrary.goods.model.BannerViewHolder;
+import com.bldby.shoplibrary.goods.model.GoodsDetailModel;
 import com.bldby.shoplibrary.goods.model.ShopDetailModel;
+import com.bldby.shoplibrary.goods.request.GoodsDetailRequest;
 import com.bldby.shoplibrary.home.HomeFragment;
 import com.zhpan.bannerview.BannerViewPager;
 import com.zhpan.bannerview.constants.IndicatorSlideMode;
@@ -103,6 +106,20 @@ public class GoosDetailActivity extends BaseActivity {
 
     @Override
     public void loadData() {
+        GoodsDetailRequest goodsDetailRequest = new GoodsDetailRequest(2);
+        goodsDetailRequest.isShowLoading = true;
+        goodsDetailRequest.call(new ApiCallBack<GoodsDetailModel>() {
+            @Override
+            public void onAPIResponse(GoodsDetailModel response) {
+                dataBinding.goodsName.setText(response.getTitle());
+                dataBinding.goodsDes.setText(response.getSpec());
+            }
+
+            @Override
+            public void onAPIError(int errorCode, String errorMsg) {
+
+            }
+        });
         newsList = new ArrayList();
 
         newsList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592150018281&di=191016011e26f8f035cddb89f08f5e90&imgtype=0&src=http%3A%2F%2Fbos.pgzs.com%2Frbpiczy%2FWallpaper%2F2011%2F12%2F8%2Faa69906a9dc34b8d8fad0e0650a03863-2.jpg");
@@ -243,7 +260,7 @@ public class GoosDetailActivity extends BaseActivity {
      *
      * @param view
      */
- public void onClickToSku(View view) {
+    public void onClickToSku(View view) {
         switch (view.getId()) {
 //            case R.id.collect:
 //                ToastUtil.show("collect");

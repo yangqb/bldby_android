@@ -7,8 +7,12 @@ ext {
 
     isShopApplication = false
     isTravelApplication = false
+<<<<<<< HEAD
     isAirTicketApplication = true
     isCenterApplication = false;
+=======
+    isAirTicketApplication = false
+>>>>>>> master
 
     android = [
             compileSdkVersion: 28,

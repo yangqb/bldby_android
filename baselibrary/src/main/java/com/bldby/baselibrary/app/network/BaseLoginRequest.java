@@ -13,7 +13,7 @@ import com.bldby.baselibrary.app.NetworkConfig;
 public abstract class BaseLoginRequest extends BaseRequest {
     @Override
     public String getAPIBaseURL() {
-        return NetworkConfig.getInstance().getBaseUrl();
+        return NetworkConfig.getInstance().getLoginUrl();
     }
 
     @Override
