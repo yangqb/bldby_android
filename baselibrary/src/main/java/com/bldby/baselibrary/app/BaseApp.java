@@ -11,6 +11,8 @@ import com.bldby.baselibrary.R;
 import com.bldby.baselibrary.app.util.XlogUtil;
 import com.bldby.baselibrary.core.errorlog.CrashHandler;
 import com.bldby.baselibrary.core.analyze.UMengAnalyze;
+import com.bldby.baselibrary.core.smart.MRefreshFooter;
+import com.bldby.baselibrary.core.smart.MRefreshHeader;
 import com.orhanobut.hawk.Hawk;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
@@ -76,7 +78,7 @@ public class BaseApp extends Application {
             public RefreshHeader createRefreshHeader(@NonNull Context context, @NonNull RefreshLayout layout) {
                 layout.setPrimaryColorsId(R.color.F8F8F8, android.R.color.white);//全局设置主题颜色
                 //.setTimeFormat(new DynamicTimeFormat("更新于 %s"));//指定为经典Header，默认是 贝塞尔雷达Header
-                return new ClassicsHeader(context);
+                return new MRefreshHeader(context);
             }
         });
         //设置全局的Footer构建器
@@ -84,7 +86,7 @@ public class BaseApp extends Application {
             @Override
             public RefreshFooter createRefreshFooter(Context context, RefreshLayout layout) {
                 //指定为经典Footer，默认是 BallPulseFooter
-                return new ClassicsFooter(context).setDrawableSize(20);
+                return new MRefreshFooter(context);
             }
         });
     }

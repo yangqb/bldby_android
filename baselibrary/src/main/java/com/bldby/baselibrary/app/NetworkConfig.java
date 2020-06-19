@@ -47,6 +47,7 @@ public class NetworkConfig {
 
     /**
      * 登录
+     *
      * @return
      */
     public String getLoginUrl() {
@@ -58,6 +59,7 @@ public class NetworkConfig {
 
     /**
      * 团油
+     *
      * @return
      */
     public String getTicketBaseUrl() {

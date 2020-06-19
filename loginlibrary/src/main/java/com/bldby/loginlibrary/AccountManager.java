@@ -17,7 +17,7 @@ public class AccountManager {
     private static final String LOGINKEY = "LOGINKEY";
     //保存登录信息的可以
     private static final String LOGINKEYUSERINFO = "LOGINKEYUSERINFO";
-    private UserInfo userInfo = new UserInfo();
+    private static UserInfo userInfo = new UserInfo();
 
     private AccountManager() {
     }
@@ -29,7 +29,7 @@ public class AccountManager {
 
     //已经登陆打开APP获取用户信息
     private void init() {
-        this.userInfo = Hawk.get(LOGINKEYUSERINFO,new UserInfo());
+        this.userInfo = Hawk.get(LOGINKEYUSERINFO, new UserInfo());
     }
 
     /**
@@ -38,6 +38,9 @@ public class AccountManager {
      * @return
      */
     public static boolean isLogin() {
+        if (userInfo == null) {
+            return false;
+        }
         return Hawk.get(LOGINKEY, false);
 //        return true;
     }
