@@ -4,10 +4,10 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.bldby.baselibrary.core.network.BaseApiResponse;
 
 /**
- * Created by bch on 2020/5/11
+ * Created by bch on 2020/6/4
  * 通用请求返回公共处理类
  */
-public class Base0Response extends BaseApiResponse {
+public class BaseTraveUrlResponse extends BaseApiResponse {
     @JSONField(name = "data")
     public Object data;
 
@@ -28,7 +28,7 @@ public class Base0Response extends BaseApiResponse {
         return code;
     }
 
-    public String getMessage() {
+    public String getMessage(){
         return msg;
     }
 

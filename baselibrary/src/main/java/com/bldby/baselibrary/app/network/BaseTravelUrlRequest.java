@@ -25,7 +25,7 @@ public abstract class BaseTravelUrlRequest extends BaseRequest {
      */
     @Override
     public TypeReference getResponseType() {
-        return new TypeReference<Base0Response>() {
+        return new TypeReference<BaseTraveUrlResponse>() {
         };
     }
 

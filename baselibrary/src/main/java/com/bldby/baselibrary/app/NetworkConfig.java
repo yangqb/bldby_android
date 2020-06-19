@@ -45,9 +45,24 @@ public class NetworkConfig {
         return BASE_URL;
     }
 
+    /**
+     * 登录
+     * @return
+     */
+    public String getLoginUrl() {
+        if (getIsDev()) {
+            return DEV_LOGIN_BASE_URL;
+        }
+        return DEV_LOGIN_BASE_URL;
+    }
+
+    /**
+     * 团油
+     * @return
+     */
     public String getTicketBaseUrl() {
         if (getIsDev()) {
-            return TICKET_BASE_URL;
+            return DEV_TICKET_BASE_URL;
         }
         return DEV_TICKET_BASE_URL;
     }
