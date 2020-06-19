@@ -125,8 +125,7 @@ public class TravelActivity extends BaseActivity {
         initswipeLayout();
 
         //String string = SPUtils.getString(TravelActivity.this, Constants.USER_DATA);
-        UserInfo userInfo = AccountManager.getInstance().getUserInfo();
-        token = userInfo.accessToken;
+        token = AccountManager.getInstance().getToken();
         myoiladapter = new MyOilAdapter(null);
         myoiladapter.setEmptyView(mEmptyView);
         dataBinding.oilrecy.setAdapter(myoiladapter);
@@ -173,13 +172,12 @@ public class TravelActivity extends BaseActivity {
     }
 
     private void initwork(String dinstancenumber, String oilnumbersum, boolean isLoadM, int pageNo) {
-        UserInfo userInfo = new UserInfo();
         kms = dinstancenumber.split("km");
         split = oilnumbersum.split("#");
         dataBinding.oilrecy.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         OilStationsUrlRequest oilStationsRequest = new OilStationsUrlRequest(longitude, latitude, Integer.valueOf(kms[0]), Integer.valueOf(split[0]), pagenum, pageNo);
-        oilStationsRequest.userId = userInfo.userId;
-        oilStationsRequest.accessToken = userInfo.accessToken;
+        oilStationsRequest.userId = AccountManager.getInstance().getUserId();
+        oilStationsRequest.accessToken = AccountManager.getInstance().getToken();
         oilStationsRequest.isShowLoading = true;
         oilStationsRequest.call(new ApiCallBack<List<OilListBean>>() {
 
@@ -205,7 +203,7 @@ public class TravelActivity extends BaseActivity {
                         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                             OilListBean oilListBean = myoiladapter.getData().get(position);
 
-                            String accessToken = userInfo.accessToken;
+                            String accessToken = AccountManager.getInstance().getToken();
                             token = accessToken;
                             if (token == null || TextUtils.isEmpty(token)) {
                                 /*Intent intent = new Intent(TravelHomeActivity.this, LoginActivity.class);

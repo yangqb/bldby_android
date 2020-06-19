@@ -28,6 +28,8 @@ import com.bldby.baselibrary.core.util.ToastUtil;
 import com.bldby.loginlibrary.AccountManager;
 import com.bldby.loginlibrary.R;
 import com.bldby.loginlibrary.databinding.ActivityRegisterBinding;
+import com.bldby.loginlibrary.model.AccountInfo;
+import com.bldby.loginlibrary.model.LoginInfo;
 import com.bldby.loginlibrary.model.UserInfo;
 import com.bldby.loginlibrary.request.LoginRequest;
 import com.bldby.loginlibrary.request.RegisterCodeRequest;
@@ -139,14 +141,16 @@ public class RegisterActivity extends BaseUiActivity {
         request.mobile = phone;
         request.mode = "1";
         request.verifyCode = code;
-        request.call(new ApiCallBack<UserInfo>() {
+        request.call(new ApiCallBack<LoginInfo>() {
             @Override
-            public void onAPIResponse(UserInfo response) {
+            public void onAPIResponse(LoginInfo response) {
+                UserInfo userInfo = AccountManager.getInstance().getUserInfo();
+                userInfo.loginInfo = response;
+                AccountManager.getInstance().setLoginSuccess(userInfo);
                 if (response.isBindCode == 0) {
                     //未填写过邀请码
                     startWith(RouteLoginConstants.LOGININVITE).withString("token", response.accessToken).withString("userId", response.userId).navigation();
                 } else {
-                    AccountManager.getInstance().setLoginSuccess(response);
                     getUserInfo(response.userId, response.accessToken);
                 }
             }
@@ -165,29 +169,12 @@ public class RegisterActivity extends BaseUiActivity {
         UserInfoRequest request = new UserInfoRequest();
         request.userId = userId;
         request.accessToken = accessToken;
-        request.call(new ApiCallBack<UserInfo>() {
+        request.call(new ApiCallBack<AccountInfo>() {
             @Override
-            public void onAPIResponse(UserInfo response) {
+            public void onAPIResponse(AccountInfo response) {
                 UserInfo userInfo = AccountManager.getInstance().getUserInfo();
-                userInfo.headImg = response.headImg;
-                userInfo.nickName = response.nickName;
-                userInfo.accountType = response.accountType;
-                userInfo.parentId = response.parentId;
-                userInfo.clientType = response.clientType;
-                userInfo.balance = response.balance;
-                userInfo.totalConsume = response.totalConsume;
-                userInfo.phone = response.phone;
-                userInfo.inviteCode = response.inviteCode;
-                userInfo.totalPoints = response.totalPoints;
-                userInfo.isFrozen = response.isFrozen;
-                userInfo.registerDate = response.registerDate;
-                userInfo.openid = response.openid;
-                userInfo.subordinateCount = response.subordinateCount;
-                userInfo.unionid = response.unionid;
-                userInfo.canWd = response.userInfo.canWd;
-                userInfo.paypass = response.userInfo.paypass;
-                userInfo.personSign = response.userInfo.personSign;
-                AccountManager.getInstance().updataLoginInfo(response);
+                userInfo.accountInfo = response;
+                AccountManager.getInstance().updataLoginInfo(userInfo);
                 start(RouteAirConstants.MAIN);
             }
 

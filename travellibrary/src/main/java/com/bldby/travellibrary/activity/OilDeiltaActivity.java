@@ -21,6 +21,7 @@ import com.bldby.baselibrary.core.network.ApiLifeCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
 import com.bldby.baselibrary.core.util.StringUtils;
 import com.bldby.baselibrary.core.util.ToastUtil;
+import com.bldby.loginlibrary.AccountManager;
 import com.bldby.loginlibrary.model.UserInfo;
 import com.bldby.travellibrary.R;
 import com.bldby.travellibrary.activity.adapter.Distance1Adapter;
@@ -62,9 +63,10 @@ public class OilDeiltaActivity extends BaseActivity {
         String gson = getIntent().getStringExtra("GSON");
         Gson gson1 = new Gson();
         oilListBean = gson1.fromJson(gson, OilListBean.class);
-        oilDeiltaBinding = DataBindingUtil.setContentView(this,R.layout.activity_oil_deilta);
+        oilDeiltaBinding = DataBindingUtil.setContentView(this, R.layout.activity_oil_deilta);
         oilDeiltaBinding.setViewmodel(this);
     }
+
     public String n = "", n1 = "", n2 = "";
 
     public static void toTraveDetailActivity(Context appCompatActivity, OilListBean oilListBean) {
@@ -76,7 +78,6 @@ public class OilDeiltaActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        UserInfo userInfo = new UserInfo();
         oilDeiltaBinding.imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,9 +110,9 @@ public class OilDeiltaActivity extends BaseActivity {
         OilStationsDetailUrlRequest oilStationsDetailRequest = new OilStationsDetailUrlRequest();
         oilStationsDetailRequest.isShowLoading = true;
         oilStationsDetailRequest.gasIds = "1";
-        oilStationsDetailRequest.phone = userInfo.phone;
-        oilStationsDetailRequest.userId = userInfo.userId;
-        oilStationsDetailRequest.accessToken = userInfo.accessToken;
+        oilStationsDetailRequest.phone = AccountManager.getInstance().getUserPhone();
+        oilStationsDetailRequest.userId = AccountManager.getInstance().getUserId();
+        oilStationsDetailRequest.accessToken = AccountManager.getInstance().getToken();
         oilStationsDetailRequest.call(new ApiLifeCallBack<List<OilStationsDetailBean>>() {
 
             @Override
@@ -254,6 +255,7 @@ public class OilDeiltaActivity extends BaseActivity {
             }
         });
     }
+
     //1.百度地图包名
     public static final String BAIDUMAP_PACKAGENAME = "com.baidu.BaiduMap";
     //2.高德地图包名
@@ -298,6 +300,7 @@ public class OilDeiltaActivity extends BaseActivity {
                     .show();*/
         }
     }
+
     /**
      * 检查手机上是否安装了指定的软件
      *

@@ -16,6 +16,7 @@ import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
 import com.bldby.loginlibrary.AccountManager;
 import com.bldby.loginlibrary.R;
 import com.bldby.loginlibrary.databinding.ActivityInviteCodeBinding;
+import com.bldby.loginlibrary.model.AccountInfo;
 import com.bldby.loginlibrary.model.UserInfo;
 import com.bldby.loginlibrary.request.BidingInviteCodeRequest;
 import com.bldby.loginlibrary.request.UserInfoRequest;
@@ -86,10 +87,12 @@ public class InputInviteCodeActivity extends BaseUiActivity {
         UserInfoRequest request = new UserInfoRequest();
         request.userId = userId;
         request.accessToken = accessToken;
-        request.call(new ApiCallBack<UserInfo>() {
+        request.call(new ApiCallBack<AccountInfo>() {
             @Override
-            public void onAPIResponse(UserInfo response) {
-                AccountManager.getInstance().setLoginSuccess(response);
+            public void onAPIResponse(AccountInfo response) {
+                UserInfo userInfo = AccountManager.getInstance().getUserInfo();
+                userInfo.accountInfo = response;
+                AccountManager.getInstance().setLoginSuccess(userInfo);
                 finish();
             }
 

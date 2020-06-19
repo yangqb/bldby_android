@@ -14,6 +14,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bldby.loginlibrary.AccountManager;
 import com.bldby.loginlibrary.model.UserInfo;
 import com.bldby.travellibrary.R;
 import com.bldby.travellibrary.activity.model.OilListBean;
@@ -25,18 +26,19 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyOilAdapter  extends BaseQuickAdapter<OilListBean, BaseViewHolder> {
+public class MyOilAdapter extends BaseQuickAdapter<OilListBean, BaseViewHolder> {
     private String posion1;
     private String token;
-    private UserInfo userInfo;
     private List<String> mapList = new ArrayList<>();
+
     public MyOilAdapter(@Nullable List<OilListBean> data) {
         super(R.layout.item_oil_adapter, data);
     }
+
     @Override
     protected void convert(@NonNull BaseViewHolder helper, OilListBean item) {
-       // userInfo = UserInfoUtils.getUserInfo(mContext);
-        token = userInfo.accessToken;
+        // userInfo = UserInfoUtils.getUserInfo(mContext);
+        token = AccountManager.getInstance().getToken();
         helper.setText(R.id.oilname, item.getGasName());
         helper.setText(R.id.oiladdress, item.getGasAddress());
         //helper.setText(R.id.oilprice, "￥" + item.getPriceYfq());
@@ -124,9 +126,9 @@ public class MyOilAdapter  extends BaseQuickAdapter<OilListBean, BaseViewHolder>
 
                     // if (UserInfoUtils.getUserInfo(mContext).getAccountType() != 0) { }
                     *//**
-                     * 是否是会员判断
-                     *//*
-                        *//*else {
+                 * 是否是会员判断
+                 *//*
+                 *//*else {
                             View inflate =LayoutInflater.from(mContext).inflate(R.layout.oil_dialog_item, null);
                             TextView dilagimagedimiss = inflate.findViewById(R.id.dilagimagedimiss);
                             TextView dilagimageupdate = inflate.findViewById(R.id.dilagimageupdate);
@@ -153,12 +155,11 @@ public class MyOilAdapter  extends BaseQuickAdapter<OilListBean, BaseViewHolder>
 */
 
 
-
-
             }
         });
 
     }
+
     private boolean isInstallByread(String packageName) {
         return new File("/data/data/" + packageName).exists();
     }

@@ -96,7 +96,44 @@ public class AccountManager {
      * @return
      */
     public UserInfo getUserInfo() {
+        if (userInfo == null) {
+            userInfo = new UserInfo();
+        }
         return userInfo;
+    }
+
+    /**
+     * 获取用户id
+     *
+     * @return
+     */
+    public String getUserId() {
+        if (userInfo == null) {
+            return "";
+        }
+        return userInfo.loginInfo.userId;
+    }
+    /**
+     * 获取用户手机号
+     *
+     * @return
+     */
+    public String getUserPhone() {
+        if (userInfo == null) {
+            return "";
+        }
+        return userInfo.accountInfo.phone;
+    }
+    /**
+     * 获取用户token
+     *
+     * @return
+     */
+    public String getToken() {
+        if (userInfo == null) {
+            return "";
+        }
+        return userInfo.loginInfo.accessToken;
     }
 
     /**
