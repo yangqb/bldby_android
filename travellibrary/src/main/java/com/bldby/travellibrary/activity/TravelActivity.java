@@ -202,9 +202,6 @@ public class TravelActivity extends BaseActivity {
                         @Override
                         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                             OilListBean oilListBean = myoiladapter.getData().get(position);
-
-                            String accessToken = AccountManager.getInstance().getToken();
-                            token = accessToken;
                             if (token == null || TextUtils.isEmpty(token)) {
                                 /*Intent intent = new Intent(TravelHomeActivity.this, LoginActivity.class);
                                 startActivity(intent);*/
