@@ -2,7 +2,9 @@ package com.bldby.travellibrary.activity;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
+import android.os.Handler;
 import android.os.SystemClock;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,6 +33,8 @@ import com.bldby.travellibrary.activity.model.TravelModel;
 import com.bldby.travellibrary.activity.request.OilStationsUrlRequest;
 import com.bldby.travellibrary.databinding.ActivityTravelBinding;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +78,12 @@ public class TravelActivity extends BaseActivity {
 
             }
         });
+        dataBinding.travBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         View mEmptyView = View.inflate(TravelActivity.this, R.layout.view_common_nodata, null);
         ImageView img_empty = (ImageView) mEmptyView.findViewById(R.id.img_empty);
         img_empty.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +123,7 @@ public class TravelActivity extends BaseActivity {
         initoil();
         //smart刷新加载方法（）
         initswipeLayout();
+
         //String string = SPUtils.getString(TravelActivity.this, Constants.USER_DATA);
         UserInfo userInfo = AccountManager.getInstance().getUserInfo();
         token = userInfo.accessToken;
@@ -123,6 +134,30 @@ public class TravelActivity extends BaseActivity {
     }
 
     private void initswipeLayout() {
+
+        dataBinding.swipeLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull final RefreshLayout refreshLayout) {
+                //延迟3秒关闭
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshLayout.finishLoadMore();
+                    }
+                }, 3000);
+
+            }
+
+            @Override
+            public void onRefresh(@NonNull final RefreshLayout refreshLayout) {
+                //2，刷新完成关闭，正常情况是请求接口完成关闭
+                //3,如果需要在网络请求结束后关闭，则调用
+//                smart.finishRefresh();
+//                smart.finishLoadMore();
+                refreshLayout.finishRefresh();
+                refreshLayout.setNoMoreData(true);
+            }
+        });
     }
 
     private void initoil() {
