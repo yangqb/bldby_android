@@ -67,7 +67,7 @@ public class NetworkConfig {
         if (getIsDev()) {
             return DEV_TICKET_BASE_URL;
         }
-        return DEV_TICKET_BASE_URL;
+        return TICKET_BASE_URL;
     }
 
     /**

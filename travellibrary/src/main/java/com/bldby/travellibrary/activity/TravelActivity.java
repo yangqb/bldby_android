@@ -126,10 +126,10 @@ public class TravelActivity extends BaseActivity {
 
         //String string = SPUtils.getString(TravelActivity.this, Constants.USER_DATA);
         token = AccountManager.getInstance().getToken();
-        myoiladapter = new MyOilAdapter(null);
+     /*   myoiladapter = new MyOilAdapter(null);
         myoiladapter.setEmptyView(mEmptyView);
         dataBinding.oilrecy.setAdapter(myoiladapter);
-        myoiladapter.notifyDataSetChanged();
+        myoiladapter.notifyDataSetChanged();*/
     }
 
     private void initswipeLayout() {
@@ -183,7 +183,10 @@ public class TravelActivity extends BaseActivity {
 
             @Override
             public void onAPIResponse(List<OilListBean> response) {
-                if (response != null && response.size() > 0) {
+                myoiladapter = new MyOilAdapter(response);
+                dataBinding.oilrecy.setAdapter(myoiladapter);
+                myoiladapter.notifyDataSetChanged();
+             /*   if (response != null && response.size() > 0) {
                     if (isLoadM) {
                         myoiladapter.addData(response);
                     } else {
@@ -202,18 +205,15 @@ public class TravelActivity extends BaseActivity {
                         @Override
                         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                             OilListBean oilListBean = myoiladapter.getData().get(position);
-
-                            String accessToken = AccountManager.getInstance().getToken();
-                            token = accessToken;
                             if (token == null || TextUtils.isEmpty(token)) {
-                                /*Intent intent = new Intent(TravelHomeActivity.this, LoginActivity.class);
-                                startActivity(intent);*/
+                                *//*Intent intent = new Intent(TravelHomeActivity.this, LoginActivity.class);
+                                startActivity(intent);*//*
                             } else {
                               //  TraveDetailActivity.toTraveDetailActivity(TravelHomeActivity.this, oilListBean);
-                                /**
+                                *//**
                                  * 是否是会员判断
-                                 */
-                              /*  if (UserInfoUtils.getUserInfo(TravelHomeActivity.this).getAccountType() != 0) {
+                                 *//*
+                              *//*  if (UserInfoUtils.getUserInfo(TravelHomeActivity.this).getAccountType() != 0) {
                                 } else {
                                     View inflate = getLayoutInflater().inflate(R.layout.oil_dialog_item, null);
                                     TextView dilagimagedimiss = inflate.findViewById(R.id.dilagimagedimiss);
@@ -236,7 +236,7 @@ public class TravelActivity extends BaseActivity {
                                         }
                                     });
                                     myDialog.show();
-                                }*/
+                                }*//*
                             }
                         }
                     });
@@ -246,12 +246,11 @@ public class TravelActivity extends BaseActivity {
                     } else {
                        // swipeLayout.finishLoadMore(true);
                     }
-                }
+                }*/
             }
 
             @Override
             public void onAPIError(int errorCode, String errorMsg) {
-                Log.e("TAG", "onAPIError: ");
                 if (!isLoadMore) {
                     //swipeLayout.finishRefresh(false);
                 } else {
