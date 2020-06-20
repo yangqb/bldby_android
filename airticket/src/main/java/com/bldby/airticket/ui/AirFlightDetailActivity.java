@@ -1,11 +1,13 @@
 package com.bldby.airticket.ui;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ClickableSpan;
@@ -22,16 +24,37 @@ import com.bldby.airticket.R;
 import com.bldby.airticket.adapter.PlaneDetailAdapter;
 import com.bldby.airticket.adapter.TransitAdapter;
 import com.bldby.airticket.databinding.ActivityAirFlightDetailBinding;
+import com.bldby.airticket.model.AirGoBackPriceDetailInfo;
+import com.bldby.airticket.model.AirInternationalPriceDetailInfo;
+import com.bldby.airticket.model.AirPriceDetailInfo;
+import com.bldby.airticket.model.CustomAirPriceDetailInfo;
 import com.bldby.airticket.model.CustomFightCityInfo;
 import com.bldby.airticket.model.FlightSegmentInfo;
 import com.bldby.airticket.model.MultiGoBackFlightInfo;
 import com.bldby.airticket.model.MultiPriceInfo;
 import com.bldby.airticket.model.MultipleGoSearchFightInfo;
+import com.bldby.airticket.model.RefundChangeInfo;
 import com.bldby.airticket.model.SearchFlightModel;
+import com.bldby.airticket.request.AirGoBackRefundChangeQueryRequest;
+import com.bldby.airticket.request.AirGoRefundChangeQueryRequest;
+import com.bldby.airticket.request.DomesticGoBackSearchPriceRequest;
+import com.bldby.airticket.request.DomesticGoSearchPriceRequest;
+import com.bldby.airticket.request.InternationalGoBackSearchPriceRequest;
+import com.bldby.airticket.request.InternationalGoSearchPriceRequest;
+import com.bldby.airticket.view.CustomCancelChangePopView;
+import com.bldby.airticket.view.CustomPlaneTransferView;
 import com.bldby.baselibrary.constants.RouteAirConstants;
+import com.bldby.baselibrary.constants.RouteLoginConstants;
+import com.bldby.baselibrary.core.network.ApiLifeCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseAirUiActivity;
 import com.bldby.baselibrary.core.util.DateUtil;
+import com.bldby.loginlibrary.AccountManager;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.lxj.xpopup.XPopup;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +78,9 @@ public class AirFlightDetailActivity extends BaseAirUiActivity {
     private TransitAdapter transitAdapter;
     private PlaneDetailAdapter mAdapter;
     private List<MultiPriceInfo> multiPriceInfos = new ArrayList<>();
+    private AirPriceDetailInfo priceDetailInfo;
+    private AirInternationalPriceDetailInfo internationalPriceDetailInfo;
+    private CustomAirPriceDetailInfo customPriceDetailInfo = new CustomAirPriceDetailInfo();
     @Autowired
     public int searchType;
     @Autowired
@@ -95,9 +121,10 @@ public class AirFlightDetailActivity extends BaseAirUiActivity {
             binding.promptContent.setText("【机场提示】该航班到达机场为北京大兴国际机场，距市区约46公里，搭乘地铁到市区约30分钟。");
             binding.layoutTop1.oneWayStartDate.setText(flightInfo.goDate + DateUtil.strToWeek("yyyy-MM-dd", flightInfo.goDate));
             //oneWayEndDate.setText(customFightCityInfo.goDate + DateUtils.strToDate2(customFightCityInfo.goDate));
-            binding.layoutTop1.oneWayEndDate.setVisibility(View.INVISIBLE);
             binding.layoutTop1.oneWayBTime.setText(searchFlightModel.dptTime);
             binding.layoutTop1.oneWayETime.setText(searchFlightModel.arrTime);
+            binding.layoutTop1.oneWayStartCityName.setText(flightInfo.depCityName);
+            binding.layoutTop1.oneWayEndCityName.setText(flightInfo.arrCityName);
             binding.layoutTop1.oneWayDepAirport.setText(searchFlightModel.dptAirport + searchFlightModel.dptTerminal);
             binding.layoutTop1.oneWayArrAirport.setText(searchFlightModel.arrAirport + searchFlightModel.arrTerminal);
             binding.layoutTop1.oneWayFlightTimes.setText(searchFlightModel.flightTimes);
@@ -133,9 +160,10 @@ public class AirFlightDetailActivity extends BaseAirUiActivity {
                 binding.promptContent.setText("【机场提示】该航班到达机场为北京大兴国际机场，距市区约46公里，搭乘地铁到市区约30分钟。");
                 binding.layoutTop1.oneWayCompanyName.setText(flightSegmentInfo.get(0).carrierShortName + flightSegmentInfo.get(0).flightNum + flightSegmentInfo.get(0).planeTypeName + "无餐\n以下价格含机建燃油");
                 binding.layoutTop1.oneWayStartDate.setText(DateUtil.strToStr(flightSegmentInfo.get(0).depDate) + DateUtil.strToWeek("yyyy-MM-dd", flightSegmentInfo.get(0).depDate));
-                binding.layoutTop1.oneWayEndDate.setText(DateUtil.strToStr(flightSegmentInfo.get(0).arrDate) + DateUtil.strToWeek("yyyy-MM-dd", flightSegmentInfo.get(0).arrDate));
                 binding.layoutTop1.oneWayBTime.setText(flightSegmentInfo.get(0).depTime);
                 binding.layoutTop1.oneWayETime.setText(flightSegmentInfo.get(0).arrTime);
+                binding.layoutTop1.oneWayStartCityName.setText(flightInfo.depCityName);
+                binding.layoutTop1.oneWayEndCityName.setText(flightInfo.arrCityName);
                 binding.layoutTop1.oneWayDepAirport.setText(flightSegmentInfo.get(0).depAirportName + flightSegmentInfo.get(0).depTerminal);
                 binding.layoutTop1.oneWayArrAirport.setText(flightSegmentInfo.get(0).arrAirportName + flightSegmentInfo.get(0).arrTerminal);
                 binding.layoutTop1.oneWayFlightTimes.setText(DateUtil.minToHour(flightSegmentInfo.get(0).duration));
@@ -210,7 +238,7 @@ public class AirFlightDetailActivity extends BaseAirUiActivity {
                 binding.layoutTop2.twoWayBackCrossDays.setText("+" + goBackSearchFlightInfo.internationalFlight.backTrip.crossDays + "天");
             }
         }
-       binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new PlaneDetailAdapter(multiPriceInfos);
         View mEmptyView = View.inflate(this, R.layout.layout_air_empty_view, null);
         ImageView img_empty = (ImageView) mEmptyView.findViewById(R.id.img_empty);
@@ -231,12 +259,339 @@ public class AirFlightDetailActivity extends BaseAirUiActivity {
 
     @Override
     public void loadData() {
+        if (searchType == 0) {  //国内单程
+            DomesticGoSearchPriceRequest request = new DomesticGoSearchPriceRequest();
+            request.arr = searchFlightModel.arr;
+            request.dpt = searchFlightModel.dpt;
+            request.date = flightInfo.goDate;
+            request.carrier = searchFlightModel.carrier;
+            request.flightNum = searchFlightModel.flightNum;
+            request.cabin = searchFlightModel.cabin;
+            request.ex_track = "tehui";
+            request.call(new ApiLifeCallBack<AirPriceDetailInfo>() {
+                @Override
+                public void onStart() {
+                    showloadDialog("");
+                }
 
+                @Override
+                public void onFinsh() {
+                    goneloadDialog();
+                    binding.refreshLayout.finishRefresh();
+                }
+
+                @Override
+                public void onAPIResponse(AirPriceDetailInfo response) {
+                    multiPriceInfos.clear();
+                    if (response != null) {
+                        priceDetailInfo = response;
+                        priceDetailInfo.flightTimes = searchFlightModel.flightTimes;
+                        binding.layoutTop1.oneWayCompanyName.setText(priceDetailInfo.com + priceDetailInfo.code + searchFlightModel.flightTypeFullName + (priceDetailInfo.meal ? "有餐" : "无餐") + "\n以下价格不含机建燃油");
+                        if (priceDetailInfo.vendors != null && priceDetailInfo.vendors.size() > 0) {
+                            for (int i = 0; i < priceDetailInfo.vendors.size(); i++) {
+                                MultiPriceInfo priceInfo = new MultiPriceInfo(MultiPriceInfo.DOMESTIC_TYPE);
+                                priceInfo.venDorsInfo = priceDetailInfo.vendors.get(i);
+                                multiPriceInfos.add(priceInfo);
+                            }
+                            mAdapter.setNewData(multiPriceInfos);
+                            mAdapter.notifyDataSetChanged();
+                        }
+                    }
+                    mAdapter.getEmptyView().setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onAPIError(int errorCode, String errorMsg) {
+
+                }
+            });
+        } else if (searchType == 2) { //国内往返
+            DomesticGoBackSearchPriceRequest request = new DomesticGoBackSearchPriceRequest();
+            request.depCity = goBackSearchFlightInfo.domesticFlight.go.depAirportCode;
+            request.arrCity = goBackSearchFlightInfo.domesticFlight.go.arrAirportCode;
+            request.goDate = flightInfo.goDate;
+            request.backDate = flightInfo.backDate;
+            request.flightCodes = goBackSearchFlightInfo.domesticFlight.flightCodes;
+            request.exTrack = "retehui";
+            request.call(new ApiLifeCallBack<AirGoBackPriceDetailInfo>() {
+                @Override
+                public void onStart() {
+                    showloadDialog("");
+                }
+
+                @Override
+                public void onFinsh() {
+                    goneloadDialog();
+                    binding.refreshLayout.finishRefresh();
+                }
+
+                @Override
+                public void onAPIResponse(AirGoBackPriceDetailInfo goBackPriceDetailInfo) {
+                    multiPriceInfos.clear();
+                    if (goBackPriceDetailInfo != null) {
+                        if (goBackPriceDetailInfo.packVendors != null && goBackPriceDetailInfo.packVendors.size() > 0) {
+                            for (int i = 0; i < goBackPriceDetailInfo.packVendors.size(); i++) {
+                                MultiPriceInfo priceInfo = new MultiPriceInfo(MultiPriceInfo.DOMESTIC_GO_BACK_TYPE);
+                                priceInfo.goBackVendors = goBackPriceDetailInfo.packVendors.get(i);
+                                multiPriceInfos.add(priceInfo);
+                            }
+                            mAdapter.setNewData(multiPriceInfos);
+                            mAdapter.notifyDataSetChanged();
+                        }
+                    }
+                    mAdapter.getEmptyView().setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onAPIError(int errorCode, String errorMsg) {
+
+                }
+            });
+        } else if (searchType == 1) { //国际单程
+            InternationalGoSearchPriceRequest request = new InternationalGoSearchPriceRequest();
+            request.arrCity = goSearchFightInfo.internationalFlightModel.goTrip.flightSegments.get(goSearchFightInfo.internationalFlightModel.goTrip.flightSegments.size() - 1).arrCityCode;
+            request.depCity = goSearchFightInfo.internationalFlightModel.goTrip.flightSegments.get(0).depCityCode;
+            request.flightCode = goSearchFightInfo.internationalFlightModel.flightCode;
+            request.depDate = flightInfo.goDate;
+            request.source = "ICP_SELECT_open.3724";
+            request.call(new ApiLifeCallBack<AirInternationalPriceDetailInfo>() {
+                @Override
+                public void onStart() {
+                    showloadDialog("");
+                }
+
+                @Override
+                public void onFinsh() {
+                    goneloadDialog();
+                    binding.refreshLayout.finishRefresh();
+                }
+
+                @Override
+                public void onAPIResponse(AirInternationalPriceDetailInfo response) {
+                    multiPriceInfos.clear();
+                    if (response != null) {
+                        internationalPriceDetailInfo = response;
+                        if (internationalPriceDetailInfo.priceInfo != null && internationalPriceDetailInfo.priceInfo.size() > 0) {
+                            for (int i = 0; i < internationalPriceDetailInfo.priceInfo.size(); i++) {
+                                MultiPriceInfo priceInfo = new MultiPriceInfo(MultiPriceInfo.INTERNATIONAL_TYPE);
+                                priceInfo.internationalPriceInfo = internationalPriceDetailInfo.priceInfo.get(i);
+                                multiPriceInfos.add(priceInfo);
+                            }
+                            mAdapter.setNewData(multiPriceInfos);
+                            mAdapter.notifyDataSetChanged();
+                        }
+                    }
+                    mAdapter.getEmptyView().setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onAPIError(int errorCode, String errorMsg) {
+
+                }
+            });
+        } else { //国际往返
+            InternationalGoBackSearchPriceRequest request = new InternationalGoBackSearchPriceRequest();
+            request.arrCity = goBackSearchFlightInfo.internationalFlight.goTrip.flightSegments.get(goBackSearchFlightInfo.internationalFlight.goTrip.flightSegments.size() - 1).arrCityCode;
+            request.depCity = goBackSearchFlightInfo.internationalFlight.goTrip.flightSegments.get(0).depCityCode;
+            request.flightCode = goBackSearchFlightInfo.internationalFlight.flightCode;
+            request.depDate = flightInfo.goDate;
+            request.retDate = flightInfo.backDate;
+            request.source = "ICP_SELECT_open.3724";
+            request.call(new ApiLifeCallBack<AirInternationalPriceDetailInfo>() {
+                @Override
+                public void onStart() {
+                    showloadDialog("");
+                }
+
+                @Override
+                public void onFinsh() {
+                    goneloadDialog();
+                    binding.refreshLayout.finishRefresh();
+                }
+
+                @Override
+                public void onAPIResponse(AirInternationalPriceDetailInfo response) {
+
+                    multiPriceInfos.clear();
+                    if (response != null) {
+                        internationalPriceDetailInfo = response;
+                        if (internationalPriceDetailInfo.priceInfo != null && internationalPriceDetailInfo.priceInfo.size() > 0) {
+                            for (int i = 0; i < internationalPriceDetailInfo.priceInfo.size(); i++) {
+                                MultiPriceInfo priceInfo = new MultiPriceInfo(MultiPriceInfo.INTERNATIONAL_TYPE);
+                                priceInfo.internationalPriceInfo = internationalPriceDetailInfo.priceInfo.get(i);
+                                multiPriceInfos.add(priceInfo);
+                            }
+                            mAdapter.setNewData(multiPriceInfos);
+                            mAdapter.notifyDataSetChanged();
+                        }
+                    }
+                    mAdapter.getEmptyView().setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onAPIError(int errorCode, String errorMsg) {
+
+                }
+            });
+        }
     }
 
     @Override
     public void initListener() {
+        binding.refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                loadData();
+            }
+        });
 
+        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                if (view.getId() == R.id.ll_rebate) {
+                    if (!AccountManager.isLogin()) {
+                        start(RouteLoginConstants.REGISTER);
+                        return;
+                    }
+                       /* UserInfo userInfo = AccountManager.getInstance().getUserInfo();
+                        intent = new Intent(PlaneDetailActivity.this, VipActivity.class);
+                        intent.putExtra(VipActivity.MINE_INFO, userInfo);
+                        startActivity(intent);*/
+                } else if (view.getId() == R.id.luggage_change_notice) {
+                    if (searchType == 0) {
+                        customPriceDetailInfo.customDocGoFlightInfo = priceDetailInfo;
+                        customPriceDetailInfo.customDocGoPriceInfo = multiPriceInfos.get(position).venDorsInfo;
+                    } else if (searchType == 1) {
+                        customPriceDetailInfo.customInterFlightInfo = goSearchFightInfo.internationalFlightModel;
+                        customPriceDetailInfo.customInterPriceInfo = multiPriceInfos.get(position).internationalPriceInfo;
+                    } else if (searchType == 2) {
+                        customPriceDetailInfo.customDocGoBackFlightInfo = goBackSearchFlightInfo.domesticFlight;
+                        customPriceDetailInfo.customDocGoBackPriceInfo = multiPriceInfos.get(position).goBackVendors;
+                    } else {
+                        customPriceDetailInfo.customInterFlightInfo = goBackSearchFlightInfo.internationalFlight;
+                        customPriceDetailInfo.customInterPriceInfo = multiPriceInfos.get(position).internationalPriceInfo;
+                    }
+                    customPriceDetailInfo.customFightCityInfo = flightInfo;
+                    getRefundChange();
+                } else if (view.getId() == R.id.btn_reserve) {
+                    if (!AccountManager.isLogin()) {
+                        start(RouteLoginConstants.REGISTER);
+                        return;
+                    }
+                    if (searchType == 0) {
+                        customPriceDetailInfo.customDocGoFlightInfo = priceDetailInfo;
+                        customPriceDetailInfo.customDocGoPriceInfo = multiPriceInfos.get(position).venDorsInfo;
+                    } else if (searchType == 1) {
+                        customPriceDetailInfo.customInterFlightInfo = goSearchFightInfo.internationalFlightModel;
+                        customPriceDetailInfo.customInterPriceInfo = multiPriceInfos.get(position).internationalPriceInfo;
+                    } else if (searchType == 2) {
+                        customPriceDetailInfo.customDocGoBackFlightInfo = goBackSearchFlightInfo.domesticFlight;
+                        customPriceDetailInfo.customDocGoBackPriceInfo = multiPriceInfos.get(position).goBackVendors;
+                    } else {
+                        customPriceDetailInfo.customInterFlightInfo = goBackSearchFlightInfo.internationalFlight;
+                        customPriceDetailInfo.customInterPriceInfo = multiPriceInfos.get(position).internationalPriceInfo;
+                    }
+                    customPriceDetailInfo.customFightCityInfo = flightInfo;
+                    startWith(RouteAirConstants.AIRRESERVE).withInt("airType", searchType).withSerializable("customPriceDetailInfo", customPriceDetailInfo).navigation();
+                }
+            }
+        });
+    }
+
+
+    /*
+     *
+     * 退改签查询
+     * */
+    public void getRefundChange() {
+        if (searchType == 0) {
+            AirGoRefundChangeQueryRequest refundChangeQueryRequest = new AirGoRefundChangeQueryRequest();
+            refundChangeQueryRequest.flightNum = customPriceDetailInfo.customDocGoPriceInfo.shareShowAct ? customPriceDetailInfo.customDocGoFlightInfo.actCode : customPriceDetailInfo.customDocGoFlightInfo.code;
+            refundChangeQueryRequest.cabin = customPriceDetailInfo.customDocGoPriceInfo.cabin;
+            refundChangeQueryRequest.dpt = customPriceDetailInfo.customDocGoFlightInfo.depCode;
+            refundChangeQueryRequest.arr = customPriceDetailInfo.customDocGoFlightInfo.arrCode;
+            refundChangeQueryRequest.dptDate = customPriceDetailInfo.customDocGoFlightInfo.date;
+            refundChangeQueryRequest.dptTime = customPriceDetailInfo.customDocGoFlightInfo.btime;
+            refundChangeQueryRequest.policyId = customPriceDetailInfo.customDocGoPriceInfo.PolicyId;
+            refundChangeQueryRequest.maxSellPrice = String.valueOf(customPriceDetailInfo.customDocGoPriceInfo.barePrice);
+            refundChangeQueryRequest.minSellPrice = String.valueOf(customPriceDetailInfo.customDocGoPriceInfo.barePrice);
+            refundChangeQueryRequest.printPrice = String.valueOf(customPriceDetailInfo.customDocGoPriceInfo.vppr);
+            refundChangeQueryRequest.tagName = customPriceDetailInfo.customDocGoPriceInfo.prtag;
+            refundChangeQueryRequest.translate = false;
+            refundChangeQueryRequest.sfid = customPriceDetailInfo.customDocGoPriceInfo.groupId;
+            refundChangeQueryRequest.needPercentTgqText = false;
+            refundChangeQueryRequest.businessExt = customPriceDetailInfo.customDocGoPriceInfo.businessExt;
+            refundChangeQueryRequest.client = customPriceDetailInfo.customDocGoPriceInfo.domain;
+            refundChangeQueryRequest.call(new ApiLifeCallBack<RefundChangeInfo>() {
+                @Override
+                public void onStart() {
+
+                }
+
+                @Override
+                public void onFinsh() {
+
+                }
+
+                @Override
+                public void onAPIResponse(RefundChangeInfo response) {
+                    if (response != null) {
+                        new XPopup.Builder(AirFlightDetailActivity.this)
+                                .asCustom(new CustomCancelChangePopView(AirFlightDetailActivity.this
+                                ).setType(searchType).setGoData(response).setLuggage(false)).show();
+                    }
+                }
+
+                @Override
+                public void onAPIError(int errorCode, String errorMsg) {
+
+                }
+            });
+        } else if (searchType == 2) {
+
+            AirGoBackRefundChangeQueryRequest goBackRefundChangeQueryRequest = new AirGoBackRefundChangeQueryRequest();
+            goBackRefundChangeQueryRequest.carrier = customPriceDetailInfo.customDocGoBackFlightInfo.go.carrier;
+            goBackRefundChangeQueryRequest.depCode = customPriceDetailInfo.customDocGoBackFlightInfo.go.depAirportCode;
+            goBackRefundChangeQueryRequest.arrCode = customPriceDetailInfo.customDocGoBackFlightInfo.go.arrAirportCode;
+            goBackRefundChangeQueryRequest.goDate = flightInfo.goDate;
+            goBackRefundChangeQueryRequest.backDate = flightInfo.backDate;
+            goBackRefundChangeQueryRequest.outCabin = customPriceDetailInfo.customDocGoBackPriceInfo.outCabin;
+            goBackRefundChangeQueryRequest.retCabin = customPriceDetailInfo.customDocGoBackPriceInfo.retCabin;
+            goBackRefundChangeQueryRequest.businessExts = customPriceDetailInfo.customDocGoBackPriceInfo.businessExts;
+            goBackRefundChangeQueryRequest.goFlightNum = customPriceDetailInfo.customDocGoBackFlightInfo.go.flightCode;
+            goBackRefundChangeQueryRequest.backFlightNum = customPriceDetailInfo.customDocGoBackFlightInfo.back.flightCode;
+            goBackRefundChangeQueryRequest.policyId = customPriceDetailInfo.customDocGoBackPriceInfo.policyId;
+            goBackRefundChangeQueryRequest.price = customPriceDetailInfo.customDocGoBackPriceInfo.price;
+            goBackRefundChangeQueryRequest.client = customPriceDetailInfo.customDocGoBackPriceInfo.domain;
+            goBackRefundChangeQueryRequest.barePrice = customPriceDetailInfo.customDocGoBackPriceInfo.barePrice;
+            goBackRefundChangeQueryRequest.tagName = customPriceDetailInfo.customDocGoBackPriceInfo.tagName;
+            goBackRefundChangeQueryRequest.call(new ApiLifeCallBack<List<RefundChangeInfo>>() {
+                @Override
+                public void onStart() {
+
+                }
+
+                @Override
+                public void onFinsh() {
+
+                }
+
+                @Override
+                public void onAPIResponse(List<RefundChangeInfo> response) {
+                    if (response != null) {
+                        new XPopup.Builder(AirFlightDetailActivity.this)
+                                .enableDrag(false)
+                                .asCustom(new CustomCancelChangePopView(AirFlightDetailActivity.this
+                                ).setType(searchType).setGoData(response.get(0)).setBackData(response.get(1)).setLuggage(false)).show();
+                    }
+                }
+
+                @Override
+                public void onAPIError(int errorCode, String errorMsg) {
+
+                }
+            });
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -255,10 +610,10 @@ public class AirFlightDetailActivity extends BaseAirUiActivity {
             @Override
             public void onClick(@NonNull View widget) {
                 if (type == 3) {
-                    /*new XPopup.Builder(AirFlightDetailActivity.this)
+                    new XPopup.Builder(AirFlightDetailActivity.this)
                             .enableDrag(false)
                             .asCustom(new CustomPlaneTransferView(AirFlightDetailActivity.this
-                            )).show();*/
+                            )).show();
                 } else {
 
                 }

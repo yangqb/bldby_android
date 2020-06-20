@@ -27,5 +27,7 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".ui.AirFlightDetailActivity"
             android:theme="@style/AppTheme"/>
+        <activity android:name=".ui.AirReserveActivity"
+            android:theme="@style/AppTheme"/>
     </application>
 </manifest>
