@@ -18,4 +18,11 @@
     <color name="ff999999">#ff999999</color>
     <color name="ff333333">#ff333333</color>
     <color name="ffea362c">#ffea362c</color>
+    <color name="color_66000000">#66000000</color>
+    <color name="color_f7f7f7">#F7F7F7</color>
+    <color name="color_4b4b4b">#4B4B4B</color>
+    <color name="color_999999">#999999</color>
+    <color name="color_FEA811">#FEA811</color>
+    <color name="color_cccccc">#cccccc</color>
+    <color name="color_666666">#666666</color>
 </resources>

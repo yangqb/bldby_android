@@ -240,6 +240,20 @@
                         android:layout_marginTop="@dimen/dp_10"
                         android:orientation="vertical">
 
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@color/FCB432"
+                            android:gravity="center"
+                            android:text="@string/goods_detail_buy"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
                         <com.bldby.baselibrary.core.view.CornerLinearView
                             android:id="@+id/sku"
                             android:layout_width="match_parent"
@@ -444,11 +458,11 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/goods_shoppingcar"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/dp_20"
                         android:gravity="center"
-
                         android:orientation="vertical">
 
                         <ImageView
@@ -468,20 +482,6 @@
 
 
                 </LinearLayout>
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/FCB432"
-                    android:gravity="center"
-                    android:text="@string/goods_detail_buy"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/jionCar"

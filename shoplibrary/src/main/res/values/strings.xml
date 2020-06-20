@@ -1,4 +1,4 @@
-<resources tools:ignore="ResourceName" xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
     <string name="s_home_shoppingmall">线上商城</string>
     <string name="home_business">线下商家</string>
     <string name="home_aircraft">飞机出行</string>
@@ -24,4 +24,5 @@
     <string name="shop_seach_history">搜索历史</string>
     <string name="shop_xiaoliang">销量</string>
     <string name="shop_price">价格</string>
+    <string name="shop_bainji">编辑</string>
 </resources>

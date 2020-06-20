@@ -102,6 +102,12 @@ public class GoosDetailActivity extends BaseActivity {
         //添加Android自带的分割线
         dataBinding.evaluate.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         adapterGoodsDetailEvaluate.notifyDataSetChanged();
+        dataBinding.goodsShoppingcar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                start(RouteShopConstants.SHOPGOODSSHOPPING);
+            }
+        });
     }
 
     @Override
@@ -261,16 +267,16 @@ public class GoosDetailActivity extends BaseActivity {
      * @param view
      */
     public void onClickToSku(View view) {
-        switch (view.getId()) {
-//            case R.id.collect:
-//                ToastUtil.show("collect");
-//                break;
-//            case R.id.sku:
-//                ToastUtil.show("sku");
-//                break;
+        /*switch (view.getId()) {
+            case R.id.collect:
+                ToastUtil.show("collect");
+                break;
+            case R.id.sku:
+                ToastUtil.show("sku");
+                break;
         }
-//        Basefragment fragment = getFragment(RouteShopConstants.SHOPGOODSSKU);
-//
-//        loadRootFragment(R.id.dio, fragment);
+        Basefragment fragment = getFragment(RouteShopConstants.SHOPGOODSSKU);
+
+        loadRootFragment(R.id.dio, fragment);*/
     }
 }
