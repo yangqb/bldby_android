@@ -7,5 +7,9 @@ package com.bldby.airticket.model;
  * time: 15:13
  * email: 694125155@qq.com
  */
-class InterContactModel {
+public class InterContactModel {
+    public String name;
+    public String email;
+    public String mobile;
+    public String mobCountryCode;
 }

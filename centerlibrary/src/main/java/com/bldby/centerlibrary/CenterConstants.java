@@ -7,5 +7,6 @@ package com.bldby.centerlibrary;
  * time: 15:46
  * email: 694125155@qq.com
  */
-class CenterConstants {
+public class CenterConstants {
+
 }

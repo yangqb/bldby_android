@@ -1,5 +1,8 @@
 package com.bldby.airticket.model;
 
+import java.io.Serializable;
+import java.util.List;
+
 /**
  * package name: com.bldby.airticket.model
  * user: yangqinbo
@@ -7,5 +10,6 @@ package com.bldby.airticket.model;
  * time: 14:00
  * email: 694125155@qq.com
  */
-class DocBookingTipsInfo {
+public class DocBookingTipsInfo implements Serializable {
+    public List<DocBookingSortedTipsInfo> sortedTips;
 }

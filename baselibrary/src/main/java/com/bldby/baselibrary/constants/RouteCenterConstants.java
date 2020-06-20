@@ -9,4 +9,5 @@ package com.bldby.baselibrary.constants;
  */
 public class RouteCenterConstants {
     public static final String CENTERMAIN = "/center/main";
+    public static final String CENTERADDRESSMANAGERMENT="center/address";
 }

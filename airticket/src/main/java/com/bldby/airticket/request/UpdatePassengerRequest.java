@@ -2,6 +2,8 @@ package com.bldby.airticket.request;
 
 import com.alibaba.fastjson.TypeReference;
 import com.bldby.baselibrary.app.network.BaseRequest;
+import com.bldby.baselibrary.core.network.ParamsBuilder;
+import com.bldby.baselibrary.core.network.RequestLevel;
 
 /**
  * package name: com.bldby.airticket.request
@@ -11,13 +13,34 @@ import com.bldby.baselibrary.app.network.BaseRequest;
  * email: 694125155@qq.com
  */
 public class UpdatePassengerRequest extends BaseRequest {
+    public String accessToken;
+    public String userId;
+    public String id;
+    public String name;
+    public String ageType;
+    public String cardType;
+    public String cardNo;
+    public String sex;
+    public String birthday;
     @Override
     public String getAPIName() {
-        return null;
+        return "updatePassengers";
+    }
+
+    @Override
+    public ParamsBuilder appendParams(ParamsBuilder builder) {
+        return super.appendParams(builder);
+    }
+
+    @Override
+    public RequestLevel getRequestLevel() {
+        return RequestLevel.POST;
     }
 
     @Override
     public TypeReference getDatatype() {
-        return null;
+        return new TypeReference<Object>() {
+
+        };
     }
 }

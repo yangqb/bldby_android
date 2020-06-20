@@ -1,5 +1,7 @@
 package com.bldby.airticket.model;
 
+import java.io.Serializable;
+
 /**
  * package name: com.bldby.airticket.model
  * user: yangqinbo
@@ -7,5 +9,15 @@ package com.bldby.airticket.model;
  * time: 15:14
  * email: 694125155@qq.com
  */
-class InterXcdInfo {
+public class InterXcdInfo implements Serializable {
+    public int reimburseType;
+    public String name;
+    public String province;
+    public String city;
+    public String district;
+    public String addressReminder;
+    public String mobile;
+    //public int receiptTitleType;
+    public String receiptTitle;
+    public String taxpayerId;
 }
