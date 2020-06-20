@@ -7,12 +7,10 @@ ext {
 
     isShopApplication = false
     isTravelApplication = false
-<<<<<<< HEAD
-    isAirTicketApplication = true
-    isCenterApplication = false;
-=======
+
     isAirTicketApplication = false
->>>>>>> master
+    isCenterApplication = false;
+    isAirTicketApplication = false
 
     android = [
             compileSdkVersion: 28,
