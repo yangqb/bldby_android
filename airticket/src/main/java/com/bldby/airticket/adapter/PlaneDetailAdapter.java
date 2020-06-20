@@ -43,8 +43,8 @@ public class PlaneDetailAdapter extends BaseMultiItemQuickAdapter<MultiPriceInfo
         helper.addOnClickListener(R.id.btn_reserve)
                 .addOnClickListener(R.id.ll_rebate)
                 .addOnClickListener(R.id.luggage_change_notice);
-
-        if (AccountManager.getInstance().getUserInfo().accountInfo.accountType != 0) {
+        UserInfo userInfo = AccountManager.getInstance().getUserInfo();
+        if (userInfo.accountInfo != null && userInfo.accountInfo.accountType != 0) {
             helper.setGone(R.id.ll_rebate, false);
             helper.setGone(R.id.vip_rebate, true);
         } else {

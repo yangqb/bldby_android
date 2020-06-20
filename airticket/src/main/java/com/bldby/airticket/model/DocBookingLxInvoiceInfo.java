@@ -1,0 +1,17 @@
+package com.bldby.airticket.model;
+
+import java.io.Serializable;
+import java.util.Map;
+
+/**
+ * package name: com.bldby.airticket.model
+ * user: yangqinbo
+ * date: 2020/6/20
+ * time: 14:02
+ * email: 694125155@qq.com
+ */
+public class DocBookingLxInvoiceInfo implements Serializable {
+    public DocBookingInvoiceInfo invoiceInfo;
+    public int defaultReceiver;
+    public Map<Integer, String> receiverTypeMap;
+}

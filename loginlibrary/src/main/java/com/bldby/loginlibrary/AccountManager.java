@@ -5,7 +5,9 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.bldby.baselibrary.app.RxCodeConstants;
 import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.core.rxbus.RxBus;
+import com.bldby.loginlibrary.model.AccountInfo;
 import com.bldby.loginlibrary.model.UserInfo;
+import com.bldby.loginlibrary.model.WXUserInfo;
 import com.orhanobut.hawk.Hawk;
 
 /**
@@ -17,7 +19,7 @@ public class AccountManager {
     private static final String LOGINKEY = "LOGINKEY";
     //保存登录信息的可以
     private static final String LOGINKEYUSERINFO = "LOGINKEYUSERINFO";
-    private static UserInfo userInfo = new UserInfo();
+    private static UserInfo userInfo;
 
     private AccountManager() {
     }
@@ -113,6 +115,7 @@ public class AccountManager {
         }
         return userInfo.loginInfo.userId;
     }
+
     /**
      * 获取用户手机号
      *
@@ -124,6 +127,7 @@ public class AccountManager {
         }
         return userInfo.accountInfo.phone;
     }
+
     /**
      * 获取用户token
      *

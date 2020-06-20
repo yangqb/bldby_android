@@ -31,6 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
+                    android:onClick="@{viewModel.onClickReserve}"
                     android:orientation="horizontal">
 
                     <TextView
@@ -58,6 +59,7 @@
                     android:layout_centerVertical="true"
                     android:background="@drawable/shape_air_reserve_btn"
                     android:gravity="center"
+                    android:onClick="@{viewModel.onClickReserve}"
                     android:text="立即预定"
                     android:textColor="@color/color_333333"
                     android:textSize="17sp" />
@@ -80,6 +82,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
+                        android:onClick="@{viewModel.onClickReserve}"
                         android:padding="15dp">
 
                         <LinearLayout
@@ -280,6 +283,7 @@
                                 android:id="@+id/cancel_change"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:onClick="@{viewModel.onClickReserve}"
                                 android:text="退改签规则"
                                 android:textColor="@color/color_289cef"
                                 android:textSize="13sp" />
@@ -289,6 +293,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
+                                android:onClick="@{viewModel.onClickReserve}"
                                 android:text="票价明细"
                                 android:textColor="@color/color_289cef"
                                 android:textSize="13sp" />
@@ -298,6 +303,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
+                                android:onClick="@{viewModel.onClickReserve}"
                                 android:text="行李及购票须知"
                                 android:textColor="@color/color_289cef"
                                 android:textSize="13sp" />
@@ -328,6 +334,7 @@
                             android:layout_centerVertical="true"
                             android:drawableLeft="@mipmap/k04_01xinzeng"
                             android:drawablePadding="8dp"
+                            android:onClick="@{viewModel.onClickReserve}"
                             android:text="新增乘机人"
                             android:textColor="@color/color_289cef"
                             android:textSize="16sp" />
@@ -338,7 +345,6 @@
                         android:id="@+id/recyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-
 
                     </android.support.v7.widget.RecyclerView>
 
@@ -404,6 +410,7 @@
                                 android:layout_marginRight="20dp"
                                 android:drawableRight="@mipmap/k01_11genduo"
                                 android:drawablePadding="8dp"
+                                android:onClick="@{viewModel.onClickReserve}"
                                 android:text="+86"
                                 android:textColor="@color/color_333333"
                                 android:textSize="14sp" />
@@ -420,187 +427,6 @@
                                 android:textSize="14sp" />
 
                         </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/white"
-                        android:orientation="vertical"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:visibility="gone">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:text="搭配保险 守护全家"
-                            android:textColor="@color/color_333333"
-                            android:textSize="16sp" />
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="15dp"
-                            android:paddingBottom="15dp">
-
-                            <ImageView
-                                android:id="@+id/select_img1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginRight="15dp"
-                                android:background="@mipmap/k01_04xuanzhong" />
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_toRightOf="@id/select_img1"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="航意航延组合险"
-                                    android:textColor="@color/color_333333"
-                                    android:textSize="16sp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="8dp"
-                                    android:layout_marginBottom="8dp"
-                                    android:text="双重保险 组合更省"
-                                    android:textColor="@color/color_999999"
-                                    android:textSize="12sp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="100万意外保障，延误赔￥300"
-                                    android:textColor="@color/color_333333"
-                                    android:textSize="16sp" />
-
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-                                android:text="40/份"
-                                android:textColor="@color/color_ff8300"
-                                android:textSize="18sp" />
-
-                        </RelativeLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.5dp"
-                            android:background="@color/color_eeeeee" />
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="15dp"
-                            android:paddingBottom="15dp">
-
-                            <ImageView
-                                android:id="@+id/select_img2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginRight="15dp"
-                                android:background="@mipmap/k01_04xuanzhong" />
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_toRightOf="@id/select_img2"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="航空意外险"
-                                    android:textColor="@color/color_333333"
-                                    android:textSize="16sp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="8dp"
-                                    android:text="安心出行享320万意外保障"
-                                    android:textColor="@color/color_333333"
-                                    android:textSize="16sp" />
-
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-                                android:text="40/份"
-                                android:textColor="@color/color_ff8300"
-                                android:textSize="18sp" />
-
-                        </RelativeLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.5dp"
-                            android:background="@color/color_eeeeee" />
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="15dp"
-                            android:paddingBottom="15dp">
-
-                            <ImageView
-                                android:id="@+id/select_img3"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginRight="15dp"
-                                android:background="@mipmap/k01_04xuanzhong" />
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_toRightOf="@id/select_img3"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="航班延误险"
-                                    android:textColor="@color/color_333333"
-                                    android:textSize="16sp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="8dp"
-                                    android:text="为时间买单，航班延误赔300元"
-                                    android:textColor="@color/color_333333"
-                                    android:textSize="16sp" />
-
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-                                android:text="40/份"
-                                android:textColor="@color/color_ff8300"
-                                android:textSize="18sp" />
-
-                        </RelativeLayout>
                     </LinearLayout>
 
                     <LinearLayout
@@ -652,7 +478,8 @@
                                 android:id="@+id/invoiceType"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
-                                android:background="@color/white">
+                                android:background="@color/white"
+                                android:onClick="@{viewModel.onClickReserve}">
 
                                 <TextView
                                     android:id="@+id/tag"
@@ -740,7 +567,8 @@
                                         android:id="@+id/identification_num_explain"
                                         android:layout_width="120dp"
                                         android:layout_height="wrap_content"
-                                        android:gravity="center_vertical">
+                                        android:gravity="center_vertical"
+                                        android:onClick="@{viewModel.onClickReserve}">
 
                                         <TextView
                                             android:layout_width="wrap_content"
@@ -815,7 +643,8 @@
                                         android:id="@+id/rl_address"
                                         android:layout_width="match_parent"
                                         android:layout_height="50dp"
-                                        android:background="@color/white">
+                                        android:background="@color/white"
+                                        android:onClick="@{viewModel.onClickReserve}">
 
                                         <TextView
                                             android:id="@+id/tag2"
@@ -942,6 +771,7 @@
                                 android:id="@+id/tvReserveNotice"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:onClick="@{viewModel.onClickReserve}"
                                 android:text="《机票预订须知》"
                                 android:textColor="@color/color_289cef"
                                 android:textSize="12sp" />

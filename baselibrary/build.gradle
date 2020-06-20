@@ -104,6 +104,7 @@ dependencies {
 
     api rootProject.ext.dependencies["pinyin"]
     api rootProject.ext.dependencies["calendar"]
+    api rootProject.ext.dependencies["webview"]
 
     api(rootProject.ext.dependencies["permissionsdispatcher"]) {
         // if you don't use android.app.Fragment you can exclude support for them

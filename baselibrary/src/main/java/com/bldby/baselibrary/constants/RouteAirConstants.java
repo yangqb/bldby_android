@@ -8,6 +8,9 @@ public class RouteAirConstants {
     public static final String AIRSEARCHFLIGHT2 = "/air/search/flight2";
     public static final String AIRFLIGHTDETAIL = "/air/flight/detail";
     public static final String AIRRESERVE = "/air/reserve";
+    public static final String AIRPASSENGERLIST= "/air/passenger/list";
+    public static final String AIRCOUNTRYCODE="air/country/code";
+    public static final String AIREDITPASSENGER="air/edit/passenger";
 
 
 }
