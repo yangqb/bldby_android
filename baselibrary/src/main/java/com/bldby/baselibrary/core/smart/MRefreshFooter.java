@@ -72,8 +72,7 @@ public class MRefreshFooter extends LinearLayout implements RefreshFooter {
         if (noMoreData) {
             this.title.setText("没有更多数据了");
         } else {
-            this.title.setText("请稍等");
-
+            this.title.setText("让你放心 才是对的");
         }
         return noMoreData;
     }
