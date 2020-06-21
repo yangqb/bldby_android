@@ -99,7 +99,7 @@ public class SearchFlightActivity extends BaseAirUiActivity {
             request.call(new ApiLifeCallBack<SearchFlightModel>() {
                 @Override
                 public void onStart() {
-                    showloadDialog("");
+                    showloadDialog();
                 }
 
                 @Override
@@ -138,7 +138,7 @@ public class SearchFlightActivity extends BaseAirUiActivity {
             request.call(new ApiLifeCallBack<List<SearchInternationalFlightModel>>() {
                 @Override
                 public void onStart() {
-                    showloadDialog("");
+                    showloadDialog();
                 }
 
                 @Override

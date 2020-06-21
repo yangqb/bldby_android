@@ -33,23 +33,23 @@
             android:layout_marginTop="10dp"
             android:ellipsize="end"
             android:lines="2"
-            tools:text="山东红灯大樱桃4斤净果约3斤山东红灯xvxcvcxvcxvxcvxc"
             android:textColor="#ff333333"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@+id/img"
             app:layout_constraintStart_toStartOf="@+id/img"
-            app:layout_constraintTop_toBottomOf="@+id/img" />
+            app:layout_constraintTop_toBottomOf="@+id/img"
+            tools:text="山东红灯大樱桃4斤净果约3斤山东红灯xvxcvcxvcxvxcvxc" />
 
         <TextView
             android:id="@+id/minMarketPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_2"
-            tools:text="¥188 市场参考价"
             android:textColor="#ff999999"
             android:textSize="@dimen/sp_10"
             app:layout_constraintStart_toStartOf="@+id/title"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            tools:text="¥188 市场参考价" />
 
         <TextView
             android:id="@+id/sales"
@@ -72,22 +72,58 @@
             android:paddingTop="@dimen/dp_2"
             android:paddingEnd="@dimen/dp_10"
             android:paddingBottom="@dimen/dp_2"
-            tools:text="奖励¥6起"
             android:textColor="#ffea362c"
             android:textSize="@dimen/sp_10"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="@+id/minMarketPrice"
-            app:layout_constraintTop_toBottomOf="@+id/minMarketPrice" />
+            app:layout_constraintTop_toBottomOf="@+id/minMarketPrice"
+            tools:text="奖励¥6起" />
+
+        <TextView
+            android:id="@+id/vip1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_6"
+            android:background="@drawable/shape_red_vip_black"
+            android:paddingStart="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_2"
+            android:paddingEnd="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_2"
+            android:textColor="@color/fffbeac8"
+            android:textSize="@dimen/sp_10"
+            app:layout_constraintEnd_toStartOf="@+id/vip2"
+            app:layout_constraintStart_toStartOf="@+id/minMarketPrice"
+            app:layout_constraintTop_toBottomOf="@+id/minMarketPrice"
+            android:text="@string/getvip" />
+
+        <com.bldby.baselibrary.core.view.CornerTextView
+            android:id="@+id/vip2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/fffbeac8"
+            android:paddingStart="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_2"
+            android:paddingEnd="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_2"
+            android:textColor="#ffea362c"
+            android:textSize="@dimen/sp_10"
+            app:cornerRadius="@dimen/dp_4"
+            app:isTextBottomLeftRadius="false"
+            app:isTextTopLeftRadius="false"
+            app:layout_constraintBottom_toBottomOf="@+id/minReturnPrice"
+            app:layout_constraintStart_toEndOf="@+id/minReturnPrice"
+            tools:text="奖励¥6起" />
 
         <TextView
             android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_4"
-            tools:text="¥ 66起"
             android:textColor="#ffea362c"
             android:textSize="@dimen/sp_12"
             app:layout_constraintStart_toStartOf="@+id/minReturnPrice"
-            app:layout_constraintTop_toBottomOf="@+id/minReturnPrice" />
+            app:layout_constraintTop_toBottomOf="@+id/minReturnPrice"
+            tools:text="¥ 66起" />
     </android.support.constraint.ConstraintLayout>
 
 

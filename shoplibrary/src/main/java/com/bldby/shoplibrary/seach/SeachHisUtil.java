@@ -26,12 +26,18 @@ public class SeachHisUtil {
 
     /**
      * 添加历史记录
+     *
      * @param s
      */
     public void addHis(String s) {
         List<String> strings = Hawk.get(SavaTag, new ArrayList<String>());
         if (strings == null) {
             strings = new ArrayList<>();
+        }
+        for (int i = strings.size() - 1; i >= 0; i--) {
+            if (strings.get(i).equals(s)) {
+                strings.remove(i);
+            }
         }
         strings.add(0, s);
         if (strings.size() > SavaTagSize) {
@@ -42,6 +48,7 @@ public class SeachHisUtil {
 
     /**
      * 获取历史记录
+     *
      * @return
      */
     public ArrayList<String> getHis() {
@@ -55,10 +62,11 @@ public class SeachHisUtil {
 
     /**
      * 删除历史记录
+     *
      * @return
      */
     public void deleteHis() {
         boolean delete = Hawk.delete(SavaTag);
-        return ;
+        return;
     }
 }

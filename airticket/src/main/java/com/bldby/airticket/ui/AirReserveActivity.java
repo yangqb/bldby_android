@@ -660,7 +660,7 @@ public class AirReserveActivity extends BaseAirUiActivity {
             request.call(new ApiLifeCallBack<Object>() {
                 @Override
                 public void onStart() {
-                    showloadDialog("");
+                    showloadDialog();
                 }
 
                 @Override

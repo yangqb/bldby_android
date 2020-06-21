@@ -66,7 +66,7 @@ public class AccountManager {
      * @return
      */
     public boolean isVip() {
-        return true;
+        return false;
     }
 
     /**

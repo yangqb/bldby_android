@@ -117,7 +117,7 @@ public class OilDeiltaActivity extends BaseActivity {
 
             @Override
             public void onStart() {
-                showloadDialog("");
+                showloadDialog();
             }
 
             @Override

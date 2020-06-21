@@ -3,6 +3,7 @@ package com.bldby.shoplibrary.seach;
 import android.databinding.DataBindingUtil;
 import android.support.design.chip.Chip;
 import android.support.design.chip.ChipDrawable;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,10 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.bigkoo.alertview.AlertView;
+import com.bigkoo.alertview.OnItemClickListener;
 import com.bldby.baselibrary.constants.RouteShopConstants;
 import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
@@ -21,6 +25,9 @@ import com.bldby.shoplibrary.R;
 import com.bldby.shoplibrary.databinding.ActivitySeachBinding;
 import com.bldby.shoplibrary.databinding.ItemSeachChipBinding;
 import com.gyf.immersionbar.ImmersionBar;
+import com.lxj.xpopup.XPopup;
+import com.lxj.xpopup.interfaces.OnCancelListener;
+import com.lxj.xpopup.interfaces.OnConfirmListener;
 
 import java.util.ArrayList;
 
@@ -31,6 +38,8 @@ import static com.bldby.baselibrary.constants.RouteShopConstants.SHOPGOODSSEACHD
 public class SeachActivity extends BaseActivity {
     public static final String HISTORY_KEY = "history_key";
     private ActivitySeachBinding seachBinding;
+    @Autowired()
+    public String seachText;
 
     @Override
     public void bindIngView() {
@@ -55,7 +64,7 @@ public class SeachActivity extends BaseActivity {
         seachBinding.seachDeletetext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                popToRoot();
             }
         });
     }
@@ -68,7 +77,9 @@ public class SeachActivity extends BaseActivity {
 
     @Override
     public void loadData() {
-//        his();
+        if (!StringUtil.isEmptyString(seachText)) {
+            seachBinding.etKeyword.setText(seachText);
+        }
     }
 
     private void his() {
@@ -109,8 +120,31 @@ public class SeachActivity extends BaseActivity {
         seachBinding.seachGarbage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SeachHisUtil.getInstance().deleteHis();
-                his();
+                AlertView alertView = new AlertView("确认删除历史记录！", null, "取消", null, new String[]{"删除"}
+                        , SeachActivity.this, AlertView.Style.Alert,
+                        new OnItemClickListener() {
+                            @Override
+                            public void onItemClick(Object o, int position) {
+                                SeachHisUtil.getInstance().deleteHis();
+                                his();
+                            }
+                        });
+                alertView.show();
+//                new AlertView.Builder().setContext(SeachActivity.this)
+//                        .setStyle(AlertView.Style.Alert)
+//                        .setTitle("")
+//                        .setCancelText("取消")
+//                        .setDestructive("删除")
+//                        .setOthers(null)
+//                        .setOnItemClickListener(new OnItemClickListener() {
+//                            @Override
+//                            public void onItemClick(Object o, int position) {
+//                                SeachHisUtil.getInstance().deleteHis();
+//                                his();
+//                            }
+//                        })
+//                        .build()
+//                        .show();
             }
         });
         seachBinding.etKeyword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -130,5 +164,14 @@ public class SeachActivity extends BaseActivity {
                 return false;
             }
         });
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            popToRoot();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

@@ -1,14 +1,17 @@
 package com.bldby.baselibrary.core.ui.baseactivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.callback.NavigationCallback;
@@ -17,7 +20,9 @@ import com.bldby.baselibrary.R;
 import com.bldby.baselibrary.constants.RouteConstants;
 import com.bldby.baselibrary.app.GlobalUtil;
 import com.bldby.baselibrary.core.ui.basefragment.Basefragment;
+import com.bldby.baselibrary.core.util.DeviceUtil;
 import com.bldby.baselibrary.core.util.ToastUtil;
+import com.bldby.baselibrary.databinding.LayoutLoadingViewBinding;
 import com.gyf.immersionbar.ImmersionBar;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.enums.PopupAnimation;
@@ -41,7 +46,7 @@ public abstract class BaseActivity extends SupportActivity implements Navigation
 //    Fragment fragment = (Fragment) ARouter.getInstance().build("/test/fragment").navigation();
 //    @Route(path = RouteConstants.APPMAIN, extras = RouteLoginConstants.SHOWCHECKLOGIN)
     //当extras = RouteLoginConstants.SHOWCHECKLOGIN时
-    LoadingPopupView loadingPopup;
+    AlertDialog loadingPopup;
 
 
     @Override
@@ -106,28 +111,31 @@ public abstract class BaseActivity extends SupportActivity implements Navigation
         finish();
     }
 
-    protected void showloadDialog(String title) {
-        if (loadingPopup == null) {
-            loadingPopup = (LoadingPopupView) new XPopup.Builder(this)
-                    .hasShadowBg(false)
-                    .popupAnimation(PopupAnimation.NoAnimation)
-                    .dismissOnBackPressed(true)
-                    .dismissOnTouchOutside(true)
-                    .asLoading()
-                    .bindLayout(R.layout.layout_loading_view);
+    protected void showloadDialog() {
 
+        if (loadingPopup == null) {
+            LayoutLoadingViewBinding inflate = LayoutLoadingViewBinding.inflate(GlobalUtil.getCurrentActivity().getLayoutInflater());
+            loadingPopup = new AlertDialog.Builder(GlobalUtil.getCurrentActivity(), R.style.TransparentDialog)
+                    .setView(inflate.getRoot())
+                    .setCancelable(false)
+                    .create();
+            loadingPopup.getWindow().setDimAmount(0f);
+
+            loadingPopup.show();
+            int i = DeviceUtil.dp2px(GlobalUtil.getCurrentActivity(), GlobalUtil.getCurrentActivity().getResources().getDimension(R.dimen.dp_50));
+            loadingPopup.getWindow().setLayout(i, LinearLayout.LayoutParams.WRAP_CONTENT);
+            AnimationDrawable animationDrawable = (AnimationDrawable) inflate.img.getDrawable();
+            animationDrawable.start();
+            loadingPopup.show();
         }
-        loadingPopup.show();
+
 
     }
 
     protected void goneloadDialog() {
         if (null != loadingPopup) {
-            loadingPopup.delayDismissWith(600, new Runnable() {
-                @Override
-                public void run() {
-                }
-            });
+            loadingPopup.dismiss();
+            loadingPopup = null;
         }
     }
 

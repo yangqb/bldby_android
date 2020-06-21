@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ import com.bldby.shoplibrary.seach.adapter.ItemSeachShopsAdapter;
 import com.bldby.shoplibrary.seach.model.GoodsSeachModel;
 import com.bldby.shoplibrary.seach.request.GoodsSeachRequest;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.gyf.immersionbar.ImmersionBar;
 import com.scwang.smartrefresh.layout.api.RefreshFooter;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
@@ -108,13 +110,15 @@ public class SeachDetailActivity extends BaseActivity {
         viewDataBinding.seachDeletetext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                popToRoot();
             }
         });
         viewDataBinding.editParentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                start(SHOPGOODSSEACH);
+                startWith(SHOPGOODSSEACH)
+                        .withString("seachText", viewDataBinding.etKeyword.getText().toString())
+                        .navigation(SeachDetailActivity.this, SeachDetailActivity.this);
             }
         });
         viewDataBinding.smartRe.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
@@ -129,7 +133,6 @@ public class SeachDetailActivity extends BaseActivity {
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 isrefresh = true;
                 itemSeachShopsAdapter.getData().clear();
-                itemSeachShopsAdapter.notifyDataSetChanged();
                 searchData(type, 1);
 
             }
@@ -139,7 +142,6 @@ public class SeachDetailActivity extends BaseActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 //                    1价格降序 2 价格升序
                 itemSeachShopsAdapter.getData().clear();
-                itemSeachShopsAdapter.notifyDataSetChanged();
                 View customView = tab.getCustomView();
                 TextView viewById = customView.findViewById(R.id.title);
                 viewById.setTextColor(getResources().getColor(R.color.default_orange));
@@ -171,7 +173,6 @@ public class SeachDetailActivity extends BaseActivity {
             public void onTabReselected(TabLayout.Tab tab) {
                 if (tab.getPosition() == 1) {
                     itemSeachShopsAdapter.getData().clear();
-                    itemSeachShopsAdapter.notifyDataSetChanged();
                     if (type == 1) {
                         View customView = tab.getCustomView();
                         TextView viewById = customView.findViewById(R.id.title);
@@ -197,6 +198,25 @@ public class SeachDetailActivity extends BaseActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            popToRoot();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public ImmersionBar getOpenImmersionBar() {
+        return ImmersionBar.with(this)
+                .fitsSystemWindows(true)
+                .statusBarDarkFont(true, 0.2f)
+                .navigationBarColor(R.color.white)
+                .statusBarColor(R.color.FCB432)
+                .navigationBarDarkIcon(true);
     }
 
     private void searchData(int type, int page) {
@@ -245,6 +265,7 @@ public class SeachDetailActivity extends BaseActivity {
                         viewDataBinding.smartRe.finishRefresh(1000);
                     }
                 }
+                itemSeachShopsAdapter.notifyDataSetChanged();
 
             }
         });

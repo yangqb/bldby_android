@@ -36,10 +36,12 @@ public class HttpLoadingUtil {
             usefulCount++;
             if (alertDialog == null) {
                 LayoutLoadingViewBinding inflate = LayoutLoadingViewBinding.inflate(GlobalUtil.getCurrentActivity().getLayoutInflater());
-                alertDialog = new AlertDialog.Builder(GlobalUtil.getCurrentActivity())
+                alertDialog = new AlertDialog.Builder(GlobalUtil.getCurrentActivity(), R.style.TransparentDialog)
                         .setView(inflate.getRoot())
                         .setCancelable(false)
                         .create();
+                alertDialog.getWindow().setDimAmount(0f);
+
                 alertDialog.show();
                 int i = DeviceUtil.dp2px(GlobalUtil.getCurrentActivity(), GlobalUtil.getCurrentActivity().getResources().getDimension(R.dimen.dp_50));
                 alertDialog.getWindow().setLayout(i, LinearLayout.LayoutParams.WRAP_CONTENT);

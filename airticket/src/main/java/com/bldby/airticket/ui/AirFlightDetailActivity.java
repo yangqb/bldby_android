@@ -271,7 +271,7 @@ public class AirFlightDetailActivity extends BaseAirUiActivity {
             request.call(new ApiLifeCallBack<AirPriceDetailInfo>() {
                 @Override
                 public void onStart() {
-                    showloadDialog("");
+                    showloadDialog();
                 }
 
                 @Override
@@ -316,7 +316,7 @@ public class AirFlightDetailActivity extends BaseAirUiActivity {
             request.call(new ApiLifeCallBack<AirGoBackPriceDetailInfo>() {
                 @Override
                 public void onStart() {
-                    showloadDialog("");
+                    showloadDialog();
                 }
 
                 @Override
@@ -357,7 +357,7 @@ public class AirFlightDetailActivity extends BaseAirUiActivity {
             request.call(new ApiLifeCallBack<AirInternationalPriceDetailInfo>() {
                 @Override
                 public void onStart() {
-                    showloadDialog("");
+                    showloadDialog();
                 }
 
                 @Override
@@ -400,7 +400,7 @@ public class AirFlightDetailActivity extends BaseAirUiActivity {
             request.call(new ApiLifeCallBack<AirInternationalPriceDetailInfo>() {
                 @Override
                 public void onStart() {
-                    showloadDialog("");
+                    showloadDialog();
                 }
 
                 @Override

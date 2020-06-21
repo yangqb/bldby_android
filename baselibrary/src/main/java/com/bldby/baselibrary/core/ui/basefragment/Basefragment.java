@@ -1,16 +1,22 @@
 package com.bldby.baselibrary.core.ui.basefragment;
 
+import android.app.AlertDialog;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.callback.NavigationCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bldby.baselibrary.R;
+import com.bldby.baselibrary.app.GlobalUtil;
 import com.bldby.baselibrary.constants.RouteConstants;
+import com.bldby.baselibrary.core.util.DeviceUtil;
 import com.bldby.baselibrary.core.util.ToastUtil;
+import com.bldby.baselibrary.databinding.LayoutLoadingViewBinding;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.enums.PopupAnimation;
 import com.lxj.xpopup.impl.LoadingPopupView;
@@ -30,7 +36,7 @@ import me.yokeyword.fragmentation.SupportFragment;
 //3.通过Bundle获取
 //    getIntent().getExtras().getLong("key1")
 public abstract class Basefragment extends SupportFragment implements NavigationCallback {
-    LoadingPopupView loadingPopup;
+    AlertDialog loadingPopup;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,28 +59,31 @@ public abstract class Basefragment extends SupportFragment implements Navigation
 
     public abstract void initListener();
 
-    protected void showloadDialog(String title) {
-        if (loadingPopup == null) {
-            loadingPopup = (LoadingPopupView) new XPopup.Builder(getContext())
-                    .hasShadowBg(false)
-                    .popupAnimation(PopupAnimation.NoAnimation)
-                    .dismissOnBackPressed(true)
-                    .dismissOnTouchOutside(true)
-                    .asLoading()
-                    .bindLayout(R.layout.layout_loading_view);
+    protected void showloadDialog() {
 
+        if (loadingPopup == null) {
+            LayoutLoadingViewBinding inflate = LayoutLoadingViewBinding.inflate(GlobalUtil.getCurrentActivity().getLayoutInflater());
+            loadingPopup = new AlertDialog.Builder(GlobalUtil.getCurrentActivity(), R.style.TransparentDialog)
+                    .setView(inflate.getRoot())
+                    .setCancelable(false)
+                    .create();
+            loadingPopup.getWindow().setDimAmount(0f);
+
+            loadingPopup.show();
+            int i = DeviceUtil.dp2px(GlobalUtil.getCurrentActivity(), GlobalUtil.getCurrentActivity().getResources().getDimension(R.dimen.dp_50));
+            loadingPopup.getWindow().setLayout(i, LinearLayout.LayoutParams.WRAP_CONTENT);
+            AnimationDrawable animationDrawable = (AnimationDrawable) inflate.img.getDrawable();
+            animationDrawable.start();
+            loadingPopup.show();
         }
-        loadingPopup.show();
+
 
     }
 
     protected void goneloadDialog() {
         if (null != loadingPopup) {
-            loadingPopup.delayDismissWith(600, new Runnable() {
-                @Override
-                public void run() {
-                }
-            });
+            loadingPopup.dismiss();
+            loadingPopup = null;
         }
     }
 
