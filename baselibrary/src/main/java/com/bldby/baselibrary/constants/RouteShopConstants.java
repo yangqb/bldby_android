@@ -8,6 +8,7 @@ public class RouteShopConstants {
     public static final String SHOPGOODSEVALUATE = "/shop/evaluate";
     public static final String SHOPGOODSSKU = "/shop/sku";
     public static final String SHOPGOODSSEACH = "/shop/seach";
+    public static final String SHOPGOODSSEACHDETAIL = "/shop/seachDetail";
     public static final String SHOPGOODSGOODSSEACH = "/shop/goodsseach";
     public static final String SHOPGOODSSHOPPING = "/shop/goodsshopping";
 

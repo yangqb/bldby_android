@@ -1,3 +1,8 @@
 <resources>
 
+    <style name="ChipText" parent="Theme.MaterialComponents">
+<!--        <item name="android:textColor">#4871A8</item>-->
+<!--        <item name="android:textStyle">bold</item>-->
+    </style>
+
 </resources>

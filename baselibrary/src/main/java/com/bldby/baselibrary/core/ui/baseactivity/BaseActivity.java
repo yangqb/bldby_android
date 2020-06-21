@@ -102,6 +102,9 @@ public abstract class BaseActivity extends SupportActivity implements Navigation
                 .navigationBarDarkIcon(true);
     }
 
+    public void onClickBack(View v) {
+        finish();
+    }
 
     protected void showloadDialog(String title) {
         if (loadingPopup == null) {

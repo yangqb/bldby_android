@@ -30,7 +30,12 @@ public class ClassifyFragment extends Basefragment {
 
     @Override
     public void initView() {
+        binding.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
     }
 
     @Override

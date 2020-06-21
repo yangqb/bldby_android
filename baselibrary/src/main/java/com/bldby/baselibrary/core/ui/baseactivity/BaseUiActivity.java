@@ -54,9 +54,7 @@ public abstract class BaseUiActivity extends BaseActivity {
         }
     }
 
-    public void onClickBack(View v) {
-        finish();
-    }
+
 
 
 

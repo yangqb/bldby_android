@@ -56,7 +56,7 @@ public class AccountManager {
         if (isLogin()) {
             return false;
         }
-        ARouter.getInstance().build(RouteLoginConstants.LOGINMAIN).navigation();
+        ARouter.getInstance().build(RouteLoginConstants.REGISTER).navigation();
         return true;
     }
 
@@ -110,7 +110,7 @@ public class AccountManager {
      * @return
      */
     public String getUserId() {
-        if (userInfo == null) {
+        if (userInfo == null || userInfo.loginInfo == null) {
             return "";
         }
         return userInfo.loginInfo.userId;
@@ -122,7 +122,7 @@ public class AccountManager {
      * @return
      */
     public String getUserPhone() {
-        if (userInfo == null) {
+        if (userInfo == null || userInfo.accountInfo == null) {
             return "";
         }
         return userInfo.accountInfo.phone;
@@ -134,7 +134,7 @@ public class AccountManager {
      * @return
      */
     public String getToken() {
-        if (userInfo == null) {
+        if (userInfo == null || userInfo.loginInfo == null) {
             return "";
         }
         return userInfo.loginInfo.accessToken;

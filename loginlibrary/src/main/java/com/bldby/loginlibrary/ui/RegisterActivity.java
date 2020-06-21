@@ -181,6 +181,8 @@ public class RegisterActivity extends BaseUiActivity {
             @Override
             public void onAPIError(int errorCode, String errorMsg) {
 
+                ToastUtil.show(getString(R.string.getuserinfofail));
+//                finish();
             }
         });
     }

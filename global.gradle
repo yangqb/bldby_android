@@ -6,7 +6,7 @@ ext {
 
     isShopApplication = false
     isTravelApplication = false
-    isAirTicketApplication = true
+    isAirTicketApplication = false
     isCenterApplication = false;
 
 

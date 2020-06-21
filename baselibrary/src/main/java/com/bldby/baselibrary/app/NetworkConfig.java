@@ -8,12 +8,12 @@ public class NetworkConfig {
     public static final String BASE_URL = "http://182.92.177.234/"; //正式环境
     public static final String TICKET_BASE_URL = "http://182.92.177.234:8087/"; //机票正式
 
+    public static final String DEV_TICKET_BASE_URL = "http://8.129.218.83:8087/"; //机票测试
 
     //public static final String DEV_BASE_URL = "http://8.129.218.83:8088/"; //老的测试地址
     public static final String DEV_BASE_URL = "http://219.234.82.84:10003/"; //测试地址 商品详情/商品搜索等
     public static final String DEV_LOGIN_BASE_URL = "http://219.234.82.84:10005/";//登录注册测试 用户登录/注册,获取用户信息等
 
-    public static final String DEV_TICKET_BASE_URL = "http://8.129.218.83:8087/"; //机票测试
 
     //public static final String TICKET_BASE_URL = "http://192.168.0.7:8087/"; //周工机票本地
     //public static final String BASE_URL = "http://192.168.0.9:8089/";//钟工本地地址

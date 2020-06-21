@@ -26,5 +26,6 @@
     <string name="login_auth_error">授权失败</string>
     <string name="login_cancel">取消登录</string>
     <string name="login_skip">跳过</string>
+    <string name="getuserinfofail">获取个人信息失败,请重试</string>
 
 </resources>

@@ -1,7 +1,13 @@
 package com.bldby.baselibrary.core.load;
 
+import android.app.AlertDialog;
+import android.graphics.drawable.AnimationDrawable;
+import android.widget.LinearLayout;
+
 import com.bldby.baselibrary.R;
 import com.bldby.baselibrary.app.GlobalUtil;
+import com.bldby.baselibrary.core.util.DeviceUtil;
+import com.bldby.baselibrary.databinding.LayoutLoadingViewBinding;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.enums.PopupAnimation;
 import com.lxj.xpopup.impl.LoadingPopupView;
@@ -15,31 +21,31 @@ public class LoadingUtil {
      * 用到的地方的数量
      */
     private static int usefulCount = 0;
-    private static LoadingPopupView loadingPopup;
+    private static AnimationDrawable mAnimPull;
+    private static AlertDialog alertDialog;
 
 
     synchronized public static void setLoadingViewShowWithContent(Boolean show, String content) {
         if (show) {
             usefulCount++;
-            if (loadingPopup == null) {
-                loadingPopup = (LoadingPopupView) new XPopup.Builder(GlobalUtil.getCurrentActivity())
-                        .hasShadowBg(false)
-                        .dismissOnTouchOutside(false)
-                        .popupAnimation(PopupAnimation.NoAnimation)
-                        .asLoading()
-                        .bindLayout(R.layout.layout_loading_view)
-                        .show();
+            if (alertDialog == null) {
+                LayoutLoadingViewBinding inflate = LayoutLoadingViewBinding.inflate(GlobalUtil.getCurrentActivity().getLayoutInflater());
+                alertDialog = new AlertDialog.Builder(GlobalUtil.getCurrentActivity())
+                        .setView(inflate.getRoot())
+                        .setCancelable(false)
+                        .create();
+                alertDialog.show();
+                int i = DeviceUtil.dp2px(GlobalUtil.getCurrentActivity(), GlobalUtil.getCurrentActivity().getResources().getDimension(R.dimen.dp_50));
+                alertDialog.getWindow().setLayout(i, LinearLayout.LayoutParams.WRAP_CONTENT);
+                mAnimPull = (AnimationDrawable) inflate.img.getDrawable();
+                mAnimPull.start();
             }
         } else {
             usefulCount--;
-            if (usefulCount <= 0 && loadingPopup != null) {
-                loadingPopup.delayDismissWith(600, new Runnable() {
-                    @Override
-                    public void run() {
-
-                    }
-                });
-                loadingPopup = null;
+            if (usefulCount <= 0 && alertDialog != null) {
+                alertDialog.dismiss();
+                alertDialog = null;
+                mAnimPull = null;
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.bldby.loginlibrary.ui;
+package com.bldby.loginlibrary;
 
 import com.bldby.baselibrary.app.BaseApp;
 

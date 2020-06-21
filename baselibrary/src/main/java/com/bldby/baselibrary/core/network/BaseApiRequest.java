@@ -80,9 +80,7 @@ public abstract class BaseApiRequest extends AbsApiRequest {
     public void onStart() {
         HttpLogUtil.e(getAPIName(), "onStart");
 
-        if (isShowLoading) {
-            HttpLoadingUtil.setLoadingViewShow(this, true);
-        }
+
         if (listener != null && listener instanceof ApiLifeCallBack) {
             ((ApiLifeCallBack) listener).onStart();
         }
@@ -152,6 +150,9 @@ public abstract class BaseApiRequest extends AbsApiRequest {
     @Override
     public void call(ApiCallBack listener) {
         this.listener = listener;
+        if (isShowLoading) {
+            HttpLoadingUtil.setLoadingViewShow(this, true);
+        }
         NetWorkState networkStatus = NetworkConnectChangedReceiver.getNetworkStatus(GlobalUtil.getApplication());
         //检查网络
         if (RequestCheckNetwork && networkStatus == NetWorkState.NONE) {

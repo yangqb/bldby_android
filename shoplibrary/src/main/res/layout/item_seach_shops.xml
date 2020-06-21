@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.bldby.baselibrary.core.view.CornerLinearView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/dp_5"
+    android:layout_marginTop="@dimen/dp_10"
+    android:layout_marginEnd="@dimen/dp_5"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical"
+    app:cornerRadius="@dimen/dp_10">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dp_10">
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="@dimen/dp_168"
+            android:layout_height="@dimen/dp_168"
+            android:scaleType="centerInside"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="@dimen/dp_148"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:lines="2"
+            tools:text="山东红灯大樱桃4斤净果约3斤山东红灯xvxcvcxvcxvxcvxc"
+            android:textColor="#ff333333"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/img"
+            app:layout_constraintStart_toStartOf="@+id/img"
+            app:layout_constraintTop_toBottomOf="@+id/img" />
+
+        <TextView
+            android:id="@+id/minMarketPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_2"
+            tools:text="¥188 市场参考价"
+            android:textColor="#ff999999"
+            android:textSize="@dimen/sp_10"
+            app:layout_constraintStart_toStartOf="@+id/title"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
+
+        <TextView
+            android:id="@+id/sales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_2"
+            android:textColor="#ff999999"
+            android:textSize="@dimen/sp_10"
+            app:layout_constraintEnd_toEndOf="@+id/title"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            tools:text="销量：500+" />
+
+        <TextView
+            android:id="@+id/minReturnPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_6"
+            android:background="@drawable/shape_red_borde"
+            android:paddingStart="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_2"
+            android:paddingEnd="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_2"
+            tools:text="奖励¥6起"
+            android:textColor="#ffea362c"
+            android:textSize="@dimen/sp_10"
+            app:layout_constraintStart_toStartOf="@+id/minMarketPrice"
+            app:layout_constraintTop_toBottomOf="@+id/minMarketPrice" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_4"
+            tools:text="¥ 66起"
+            android:textColor="#ffea362c"
+            android:textSize="@dimen/sp_12"
+            app:layout_constraintStart_toStartOf="@+id/minReturnPrice"
+            app:layout_constraintTop_toBottomOf="@+id/minReturnPrice" />
+    </android.support.constraint.ConstraintLayout>
+
+
+</com.bldby.baselibrary.core.view.CornerLinearView>

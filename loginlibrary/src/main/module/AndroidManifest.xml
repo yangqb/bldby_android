@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bldby.loginlibrary">
 
-    <application android:name=".ui.LoginApp">
+    <application android:name=".LoginApp">
         <activity
             android:name="com.bldby.loginlibrary.ui.RegisterActivity"
             android:theme="@style/AppTheme">
