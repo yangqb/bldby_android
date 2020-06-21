@@ -60,7 +60,4 @@ dependencies {
     implementation project(path: ':loginlibrary')
     annotationProcessor rootProject.ext.dependencies["router-compiler"]
 
-    if (rootProject.ext.isCenterApplication) {
-        implementation project(path: ':loginlibrary')
-    }
 }

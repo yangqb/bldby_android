@@ -61,8 +61,5 @@ dependencies {
     implementation project(path: ':centerlibrary')
     annotationProcessor rootProject.ext.dependencies["router-compiler"]
 
-    if (rootProject.ext.isAirTicketApplication) {
-        implementation project(path: ':loginlibrary')
-    }
 
 }

@@ -135,9 +135,4 @@ public class InputInviteCodeActivity extends BaseUiActivity {
         getUserInfo(userId, token);
     }
 
-    @Override
-    protected void initRightImg(ImageView view) {
-        super.initRightImg(view);
-//        view.setBackgroundResource(R.drawable.fragmentation_help);
-    }
 }

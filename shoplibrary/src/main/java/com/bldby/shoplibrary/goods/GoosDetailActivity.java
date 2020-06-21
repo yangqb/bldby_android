@@ -25,6 +25,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bldby.baselibrary.constants.RouteConstants;
 import com.bldby.baselibrary.constants.RouteShopConstants;
@@ -63,6 +64,8 @@ import static com.bldby.baselibrary.constants.RouteShopConstants.SHOPGOODSDETAIL
 
 @Route(path = SHOPGOODSDETAIL)
 public class GoosDetailActivity extends BaseActivity {
+    @Autowired()
+    public int spuId;
 
     private ActivityGoosDetailBinding dataBinding;
     public ObservableField<ColorStateList> backButton = new ObservableField<ColorStateList>();
@@ -112,7 +115,7 @@ public class GoosDetailActivity extends BaseActivity {
 
     @Override
     public void loadData() {
-        GoodsDetailRequest goodsDetailRequest = new GoodsDetailRequest(2);
+        GoodsDetailRequest goodsDetailRequest = new GoodsDetailRequest(spuId);
         goodsDetailRequest.isShowLoading = true;
         goodsDetailRequest.call(new ApiCallBack<GoodsDetailModel>() {
             @Override

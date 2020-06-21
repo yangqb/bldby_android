@@ -115,8 +115,10 @@ public class WeChantLoginActivity extends BaseUiActivity {
                 //未绑定手机号
                 if (response.isBindPhone == 0) {
                     start(RouteLoginConstants.BIDINGACCOUNT);
+                    finish();
                 } else {
                     //此微信已绑定过注册的账号直接登录
+                    finish();
                 }
             }
 

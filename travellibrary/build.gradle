@@ -58,9 +58,9 @@ dependencies {
     implementation project(path: ':baselibrary')
     implementation project(path: ':loginlibrary')
 
-    if (rootProject.ext.isTravelApplication) {
+//    if (rootProject.ext.isTravelApplication) {
         implementation project(path: ':loginlibrary')
-    }
+//    }
     annotationProcessor rootProject.ext.dependencies["router-compiler"]
 
 }

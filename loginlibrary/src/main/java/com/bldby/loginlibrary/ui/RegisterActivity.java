@@ -150,6 +150,7 @@ public class RegisterActivity extends BaseUiActivity {
                 if (response.isBindCode == 0) {
                     //未填写过邀请码
                     startWith(RouteLoginConstants.LOGININVITE).withString("token", response.accessToken).withString("userId", response.userId).navigation();
+                    finish();
                 } else {
                     getUserInfo(response.userId, response.accessToken);
                 }
@@ -175,7 +176,9 @@ public class RegisterActivity extends BaseUiActivity {
                 UserInfo userInfo = AccountManager.getInstance().getUserInfo();
                 userInfo.accountInfo = response;
                 AccountManager.getInstance().updataLoginInfo(userInfo);
-                start(RouteAirConstants.MAIN);
+//                start(RouteAirConstants.MAIN);
+                //登录成功退出登录页面
+                finish();
             }
 
             @Override

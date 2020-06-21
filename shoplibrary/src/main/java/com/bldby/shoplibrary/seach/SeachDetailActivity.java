@@ -26,11 +26,13 @@ import com.bldby.shoplibrary.databinding.ItemSeachTabitemBinding;
 import com.bldby.shoplibrary.seach.adapter.ItemSeachShopsAdapter;
 import com.bldby.shoplibrary.seach.model.GoodsSeachModel;
 import com.bldby.shoplibrary.seach.request.GoodsSeachRequest;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.util.ArrayList;
 
+import static com.bldby.baselibrary.constants.RouteShopConstants.SHOPGOODSDETAIL;
 import static com.bldby.baselibrary.constants.RouteShopConstants.SHOPGOODSSEACH;
 import static com.bldby.baselibrary.constants.RouteShopConstants.SHOPGOODSSEACHDETAIL;
 import static com.bldby.baselibrary.core.network.BaseApiRequest.kErrorTypeNoNetworkConnect;
@@ -91,6 +93,14 @@ public class SeachDetailActivity extends BaseActivity {
 
     @Override
     public void initListener() {
+        itemSeachShopsAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
+                GoodsSeachModel.ListBean listBean = itemSeachShopsAdapter.getData().get(i);
+                startWith(SHOPGOODSDETAIL).withInt("spuId", listBean.getSpuId())
+                        .navigation(SeachDetailActivity.this, SeachDetailActivity.this);
+            }
+        });
         //点击取消方法（）
         viewDataBinding.seachDeletetext.setClickable(true);
         viewDataBinding.seachDeletetext.setOnClickListener(new View.OnClickListener() {
@@ -192,7 +202,7 @@ public class SeachDetailActivity extends BaseActivity {
         this.type = type;
 //        LoadingUtil.setLoadingViewShow(true);
         GoodsSeachRequest goodsSeachRequest = new GoodsSeachRequest();
-        goodsSeachRequest.keyWord = seach;
+        goodsSeachRequest.keyWord = "";
         goodsSeachRequest.sort = type;
         goodsSeachRequest.isShowLoading = true;
         goodsSeachRequest.currentPage = currentPage;
@@ -208,7 +218,7 @@ public class SeachDetailActivity extends BaseActivity {
                     viewDataBinding.smartRe.finishRefresh(true);
                 }
 
-                if (response.getTotalPage() == response.getTotal()) {
+                if (currentPage >= response.getTotal()) {
 //最后一页
                     if (!isrefresh) {
                         viewDataBinding.smartRe.finishLoadMoreWithNoMoreData();

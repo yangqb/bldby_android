@@ -86,7 +86,7 @@ public abstract class BaseUiActivity extends BaseActivity {
     }
 
     protected void initRightImg(ImageView view) {
-        viewDataBinding.rightText.setVisibility(View.GONE);
+//        viewDataBinding.rightText.setVisibility(View.GONE);
         viewDataBinding.rightImg.setVisibility(View.VISIBLE);
         return;
     }
