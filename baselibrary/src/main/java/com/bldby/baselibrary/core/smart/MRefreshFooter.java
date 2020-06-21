@@ -11,8 +11,10 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bldby.baselibrary.R;
+import com.bldby.baselibrary.core.util.StringUtil;
 import com.scwang.smartrefresh.layout.api.RefreshFooter;
 import com.scwang.smartrefresh.layout.api.RefreshKernel;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -31,6 +33,7 @@ public class MRefreshFooter extends LinearLayout implements RefreshFooter {
     private Animation mAnim;
     private AnimationDrawable mAnimPull;
     private AnimationDrawable mAnimRefresh;
+    private TextView title;
 
     public MRefreshFooter(Context context) {
         this(context, null, 0);
@@ -43,6 +46,7 @@ public class MRefreshFooter extends LinearLayout implements RefreshFooter {
     public MRefreshFooter(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         View view = View.inflate(context, R.layout.m_refresh_footer, this);
+        title = view.findViewById(R.id.bottomTitle);
         mImage = view.findViewById(R.id.iv_refresh_footer);
         mAnim = AnimationUtils.loadAnimation(getContext(), R.anim.anim_round_rotate);
         LinearInterpolator linearInterpolator = new LinearInterpolator();
@@ -50,9 +54,28 @@ public class MRefreshFooter extends LinearLayout implements RefreshFooter {
 
     }
 
+    /**
+     * 没有更多数据了
+     */
+    public void setNoMoreData() {
+    }
+
+    /**
+     * 没有网络
+     */
+    public void setNoNetWork() {
+        this.title.setText("网络中断,请重试");
+    }
+
     @Override
     public boolean setNoMoreData(boolean noMoreData) {
-        return false;
+        if (noMoreData) {
+            this.title.setText("没有更多数据了");
+        } else {
+            this.title.setText("请稍等");
+
+        }
+        return noMoreData;
     }
 
     @NonNull
@@ -94,7 +117,7 @@ public class MRefreshFooter extends LinearLayout implements RefreshFooter {
 
     @Override
     public int onFinish(@NonNull RefreshLayout refreshLayout, boolean success) {
-        if(mAnim != null && mAnim.hasStarted() && !mAnim.hasEnded()){
+        if (mAnim != null && mAnim.hasStarted() && !mAnim.hasEnded()) {
             mAnim.cancel();
             mImage.clearAnimation();
         }
@@ -127,12 +150,13 @@ public class MRefreshFooter extends LinearLayout implements RefreshFooter {
                 mImage.setImageResource(R.drawable.anim_pull_end);
                 mAnimPull = (AnimationDrawable) mImage.getDrawable();
                 mAnimPull.start();
-
+                title.setText("让你放心 才是对的");
                 break;
             case ReleaseToLoad:
                 mImage.setImageResource(R.drawable.anim_pull_refreshing);
                 mAnimRefresh = (AnimationDrawable) mImage.getDrawable();
                 mAnimRefresh.start();
+                title.setText("让你放心 才是对的");
                 break;
         }
     }

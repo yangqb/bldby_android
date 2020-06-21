@@ -17,6 +17,7 @@ import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bldby.baselibrary.core.load.LoadingUtil;
 import com.bldby.baselibrary.core.network.ApiCallBack;
+import com.bldby.baselibrary.core.smart.MRefreshFooter;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
 import com.bldby.baselibrary.core.util.ToastUtil;
 import com.bldby.baselibrary.databinding.ViewCommonNodataBinding;
@@ -27,6 +28,7 @@ import com.bldby.shoplibrary.seach.adapter.ItemSeachShopsAdapter;
 import com.bldby.shoplibrary.seach.model.GoodsSeachModel;
 import com.bldby.shoplibrary.seach.request.GoodsSeachRequest;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.scwang.smartrefresh.layout.api.RefreshFooter;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
@@ -202,7 +204,7 @@ public class SeachDetailActivity extends BaseActivity {
         this.type = type;
 //        LoadingUtil.setLoadingViewShow(true);
         GoodsSeachRequest goodsSeachRequest = new GoodsSeachRequest();
-        goodsSeachRequest.keyWord = "";
+        goodsSeachRequest.keyWord = seach;
         goodsSeachRequest.sort = type;
         goodsSeachRequest.isShowLoading = true;
         goodsSeachRequest.currentPage = currentPage;
@@ -217,6 +219,7 @@ public class SeachDetailActivity extends BaseActivity {
                 } else {
                     viewDataBinding.smartRe.finishRefresh(true);
                 }
+//                viewDataBinding.smartRe.finishLoadMoreWithNoMoreData();
 
                 if (currentPage >= response.getTotal()) {
 //最后一页
@@ -233,9 +236,13 @@ public class SeachDetailActivity extends BaseActivity {
                 if (errorCode == kErrorTypeNoNetworkConnect) {
                     if (!isrefresh) {
                         ToastUtil.show("没有网络了");
-                        viewDataBinding.smartRe.finishLoadMore(false);
+                        RefreshFooter refreshFooter = viewDataBinding.smartRe.getRefreshFooter();
+                        if (refreshFooter instanceof MRefreshFooter) {
+                            ((MRefreshFooter) refreshFooter).setNoNetWork();
+                        }
+                        viewDataBinding.smartRe.finishLoadMore(1000);
                     } else {
-                        viewDataBinding.smartRe.finishRefresh(false);
+                        viewDataBinding.smartRe.finishRefresh(1000);
                     }
                 }
 

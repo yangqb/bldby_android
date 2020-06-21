@@ -256,8 +256,7 @@ public abstract class BaseApiRequest extends AbsApiRequest {
         }
 
         handleError(errorCode, errorMsg);
-        //请求结束
-        onFinsh();
+
     }
 
     /**
@@ -310,7 +309,8 @@ public abstract class BaseApiRequest extends AbsApiRequest {
     @Override
     public void handleError(int errorCode, String errorMsg) {
         HttpLogUtil.e("handleError    " + getAPIName(), errorCode + "::" + errorMsg);
-
+        //请求结束
+        onFinsh();
         if (listener != null) {
             listener.onAPIError(errorCode, errorMsg);
         }
