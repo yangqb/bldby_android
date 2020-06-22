@@ -28,7 +28,7 @@ public class BidingInviteCodeRequest extends BaseLoginRequest {
 
     @Override
     public RequestLevel getRequestLevel() {
-        return RequestLevel.POST;
+        return RequestLevel.GET;
     }
 
     @Override

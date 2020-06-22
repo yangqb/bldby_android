@@ -150,6 +150,7 @@ public class WeChantLoginActivity extends BaseUiActivity {
      * */
     public void onPhoneLogin(View view) {
         start(RouteLoginConstants.REGISTER);
+        finish();
     }
 
     @Override
