@@ -3,8 +3,11 @@ package com.bldby.shoplibrary.seach;
 import android.databinding.DataBindingUtil;
 import android.support.design.chip.Chip;
 import android.support.design.chip.ChipDrawable;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.Editable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
@@ -32,6 +35,8 @@ import com.lxj.xpopup.interfaces.OnCancelListener;
 import com.lxj.xpopup.interfaces.OnConfirmListener;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static com.bldby.baselibrary.constants.RouteShopConstants.SHOPGOODSSEACH;
 import static com.bldby.baselibrary.constants.RouteShopConstants.SHOPGOODSSEACHDETAIL;
@@ -62,6 +67,12 @@ public class SeachActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        ArrayList<String> his = SeachHisUtil.getInstance().getHis();
+        if (his.size() > 0) {
+            seachBinding.lineChipGroup.setVisibility(View.VISIBLE);
+        } else {
+            seachBinding.lineChipGroup.setVisibility(View.GONE);
+        }
         //点击取消方法（）
         seachBinding.seachDeletetext.setClickable(true);
         seachBinding.seachDeletetext.setOnClickListener(new View.OnClickListener() {
@@ -70,46 +81,13 @@ public class SeachActivity extends BaseActivity {
                 popToRoot();
             }
         });
-        s = seachBinding.etKeyword.getText().toString();
-
-        seachBinding.etKeyword.addTextChangedListener(new TextWatcher() {
-            private CharSequence temp;
-            private int editStart ;
-            private int editEnd ;
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                temp = charSequence;
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                temp = charSequence;
-
-            }
-            @Override
-            public void afterTextChanged(Editable editable) {
-                editStart = seachBinding.etKeyword.getSelectionStart();
-                editEnd = seachBinding.etKeyword.getSelectionEnd();
-                if (temp.length()>0){
-                    seachBinding.seachDeleteImg.setVisibility(View.VISIBLE);
-                    seachBinding.seachDeleteImg.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            seachBinding.etKeyword.setText("");
-                        }
-                    });
-                }else{
-                    seachBinding.seachDeleteImg.setVisibility(View.GONE);
-                }
-
-            }
-        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         his();
+        seachBinding.etKeyword.setSelection(seachBinding.etKeyword.getText().toString().length());
     }
 
     @Override
@@ -133,6 +111,7 @@ public class SeachActivity extends BaseActivity {
             chip.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    SeachHisUtil.getInstance().addHis(s);
                     startWith(SHOPGOODSSEACHDETAIL).withString("seach", s).navigation(SeachActivity.this, SeachActivity.this);
                 }
             });
@@ -142,47 +121,55 @@ public class SeachActivity extends BaseActivity {
     }
 
     public void onClickSeach(View view) {
-        s = seachBinding.etKeyword.getText().toString();
-        if (!StringUtil.isEmptyString(s)) {
+
+        String s = seachBinding.etKeyword.getText().toString();
+        if (s != null && !s.equals("")) {
             SeachHisUtil.getInstance().addHis(s);
             startWith(SHOPGOODSSEACHDETAIL).withString("seach", s).navigation(this, this);
 
         } else {
-            ToastUtil.show("不能搜索空");
+            ToastUtil.show("不能搜索,不能为空");
         }
     }
 
     @Override
     public void initListener() {
+        InputFilter inputFilter = new InputFilter() {
+
+            Pattern pattern = Pattern.compile("[^a-zA-Z0-9\\u4E00-\\u9FA5_]");
+
+            @Override
+            public CharSequence filter(CharSequence charSequence, int i, int i1, Spanned spanned, int i2, int i3) {
+                Matcher matcher = pattern.matcher(charSequence);
+                if (!matcher.find()) {
+                    return null;
+                } else {
+                    if (charSequence.equals(" ")) {
+                        return null;
+                    }
+//                    MyToast.showText("只能输入汉字,英文，数字");
+                    return "";
+                }
+
+            }
+        };
+        seachBinding.etKeyword.setFilters(new InputFilter[]{inputFilter});
         seachBinding.seachGarbage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertView alertView = new AlertView("确认删除历史记录！", null, "取消", null, new String[]{"删除"}
+                AlertView alertView = new AlertView("确认删除历史记录吗！", null, "取消", null, new String[]{"删除"}
                         , SeachActivity.this, AlertView.Style.Alert,
                         new OnItemClickListener() {
                             @Override
                             public void onItemClick(Object o, int position) {
-                                SeachHisUtil.getInstance().deleteHis();
-                                seachBinding.lineChipGroup.setVisibility(View.GONE);
-                                his();
+                                if (position == 0) {
+                                    SeachHisUtil.getInstance().deleteHis();
+                                    his();
+                                    seachBinding.lineChipGroup.setVisibility(View.GONE);
+                                }
                             }
                         });
                 alertView.show();
-//                new AlertView.Builder().setContext(SeachActivity.this)
-//                        .setStyle(AlertView.Style.Alert)
-//                        .setTitle("")
-//                        .setCancelText("取消")
-//                        .setDestructive("删除")
-//                        .setOthers(null)
-//                        .setOnItemClickListener(new OnItemClickListener() {
-//                            @Override
-//                            public void onItemClick(Object o, int position) {
-//                                SeachHisUtil.getInstance().deleteHis();
-//                                his();
-//                            }
-//                        })
-//                        .build()
-//                        .show();
             }
         });
         seachBinding.etKeyword.setOnEditorActionListener(new TextView.OnEditorActionListener() {

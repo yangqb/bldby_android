@@ -101,7 +101,7 @@
                         android:drawableLeft="@mipmap/main_seach_icon"
                         android:drawablePadding="5dp"
                         android:gravity="center_vertical"
-                        android:text="@string/seach"
+                        android:text="@string/shop_seach_text"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#999999"
                         android:textSize="@dimen/sp_14" />

@@ -89,12 +89,12 @@
             android:paddingTop="@dimen/dp_2"
             android:paddingEnd="@dimen/dp_10"
             android:paddingBottom="@dimen/dp_2"
+            android:text="@string/getvip"
             android:textColor="@color/fffbeac8"
             android:textSize="@dimen/sp_10"
             app:layout_constraintEnd_toStartOf="@+id/vip2"
             app:layout_constraintStart_toStartOf="@+id/minMarketPrice"
-            app:layout_constraintTop_toBottomOf="@+id/minMarketPrice"
-            android:text="@string/getvip" />
+            app:layout_constraintTop_toBottomOf="@+id/minMarketPrice" />
 
         <com.bldby.baselibrary.core.view.CornerTextView
             android:id="@+id/vip2"
