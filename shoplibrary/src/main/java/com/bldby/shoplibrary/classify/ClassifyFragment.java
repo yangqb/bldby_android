@@ -40,7 +40,7 @@ public class ClassifyFragment extends Basefragment {
                 if (AccountManager.isLogin()) {
                     AccountManager.getInstance().logOut();
                 } else {
-                    startTo(RouteLoginConstants.REGISTER);
+                    startTo(RouteLoginConstants.LOGINWECHANT);
 
                 }
 

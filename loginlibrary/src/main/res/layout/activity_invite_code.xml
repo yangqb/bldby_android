@@ -49,6 +49,17 @@
             android:textSize="@dimen/sp_14"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_invite_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text=""
+            android:textColor="@color/register_error_color"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintStart_toStartOf="@id/edit_invite_code"
+            app:layout_constraintTop_toBottomOf="@id/edit_invite_code" />
     </android.support.constraint.ConstraintLayout>
 
     <data>

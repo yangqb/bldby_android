@@ -75,7 +75,7 @@ public class InputInviteCodeActivity extends BaseUiActivity {
 
             @Override
             public void onAPIError(int errorCode, String errorMsg) {
-
+                binding.tvInviteError.setText(errorMsg);
             }
         });
     }
