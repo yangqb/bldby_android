@@ -42,6 +42,15 @@ public abstract class AbsApiRequest {
         return builder;
     }
 
+    /**
+     * 添加参数
+     *
+     * @param builder
+     * @return
+     */
+    public  ParamsBuilder appendEspeciallyParams(ParamsBuilder builder){
+        return builder;
+    }
 
     /**
      * 添加头参数

@@ -1,5 +1,7 @@
 package com.bldby.baselibrary.core.network;
 
+import android.util.Log;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONException;
 import com.bldby.baselibrary.app.GlobalUtil;
@@ -10,6 +12,7 @@ import com.bldby.baselibrary.core.network.networkcheck.NetworkConnectChangedRece
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.convert.StringConvert;
 import com.lzy.okgo.exception.HttpException;
+import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.request.PostRequest;
 import com.lzy.okgo.request.base.Request;
 import com.lzy.okrx2.adapter.ObservableBody;
@@ -119,6 +122,11 @@ public abstract class BaseApiRequest extends AbsApiRequest {
         }
     }
 
+    @Override
+    public ParamsBuilder appendEspeciallyParams(ParamsBuilder builder) {
+        return super.appendEspeciallyParams(builder);
+    }
+
     /**
      * 设置请求策略参数
      *
@@ -131,12 +139,21 @@ public abstract class BaseApiRequest extends AbsApiRequest {
         Map<String, Object> build = appendParams(new ParamsBuilder()).build();
         if (requestLevel == RequestLevel.JSONBody) {
             ((PostRequest) req).upRequestBody(RequestBody.create(JSON.toJSON(build).toString(), JSONBody));
+        } else if (requestLevel == RequestLevel.JSONBodyAnd) {
+            Log.e("TAG", "getRequestObservable: ");
+            ((PostRequest) req).params(ParamsBuilder.getHttpParams(appendEspeciallyParams(new ParamsBuilder()).build()));
+
+            ((PostRequest) req).upRequestBody(RequestBody.create(JSON.toJSON(build).toString(), JSONBody));
         } else {
             req.params(ParamsBuilder.getHttpParams(build));
         }
         req.converter(new StringConvert());
+        HttpHeaders commonHeaders = OkGo.getInstance().getCommonHeaders();
+        if(commonHeaders==null){
+            commonHeaders = new HttpHeaders();
+        }
         //添加头参数
-        req.headers(addHeads(OkGo.getInstance().getCommonHeaders()));
+        req.headers(addHeads(commonHeaders));
         HttpLogUtil.e(getAPIName(), "设置参数");
         return req.adapt(new ObservableBody<String>());
     }

@@ -13,13 +13,13 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdapterGoodsEvaluateDetail extends BaseQuickAdapter<GoodsComment.ListBean, BaseViewHolder> {
-    public AdapterGoodsEvaluateDetail(@Nullable List<GoodsComment.ListBean> data) {
+public class AdapterGoodsEvaluateDetail extends BaseQuickAdapter<GoodsComment, BaseViewHolder> {
+    public AdapterGoodsEvaluateDetail(@Nullable List<GoodsComment> data) {
         super(R.layout.item_goods_evaluate_detail, data);
     }
 
     @Override
-    protected void convert(@NonNull BaseViewHolder helper, GoodsComment.ListBean item) {
+    protected void convert(@NonNull BaseViewHolder helper, GoodsComment item) {
 //        helper.setText(R.id.des, item);
         RecyclerView view = helper.getView(R.id.recyclerView2);
         ArrayList newsList = new ArrayList();

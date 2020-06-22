@@ -1,14 +1,19 @@
 package com.bldby.baselibrary.app.network;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.bldby.baselibrary.R;
 import com.bldby.baselibrary.app.NetworkConfig;
+import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.network.BaseApiRequest;
 import com.bldby.baselibrary.core.network.ParamsBuilder;
 import com.bldby.baselibrary.core.network.RequestLevel;
+import com.bldby.baselibrary.core.util.StringUtil;
 import com.bldby.baselibrary.core.util.StringUtils;
 import com.bldby.baselibrary.core.util.ToastUtil;
 import com.lxj.xpopup.impl.ConfirmPopupView;
+
+import java.util.List;
 
 import static com.bldby.baselibrary.app.GlobalUtil.getString;
 
@@ -17,10 +22,11 @@ import static com.bldby.baselibrary.app.GlobalUtil.getString;
  * 这个base分页加载的基类请求
  */
 public abstract class BasePagingRequest extends BaseApiRequest {
-
+    //现在是第几页
     public int currentPage = 1;
+    //一页几个
     public int pageSize = 10;
-    public int spuId;
+
 
     private ConfirmPopupView confirmPopupView;
 
@@ -43,8 +49,25 @@ public abstract class BasePagingRequest extends BaseApiRequest {
     @Override
     public ParamsBuilder appendParams(ParamsBuilder builder) {
         return super.appendParams(builder.append("currentPage", currentPage)
-                .append("pageSize", pageSize)
-                .append("spuId", spuId));
+                .append("pageSize", pageSize));
+    }
+
+    @Override
+    public void call(ApiCallBack listener) {
+        super.call(new ApiCallBack<BasePageModel>() {
+            @Override
+            public void onAPIResponse(BasePageModel response) {
+                Object list = response.list;
+                String o = JSON.toJSONString(list);
+                Object o1 = JSON.parseObject(o, getPageDatatype());
+                listener.onAPIResponse(o1);
+            }
+
+            @Override
+            public void onAPIError(int errorCode, String errorMsg) {
+                listener.onAPIError(errorCode, errorMsg);
+            }
+        });
     }
 
     /**
@@ -55,6 +78,14 @@ public abstract class BasePagingRequest extends BaseApiRequest {
     @Override
     public TypeReference getResponseType() {
         return new TypeReference<BaseResponse>() {
+        };
+    }
+
+    public abstract TypeReference getPageDatatype();
+
+    @Override
+    public TypeReference getDatatype() {
+        return new TypeReference<BasePageModel>() {
         };
     }
 

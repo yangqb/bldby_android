@@ -15,9 +15,11 @@ import com.bldby.baselibrary.core.analyze.UMengAnalyze;
 import com.bldby.baselibrary.core.smart.MRefreshFooter;
 import com.bldby.baselibrary.core.smart.MRefreshHeader;
 import com.orhanobut.hawk.Hawk;
+import com.scwang.smartrefresh.header.waveswipe.DropBounceInterpolator;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
+import com.scwang.smartrefresh.layout.api.DefaultRefreshInitializer;
 import com.scwang.smartrefresh.layout.api.RefreshFooter;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -72,7 +74,16 @@ public class BaseApp extends Application {
         //微信登录是否每次授权===========
         PlatformConfig.setWeixin(AppidManifests.WX_APP_ID, AppidManifests.WX_APP_AppSecret);
 
-
+        //设置全局默认配置（优先级最低，会被其他设置覆盖）
+        SmartRefreshLayout.setDefaultRefreshInitializer(new DefaultRefreshInitializer() {
+            @Override
+            public void initialize(@NonNull Context context, @NonNull RefreshLayout layout) {
+                //开始设置全局的基本参数（可以被下面的DefaultRefreshHeaderCreator覆盖）
+                layout.setReboundDuration(1000);
+                layout.setReboundInterpolator(new DropBounceInterpolator());
+                layout.setDisableContentWhenLoading(false);
+            }
+        });
         //设置全局的Header构建器
         SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
             @NonNull
