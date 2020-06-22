@@ -98,7 +98,7 @@ public class RegisterActivity extends BaseUiActivity {
      * 微信登录跳转
      * */
     public void onWeChantLogin(View view) {
-        start(RouteLoginConstants.LOGINWECHANT);
+        finish();
     }
 
     /*
@@ -158,7 +158,7 @@ public class RegisterActivity extends BaseUiActivity {
 
             @Override
             public void onAPIError(int errorCode, String errorMsg) {
-
+                binding.tvRegisterError.setText(errorMsg);
             }
         });
     }
