@@ -3,7 +3,9 @@ package com.bldby.shoplibrary.seach;
 import android.databinding.DataBindingUtil;
 import android.support.design.chip.Chip;
 import android.support.design.chip.ChipDrawable;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +42,7 @@ public class SeachActivity extends BaseActivity {
     private ActivitySeachBinding seachBinding;
     @Autowired()
     public String seachText;
+    private String s;
 
     @Override
     public void bindIngView() {
@@ -65,6 +68,40 @@ public class SeachActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 popToRoot();
+            }
+        });
+        s = seachBinding.etKeyword.getText().toString();
+
+        seachBinding.etKeyword.addTextChangedListener(new TextWatcher() {
+            private CharSequence temp;
+            private int editStart ;
+            private int editEnd ;
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                temp = charSequence;
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                temp = charSequence;
+
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+                editStart = seachBinding.etKeyword.getSelectionStart();
+                editEnd = seachBinding.etKeyword.getSelectionEnd();
+                if (temp.length()>0){
+                    seachBinding.seachDeleteImg.setVisibility(View.VISIBLE);
+                    seachBinding.seachDeleteImg.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            seachBinding.etKeyword.setText("");
+                        }
+                    });
+                }else{
+                    seachBinding.seachDeleteImg.setVisibility(View.GONE);
+                }
+
             }
         });
     }
@@ -105,11 +142,11 @@ public class SeachActivity extends BaseActivity {
     }
 
     public void onClickSeach(View view) {
-
-        String s = seachBinding.etKeyword.getText().toString();
+        s = seachBinding.etKeyword.getText().toString();
         if (!StringUtil.isEmptyString(s)) {
             SeachHisUtil.getInstance().addHis(s);
             startWith(SHOPGOODSSEACHDETAIL).withString("seach", s).navigation(this, this);
+
         } else {
             ToastUtil.show("不能搜索空");
         }
@@ -126,6 +163,7 @@ public class SeachActivity extends BaseActivity {
                             @Override
                             public void onItemClick(Object o, int position) {
                                 SeachHisUtil.getInstance().deleteHis();
+                                seachBinding.lineChipGroup.setVisibility(View.GONE);
                                 his();
                             }
                         });

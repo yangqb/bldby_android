@@ -25,6 +25,7 @@ public class GoodsShoppingActivity extends BaseActivity {
 
     private ActivityGoodsShoppingBinding binding;
     private List<News> newsList;
+    private int flag = 0;
 
 
     @Override
@@ -47,6 +48,34 @@ public class GoodsShoppingActivity extends BaseActivity {
         newsList.add(new News("新闻标题3", R.mipmap.a21_05muying));
         //购物车条目
         initshopping();
+
+        binding.oilOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (flag){
+                    case 0:
+                        binding.shoppingName.setText(R.string.shop_wan);
+                        binding.amount.setVisibility(View.GONE);
+                        binding.tvDelete.setVisibility(View.VISIBLE);
+                        binding.amount.setVisibility(View.GONE);
+                        binding.tvPay.setVisibility(View.GONE);
+                        flag=1;
+                        break;
+                    case 1:
+                        binding.shoppingName.setText(R.string.shop_bainji);
+                        binding.amount.setVisibility(View.VISIBLE);
+                        binding.tvDelete.setVisibility(View.GONE);
+                        binding.amount.setVisibility(View.VISIBLE);
+                        binding.tvPay.setVisibility(View.VISIBLE);
+                        flag=0;
+                        break;
+                }
+
+
+            }
+        });
+
+
     }
 
     private void initshopping() {
