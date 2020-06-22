@@ -24,6 +24,7 @@ import com.bldby.baselibrary.core.network.ApiLifeCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
 import com.bldby.baselibrary.core.util.DateUtil;
 import com.bldby.baselibrary.core.util.ToastUtil;
+import com.bldby.loginlibrary.AccountManager;
 import com.lxj.xpopup.XPopup;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
@@ -239,16 +240,16 @@ public class EditPassengerActivity extends BaseUiActivity {
     }
 
     public void submit() {
-        /*postRequest.params(Constant.ACCESSTOKEN, token)
-                .params(Constant.USERID, userId)
-                .params("name", binding.editName.getText().toString().trim())
-                .params("ageType", ageType + "")
-                .params("cardType", cardType + "")
-                .params("cardNo", binding.editCardId.getText().toString().trim())
-                .params("sex", sex + "")
-                .params("birthday", binding.tvBirthday.getText().toString().trim())*/
-        if (passengerModel != null) {
+        if (passengerModel != null) {  //修改乘机人信息
             UpdatePassengerRequest updatePassengerRequest = new UpdatePassengerRequest();
+            updatePassengerRequest.accessToken = AccountManager.getInstance().getToken();
+            updatePassengerRequest.userId = AccountManager.getInstance().getUserId();
+            updatePassengerRequest.name = binding.editName.getText().toString().trim();
+            updatePassengerRequest.id = passengerModel.id;
+            updatePassengerRequest.ageType = ageType + "";
+            updatePassengerRequest.cardType = cardType + "";
+            updatePassengerRequest.sex = sex + "";
+            updatePassengerRequest.birthday = binding.tvBirthday.getText().toString().trim();
             updatePassengerRequest.call(new ApiCallBack() {
                 @Override
                 public void onAPIResponse(Object response) {
@@ -262,7 +263,7 @@ public class EditPassengerActivity extends BaseUiActivity {
 
                 }
             });
-        } else {
+        } else { //添加乘机人
             if (airType == 2) {
                 if (ageType == 1) {
                     ToastUtil.show("不支持儿童购买");
@@ -288,6 +289,13 @@ public class EditPassengerActivity extends BaseUiActivity {
             }
 
             AddPassengerRequest addPassengerRequest = new AddPassengerRequest();
+            addPassengerRequest.accessToken = AccountManager.getInstance().getToken();
+            addPassengerRequest.userId = AccountManager.getInstance().getUserId();
+            addPassengerRequest.name = binding.editName.getText().toString().trim();
+            addPassengerRequest.ageType = ageType + "";
+            addPassengerRequest.cardType = cardType + "";
+            addPassengerRequest.sex = sex + "";
+            addPassengerRequest.birthday = binding.tvBirthday.getText().toString().trim();
             addPassengerRequest.call(new ApiCallBack() {
                 @Override
                 public void onAPIResponse(Object response) {

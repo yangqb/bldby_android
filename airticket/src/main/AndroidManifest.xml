@@ -18,10 +18,33 @@
         <activity
             android:name=".ui.SearchFlightActivity2"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ui.AirFlightDetailActivity"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".ui.AirReserveActivity"
-            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".ui.AirFlightDetailActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.AirReserveActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.PassengerListActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.EditPassengerActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.AirOrderListActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.AirOrderDetailActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.AirReimbursementActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.AirChangeActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.AirRefundActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

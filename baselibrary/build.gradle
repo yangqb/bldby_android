@@ -113,13 +113,14 @@ dependencies {
     }
     annotationProcessor rootProject.ext.dependencies["permissionsdispatcher-processor"]
     api files('libs\\BaiduLBS_Android.jar')
-//    api files('libs\\alipaySdk-15.7.4-20200228192259.aar')
+    api files('libs\\alipaySdk-15.7.4-20200228192259.aar')
     api rootProject.ext.dependencies["xlog"]
     api rootProject.ext.dependencies["recyclercoverflow"]
     api rootProject.ext.dependencies["BigImageViewPager"]
     api rootProject.ext.dependencies["okhttp3-integration"]
     api rootProject.ext.dependencies["flexbox"]
     api rootProject.ext.dependencies["alertview"]
+    api rootProject.ext.dependencies["tablayout"]
 //    api rootProject.ext.dependencies["toast"]
 
 }
