@@ -48,6 +48,7 @@ import com.bldby.shoplibrary.goods.model.GoodsDetailModel;
 import com.bldby.shoplibrary.goods.model.ShopDetailModel;
 import com.bldby.shoplibrary.goods.request.GoodsDetailRequest;
 import com.bldby.shoplibrary.home.HomeFragment;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zhpan.bannerview.BannerViewPager;
 import com.zhpan.bannerview.constants.IndicatorSlideMode;
 import com.zhpan.bannerview.constants.IndicatorStyle;
@@ -74,6 +75,7 @@ public class GoosDetailActivity extends BaseActivity {
     private AdapterGoodsDetailEvaluate adapterGoodsDetailEvaluate;
     private ShopDetailModel detailModel;
     private ArrayList<String> newsList;
+    private GoodsDetailModel response;
 
     @Override
     public void bindIngView() {
@@ -100,11 +102,12 @@ public class GoosDetailActivity extends BaseActivity {
         dataBinding.youhui.setAdapter(detailGetDiscounts);
         detailGetDiscounts.notifyDataSetChanged();
 
-        adapterGoodsDetailEvaluate = new AdapterGoodsDetailEvaluate(strings);
+        adapterGoodsDetailEvaluate = new AdapterGoodsDetailEvaluate(null);
         dataBinding.evaluate.setAdapter(adapterGoodsDetailEvaluate);
         //添加Android自带的分割线
         dataBinding.evaluate.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         adapterGoodsDetailEvaluate.notifyDataSetChanged();
+
         dataBinding.goodsShoppingcar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,58 +118,20 @@ public class GoosDetailActivity extends BaseActivity {
 
     @Override
     public void loadData() {
+        spuId = 2;
         GoodsDetailRequest goodsDetailRequest = new GoodsDetailRequest(spuId);
         goodsDetailRequest.isShowLoading = true;
         goodsDetailRequest.call(new ApiCallBack<GoodsDetailModel>() {
             @Override
             public void onAPIResponse(GoodsDetailModel response) {
+                GoosDetailActivity.this.response = response;
                 dataBinding.goodsName.setText(response.getTitle());
-                dataBinding.goodsDes.setText(response.getSpec());
-            }
+//                dataBinding.goodsDes.setText(response.getSpec());
+                initbanner(response);
 
-            @Override
-            public void onAPIError(int errorCode, String errorMsg) {
-
-            }
-        });
-        newsList = new ArrayList();
-
-        newsList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592150018281&di=191016011e26f8f035cddb89f08f5e90&imgtype=0&src=http%3A%2F%2Fbos.pgzs.com%2Frbpiczy%2FWallpaper%2F2011%2F12%2F8%2Faa69906a9dc34b8d8fad0e0650a03863-2.jpg");
-        newsList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592150018281&di=191016011e26f8f035cddb89f08f5e90&imgtype=0&src=http%3A%2F%2Fbos.pgzs.com%2Frbpiczy%2FWallpaper%2F2011%2F12%2F8%2Faa69906a9dc34b8d8fad0e0650a03863-2.jpg");
-        newsList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592150018281&di=191016011e26f8f035cddb89f08f5e90&imgtype=0&src=http%3A%2F%2Fbos.pgzs.com%2Frbpiczy%2FWallpaper%2F2011%2F12%2F8%2Faa69906a9dc34b8d8fad0e0650a03863-2.jpg");
-        BannerViewHolder bannerViewHolder = new BannerViewHolder(GoosDetailActivity.this);
-        dataBinding.banner.setCanLoop(true)
-                .setAutoPlay(true)
-                .setIndicatorStyle(IndicatorStyle.CIRCLE)
-                .setIndicatorSlideMode(IndicatorSlideMode.SMOOTH)
-                .setIndicatorSliderRadius(BannerUtils.dp2px(2.5f))
-                .setIndicatorSliderColor(Color.parseColor("#CCCCCC"), Color.parseColor("#6C6D72"))
-                .setHolderCreator(new HolderCreator() {
-                    @Override
-                    public ViewHolder createViewHolder() {
-                        return bannerViewHolder;
-                    }
-                }).setOnPageClickListener(new BannerViewPager.OnPageClickListener() {
-            @Override
-            public void onPageClick(int position) {
-                onClickBanner(position);
-            }
-        }).create(newsList);
-        dataBinding.banner.startLoop();
-
-        detailModel.getElapsedTime().observeForever(new Observer<Long>() {
-            @Override
-            public void onChanged(@Nullable Long aLong) {
-
-            }
-        });
-        detailModel.getElapsedTime().observe(this, new Observer<Long>() {
-
-            @Override
-            public void onChanged(@Nullable Long aLong) {
-                Log.e("TAG", "onChanged: " + aLong);
+                initEvaluate(response);
                 //设置不同的字号
-                String price = "¥ " + aLong + "起";
+                String price = "¥ " + 20 + "起";
                 Spannable sp = new SpannableString(price);
                 sp.setSpan(new AbsoluteSizeSpan(12, true), 0, 2, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
                 sp.setSpan(new AbsoluteSizeSpan(16, true), 2, price.length() - 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
@@ -174,7 +139,62 @@ public class GoosDetailActivity extends BaseActivity {
                 dataBinding.price.setText(sp);
 
             }
+
+            @Override
+            public void onAPIError(int errorCode, String errorMsg) {
+
+            }
         });
+    }
+
+    private void initEvaluate(GoodsDetailModel response) {
+        List<GoodsDetailModel.EvalsBean> evals = response.getEvals();
+        if (evals != null && evals.size() > 0) {
+            dataBinding.evaluateNull.setVisibility(View.GONE);
+            dataBinding.evaluate.setVisibility(View.VISIBLE);
+            dataBinding.evaluateNum.setText("评价（" + evals.size() + "）");
+
+            if (evals.size() > 2) {
+                evals = evals.subList(0, 2);
+            }
+            adapterGoodsDetailEvaluate.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                    start(RouteShopConstants.SHOPGOODSEVALUATE);
+
+                }
+            });
+            adapterGoodsDetailEvaluate.setNewData(evals);
+            adapterGoodsDetailEvaluate.notifyDataSetChanged();
+        } else {
+            dataBinding.evaluateNum.setText("评价（0）");
+            dataBinding.evaluateNull.setVisibility(View.VISIBLE);
+            dataBinding.evaluate.setVisibility(View.GONE);
+        }
+    }
+
+    private void initbanner(GoodsDetailModel response) {
+        if (response.getImgList() != null && response.getImgList().size() > 0) {
+            BannerViewHolder bannerViewHolder = new BannerViewHolder(GoosDetailActivity.this);
+            dataBinding.banner.setCanLoop(true)
+                    .setAutoPlay(true)
+                    .setIndicatorStyle(IndicatorStyle.CIRCLE)
+                    .setIndicatorSlideMode(IndicatorSlideMode.SMOOTH)
+                    .setIndicatorSliderRadius(BannerUtils.dp2px(2.5f))
+                    .setIndicatorSliderColor(Color.parseColor("#CCCCCC"), Color.parseColor("#6C6D72"))
+                    .setHolderCreator(new HolderCreator() {
+                        @Override
+                        public ViewHolder createViewHolder() {
+                            return bannerViewHolder;
+                        }
+                    }).setOnPageClickListener(new BannerViewPager.OnPageClickListener() {
+                @Override
+                public void onPageClick(int position) {
+                    onClickBanner(position);
+                }
+            }).create(newsList);
+            dataBinding.banner.startLoop();
+        }
     }
 
     public void onClickBanner(int pos) {

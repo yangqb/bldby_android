@@ -1,5 +1,6 @@
 package com.bldby.shoplibrary.seach;
 
+import com.bldby.baselibrary.core.util.StringUtil;
 import com.orhanobut.hawk.Hawk;
 
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.List;
 public class SeachHisUtil {
     private static volatile SeachHisUtil singleton = null;
     private final String SavaTag = "SavaTag";
-    private final int SavaTagSize = 15;
+    private final int SavaTagSize = 20;
 
     private SeachHisUtil() {
     }
@@ -30,6 +31,9 @@ public class SeachHisUtil {
      * @param s
      */
     public void addHis(String s) {
+        if (StringUtil.isEmptyString(s)) {
+            return;
+        }
         List<String> strings = Hawk.get(SavaTag, new ArrayList<String>());
         if (strings == null) {
             strings = new ArrayList<>();

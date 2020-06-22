@@ -16,8 +16,6 @@ import java.util.List;
  * email: 694125155@qq.com
  */
 public class AirApplyRefundRequest extends BaseAirRequest {
-    public String accessToken;
-    public String userId;
     public String callbackUrl;//后台写死了
     public String orderNo;
     public String passengerIds;
@@ -37,7 +35,7 @@ public class AirApplyRefundRequest extends BaseAirRequest {
 
     @Override
     public ParamsBuilder appendParams(ParamsBuilder builder) {
-        return super.appendParams(builder.append("accessToken", accessToken).append("userId", userId).append("callbackUrl", callbackUrl).append("orderNo", orderNo).append("passengerIds", passengerIds)
+        return super.appendParams(builder.append("callbackUrl", callbackUrl).append("orderNo", orderNo).append("passengerIds", passengerIds)
                 .append("refundCause", refundCause).append("refundCauseId", refundCauseId).append("amount", amount));
     }
 

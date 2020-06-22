@@ -22,6 +22,7 @@ import com.bldby.baselibrary.core.smart.MRefreshFooter;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
 import com.bldby.baselibrary.core.util.ToastUtil;
 import com.bldby.baselibrary.databinding.ViewCommonNodataBinding;
+import com.bldby.baselibrary.databinding.ViewCommonSeachNodataBinding;
 import com.bldby.shoplibrary.R;
 import com.bldby.shoplibrary.databinding.ActivitySeachDetailBinding;
 import com.bldby.shoplibrary.databinding.ItemSeachTabitemBinding;
@@ -83,7 +84,7 @@ public class SeachDetailActivity extends BaseActivity {
 
         viewDataBinding.recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         itemSeachShopsAdapter = new ItemSeachShopsAdapter(null);
-        ViewCommonNodataBinding inflate = ViewCommonNodataBinding.inflate(getLayoutInflater());
+        ViewCommonSeachNodataBinding inflate = ViewCommonSeachNodataBinding.inflate(getLayoutInflater());
         itemSeachShopsAdapter.setEmptyView(inflate.getRoot());
         viewDataBinding.recyclerView.setAdapter(itemSeachShopsAdapter);
         viewDataBinding.smartRe.setEnableRefresh(true);

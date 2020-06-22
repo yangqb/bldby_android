@@ -183,8 +183,6 @@ public class AirRefundActivity extends BaseUiActivity {
 
         AirApplyRefundRequest request = new AirApplyRefundRequest();
         request.isShowLoading = true;
-        request.accessToken = AccountManager.getInstance().getToken();
-        request.userId = AccountManager.getInstance().getUserId();
         request.callbackUrl = "";//后台写死
         request.orderNo = docOrderDetailInfo.detail.orderNo;
         request.passengerIds = passengerInfo.id + "";

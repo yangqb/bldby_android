@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/rootView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:ignore="ResourceName">
+
+        <ImageView
+            android:id="@+id/img_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_40"
+            android:src="@mipmap/base_seach_nodata"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:text="没有找到相关商品"
+            android:textColor="#ff999999"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintBottom_toTopOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="@+id/img_empty"
+            app:layout_constraintStart_toStartOf="@+id/img_empty" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="换个关键词再试试"
+            android:textColor="#ff333333"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintBottom_toBottomOf="@+id/img_empty"
+            app:layout_constraintEnd_toEndOf="@+id/img_empty"
+            app:layout_constraintStart_toStartOf="@+id/img_empty" />
+    </android.support.constraint.ConstraintLayout>
+</layout>
