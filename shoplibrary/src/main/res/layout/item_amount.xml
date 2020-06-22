@@ -15,8 +15,8 @@
     android:showDividers="middle">
     <Button
         android:id="@+id/btnDecrease"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="@dimen/dp_30"
+        android:layout_height="@dimen/dp_20"
         android:background="@drawable/btn_amount"
         android:gravity="center"
         android:text="-"
@@ -25,16 +25,16 @@
     <TextView
         android:id="@+id/etAmount"
         android:layout_width="wrap_content"
-        android:layout_height="25dp"
+        android:layout_height="@dimen/dp_20"
         android:gravity="center"
-        android:minWidth="40dp"
+        android:minWidth="@dimen/dp_30"
         android:text="1"
-        android:textColor="@color/color_666666" />
+        android:textColor="@color/color_000000" />
 
     <Button
         android:id="@+id/btnIncrease"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="@dimen/dp_30"
+        android:layout_height="@dimen/dp_20"
         android:background="@drawable/btn_amount"
         android:gravity="center"
         android:text="+"

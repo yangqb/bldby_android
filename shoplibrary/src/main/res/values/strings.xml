@@ -25,5 +25,7 @@
     <string name="shop_xiaoliang">销量</string>
     <string name="shop_price">价格</string>
     <string name="shop_bainji">编辑</string>
+    <string name="shop_wan">完成</string>
     <string name="getvip">成为会员</string>
+
 </resources>

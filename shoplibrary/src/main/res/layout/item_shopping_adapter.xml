@@ -32,10 +32,36 @@
                 android:layout_height="@dimen/dp_20"
                 android:background="@mipmap/icon_xz" />
         </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+
+            <RelativeLayout
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:paddingLeft="@dimen/dp_10"
+                android:paddingRight="10dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="领劵"
+                    android:textColor="@color/coclo_FF6100"
+                    ></TextView>
+            </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            >
 
             <RelativeLayout
                 android:id="@+id/rl_img"
@@ -86,22 +112,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <RelativeLayout
-                        android:id="@+id/delete"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginLeft="@dimen/dp_20"
-                        android:paddingLeft="@dimen/dp_10"
-                        android:paddingRight="10dp"
-                        android:paddingBottom="@dimen/dp_10">
 
-                       <TextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:text="领劵"
-                           ></TextView>
-                    </RelativeLayout>
 
                     <TextView
                         android:id="@+id/name"
@@ -109,7 +120,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="40dp"
                         android:ellipsize="end"
-                        android:maxLines="2"
+                        android:maxLines="1"
                         android:text="套餐名称套餐名称套餐 套餐套餐套餐套餐套."
                         android:textColor="@color/color_333333"
                         android:textSize="16sp" />
@@ -164,6 +175,7 @@
                 </RelativeLayout>
                 <include layout="@layout/item_amount" />
             </LinearLayout>
+        </RelativeLayout>
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

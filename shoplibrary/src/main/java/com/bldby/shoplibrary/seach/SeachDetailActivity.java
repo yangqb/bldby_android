@@ -89,6 +89,16 @@ public class SeachDetailActivity extends BaseActivity {
         viewDataBinding.smartRe.setEnableRefresh(true);
         viewDataBinding.smartRe.setEnableLoadMore(true);
     }
+    @Override
+    public ImmersionBar getOpenImmersionBar() {
+        return ImmersionBar.with(this)
+                .fitsSystemWindows(true)
+                .statusBarDarkFont(true, 0.2f)
+                .navigationBarColor(R.color.white)
+                .statusBarColor(R.color.FCB432)
+                .navigationBarDarkIcon(true);
+    }
+
 
     @Override
     public void loadData() {
@@ -209,15 +219,7 @@ public class SeachDetailActivity extends BaseActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    @Override
-    public ImmersionBar getOpenImmersionBar() {
-        return ImmersionBar.with(this)
-                .fitsSystemWindows(true)
-                .statusBarDarkFont(true, 0.2f)
-                .navigationBarColor(R.color.white)
-                .statusBarColor(R.color.FCB432)
-                .navigationBarDarkIcon(true);
-    }
+
 
     private void searchData(int type, int page) {
         currentPage = page;
