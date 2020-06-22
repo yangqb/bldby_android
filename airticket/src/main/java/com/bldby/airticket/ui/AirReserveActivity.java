@@ -43,6 +43,7 @@ import com.bldby.airticket.model.InterPassengerInfo;
 import com.bldby.airticket.model.InterXcdInfo;
 import com.bldby.airticket.model.InternationalCreateOrderRequest;
 import com.bldby.airticket.model.PassengerModel;
+import com.bldby.airticket.model.PayModel;
 import com.bldby.airticket.model.PriceDetailInfo;
 import com.bldby.airticket.model.RefundChangeInfo;
 import com.bldby.airticket.model.ReimbursementModel;
@@ -51,15 +52,18 @@ import com.bldby.airticket.request.AirGoBackBaggageRuleRequest;
 import com.bldby.airticket.request.AirGoBackRefundChangeQueryRequest;
 import com.bldby.airticket.request.AirGoBaggageRuleRequest;
 import com.bldby.airticket.request.AirGoRefundChangeQueryRequest;
+import com.bldby.airticket.request.AirValidateRequest;
 import com.bldby.airticket.request.DomesticBookRequest;
 import com.bldby.airticket.request.DomesticCreateOrderRequest;
 import com.bldby.airticket.request.DomesticGoBackBookRequest;
 import com.bldby.airticket.request.DomesticGoBackCreateOrderRequest;
 import com.bldby.airticket.request.InternationalBookRequest;
+import com.bldby.airticket.request.PaySignRequest;
 import com.bldby.airticket.view.CustomCancelChangePopView;
 import com.bldby.airticket.view.CustomDialog;
 import com.bldby.airticket.view.CustomListDialog;
 import com.bldby.airticket.view.CustomLuggageBuyTicketNoticeView;
+import com.bldby.airticket.view.CustomPayView;
 import com.bldby.airticket.view.CustomPlaneInfoView;
 import com.bldby.airticket.view.CustomPlaneProtocolDialog;
 import com.bldby.airticket.view.CustomTicketPriceDetailView;
@@ -68,7 +72,9 @@ import com.bldby.baselibrary.app.NetworkConfig;
 import com.bldby.baselibrary.app.util.RegUtils;
 import com.bldby.baselibrary.constants.RouteAirConstants;
 import com.bldby.baselibrary.constants.RouteCenterConstants;
+import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.network.ApiLifeCallBack;
+import com.bldby.baselibrary.core.pay.PayHelper;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseAirUiActivity;
 import com.bldby.baselibrary.core.util.DateUtil;
 import com.bldby.baselibrary.core.util.MathUtils;
@@ -1034,9 +1040,103 @@ public class AirReserveActivity extends BaseAirUiActivity {
         });
     }
 
+    /*
+     * 飞机票验价
+     * */
     public void payValidate(String orderNo, String noPayAmount) {
+        AirValidateRequest request = new AirValidateRequest();
+        request.accessToken = AccountManager.getInstance().getToken();
+        request.userId = AccountManager.getInstance().getUserId();
+        request.orderNo = orderNo;
+        request.bankCode = "ALIPAY";
+        request.pmCode = "OUTDAIKOU";
+        request.call(new ApiLifeCallBack<Object>() {
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onFinsh() {
+
+            }
+
+            @Override
+            public void onAPIResponse(Object response) {
+                /*
+                 * 1007是变价的code，需要提示用户机票变价
+                 * */
+                new XPopup.Builder(AirReserveActivity.this)
+                        .enableDrag(false)
+                        .asCustom(new CustomPayView(AirReserveActivity.this)
+                                .setData(MathUtils.subZero(noPayAmount))
+                                .setOnConfirmClickListener(new CustomPayView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(String payChannel) {
+                                        paySign(orderNo, noPayAmount);
+                                    }
+                                })).show();
+            }
+
+            @Override
+            public void onAPIError(int errorCode, String errorMsg) {
+
+            }
+        });
+    }
 
 
+    /*
+     * 支付宝支付验证
+     * */
+    public void paySign(String orderNo, String noPayAmount) {
+        PaySignRequest request = new PaySignRequest();
+        request.appId = "";
+        request.accessToken = AccountManager.getInstance().getToken();
+        request.userId = AccountManager.getInstance().getUserId();
+        request.orderNo = orderNo;
+        request.channel = "alipay";
+        request.amount = noPayAmount;
+        request.type = "1";
+        request.call(new ApiLifeCallBack<PayModel>() {
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onFinsh() {
+
+            }
+
+            @Override
+            public void onAPIResponse(PayModel response) {
+                if (response != null) {
+                    aliPay(response.payParam, response.orderNo);
+                }
+            }
+
+            @Override
+            public void onAPIError(int errorCode, String errorMsg) {
+
+            }
+        });
+    }
+
+    private void aliPay(String payProof, String orderNo) {
+        PayHelper.aliPay(AirReserveActivity.this, payProof, new PayHelper.OnPayListener() {
+
+            @Override
+            public void onSuccess(int code, Object result) {
+                ToastUtil.show("支付成功");
+                finish();
+            }
+
+            @Override
+            public void onFail(int code, String result) {
+                ToastUtil.show("支付失败");
+            }
+        });
     }
 
 

@@ -17,6 +17,8 @@ import com.bldby.baselibrary.constants.RouteAirConstants;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
 import com.bldby.baselibrary.core.util.DateUtil;
 import com.bldby.baselibrary.core.util.ToastUtil;
+import com.bldby.loginlibrary.AccountManager;
+import com.bldby.loginlibrary.model.UserInfo;
 import com.gyf.immersionbar.ImmersionBar;
 
 import java.text.SimpleDateFormat;
@@ -56,6 +58,11 @@ public class AirMainActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        UserInfo userInfo = AccountManager.getInstance().getUserInfo();
+        userInfo.loginInfo.accessToken = "8e504efd9c7e4587ababaa5f4940c332";
+        userInfo.loginInfo.userId = "275789";
+        AccountManager.getInstance().updataLoginInfo(userInfo);
+
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);// HH:mm:ss
         //获取当前时间
         Date date = new Date(System.currentTimeMillis());

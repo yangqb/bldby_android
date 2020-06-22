@@ -148,12 +148,53 @@ public class DateUtil {
     }
 
     /*
+     * 毫秒转化分秒毫秒
+     */
+    public static String formatTime2(Long ms) {
+        Integer ss = 1000;
+        Integer mi = ss * 60;
+        Integer hh = mi * 60;
+        Integer dd = hh * 24;
+
+        Long day = ms / dd;
+        Long hour = (ms - day * dd) / hh;
+        Long minute = (ms - day * dd - hour * hh) / mi;
+        Long second = (ms - day * dd - hour * hh - minute * mi) / ss;
+        //Long milliSecond = ms - day * dd - hour * hh - minute * mi - second * ss;
+
+        StringBuffer sb = new StringBuffer();
+
+        if (minute >= 0 && minute < 10) {
+            sb.append("0" + minute + "分");
+        } else if (minute >= 10) {
+            sb.append(minute + "分");
+        }
+        if (second >= 0 && second < 10) {
+            sb.append("0" + second + "秒");
+        } else if (second >= 10) {
+            sb.append(second + "秒");
+        }
+       /* if (milliSecond > 0) {
+            sb.append(milliSecond + "毫秒");
+        }*/
+        return sb.toString();
+    }
+
+    /*
      * 将YYYY-MM-dd转换成MM-dd
      * */
     public static String strToStr(String str) {
         String[] result = str.split("-");
         return result[1] + "-" + result[2];
 
+    }
+
+    /*
+     * 将2020-03-31-19:00-21:15转换成YYYY-MM-dd
+     * */
+    public static String strToStr2(String str) {
+        String[] result = str.split("-");
+        return result[0] + "-" + result[1] + "-" + result[2];
     }
 
 }

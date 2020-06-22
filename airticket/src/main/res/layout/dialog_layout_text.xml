@@ -8,7 +8,7 @@
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/shape_air_dialog_white_r10"
+        android:background="@drawable/shape_air_white_r10"
         android:orientation="vertical">
 
         <TextView

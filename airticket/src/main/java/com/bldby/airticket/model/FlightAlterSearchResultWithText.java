@@ -1,0 +1,46 @@
+package com.bldby.airticket.model;
+
+import java.io.Serializable;
+
+/**
+ * package name: com.bldby.airticket.model
+ * user: yangqinbo
+ * date: 2020/6/22
+ * time: 18:40
+ * email: 694125155@qq.com
+ */
+public class FlightAlterSearchResultWithText implements Serializable {
+    public String dptAirportCode;
+    public String arrAirportCode;
+    public String dptTerminal;
+    public String arrTerminal;
+    //public Object stopFlightInfo;
+    public String startTime;
+    public String endTime;
+    public String flight;
+    public String flightNo;
+    public String flightType;
+    public String startPlace;
+    public String endPlace;
+    public String cabin;
+    public String cabinCode;
+    public String uniqKey;
+    public String carrier;
+    public String extraPrice;
+    public double gqFee;
+    public double upgradeFee;
+    public double allFee;
+    public String cabinStatus;
+    public String actFlightNo;
+    public boolean share;
+    public String adultUFee;
+    public String extraPriceText;
+    public String gqFeeText;
+    public String upgradeFeeText;
+    public String allFeeText;
+    public double childGqFee;
+    public double childUpgradeFee;
+    public double childAllFee;
+    public String adultUFeeText;
+    public String cabinStatusText;
+}
