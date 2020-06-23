@@ -8,6 +8,7 @@ import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bldby.airticket.databinding.ActivityAirReimbursementBinding;
 import com.bldby.airticket.model.DomesticOrderDetailInfo;
+import com.bldby.airticket.model.RefundServiceInfo;
 import com.bldby.airticket.request.AirRefundXcdRequest;
 import com.bldby.baselibrary.constants.RouteAirConstants;
 import com.bldby.baselibrary.core.network.ApiLifeCallBack;
@@ -68,7 +69,7 @@ public class AirReimbursementActivity extends BaseUiActivity {
         request.userId = AccountManager.getInstance().getUserId();
         request.orderNo = docOrderDetailInfo.detail.orderNo;
         request.isShowLoading = true;
-        request.call(new ApiLifeCallBack<Object>() {
+        request.call(new ApiLifeCallBack<RefundServiceInfo>() {
             @Override
             public void onStart() {
 
@@ -80,7 +81,7 @@ public class AirReimbursementActivity extends BaseUiActivity {
             }
 
             @Override
-            public void onAPIResponse(Object response) {
+            public void onAPIResponse(RefundServiceInfo response) {
             }
 
             @Override
