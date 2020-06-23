@@ -59,16 +59,14 @@ public class OilOrderActivity extends BaseActivity {
         oilOrderRequest.call(new ApiCallBack<List<OilOrederBean>>() {
             @Override
             public void onAPIResponse(List<OilOrederBean> response) {
-                Log.i("cccccccc", "initView: "+response.get(1).getGasName());
-               // if (response != null && response.size() > 0) {
+                if (response != null && response.size() > 0) {
                     TraveFormAdapter traveFormAdapter = new TraveFormAdapter(response);
                     oilOrderBinding.recyclerView.setAdapter(traveFormAdapter);
-              //  }
+                }
             }
 
             @Override
             public void onAPIError(int errorCode, String errorMsg) {
-                Log.i("cccccccc", "initView: "+errorCode);
 
             }
         });

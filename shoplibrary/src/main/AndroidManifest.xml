@@ -3,14 +3,16 @@
     package="com.bldby.shoplibrary">
 
     <application>
-        <activity android:name=".settlement.SettlementMainActivity"></activity>
+        <activity android:name=".customer.ImActivity"></activity>
+        <activity android:name=".customer.CustomerserviceActivity" />
+        <activity android:name=".settlement.SettlementMainActivity" />
         <activity android:name=".shopping.GoodsShoppingActivity" />
         <activity android:name=".goods.GoodsSeachActivity" />
         <activity android:name=".seach.SeachActivity" />
         <activity android:name=".goods.EvaluateActivity" />
         <activity android:name=".goods.GoosDetailActivity" />
         <activity android:name=".ShopMainActivity" />
-        <activity android:name=".seach.SeachDetailActivity"></activity>
+        <activity android:name=".seach.SeachDetailActivity" />
     </application>
 
 </manifest>

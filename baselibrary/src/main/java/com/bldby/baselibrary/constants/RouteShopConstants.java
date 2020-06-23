@@ -11,6 +11,7 @@ public class RouteShopConstants {
     public static final String SHOPGOODSSEACHDETAIL = "/shop/seachDetail";
     public static final String SHOPGOODSGOODSSEACH = "/shop/goodsseach";
     public static final String SHOPGOODSSHOPPING = "/shop/goodsshopping";
+    public static final String SHOPGOODSCUST = "/shop/goodscustomer";
 
 
 }

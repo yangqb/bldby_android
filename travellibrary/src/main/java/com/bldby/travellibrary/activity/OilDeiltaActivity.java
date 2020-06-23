@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bldby.baselibrary.app.util.SPUtils;
 import com.bldby.baselibrary.constants.RouteTravelConstants;
+import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.network.ApiLifeCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
 import com.bldby.baselibrary.core.util.StringUtils;
@@ -30,6 +31,7 @@ import com.bldby.travellibrary.activity.adapter.DistanceOilInfoAdapter;
 import com.bldby.travellibrary.activity.model.OilListBean;
 import com.bldby.travellibrary.activity.model.OilStationsDetailBean;
 import com.bldby.travellibrary.activity.request.OilStationsDetailUrlRequest;
+import com.bldby.travellibrary.activity.request.OilTimeRequest;
 import com.bldby.travellibrary.databinding.ActivityOilDeiltaBinding;
 import com.bldby.travellibrary.databinding.ActivityOilOrderBinding;
 import com.bumptech.glide.Glide;
@@ -109,7 +111,7 @@ public class OilDeiltaActivity extends BaseActivity {
         oilDeiltaBinding.gun.setAdapter(distanceAdapter2);
         OilStationsDetailUrlRequest oilStationsDetailRequest = new OilStationsDetailUrlRequest();
         oilStationsDetailRequest.isShowLoading = true;
-        oilStationsDetailRequest.gasIds = "1";
+        oilStationsDetailRequest.gasIds =oilListBean.getGasId();
         oilStationsDetailRequest.phone = AccountManager.getInstance().getUserPhone();
         oilStationsDetailRequest.userId = AccountManager.getInstance().getUserId();
         oilStationsDetailRequest.accessToken = AccountManager.getInstance().getToken();
@@ -252,6 +254,50 @@ public class OilDeiltaActivity extends BaseActivity {
 
 
                 }
+            }
+        });
+
+
+        distanceAdapter2.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                if (!StringUtils.isEmpty(n1)) {
+                    n2 = distanceAdapter2.getData().get(position).getGunNo();
+                    distanceAdapter2.chengtextcolor(position);
+                    distanceAdapter2.notifyDataSetChanged();
+                    oilDeiltaBinding.submit.setEnabled(true);
+
+                }
+                Log.e("TAG", "init: " + n2 + ".." + n1 + ".." + ".." + n);
+            }
+        });
+        oilDeiltaBinding.submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!StringUtils.isEmpty(n1) && !StringUtils.isEmpty(n2)) {
+                    OilTimeRequest oilTimeRequest = new OilTimeRequest();
+                    oilTimeRequest.phone = AccountManager.getInstance().getUserPhone();
+                    oilTimeRequest.platformId = "98647229";
+                    oilTimeRequest.app_key = "appm_api_h598647229";
+                    oilTimeRequest.timestamp = System.currentTimeMillis() + "";
+                    oilTimeRequest.isShowLoading = true;
+                    oilTimeRequest.call(new ApiCallBack<String>() {
+                        @Override
+                        public void onAPIResponse(String response) {
+                            String u = "https://open.czb365.com/redirection/todo/?platformType=98647229&authCode=" + response + "&gasId=" + oilListBean.getGasId() + "&gunNo=" + n2;
+//                            http://test-mcs.czb365.com/services/v3/begin/getSecretCode?platformId=98647229&phone=13671192850
+                            Web1Activity.toWeb1Activity(OilDeiltaActivity.this, u);
+
+                        }
+
+                        @Override
+                        public void onAPIError(int errorCode, String errorMsg) {
+                            ToastUtil.show("网络错误");
+
+                        }
+                    });
+                }
+//
             }
         });
     }

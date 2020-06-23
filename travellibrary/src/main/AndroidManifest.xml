@@ -5,6 +5,8 @@
     <application >
         <activity android:name=".activity.OilOrderActivity" android:theme="@style/AppTheme"></activity>
         <activity android:name="com.bldby.travellibrary.activity.OilDeiltaActivity" android:theme="@style/AppTheme" ></activity>
+        <activity android:name="com.bldby.travellibrary.activity.Web1Activity" android:theme="@style/AppTheme" ></activity>
+
         <activity
             android:name="com.bldby.travellibrary.activity.TravelActivity"
             android:label="@string/title_activity_travel"></activity>

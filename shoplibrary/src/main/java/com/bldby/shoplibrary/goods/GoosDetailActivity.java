@@ -114,6 +114,12 @@ public class GoosDetailActivity extends BaseActivity {
                 start(RouteShopConstants.SHOPGOODSSHOPPING);
             }
         });
+        dataBinding.goodsCustomer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                start(RouteShopConstants.SHOPGOODSCUST);
+            }
+        });
     }
 
     @Override
