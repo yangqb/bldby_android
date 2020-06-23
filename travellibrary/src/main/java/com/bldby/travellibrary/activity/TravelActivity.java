@@ -186,9 +186,9 @@ public class TravelActivity extends BaseActivity {
             @Override
             public void onAPIResponse(List<OilListBean> response) {
                 Log.i("cccccccc", "initView: "+response.get(1).getGasName());
-                myoiladapter = new MyOilAdapter(response);
-                dataBinding.oilrecy.setAdapter(myoiladapter);
-                myoiladapter.notifyDataSetChanged();
+//                myoiladapter = new MyOilAdapter(response);
+//                dataBinding.oilrecy.setAdapter(myoiladapter);
+//                myoiladapter.notifyDataSetChanged();
              /*   if (response != null && response.size() > 0) {
                     if (isLoadM) {
                         myoiladapter.addData(response);
