@@ -21,6 +21,9 @@ public class PassengerModel implements Parcelable {
     public int sex;
     public String birthday;
 
+    public PassengerModel() {
+    }
+
     protected PassengerModel(Parcel in) {
         isSelect = in.readByte() != 0;
         id = in.readString();
