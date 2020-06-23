@@ -17,7 +17,6 @@ import java.util.List;
  * email: 694125155@qq.com
  */
 public class PassengerListRequest extends BaseAir2Request {
-    public String accessToken;
     public String userId;
 
     @Override
@@ -32,7 +31,7 @@ public class PassengerListRequest extends BaseAir2Request {
 
     @Override
     public ParamsBuilder appendParams(ParamsBuilder builder) {
-        return super.appendParams(builder.append("accessToken", accessToken).append("userId", userId));
+        return super.appendParams(builder.append("userId", userId));
     }
 
     @Override

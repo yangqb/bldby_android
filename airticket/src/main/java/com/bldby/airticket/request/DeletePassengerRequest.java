@@ -14,7 +14,6 @@ import com.bldby.baselibrary.core.network.RequestLevel;
  * email: 694125155@qq.com
  */
 public class DeletePassengerRequest extends BaseAir2Request {
-    public String accessToken;
     public String userId;
     public String id;
 
@@ -30,7 +29,7 @@ public class DeletePassengerRequest extends BaseAir2Request {
 
     @Override
     public ParamsBuilder appendParams(ParamsBuilder builder) {
-        return super.appendParams(builder.append("accessToken", accessToken).append("userId", userId).append("id", id));
+        return super.appendParams(builder.append("userId", userId).append("id", id));
     }
 
     @Override

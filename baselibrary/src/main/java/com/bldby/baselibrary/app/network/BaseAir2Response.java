@@ -35,6 +35,6 @@ public class BaseAir2Response extends BaseResponse {
     }
 
     public boolean isRequestSuccess() {
-        return (code == 0);
+        return (code == 200);
     }
 }

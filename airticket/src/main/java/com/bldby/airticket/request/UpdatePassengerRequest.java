@@ -14,7 +14,6 @@ import com.bldby.baselibrary.core.network.RequestLevel;
  * email: 694125155@qq.com
  */
 public class UpdatePassengerRequest extends BaseAir2Request {
-    public String accessToken;
     public String userId;
     public String id;
     public String name;
@@ -23,6 +22,7 @@ public class UpdatePassengerRequest extends BaseAir2Request {
     public String cardNo;
     public String sex;
     public String birthday;
+
     @Override
     public String getAPIName() {
         return "updatePassengers";
@@ -30,12 +30,13 @@ public class UpdatePassengerRequest extends BaseAir2Request {
 
     @Override
     public ParamsBuilder appendParams(ParamsBuilder builder) {
-        return super.appendParams(builder);
+        return super.appendParams(builder.append("userId", userId).append("name", name).append("ageType", ageType)
+                .append("cardType", cardType).append("cardNo", cardNo).append("sex", sex).append("birthday", birthday).append("id", id));
     }
 
     @Override
     public RequestLevel getRequestLevel() {
-        return RequestLevel.POST;
+        return RequestLevel.JSONBody;
     }
 
     @Override

@@ -13,7 +13,9 @@ import com.bldby.airticket.R;
 import com.bldby.airticket.databinding.ActivityAirMainBinding;
 import com.bldby.airticket.model.CityModel;
 import com.bldby.airticket.model.CustomFightCityInfo;
+import com.bldby.baselibrary.app.webview.BaseWebviewActivity;
 import com.bldby.baselibrary.constants.RouteAirConstants;
+import com.bldby.baselibrary.constants.RouteLoginConstants;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
 import com.bldby.baselibrary.core.util.DateUtil;
 import com.bldby.baselibrary.core.util.ToastUtil;
@@ -58,11 +60,6 @@ public class AirMainActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        UserInfo userInfo = AccountManager.getInstance().getUserInfo();
-        userInfo.loginInfo.accessToken = "8e504efd9c7e4587ababaa5f4940c332";
-        userInfo.loginInfo.userId = "275789";
-        AccountManager.getInstance().updataLoginInfo(userInfo);
-
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);// HH:mm:ss
         //获取当前时间
         Date date = new Date(System.currentTimeMillis());
@@ -110,15 +107,13 @@ public class AirMainActivity extends BaseActivity {
             }
         } else if (view.getId() == R.id.ll_order) {
             //机票订单
-              /* token = SPUtils.getString(this, Constant.SP_ACCESS_TOKEN);
-                if (token == null || TextUtils.isEmpty(token)) {
-                    intent = new Intent(PlaneHomeActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    return;
-                }
-                intent = new Intent(PlaneHomeActivity.this, PlaneOrderListActivity.class);
-                startActivity(intent);*/
+            if (AccountManager.isLogin()) {
+                start(RouteAirConstants.AIRORDER);
+            } else {
+                start(RouteLoginConstants.LOGINWECHANT);
+            }
         } else if (view.getId() == R.id.ll_select_check_in) {
+            BaseWebviewActivity.toBaseWebviewActivity(this, "http://touch.qunar.com/flight/seat/?isDistribution=true&theme=pure&distributorKey=8e0e4887-6aee-491a-a829-19bb72b47162&channel=web.batour.demo");
             //值机
                /*intent = new Intent(PlaneHomeActivity.this, LazyWebActivity.class);
                 intent.putExtra(Constant.URL, "http://touch.qunar.com/flight/seat/?isDistribution=true&theme=pure&distributorKey=8e0e4887-6aee-491a-a829-19bb72b47162&channel=web.batour.demo");

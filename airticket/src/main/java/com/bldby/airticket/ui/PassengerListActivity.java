@@ -97,7 +97,6 @@ public class PassengerListActivity extends BaseUiActivity {
     @Override
     public void loadData() {
         PassengerListRequest request = new PassengerListRequest();
-        request.accessToken = userInfo.loginInfo.accessToken;
         request.userId = userInfo.loginInfo.userId;
         request.call(new ApiLifeCallBack<List<PassengerModel>>() {
             @Override
@@ -204,8 +203,9 @@ public class PassengerListActivity extends BaseUiActivity {
      * 新增乘机人信息
      * */
     public void addPassenger(View view) {
-        startWith(RouteAirConstants.AIREDITPASSENGER).withInt("airType", airType)
-                .withSerializable("customPlaneDetailInfo", customPriceDetailInfo)
+        startWith(RouteAirConstants.AIREDITPASSENGER)
+                .withInt("airType", airType)
+                .withSerializable("customPriceDetailInfo", customPriceDetailInfo)
                 .navigation(PassengerListActivity.this, AirConstants.REQUEST_EDIT_PASSENGER_CODE);
     }
 
@@ -214,7 +214,6 @@ public class PassengerListActivity extends BaseUiActivity {
      * */
     public void deletePassenger(String id) {
         DeletePassengerRequest request = new DeletePassengerRequest();
-        request.accessToken = userInfo.loginInfo.accessToken;
         request.userId = userInfo.loginInfo.userId;
         request.id = id;
         request.call(new ApiLifeCallBack<Object>() {

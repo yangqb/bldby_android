@@ -52,7 +52,7 @@ public class DomesticCreateOrderRequest extends BaseAirRequest {
 
     @Override
     public RequestLevel getRequestLevel() {
-        return RequestLevel.POST;
+        return RequestLevel.JSONBody;
     }
 
     @Override

@@ -111,12 +111,12 @@ public class CustomCancelChangePopView extends CenterPopupView {
             CustomTgqChangeModel changeModel1 = new CustomTgqChangeModel();
             CustomTgqChangeModel changeModel2 = new CustomTgqChangeModel();
             changeModel1.timeText = goRefundChangeInfo.tgqPointCharges.get(i).timeText;
+            changeModel1.amount = goRefundChangeInfo.tgqPointCharges.get(i).returnFee;
             if (goRefundChangeInfo.tgqPointCharges.get(i).returnFee == -1) {
                 changeModel1.amountText = "不可退票";
             } else {
                 changeModel1.amountText = "¥" + MathUtils.subZero(String.valueOf(goRefundChangeInfo.tgqPointCharges.get(i).returnFee)) + "/人";
             }
-            changeModel1.amount = goRefundChangeInfo.tgqPointCharges.get(i).returnFee;
             changeModel2.timeText = goRefundChangeInfo.tgqPointCharges.get(i).timeText;
             changeModel2.amount = goRefundChangeInfo.tgqPointCharges.get(i).changeFee;
             if (goRefundChangeInfo.tgqPointCharges.get(i).changeFee == -1) {
