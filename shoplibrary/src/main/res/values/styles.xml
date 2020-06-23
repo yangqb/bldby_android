@@ -4,5 +4,8 @@
 <!--        <item name="android:textColor">#4871A8</item>-->
 <!--        <item name="android:textStyle">bold</item>-->
     </style>
+    <style name="ShopTabLayoutTextStyle">
+        <item name="android:textSize">@dimen/sp_14</item>
+    </style>
 
 </resources>

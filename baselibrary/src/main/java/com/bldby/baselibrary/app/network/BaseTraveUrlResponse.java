@@ -33,6 +33,6 @@ public class BaseTraveUrlResponse extends BaseApiResponse {
     }
 
     public boolean isRequestSuccess() {
-        return (code == 0);
+        return (code == 200);
     }
 }

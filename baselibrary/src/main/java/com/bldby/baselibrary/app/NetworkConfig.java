@@ -23,8 +23,8 @@ public class NetworkConfig {
     public static final String DEV_BASE_URL = "http://219.234.82.84:10001/"; //测试地址 商品详情/商品搜索等
 
 
-    //public static final String DEV_TICKET_BASE_URL = "http://8.129.218.83:8087/"; //机票测试
 
+    //public static final String DEV_TICKET_BASE_URL = "http://8.129.218.83:8087/"; //老的机票测试
     //public static final String DEV_BASE_URL = "http://8.129.218.83:8088/"; //老的测试地址
 //    public static final String DEV_BASE_URL = "http://219.234.82.84:10003/"; //测试地址 商品详情/商品搜索等
 //    public static final String DEV_LOGIN_BASE_URL = "http://219.234.82.84:10005/";//登录注册测试 用户登录/注册,获取用户信息等

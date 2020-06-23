@@ -4,18 +4,18 @@ public class OilListBean {
 
 
     /**
-     * gasId : BJ000002225
-     * gasName : 北京市公交马场加油站
-     * gasLogoSmall : https://static.czb365.com/1590575010398.jpg?x-oss-process=image/resize,m_lfit,h_200,w_200/format,png
-     * gasLogoBig : https://static.czb365.com/1590575010100.jpg?x-oss-process=image/resize,m_lfit,h_420,w_630/format,png
-     * gasAddress : 北京市丰台区富丰园340总站内
+     * gasId : FT000116344
+     * gasName : 丰台区测试油站不对团油专业版个人开放
+     * gasLogoSmall : https://static.czb365.com/1582512918327.jpg?x-oss-process=image/resize,m_lfit,h_200,w_200/format,png
+     * gasLogoBig : https://static.czb365.com/1582512917601.jpg?x-oss-process=image/resize,m_lfit,h_420,w_630/format,png
+     * gasAddress : 北京市丰台区北大地物美超市
      * distanceStr : 1km
-     * distance : 1069
-     * priceYfq : 4.80
-     * priceOfficial : 5.50
-     * priceGun : 5.20
-     * gasAddressLongitude : 116.284476
-     * gasAddressLatitude : 39.83672
+     * distance : 1467
+     * priceYfq : 7.09
+     * priceOfficial : 6.35
+     * priceGun : 7.30
+     * gasAddressLongitude : 116.2881
+     * gasAddressLatitude : 39.861649
      */
 
     private String gasId;
