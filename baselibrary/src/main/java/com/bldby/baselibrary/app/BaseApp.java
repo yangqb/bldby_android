@@ -79,9 +79,9 @@ public class BaseApp extends Application {
             @Override
             public void initialize(@NonNull Context context, @NonNull RefreshLayout layout) {
                 //开始设置全局的基本参数（可以被下面的DefaultRefreshHeaderCreator覆盖）
-                layout.setReboundDuration(1000);
-                layout.setReboundInterpolator(new DropBounceInterpolator());
-                layout.setDisableContentWhenLoading(false);
+//                layout.setReboundDuration(1000);
+//                layout.setReboundInterpolator(new DropBounceInterpolator());
+//                layout.setDisableContentWhenLoading(false);
             }
         });
         //设置全局的Header构建器
