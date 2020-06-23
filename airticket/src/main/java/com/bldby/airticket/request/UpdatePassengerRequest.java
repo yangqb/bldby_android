@@ -1,6 +1,7 @@
 package com.bldby.airticket.request;
 
 import com.alibaba.fastjson.TypeReference;
+import com.bldby.baselibrary.app.network.BaseAir2Request;
 import com.bldby.baselibrary.app.network.BaseRequest;
 import com.bldby.baselibrary.core.network.ParamsBuilder;
 import com.bldby.baselibrary.core.network.RequestLevel;
@@ -12,7 +13,7 @@ import com.bldby.baselibrary.core.network.RequestLevel;
  * time: 17:53
  * email: 694125155@qq.com
  */
-public class UpdatePassengerRequest extends BaseRequest {
+public class UpdatePassengerRequest extends BaseAir2Request {
     public String accessToken;
     public String userId;
     public String id;
