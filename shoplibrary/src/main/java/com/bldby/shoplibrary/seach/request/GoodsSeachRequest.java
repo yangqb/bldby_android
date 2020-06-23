@@ -6,13 +6,14 @@ import com.bldby.baselibrary.app.network.BaseRequest;
 import com.bldby.baselibrary.core.network.ParamsBuilder;
 import com.bldby.baselibrary.core.network.RequestLevel;
 import com.bldby.shoplibrary.seach.model.GoodsSeachModel;
+import com.lzy.okgo.model.HttpHeaders;
 
-public class GoodsSeachRequest extends BaseRequest {
+import java.util.List;
+
+public class GoodsSeachRequest extends BasePagingRequest {
 
     public String keyWord = "";
-    public int currentPage = 1;
-    public int pageSize = 10;
-//    排序规则 0 销量降序 1 价格降序 2 价格升序
+    //    排序规则 0 销量降序 1 价格降序 2 价格升序
     public int sort = 1;
 
     @Override
@@ -29,15 +30,15 @@ public class GoodsSeachRequest extends BaseRequest {
     public ParamsBuilder appendParams(ParamsBuilder builder) {
         return super.appendParams(builder
                 .append("keyWord", keyWord)
-                .append("currentPage", currentPage)
-                .append("pageSize", pageSize)
                 .append("sort", sort)
         );
     }
 
     @Override
-    public TypeReference getDatatype() {
-        return new TypeReference<GoodsSeachModel>() {
+    public TypeReference getPageDatatype() {
+        return new TypeReference<List<GoodsSeachModel>>() {
         };
     }
+
+
 }

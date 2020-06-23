@@ -21,13 +21,13 @@ import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.util.List;
 
-public class ItemSeachShopsAdapter extends BaseQuickAdapter<GoodsSeachModel.ListBean, BaseViewHolder> {
-    public ItemSeachShopsAdapter(@Nullable List<GoodsSeachModel.ListBean> data) {
+public class ItemSeachShopsAdapter extends BaseQuickAdapter<GoodsSeachModel, BaseViewHolder> {
+    public ItemSeachShopsAdapter(@Nullable List<GoodsSeachModel> data) {
         super(R.layout.item_seach_shops, data);
     }
 
     @Override
-    protected void convert(@NonNull BaseViewHolder baseViewHolder, GoodsSeachModel.ListBean listBean) {
+    protected void convert(@NonNull BaseViewHolder baseViewHolder, GoodsSeachModel listBean) {
         Glide.with(mContext)
                 .load(listBean.getImage())
                 .apply(new RequestOptions()

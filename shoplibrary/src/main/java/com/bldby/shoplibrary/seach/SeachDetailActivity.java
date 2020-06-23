@@ -36,6 +36,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.bldby.baselibrary.constants.RouteShopConstants.SHOPGOODSDETAIL;
 import static com.bldby.baselibrary.constants.RouteShopConstants.SHOPGOODSSEACH;
@@ -90,6 +91,7 @@ public class SeachDetailActivity extends BaseActivity {
         viewDataBinding.smartRe.setEnableRefresh(true);
         viewDataBinding.smartRe.setEnableLoadMore(true);
     }
+
     @Override
     public ImmersionBar getOpenImmersionBar() {
         return ImmersionBar.with(this)
@@ -111,7 +113,7 @@ public class SeachDetailActivity extends BaseActivity {
         itemSeachShopsAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                GoodsSeachModel.ListBean listBean = itemSeachShopsAdapter.getData().get(i);
+                GoodsSeachModel listBean = itemSeachShopsAdapter.getData().get(i);
                 startWith(SHOPGOODSDETAIL).withInt("spuId", listBean.getSpuId())
                         .navigation(SeachDetailActivity.this, SeachDetailActivity.this);
             }
@@ -221,7 +223,6 @@ public class SeachDetailActivity extends BaseActivity {
     }
 
 
-
     private void searchData(int type, int page) {
         currentPage = page;
         this.type = type;
@@ -231,11 +232,11 @@ public class SeachDetailActivity extends BaseActivity {
         goodsSeachRequest.sort = type;
         goodsSeachRequest.isShowLoading = true;
         goodsSeachRequest.currentPage = currentPage;
-        goodsSeachRequest.call(new ApiCallBack<GoodsSeachModel>() {
+        goodsSeachRequest.call(new ApiCallBack<List<GoodsSeachModel>>() {
             @Override
-            public void onAPIResponse(GoodsSeachModel response) {
-                if (response.getList() != null && response.getList().size() > 0) {
-                    itemSeachShopsAdapter.addData(response.getList());
+            public void onAPIResponse(List<GoodsSeachModel> response) {
+                if (response != null && response.size() > 0) {
+                    itemSeachShopsAdapter.addData(response);
                 }
                 if (!isrefresh) {
                     viewDataBinding.smartRe.finishLoadMore(true);
@@ -244,12 +245,12 @@ public class SeachDetailActivity extends BaseActivity {
                 }
 //                viewDataBinding.smartRe.finishLoadMoreWithNoMoreData();
 
-                if (currentPage >= response.getTotal()) {
-//最后一页
-                    if (!isrefresh) {
-                        viewDataBinding.smartRe.finishLoadMoreWithNoMoreData();
-                    }
-                }
+//                if (currentPage >= response.getTotal()) {
+////最后一页
+//                    if (!isrefresh) {
+//                        viewDataBinding.smartRe.finishLoadMoreWithNoMoreData();
+//                    }
+//                }
                 itemSeachShopsAdapter.notifyDataSetChanged();
 
             }

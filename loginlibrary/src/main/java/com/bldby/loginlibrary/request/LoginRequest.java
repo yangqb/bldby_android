@@ -8,6 +8,7 @@ import com.bldby.baselibrary.core.network.ParamsBuilder;
 import com.bldby.baselibrary.core.network.RequestLevel;
 import com.bldby.loginlibrary.model.LoginInfo;
 import com.bldby.loginlibrary.model.UserInfo;
+import com.lzy.okgo.model.HttpHeaders;
 
 /**
  * package name: com.bldby.loginlibrary.request
@@ -28,6 +29,7 @@ public class LoginRequest extends BaseLoginRequest {
     public String getAPIName() {
         return "login";
     }
+
 
 
     @Override

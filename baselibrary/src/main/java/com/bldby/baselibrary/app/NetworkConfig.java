@@ -12,6 +12,7 @@ import com.lzy.okgo.cookie.store.SPCookieStore;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 public class NetworkConfig {
     private static volatile NetworkConfig singleton = null;
@@ -62,7 +63,9 @@ public class NetworkConfig {
 
     public static OkHttpClient defaultOkHttpClient() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
-
+        if (NetworkConfig.getInstance().getIsDev()) {
+            builder.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
+        }
         //全局的读取超时时间
         builder.readTimeout(DEFAULT_MILLISECONDS, TimeUnit.MILLISECONDS);
         //全局的写入超时时间

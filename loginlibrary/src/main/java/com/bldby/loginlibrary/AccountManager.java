@@ -8,6 +8,8 @@ import com.bldby.baselibrary.core.rxbus.RxBus;
 import com.bldby.loginlibrary.model.AccountInfo;
 import com.bldby.loginlibrary.model.UserInfo;
 import com.bldby.loginlibrary.model.WXUserInfo;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.HttpHeaders;
 import com.orhanobut.hawk.Hawk;
 
 /**
@@ -31,7 +33,19 @@ public class AccountManager {
 
     //已经登陆打开APP获取用户信息
     private void init() {
-        this.userInfo = Hawk.get(LOGINKEYUSERINFO, new UserInfo());
+        if (isLogin()) {
+            this.userInfo = Hawk.get(LOGINKEYUSERINFO, new UserInfo());
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.put("accessToken", getToken());
+            httpHeaders.put("userId", getUserId());
+            OkGo.getInstance().addCommonHeaders(httpHeaders);
+        } else {
+            userInfo = null;
+            if(OkGo.getInstance().getCommonHeaders()!=null){
+                OkGo.getInstance().getCommonHeaders().clear();
+            }
+
+        }
     }
 
     /**
@@ -40,9 +54,6 @@ public class AccountManager {
      * @return
      */
     public static boolean isLogin() {
-        if (userInfo == null) {
-            return false;
-        }
         return Hawk.get(LOGINKEY, false);
 //        return true;
     }
@@ -78,6 +89,10 @@ public class AccountManager {
         this.userInfo = userInfo;
         Hawk.put(LOGINKEY, true);
         Hawk.put(LOGINKEYUSERINFO, userInfo);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.put("accessToken", getToken());
+        httpHeaders.put("userId", getUserId());
+        OkGo.getInstance().addCommonHeaders(httpHeaders);
         //发出登录通知
         RxBus.getDefault().post(RxCodeConstants.LOGINSTATUSCHANGE, true);
     }
@@ -89,7 +104,13 @@ public class AccountManager {
      */
     public void updataLoginInfo(UserInfo userInfo) {
         this.userInfo = userInfo;
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.put("accessToken", getToken());
+        httpHeaders.put("userId", getUserId());
+        OkGo.getInstance().addCommonHeaders(httpHeaders);
         Hawk.put(LOGINKEYUSERINFO, userInfo);
+        //发出登录通知
+        RxBus.getDefault().post(RxCodeConstants.LOGINSTATUSCHANGE, true);
     }
 
     /**
@@ -146,7 +167,9 @@ public class AccountManager {
     public void logOut() {
         Hawk.put(LOGINKEY, false);
         Hawk.delete(LOGINKEYUSERINFO);
-        //发出退出登录通知
+        if(OkGo.getInstance().getCommonHeaders()!=null){
+            OkGo.getInstance().getCommonHeaders().clear();
+        }        //发出退出登录通知
         RxBus.getDefault().post(RxCodeConstants.LOGINSTATUSCHANGE, false);
     }
 }
