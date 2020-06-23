@@ -11,35 +11,35 @@ import java.util.List;
 public class OilStationsUrlRequest extends BaseTravelRequest {
     public String longitude;
     public String latitude;
-    public String accessToken;
-    public String userId;
+ /*   public String accessToken;
+    public String userId;*/
     public int kilometre;
     public int oilNum;
-    public int limitNum;
-    public int curPage;
+    public int pageSize;
+    public int currentPage;
 
     @Override
     public String getAPIName() {
         return "fleetin/getOilStations";
     }
 
-    public OilStationsUrlRequest(String longitude, String latitude, int kilometre, int oilNum, int limitNum, int curPage) {
+    public OilStationsUrlRequest(String longitude, String latitude, int kilometre, int oilNum, int pageSize, int currentPage) {
         this.longitude = longitude;
         this.latitude = latitude;
         this.kilometre = kilometre;
         this.oilNum = oilNum;
-        this.limitNum = limitNum;
-        this.curPage = curPage;
+        this.pageSize = pageSize;
+        this.currentPage = currentPage;
     }
 
     @Override
     public ParamsBuilder appendParams(ParamsBuilder builder) {
         return super.appendParams(builder.append("longitude", longitude)
                 .append("latitude", latitude).append("kilometre", kilometre)
-                .append("oilNum", oilNum).append("limitNum", limitNum)
-                .append("curPage", curPage)
-                .append("userId", userId)
-                .append("accessToken",accessToken)
+                .append("oilNum", oilNum).append("pageSize", pageSize)
+                .append("currentPage", currentPage)
+              /*  .append("userId", userId)
+                .append("accessToken",accessToken)*/
 
         );
     }

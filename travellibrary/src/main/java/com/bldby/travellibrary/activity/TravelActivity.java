@@ -70,6 +70,9 @@ public class TravelActivity extends BaseActivity {
     @Override
     public void initView() {
         dataBinding.titleName.setText(R.string.oil_name);
+        String userId = AccountManager.getInstance().getUserId();
+        String token = AccountManager.getInstance().getToken();
+        Log.i("cccccccc", "initView: "+userId+"()"+token);
         dataBinding.oilOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -125,7 +128,7 @@ public class TravelActivity extends BaseActivity {
         initswipeLayout();
 
         //String string = SPUtils.getString(TravelActivity.this, Constants.USER_DATA);
-        token = AccountManager.getInstance().getToken();
+        this.token = AccountManager.getInstance().getToken();
      /*   myoiladapter = new MyOilAdapter(null);
         myoiladapter.setEmptyView(mEmptyView);
         dataBinding.oilrecy.setAdapter(myoiladapter);
@@ -175,14 +178,14 @@ public class TravelActivity extends BaseActivity {
         kms = dinstancenumber.split("km");
         split = oilnumbersum.split("#");
         dataBinding.oilrecy.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        OilStationsUrlRequest oilStationsRequest = new OilStationsUrlRequest(longitude, latitude, Integer.valueOf(kms[0]), Integer.valueOf(split[0]), pagenum, pageNo);
-        oilStationsRequest.userId = AccountManager.getInstance().getUserId();
-        oilStationsRequest.accessToken = AccountManager.getInstance().getToken();
+        OilStationsUrlRequest oilStationsRequest = new OilStationsUrlRequest("116.28", "39.85", Integer.valueOf(kms[0]), Integer.valueOf(split[0]), pagenum, pageNo);
+        /*oilStationsRequest.userId = AccountManager.getInstance().getUserId();
+        oilStationsRequest.accessToken = AccountManager.getInstance().getToken();*/
         oilStationsRequest.isShowLoading = true;
         oilStationsRequest.call(new ApiCallBack<List<OilListBean>>() {
-
             @Override
             public void onAPIResponse(List<OilListBean> response) {
+                Log.i("cccccccc", "initView: "+response.get(1).getGasName());
                 myoiladapter = new MyOilAdapter(response);
                 dataBinding.oilrecy.setAdapter(myoiladapter);
                 myoiladapter.notifyDataSetChanged();
@@ -251,6 +254,7 @@ public class TravelActivity extends BaseActivity {
 
             @Override
             public void onAPIError(int errorCode, String errorMsg) {
+                Log.i("cccccccc", "initView111111: "+errorCode);
                 if (!isLoadMore) {
                     //swipeLayout.finishRefresh(false);
                 } else {
