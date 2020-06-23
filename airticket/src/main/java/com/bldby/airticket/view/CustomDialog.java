@@ -49,13 +49,14 @@ public class CustomDialog extends CenterPopupView implements View.OnClickListene
         TextView tvContent = findViewById(R.id.tv_content);
         TextView tvCancel = findViewById(R.id.tv_cancel);
         TextView tvConfirm = findViewById(R.id.tv_confirm);
+        View lineVer = findViewById(R.id.line_ver);
         tvCancel.setOnClickListener(this::onClick);
         tvConfirm.setOnClickListener(this::onClick);
         View line1 = findViewById(R.id.line1);
         View line2 = findViewById(R.id.line2);
         if (title == null || TextUtils.isEmpty(title)) {
             tvTitle.setVisibility(GONE);
-            line1.setVisibility(GONE);
+            lineVer.setVisibility(GONE);
         } else {
             tvTitle.setText(title);
         }

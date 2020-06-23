@@ -26,16 +26,31 @@ import com.bldby.airticket.databinding.ActivityAirChangeBinding;
 import com.bldby.airticket.model.DocOrderDetailPassengersInfo;
 import com.bldby.airticket.model.DomesticOrderDetailInfo;
 import com.bldby.airticket.model.NationalPassengerInfo;
+import com.bldby.airticket.model.PayModel;
 import com.bldby.airticket.model.TimePointChargsInfo;
+import com.bldby.airticket.request.AirChangeApplyRequest;
+import com.bldby.airticket.request.AirChangeQueryRequest;
+import com.bldby.airticket.request.PaySign2Request;
+import com.bldby.airticket.request.PaySignRequest;
 import com.bldby.airticket.view.CustomListDialog;
 import com.bldby.baselibrary.constants.RouteAirConstants;
+import com.bldby.baselibrary.core.network.ApiLifeCallBack;
+import com.bldby.baselibrary.core.pay.PayHelper;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
 import com.bldby.baselibrary.core.util.MathUtils;
 import com.bldby.baselibrary.core.util.ToastUtil;
+import com.bldby.loginlibrary.AccountManager;
+import com.google.gson.Gson;
 import com.lxj.xpopup.XPopup;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
+import com.lzy.okgo.request.base.Request;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 /**
  * package name: com.bldby.airticket.ui
@@ -118,7 +133,117 @@ public class AirChangeActivity extends BaseUiActivity {
     }
 
     public void apply() {
+        if (TextUtils.isEmpty(binding.tvDate.getText().toString())) {
+            ToastUtil.show("请选择改签日期");
+            return;
+        }
+        if (TextUtils.isEmpty(binding.tvShippingSpace.getText().toString())) {
+            ToastUtil.show("请选择改签原因");
+            return;
+        }
+        if (!passengerInfo.changeSearchResult.canChange) {
+            ToastUtil.show(passengerInfo.changeSearchResult.reason);
+            return;
+        }
 
+        AirChangeApplyRequest request = new AirChangeApplyRequest();
+        request.isShowLoading = true;
+        request.applyRemarks = passengerInfo.changeSearchResult.tgqReasons.get(index).msg;
+        request.cabinCode = passengerInfo.changeSearchResult.tgqReasons.get(index).changeFlightSegmentList.get(0).cabinCode;
+        request.callbackUrl = "";
+        request.changeCauseId = passengerInfo.changeSearchResult.tgqReasons.get(index).code + "";
+        request.childExtraPrice = MathUtils.subZero(String.valueOf(passengerInfo.changeSearchResult.tgqReasons.get(index).changeFlightSegmentList.get(0).childUpgradeFee));
+        request.childUseFee = MathUtils.subZero(String.valueOf(passengerInfo.changeSearchResult.tgqReasons.get(index).changeFlightSegmentList.get(0).childGqFee));
+        request.endTime = passengerInfo.changeSearchResult.tgqReasons.get(index).changeFlightSegmentList.get(0).endTime;
+        request.flightNo = passengerInfo.changeSearchResult.tgqReasons.get(index).changeFlightSegmentList.get(0).flightNo;
+        request.gqFee = MathUtils.subZero(String.valueOf(passengerInfo.changeSearchResult.tgqReasons.get(index).changeFlightSegmentList.get(0).gqFee));
+        request.orderNo = docOrderDetailInfo.detail.orderNo;
+        request.passengerIds = passengerInfo.id + "";
+        request.startDate = changeDate;
+        request.startTime = passengerInfo.changeSearchResult.tgqReasons.get(index).changeFlightSegmentList.get(0).startTime;
+        request.uniqKey = passengerInfo.changeSearchResult.tgqReasons.get(index).changeFlightSegmentList.get(0).uniqKey;
+        request.upgradeFee = MathUtils.subZero(String.valueOf(passengerInfo.changeSearchResult.tgqReasons.get(index).changeFlightSegmentList.get(0).upgradeFee));
+        request.call(new ApiLifeCallBack<List<NationalPassengerInfo>>() {
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onFinsh() {
+
+            }
+
+            @Override
+            public void onAPIResponse(List<NationalPassengerInfo> response) {
+                if (response != null && response.get(0).changeApplyResult.success) {
+                    if (passengerInfo.changeSearchResult.tgqReasons.get(index).changeFlightSegmentList.get(0).allFee == 0) {
+                        ToastUtil.show("申请成功");
+                    } else {
+                        paySign(docOrderDetailInfo.detail.orderNo, MathUtils.subZero(String.valueOf(passengerInfo.changeSearchResult.tgqReasons.get(index).changeFlightSegmentList.get(0).allFee)), response.get(0).changeApplyResult.gqId);
+                    }
+                }
+            }
+
+            @Override
+            public void onAPIError(int errorCode, String errorMsg) {
+
+            }
+        });
+    }
+
+    public void paySign(String orderNo, String noPayAmount, String gpId) {
+
+        PaySign2Request request = new PaySign2Request();
+        request.isShowLoading = true;
+        request.appId = "";
+        request.accessToken = AccountManager.getInstance().getToken();
+        request.userId = AccountManager.getInstance().getUserId();
+        request.orderNo = orderNo;
+        request.channel = "alipay";
+        request.amount = noPayAmount;
+        request.type = "2";
+        request.gqId = gpId;
+        request.passengerIds = passengerInfo.id + "";
+        request.call(new ApiLifeCallBack<PayModel>() {
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onFinsh() {
+
+            }
+
+            @Override
+            public void onAPIResponse(PayModel response) {
+                if (response != null) {
+                    aliPay(response.payParam, response.orderNo);
+                }
+            }
+
+            @Override
+            public void onAPIError(int errorCode, String errorMsg) {
+
+            }
+        });
+    }
+
+    private void aliPay(String payProof, String orderNo) {
+
+        PayHelper.aliPay(AirChangeActivity.this, payProof, new PayHelper.OnPayListener() {
+            @Override
+            public void onSuccess(int code, Object result) {
+                ToastUtil.show("支付成功");
+                finish();
+            }
+
+            @Override
+            public void onFail(int code, String result) {
+                ToastUtil.show("支付失败");
+            }
+        });
     }
 
     @Override
@@ -142,8 +267,53 @@ public class AirChangeActivity extends BaseUiActivity {
                 .show();
     }
 
+    /*
+     * 改签查询
+     * */
     public void checkChange() {
+        AirChangeQueryRequest request = new AirChangeQueryRequest();
+        request.isShowLoading = true;
+        request.changeDate = changeDate;
+        request.orderNo = docOrderDetailInfo.detail.orderNo;
+        request.call(new ApiLifeCallBack<List<NationalPassengerInfo>>() {
+            @Override
+            public void onStart() {
 
+            }
+
+            @Override
+            public void onFinsh() {
+
+            }
+
+            @Override
+            public void onAPIResponse(List<NationalPassengerInfo> response) {
+                if (response != null) {
+                    if (response.get(0).changeSearchResult.canChange && response.get(0).changeSearchResult.tgqReasons.get(0).changeFlightSegmentList != null) {
+                        if (response.get(0).changeSearchResult.changeRuleInfo.timePointChargesList != null) {
+                            timePointChargesList = response.get(0).changeSearchResult.changeRuleInfo.timePointChargesList;
+                            passengerInfo = response.get(0);
+                            serviceAdapter.setNewData(timePointChargesList);
+                            serviceAdapter.notifyDataSetChanged();
+                            reasonList.clear();
+                            binding.tvShippingSpace.setText("");
+                            if (passengerInfo.changeSearchResult.tgqReasons != null) {
+                                for (int i = 0; i < passengerInfo.changeSearchResult.tgqReasons.size(); i++) {
+                                    reasonList.add(passengerInfo.changeSearchResult.tgqReasons.get(i).msg);
+                                }
+                            }
+                        }
+                    } else {
+                        ToastUtil.show(response.get(0).changeSearchResult.reason == null ? "当前日期没有可改签的航班" : response.get(0).changeSearchResult.reason);
+                    }
+                }
+            }
+
+            @Override
+            public void onAPIError(int errorCode, String errorMsg) {
+
+            }
+        });
     }
 
     @Override

@@ -23,6 +23,7 @@ import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.network.ApiLifeCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
 import com.bldby.baselibrary.core.util.DateUtil;
+import com.bldby.baselibrary.core.util.KeyboardUtils;
 import com.bldby.baselibrary.core.util.ToastUtil;
 import com.bldby.loginlibrary.AccountManager;
 import com.lxj.xpopup.XPopup;
@@ -121,7 +122,6 @@ public class EditPassengerActivity extends BaseUiActivity {
 
     @Override
     public void onClickRight(View view) {
-        super.onClickRight(view);
         if (TextUtils.isEmpty(binding.tvPassengerType.getText().toString().trim())) {
             ToastUtil.show("请选择乘机人类型");
             return;
@@ -150,9 +150,9 @@ public class EditPassengerActivity extends BaseUiActivity {
     }
 
     public void onClickBtn(View view) {
+        KeyboardUtils.hideKeyboard(binding.getRoot());
         if (view.getId() == R.id.passenger_type) {
             String[] strings1 = new String[]{"成人票（满12周岁）", "儿童票（2~12周岁）"};
-
             new XPopup.Builder(this)
                     .asCustom(new CustomListDialog(this).setData(Arrays.asList(strings1)).setOnItemClickListener(new CustomListDialog.OnItemClickListener() {
                         @Override
@@ -242,15 +242,15 @@ public class EditPassengerActivity extends BaseUiActivity {
     public void submit() {
         if (passengerModel != null) {  //修改乘机人信息
             UpdatePassengerRequest updatePassengerRequest = new UpdatePassengerRequest();
-            updatePassengerRequest.accessToken = AccountManager.getInstance().getToken();
             updatePassengerRequest.userId = AccountManager.getInstance().getUserId();
             updatePassengerRequest.name = binding.editName.getText().toString().trim();
             updatePassengerRequest.id = passengerModel.id;
             updatePassengerRequest.ageType = ageType + "";
             updatePassengerRequest.cardType = cardType + "";
             updatePassengerRequest.sex = sex + "";
+            updatePassengerRequest.cardNo = binding.editCardId.getText().toString().trim();
             updatePassengerRequest.birthday = binding.tvBirthday.getText().toString().trim();
-            updatePassengerRequest.call(new ApiCallBack() {
+            updatePassengerRequest.call(new ApiCallBack<Object>() {
                 @Override
                 public void onAPIResponse(Object response) {
                     ToastUtil.show("修改成功");
@@ -289,14 +289,14 @@ public class EditPassengerActivity extends BaseUiActivity {
             }
 
             AddPassengerRequest addPassengerRequest = new AddPassengerRequest();
-            addPassengerRequest.accessToken = AccountManager.getInstance().getToken();
             addPassengerRequest.userId = AccountManager.getInstance().getUserId();
             addPassengerRequest.name = binding.editName.getText().toString().trim();
             addPassengerRequest.ageType = ageType + "";
             addPassengerRequest.cardType = cardType + "";
             addPassengerRequest.sex = sex + "";
             addPassengerRequest.birthday = binding.tvBirthday.getText().toString().trim();
-            addPassengerRequest.call(new ApiCallBack() {
+            addPassengerRequest.cardNo = binding.editCardId.getText().toString().trim();
+            addPassengerRequest.call(new ApiCallBack<Object>() {
                 @Override
                 public void onAPIResponse(Object response) {
                     ToastUtil.show("添加成功");

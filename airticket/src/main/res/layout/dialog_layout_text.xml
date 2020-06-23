@@ -23,6 +23,7 @@
             android:textSize="14sp" />
 
         <View
+            android:id="@+id/line_ver"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@color/color_eeeeee" />
@@ -49,7 +50,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_10"
             android:layout_marginRight="@dimen/dp_10"
             android:background="@color/white"
@@ -58,7 +59,7 @@
             <TextView
                 android:id="@+id/tv_cancel"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/dp_45"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text=""
@@ -74,7 +75,7 @@
             <TextView
                 android:id="@+id/tv_confirm"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/dp_45"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text=""

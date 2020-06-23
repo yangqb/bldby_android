@@ -516,7 +516,7 @@ public class AirReserveActivity extends BaseAirUiActivity {
                     ).setType(airType).setData(priceDetailInfo)).show();
         } else if (view.getId() == R.id.selectUser) {
             startWith(RouteAirConstants.AIRPASSENGERLIST)
-                    .withSerializable("customPlaneDetailInfo", customPriceDetailInfo)
+                    .withSerializable("customPriceDetailInfo", customPriceDetailInfo)
                     .withInt("airType", airType)
                     .navigation(AirReserveActivity.this, AirConstants.REQUEST_PASSENGER_CODE);
         } else if (view.getId() == R.id.tvReserveNotice) {
@@ -662,6 +662,7 @@ public class AirReserveActivity extends BaseAirUiActivity {
             request.date = customPriceDetailInfo.customDocGoFlightInfo.date;
             request.carrier = customPriceDetailInfo.customDocGoFlightInfo.carrier;
             request.btime = customPriceDetailInfo.customDocGoFlightInfo.btime;
+            request.isShowLoading = true;
             request.json = new Gson().toJson(customPriceDetailInfo.customDocGoPriceInfo);
             request.call(new ApiLifeCallBack<Object>() {
                 @Override
@@ -792,6 +793,7 @@ public class AirReserveActivity extends BaseAirUiActivity {
         } else {
             request.receiverType = -1;
         }
+        request.isShowLoading = true;
         request.accessToken = userInfo.loginInfo.accessToken;
         request.userId = userInfo.loginInfo.userId;
         //request.contactPreNum = cityModel == null ? "86" : cityModel.getExtra().toString()
@@ -1045,6 +1047,7 @@ public class AirReserveActivity extends BaseAirUiActivity {
      * */
     public void payValidate(String orderNo, String noPayAmount) {
         AirValidateRequest request = new AirValidateRequest();
+        request.isShowLoading = true;
         request.accessToken = AccountManager.getInstance().getToken();
         request.userId = AccountManager.getInstance().getUserId();
         request.orderNo = orderNo;

@@ -64,7 +64,7 @@ public class AirOrderListActivity extends BaseUiActivity {
         initTitle("机票订单");
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new AirOrderAdapter(currOrder);
-        View mEmptyView = View.inflate(this, R.layout.view_common_nodata, null);
+        View mEmptyView = View.inflate(this, R.layout.layout_air_empty_view, null);
         ImageView img_empty = (ImageView) mEmptyView.findViewById(R.id.img_empty);
         TextView tvNoData = mEmptyView.findViewById(R.id.no_data);
         tvNoData.setText("没有相关订单，下拉刷新试试");
@@ -89,9 +89,7 @@ public class AirOrderListActivity extends BaseUiActivity {
 
     @Override
     public void loadData() {
-
         AirOrderListRequest request = new AirOrderListRequest();
-        request.accessToken = AccountManager.getInstance().getToken();
         request.userId = AccountManager.getInstance().getUserId();
         request.isShowLoading = true;
         request.call(new ApiLifeCallBack<AirOrderInfo>() {

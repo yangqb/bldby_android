@@ -21,7 +21,8 @@
                 android:id="@+id/reimbursementType"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@color/white">
+                android:background="@color/white"
+                android:onClick="@{viewModel.onClickBtn}">
 
                 <TextView
                     android:id="@+id/tag4"
@@ -61,7 +62,8 @@
                 android:id="@+id/invoiceType"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@color/white">
+                android:background="@color/white"
+                android:onClick="@{viewModel.onClickBtn}">
 
                 <TextView
                     android:id="@+id/tag"
@@ -147,7 +149,8 @@
                         android:id="@+id/identification_num_explain"
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical">
+                        android:gravity="center_vertical"
+                        android:onClick="@{viewModel.onClickBtn}">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -250,7 +253,8 @@
                         android:id="@+id/rl_address"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:background="@color/white">
+                        android:background="@color/white"
+                        android:onClick="@{viewModel.onClickBtn}">
 
                         <TextView
                             android:id="@+id/tag2"
@@ -372,6 +376,7 @@
                 android:layout_marginRight="60dp"
                 android:background="@drawable/shape_fed428_r5"
                 android:gravity="center"
+                android:onClick="@{viewModel.onClickBtn}"
                 android:text="提交"
                 android:textColor="@color/color_333333"
                 android:textSize="20sp" />
