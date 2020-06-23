@@ -74,8 +74,7 @@ public class GoosDetailActivity extends BaseActivity {
     private AdapterGoodsDetailGetDiscounts detailGetDiscounts;
     private AdapterGoodsDetailEvaluate adapterGoodsDetailEvaluate;
     private ShopDetailModel detailModel;
-    private ArrayList<String> newsList;
-    private GoodsDetailModel response;
+
 
     @Override
     public void bindIngView() {
@@ -124,18 +123,14 @@ public class GoosDetailActivity extends BaseActivity {
 
     @Override
     public void loadData() {
-        spuId = 2;
-        GoodsDetailRequest goodsDetailRequest = new GoodsDetailRequest(spuId);
-        goodsDetailRequest.isShowLoading = true;
-        goodsDetailRequest.call(new ApiCallBack<GoodsDetailModel>() {
+        detailModel.getGoodsDetailModel().observe(this, new Observer<GoodsDetailModel>() {
             @Override
-            public void onAPIResponse(GoodsDetailModel response) {
-                GoosDetailActivity.this.response = response;
-                dataBinding.goodsName.setText(response.getTitle());
+            public void onChanged(@Nullable GoodsDetailModel goodsDetailModel) {
+                dataBinding.goodsName.setText(goodsDetailModel.getTitle());
 //                dataBinding.goodsDes.setText(response.getSpec());
-                initbanner(response);
+                initbanner(goodsDetailModel);
 
-                initEvaluate(response);
+                initEvaluate(goodsDetailModel);
                 //设置不同的字号
                 String price = "¥ " + 20 + "起";
                 Spannable sp = new SpannableString(price);
@@ -143,7 +138,19 @@ public class GoosDetailActivity extends BaseActivity {
                 sp.setSpan(new AbsoluteSizeSpan(16, true), 2, price.length() - 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
                 sp.setSpan(new AbsoluteSizeSpan(12, true), price.length() - 1, price.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
                 dataBinding.price.setText(sp);
+            }
+        });
+        goodsRequest();
+    }
 
+    private void goodsRequest() {
+        spuId = 2;
+        GoodsDetailRequest goodsDetailRequest = new GoodsDetailRequest(spuId);
+        goodsDetailRequest.isShowLoading = true;
+        goodsDetailRequest.call(new ApiCallBack<GoodsDetailModel>() {
+            @Override
+            public void onAPIResponse(GoodsDetailModel response) {
+                detailModel.getGoodsDetailModel().setValue(response);
             }
 
             @Override
@@ -196,14 +203,14 @@ public class GoosDetailActivity extends BaseActivity {
                     }).setOnPageClickListener(new BannerViewPager.OnPageClickListener() {
                 @Override
                 public void onPageClick(int position) {
-                    onClickBanner(position);
+                    onClickBanner(position,response.getImgList());
                 }
-            }).create(newsList);
+            }).create(response.getImgList());
             dataBinding.banner.startLoop();
         }
     }
 
-    public void onClickBanner(int pos) {
+    public void onClickBanner(int pos, List<String> imgList) {
         ImagePreview
                 .getInstance()
                 // 上下文，必须是activity，不需要担心内存泄漏，本框架已经处理好；
@@ -218,7 +225,7 @@ public class GoosDetailActivity extends BaseActivity {
                 //.setImageInfoList(imageInfoList)
 
                 // 2：直接传url List
-                .setImageList(newsList)
+                .setImageList(imgList)
 
                 // 3：只有一张图片的情况，可以直接传入这张图片的url
                 //.setImage(String image)
@@ -296,16 +303,9 @@ public class GoosDetailActivity extends BaseActivity {
      * @param view
      */
     public void onClickToSku(View view) {
-        /*switch (view.getId()) {
-            case R.id.collect:
-                ToastUtil.show("collect");
-                break;
-            case R.id.sku:
-                ToastUtil.show("sku");
-                break;
-        }
+
         Basefragment fragment = getFragment(RouteShopConstants.SHOPGOODSSKU);
 
-        loadRootFragment(R.id.dio, fragment);*/
+        loadRootFragment(R.id.dio, fragment);
     }
 }
