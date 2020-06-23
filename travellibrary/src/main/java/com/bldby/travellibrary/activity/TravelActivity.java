@@ -72,11 +72,11 @@ public class TravelActivity extends BaseActivity {
         dataBinding.titleName.setText(R.string.oil_name);
         String userId = AccountManager.getInstance().getUserId();
         String token = AccountManager.getInstance().getToken();
-        Log.i("cccccccc", "initView: "+userId+"()"+token);
+        Log.i("cccccccc", "initView: "+userId+"||"+token);
         dataBinding.oilOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                start(RouteTravelConstants.TRAVELDETAIL);
+                start(RouteTravelConstants.TRAVELORDER);
                // start(RouteTravelConstants.TRAVELORDER);
 
             }
@@ -129,14 +129,14 @@ public class TravelActivity extends BaseActivity {
 
         //String string = SPUtils.getString(TravelActivity.this, Constants.USER_DATA);
         this.token = AccountManager.getInstance().getToken();
-     /*   myoiladapter = new MyOilAdapter(null);
+        myoiladapter = new MyOilAdapter(null);
         myoiladapter.setEmptyView(mEmptyView);
         dataBinding.oilrecy.setAdapter(myoiladapter);
-        myoiladapter.notifyDataSetChanged();*/
+        myoiladapter.notifyDataSetChanged();
     }
 
     private void initswipeLayout() {
-
+/*
         dataBinding.swipeLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull final RefreshLayout refreshLayout) {
@@ -159,7 +159,7 @@ public class TravelActivity extends BaseActivity {
                 refreshLayout.finishRefresh();
                 refreshLayout.setNoMoreData(true);
             }
-        });
+        });*/
     }
 
     private void initoil() {
@@ -186,10 +186,11 @@ public class TravelActivity extends BaseActivity {
             @Override
             public void onAPIResponse(List<OilListBean> response) {
                 Log.i("cccccccc", "initView: "+response.get(1).getGasName());
-//                myoiladapter = new MyOilAdapter(response);
-//                dataBinding.oilrecy.setAdapter(myoiladapter);
-//                myoiladapter.notifyDataSetChanged();
-             /*   if (response != null && response.size() > 0) {
+                //myoiladapter.chengtextcolor1(oilnumbersum);
+            /*    myoiladapter = new MyOilAdapter(response);
+                dataBinding.oilrecy.setAdapter(myoiladapter);
+                myoiladapter.notifyDataSetChanged();*/
+                if (response != null && response.size() > 0) {
                     if (isLoadM) {
                         myoiladapter.addData(response);
                     } else {
@@ -202,54 +203,24 @@ public class TravelActivity extends BaseActivity {
                         myoiladapter.notifyDataSetChanged();
                         //swipeLayout.finishLoadMore();
                     }
-                    myoiladapter.chengtextcolor1(oilnumbersum);
+                    //myoiladapter.chengtextcolor1(oilnumbersum);
                     myoiladapter.notifyDataSetChanged();
                     myoiladapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                         @Override
                         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                             OilListBean oilListBean = myoiladapter.getData().get(position);
-                            if (token == null || TextUtils.isEmpty(token)) {
-                                *//*Intent intent = new Intent(TravelHomeActivity.this, LoginActivity.class);
-                                startActivity(intent);*//*
-                            } else {
+                            OilDeiltaActivity.toTraveDetailActivity(TravelActivity.this, oilListBean);
                               //  TraveDetailActivity.toTraveDetailActivity(TravelHomeActivity.this, oilListBean);
-                                *//**
-                                 * 是否是会员判断
-                                 *//*
-                              *//*  if (UserInfoUtils.getUserInfo(TravelHomeActivity.this).getAccountType() != 0) {
-                                } else {
-                                    View inflate = getLayoutInflater().inflate(R.layout.oil_dialog_item, null);
-                                    TextView dilagimagedimiss = inflate.findViewById(R.id.dilagimagedimiss);
-                                    TextView dilagimageupdate = inflate.findViewById(R.id.dilagimageupdate);
-                                    MyDialog myDialog = new MyDialog(TravelHomeActivity.this, 0, 0, inflate, R.style.DialogTheme);
-                                    myDialog.setCancelable(true);
-                                    dilagimagedimiss.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            myDialog.dismiss();
-                                        }
-                                    });
-                                    dilagimageupdate.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            Intent intent = new Intent(TravelHomeActivity.this, VipActivity.class);
-                                            intent.putExtra(VipActivity.MINE_INFO, userInfo);
-                                            startActivity(intent);
-                                            myDialog.dismiss();
-                                        }
-                                    });
-                                    myDialog.show();
-                                }*//*
-                            }
+
                         }
                     });
                 } else {
                     if (!isLoadMore) {
-                        //swipeLayout.finishRefresh(true);
+                       // swipeLayout.finishRefresh(true);
                     } else {
-                       // swipeLayout.finishLoadMore(true);
+                        //swipeLayout.finishLoadMore(true);
                     }
-                }*/
+                }
             }
 
             @Override
@@ -286,9 +257,9 @@ public class TravelActivity extends BaseActivity {
                           String dinstancenumber = dinstance.get(position);
                           dataBinding.distance.setText(dinstancenumber);
                           oilnumbersum = (String)dataBinding.oilnumber.getText();
-                        /*  pageNo = 1;
+                          pageNo = 1;
                           myoiladapter.setNewData(null);
-                          initwork(dinstancenumber, oilnumbersum, false, pageNo);*/
+                          initwork(dinstancenumber, oilnumbersum, false, pageNo);
                           popupWindow.dismiss();
                       }
                   });
@@ -318,9 +289,9 @@ public class TravelActivity extends BaseActivity {
                           String oilnumbersum = strings.get(position);
                           dataBinding.oilnumber.setText(oilnumbersum);
                           dinstancenumber = (String)dataBinding.distance.getText();
-                        /*  pageNo = 1;
+                          pageNo = 1;
                           myoiladapter.setNewData(null);
-                          initwork(dinstancenumber, oilnumbersum, false, pageNo);*/
+                          initwork(dinstancenumber, oilnumbersum, false, pageNo);
                           popupWindow.dismiss();
                       }
                   });
@@ -337,9 +308,9 @@ public class TravelActivity extends BaseActivity {
                           String oilnumbersum = strings1.get(position);
                          dataBinding.oilnumber.setText(oilnumbersum);
                           dinstancenumber = (String)dataBinding.distance.getText();
-                        /*  pageNo = 1;
+                          pageNo = 1;
                           myoiladapter.setNewData(null);
-                          initwork(dinstancenumber, oilnumbersum, false, pageNo);*/
+                          initwork(dinstancenumber, oilnumbersum, false, pageNo);
                           popupWindow.dismiss();
                       }
                   });

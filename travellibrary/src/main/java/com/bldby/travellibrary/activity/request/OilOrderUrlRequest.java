@@ -9,18 +9,16 @@ import com.bldby.travellibrary.activity.model.OilOrederBean;
 import java.util.List;
 
 public class OilOrderUrlRequest extends BaseTravelUrlRequest {
-    public int limitNum;
-    public int curPage;
+    public int pageSize;
+    public int currentPage;
     public String phone;
-    public String accessToken;
-    public String userId;
     @Override
     public String getAPIName() {
         return "fleetin/getOrderInfo";
     }
-    public OilOrderUrlRequest(int limitNum, int curPage, String phone) {
-        this.limitNum = limitNum;
-        this.curPage = curPage;
+    public OilOrderUrlRequest(int pageSize, int currentPage, String phone) {
+        this.pageSize = pageSize;
+        this.currentPage = currentPage;
         this.phone = phone;
     }
 
@@ -32,10 +30,8 @@ public class OilOrderUrlRequest extends BaseTravelUrlRequest {
     @Override
     public ParamsBuilder appendParams(ParamsBuilder builder) {
         return super.appendParams(builder
-                .append("limitNum",limitNum)
-                .append("accessToken",accessToken)
-                .append("userId",userId)
-                .append("curPage",curPage).append("phone",phone));
+                .append("limitNum",pageSize)
+                .append("curPage",currentPage).append("phone",phone));
     }
 
 

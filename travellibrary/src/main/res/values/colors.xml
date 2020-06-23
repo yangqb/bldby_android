@@ -3,4 +3,5 @@
     <color name="oil_color" tools:ignore="ResourceName">#F88D03</color>
     <color name="txt_middle" tools:ignore="ResourceName">#3d3f43</color>
     <color name="white" tools:ignore="ResourceName">#FFFFFF</color>
+    <color name="grgray">#686868</color>
 </resources>

@@ -52,7 +52,7 @@ public class ClassifyFragment extends Basefragment {
     public void initView() {
         //left适配器方法（）
         initleft();
-        initrighttop(id);
+       // initrighttop(id);
     }
 
 
@@ -66,8 +66,8 @@ public class ClassifyFragment extends Basefragment {
             public void onAPIResponse(List<ClassLeftGoodsBean>  response) {
                 adapterleft = new ClassLeftGoodsAdapter(response);
                 binding.classLeft.setAdapter(adapterleft);
-                id = response.get(0).getId();
-                initrighttop(id);
+              //  id = response.get(0).getId();
+               // initrighttop(id);
             }
 
             @Override

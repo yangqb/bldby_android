@@ -155,14 +155,7 @@
             android:layout_height="match_parent"
             android:background="@color/white"
             android:orientation="vertical">
-             <com.bldby.baselibrary.core.smart.MRefreshHeader
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent"
-                 app:srlAccentColor="#00000000"
-                 app:srlEnablePreviewInEditMode="true"
-                 app:srlPrimaryColor="#00000000"
-                 >
-             </com.bldby.baselibrary.core.smart.MRefreshHeader>
+
             <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -178,15 +171,7 @@
                 </android.support.v7.widget.RecyclerView>
             </android.support.v4.widget.NestedScrollView>
 
-            <com.bldby.baselibrary.core.smart.MRefreshFooter
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:srlAccentColor="#00000000"
-                app:srlEnablePreviewInEditMode="true"
-                app:srlPrimaryColor="#00000000"
-                >
 
-            </com.bldby.baselibrary.core.smart.MRefreshFooter>
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
         <Button

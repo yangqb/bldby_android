@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ public class OilOrderActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        UserInfo userInfo=new UserInfo();
         View mEmptyView = View.inflate(this, R.layout.view_common_nodata, null);
         ImageView img_empty = (ImageView) mEmptyView.findViewById(R.id.img_empty);
         img_empty.setOnClickListener(new View.OnClickListener() {
@@ -46,27 +48,27 @@ public class OilOrderActivity extends BaseActivity {
 
             }
         });
-
         TraveFormAdapter traveFormAdapter = new TraveFormAdapter(null);
         traveFormAdapter.setEmptyView(mEmptyView);
         oilOrderBinding.recyclerView.setAdapter(traveFormAdapter);
         traveFormAdapter.notifyDataSetChanged();
-
         oilOrderBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         OilOrderUrlRequest oilOrderRequest = new OilOrderUrlRequest(50, 1, AccountManager.getInstance().getUserPhone());
-        oilOrderRequest.userId = AccountManager.getInstance().getUserId();
-        oilOrderRequest.accessToken = AccountManager.getInstance().getToken();
+        /*oilOrderRequest.userId = AccountManager.getInstance().getUserId();
+        oilOrderRequest.accessToken = AccountManager.getInstance().getToken();*/
         oilOrderRequest.call(new ApiCallBack<List<OilOrederBean>>() {
             @Override
             public void onAPIResponse(List<OilOrederBean> response) {
-                if (response != null && response.size() > 0) {
+                Log.i("cccccccc", "initView: "+response.get(1).getGasName());
+               // if (response != null && response.size() > 0) {
                     TraveFormAdapter traveFormAdapter = new TraveFormAdapter(response);
                     oilOrderBinding.recyclerView.setAdapter(traveFormAdapter);
-                }
+              //  }
             }
 
             @Override
             public void onAPIError(int errorCode, String errorMsg) {
+                Log.i("cccccccc", "initView: "+errorCode);
 
             }
         });
