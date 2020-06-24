@@ -2,6 +2,7 @@ ext {
 //    false:作为Lib组件存在， true:作为application存在
     isBaseApplication = false  //这个不建议改
     isLoginApplication = false  //登录作为逻辑基础组件,运行其他项目都要依赖这个组件
+    isIMApplication = false;
 
 
     isShopApplication = false
@@ -171,6 +172,8 @@ ext {
             "runner"                         : 'com.android.support.test:runner:1.0.2',
             "espresso-core"                  : 'com.android.support.test.espresso:espresso-core:3.0.2',
             "flexbox"                        : 'com.google.android:flexbox:1.0.0',
+            "butterknife"                    : 'com.jakewharton:butterknife:9.0.0',
+            "stream"                         : 'com.annimon:stream:1.0.9',
 
 
 //testImplementation 'junit:junit:4.12'

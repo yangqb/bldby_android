@@ -10,12 +10,11 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.bldby.baselibrary.AppidManifests;
 import com.bldby.baselibrary.R;
 import com.bldby.baselibrary.app.util.XlogUtil;
-import com.bldby.baselibrary.core.errorlog.CrashHandler;
 import com.bldby.baselibrary.core.analyze.UMengAnalyze;
+import com.bldby.baselibrary.core.errorlog.CrashHandler;
 import com.bldby.baselibrary.core.smart.MRefreshFooter;
 import com.bldby.baselibrary.core.smart.MRefreshHeader;
 import com.orhanobut.hawk.Hawk;
-import com.scwang.smartrefresh.header.waveswipe.DropBounceInterpolator;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
@@ -23,8 +22,6 @@ import com.scwang.smartrefresh.layout.api.DefaultRefreshInitializer;
 import com.scwang.smartrefresh.layout.api.RefreshFooter;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
-import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareConfig;
@@ -35,10 +32,10 @@ public class BaseApp extends Application {
         super.attachBaseContext(base);
         MultiDex.install(this);
     }
-
     @Override
     public void onCreate() {
         super.onCreate();
+
         if (NetworkConfig.getInstance().getIsDev()) {
             ARouter.openLog();     // 打印日志
             ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)

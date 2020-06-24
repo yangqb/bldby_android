@@ -249,6 +249,7 @@
                             android:background="@color/white"
                             android:clickable="true"
                             android:gravity="center_vertical"
+                            android:onClick="@{viewmodel::onClickToSku}"
                             app:cornerRadius="@dimen/dp_10"
                             app:isBottomLeftRadius="false"
                             app:isBottomRightRadius="false">
@@ -439,6 +440,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:id="@+id/goods_customer"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/dp_20"

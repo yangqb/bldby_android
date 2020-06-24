@@ -5,25 +5,17 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.res.ColorStateList;
 import android.databinding.DataBindingUtil;
 import android.databinding.ObservableField;
-import android.databinding.ObservableInt;
-import android.databinding.ObservableLong;
-import android.databinding.ViewDataBinding;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -31,15 +23,11 @@ import com.bldby.baselibrary.constants.RouteConstants;
 import com.bldby.baselibrary.constants.RouteShopConstants;
 import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.share.ShareFragment;
-import com.bldby.baselibrary.core.share.ShareMenu;
-import com.bldby.baselibrary.core.share.ShareUtils;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
-import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
 import com.bldby.baselibrary.core.ui.basefragment.Basefragment;
 import com.bldby.baselibrary.core.util.ShareImageUtils;
-import com.bldby.baselibrary.core.util.ToastUtil;
+import com.bldby.loginlibrary.AccountManager;
 import com.bldby.shoplibrary.R;
-import com.bldby.shoplibrary.bean.News;
 import com.bldby.shoplibrary.databinding.ActivityGoosDetailBinding;
 import com.bldby.shoplibrary.goods.adapter.AdapterGoodsDetailEvaluate;
 import com.bldby.shoplibrary.goods.adapter.AdapterGoodsDetailGetDiscounts;
@@ -47,8 +35,8 @@ import com.bldby.shoplibrary.goods.model.BannerViewHolder;
 import com.bldby.shoplibrary.goods.model.GoodsDetailModel;
 import com.bldby.shoplibrary.goods.model.ShopDetailModel;
 import com.bldby.shoplibrary.goods.request.GoodsDetailRequest;
-import com.bldby.shoplibrary.home.HomeFragment;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.hyphenate.easeui.EaseUiManager;
 import com.zhpan.bannerview.BannerViewPager;
 import com.zhpan.bannerview.constants.IndicatorSlideMode;
 import com.zhpan.bannerview.constants.IndicatorStyle;
@@ -74,8 +62,7 @@ public class GoosDetailActivity extends BaseActivity {
     private AdapterGoodsDetailGetDiscounts detailGetDiscounts;
     private AdapterGoodsDetailEvaluate adapterGoodsDetailEvaluate;
     private ShopDetailModel detailModel;
-    private ArrayList<String> newsList;
-    private GoodsDetailModel response;
+
 
     @Override
     public void bindIngView() {
@@ -86,6 +73,7 @@ public class GoosDetailActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        String userPhone = AccountManager.getInstance().getUserPhone();
         backButton.set(getResources().getColorStateList(R.color.white));
         backBackgroundButton.set(getResources().getDrawable(R.color.goods_detail_back));
         ArrayList<String> strings = new ArrayList<>();
@@ -114,22 +102,38 @@ public class GoosDetailActivity extends BaseActivity {
                 start(RouteShopConstants.SHOPGOODSSHOPPING);
             }
         });
+        dataBinding.goodsCustomer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (EaseUiManager.getInstance().isLogin()) {
+                    start(RouteShopConstants.SHOPGOODSCUST);
+                } else {
+                    EaseUiManager.getInstance().login(new ApiCallBack() {
+                        @Override
+                        public void onAPIResponse(Object response) {
+                            start(RouteShopConstants.SHOPGOODSCUST);
+                        }
+
+                        @Override
+                        public void onAPIError(int errorCode, String errorMsg) {
+                        }
+                    });
+                }
+
+            }
+        });
     }
 
     @Override
     public void loadData() {
-        spuId = 2;
-        GoodsDetailRequest goodsDetailRequest = new GoodsDetailRequest(spuId);
-        goodsDetailRequest.isShowLoading = true;
-        goodsDetailRequest.call(new ApiCallBack<GoodsDetailModel>() {
+        detailModel.getGoodsDetailModel().observe(this, new Observer<GoodsDetailModel>() {
             @Override
-            public void onAPIResponse(GoodsDetailModel response) {
-                GoosDetailActivity.this.response = response;
-                dataBinding.goodsName.setText(response.getTitle());
+            public void onChanged(@Nullable GoodsDetailModel goodsDetailModel) {
+                dataBinding.goodsName.setText(goodsDetailModel.getTitle());
 //                dataBinding.goodsDes.setText(response.getSpec());
-                initbanner(response);
+                initbanner(goodsDetailModel);
 
-                initEvaluate(response);
+                initEvaluate(goodsDetailModel);
                 //设置不同的字号
                 String price = "¥ " + 20 + "起";
                 Spannable sp = new SpannableString(price);
@@ -137,7 +141,19 @@ public class GoosDetailActivity extends BaseActivity {
                 sp.setSpan(new AbsoluteSizeSpan(16, true), 2, price.length() - 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
                 sp.setSpan(new AbsoluteSizeSpan(12, true), price.length() - 1, price.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
                 dataBinding.price.setText(sp);
+            }
+        });
+        goodsRequest();
+    }
 
+    private void goodsRequest() {
+        spuId = 2;
+        GoodsDetailRequest goodsDetailRequest = new GoodsDetailRequest(spuId);
+        goodsDetailRequest.isShowLoading = true;
+        goodsDetailRequest.call(new ApiCallBack<GoodsDetailModel>() {
+            @Override
+            public void onAPIResponse(GoodsDetailModel response) {
+                detailModel.getGoodsDetailModel().setValue(response);
             }
 
             @Override
@@ -190,14 +206,14 @@ public class GoosDetailActivity extends BaseActivity {
                     }).setOnPageClickListener(new BannerViewPager.OnPageClickListener() {
                 @Override
                 public void onPageClick(int position) {
-                    onClickBanner(position);
+                    onClickBanner(position, response.getImgList());
                 }
-            }).create(newsList);
+            }).create(response.getImgList());
             dataBinding.banner.startLoop();
         }
     }
 
-    public void onClickBanner(int pos) {
+    public void onClickBanner(int pos, List<String> imgList) {
         ImagePreview
                 .getInstance()
                 // 上下文，必须是activity，不需要担心内存泄漏，本框架已经处理好；
@@ -212,7 +228,7 @@ public class GoosDetailActivity extends BaseActivity {
                 //.setImageInfoList(imageInfoList)
 
                 // 2：直接传url List
-                .setImageList(newsList)
+                .setImageList(imgList)
 
                 // 3：只有一张图片的情况，可以直接传入这张图片的url
                 //.setImage(String image)
@@ -290,16 +306,9 @@ public class GoosDetailActivity extends BaseActivity {
      * @param view
      */
     public void onClickToSku(View view) {
-        /*switch (view.getId()) {
-            case R.id.collect:
-                ToastUtil.show("collect");
-                break;
-            case R.id.sku:
-                ToastUtil.show("sku");
-                break;
-        }
+
         Basefragment fragment = getFragment(RouteShopConstants.SHOPGOODSSKU);
 
-        loadRootFragment(R.id.dio, fragment);*/
+        loadRootFragment(R.id.dio, fragment);
     }
 }

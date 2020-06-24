@@ -22,7 +22,7 @@ public class BannerViewHolder implements ViewHolder<String> {
 
     @Override
     public int getLayoutId() {
-        return R.layout.item_banner;
+        return R.layout.item_shop_detail_banner;
     }
 
     @Override
