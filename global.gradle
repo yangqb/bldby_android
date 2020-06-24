@@ -172,6 +172,7 @@ ext {
             "espresso-core"                  : 'com.android.support.test.espresso:espresso-core:3.0.2',
             "flexbox"                        : 'com.google.android:flexbox:1.0.0',
             "butterknife"                    :'com.jakewharton:butterknife:9.0.0',
+            "stream"                         :'com.annimon:stream:1.0.9',
 
 
 

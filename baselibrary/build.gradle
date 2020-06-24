@@ -122,6 +122,8 @@ dependencies {
     api rootProject.ext.dependencies["alertview"]
     api rootProject.ext.dependencies["tablayout"]
     api rootProject.ext.dependencies["butterknife"]
+    api rootProject.ext.dependencies["stream"]
+
 
 //    api rootProject.ext.dependencies["toast"]
 

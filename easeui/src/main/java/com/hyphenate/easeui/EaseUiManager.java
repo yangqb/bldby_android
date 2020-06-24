@@ -50,7 +50,7 @@ public class EaseUiManager {
 
     public void login(ApiCallBack apiCallBack) {
 //        AccountManager.getInstance().getUserPhone()
-        EMClient.getInstance().login("14701776629" + IMContent.getTag(), "123456", new EMCallBack() {//回调
+        EMClient.getInstance().login(AccountManager.getInstance().getUserId()+ IMContent.getTag(), "123456", new EMCallBack() {//回调
             @Override
             public void onSuccess() {
                 EMClient.getInstance().groupManager().loadAllGroups();

@@ -1,5 +1,6 @@
 package com.hyphenate.easeui.customer;
 
+import android.accounts.AccountManager;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 
@@ -8,7 +9,6 @@ import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.rxbus.RxBus;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
 import com.bldby.baselibrary.core.util.ToastUtil;
-import com.bldby.loginlibrary.AccountManager;
 import com.bldby.loginlibrary.model.AccountInfo;
 import com.bldby.loginlibrary.model.UserInfo;
 import com.bldby.loginlibrary.request.UserInfoRequest;
@@ -31,8 +31,8 @@ public class ImActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        String userId = AccountManager.getInstance().getUserId();
-        String token = AccountManager.getInstance().getToken();
+        String userId = com.bldby.loginlibrary.AccountManager.getInstance().getUserId();
+        String token = com.bldby.loginlibrary.AccountManager.getInstance().getToken();
         String stringExtra = getIntent().getStringExtra("userId");
         UserInfoRequest request = new UserInfoRequest();
         request.userId = userId;

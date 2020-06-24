@@ -116,7 +116,6 @@ public class GoosDetailActivity extends BaseActivity {
 
                         @Override
                         public void onAPIError(int errorCode, String errorMsg) {
-
                         }
                     });
                 }
