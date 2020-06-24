@@ -7,14 +7,14 @@
     <data>
         <variable
             name="ViewModel"
-            type="com.bldby.shoplibrary.customer.CustomerserviceActivity" />
+            type="com.hyphenate.easeui.customer.CustomerserviceActivity" />
 
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".customer.CustomerserviceActivity"
+        tools:context="com.hyphenate.easeui.customer.CustomerserviceActivity"
         android:orientation="vertical"
         >
         <RelativeLayout

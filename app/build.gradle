@@ -103,7 +103,7 @@ android {
 //        exclude 'com.baidu'
 //    }
     //use legacy for android 6.0
-//    useLibrary 'org.apache.http.legacy'
+    useLibrary 'org.apache.http.legacy'
 }
 
 dependencies {
@@ -126,6 +126,9 @@ dependencies {
     }
     if (!rootProject.ext.isCenterApplication) {
         implementation project(path: ':centerlibrary')
+    }
+    if (!rootProject.ext.isIMApplication) {
+        implementation project(path: ':easeui')
     }
     annotationProcessor rootProject.ext.dependencies["router-compiler"]
     annotationProcessor rootProject.ext.dependencies["permissionsdispatcher-processor"]

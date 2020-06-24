@@ -23,9 +23,12 @@ android {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
-        manifestPlaceholders = [qqappid: "1110519400"] //其他library运行时需要配置这个（友盟分享）
         consumerProguardFiles "consumer-rules.pro"
-
+        ndk {
+            //设置支持的SO库架构
+            abiFilters 'armeabi'
+            abiFilters 'x86'
+        }
     }
 
     buildTypes {
@@ -43,6 +46,7 @@ android {
 // for view binding :
 // viewBinding = true
     }
+
     sourceSets {
         main {
             if (rootProject.ext.isIMApplication) {
@@ -50,7 +54,7 @@ android {
             } else {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
             }
-            jniLibs.srcDirs = ['libs']
+            jniLibs.srcDirs = ['src/main/jniLibs']
         }
     }
 
@@ -67,12 +71,11 @@ dependencies {
     //release时需要把hyphenatechatsdk的依赖注释掉，sdk已经被打成jar包放在libs底下
 //    //api project(':hyphenatechatsdk')
     //api 'com.hyphenate:hyphenate-sdk:3.6.7'
-    api fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.github.bumptech.glide:glide:4.8.0'
 
-    api 'com.google.android.gms:play-services-base:11.4.0'
-
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.google.android.gms:play-services-base:11.4.0'
+    implementation project(path: ':loginlibrary')
     implementation project(path: ':baselibrary')
     annotationProcessor rootProject.ext.dependencies["router-compiler"]
 }

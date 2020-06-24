@@ -1,10 +1,7 @@
-package com.bldby.shoplibrary.customer;
+package com.hyphenate.easeui.customer;
 
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import com.bldby.baselibrary.app.RxCodeConstants;
 import com.bldby.baselibrary.core.network.ApiCallBack;
@@ -15,9 +12,9 @@ import com.bldby.loginlibrary.AccountManager;
 import com.bldby.loginlibrary.model.AccountInfo;
 import com.bldby.loginlibrary.model.UserInfo;
 import com.bldby.loginlibrary.request.UserInfoRequest;
-import com.bldby.shoplibrary.R;
-import com.bldby.shoplibrary.databinding.ActivityImBinding;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.easeui.R;
+import com.hyphenate.easeui.databinding.ActivityImBinding;
 import com.hyphenate.easeui.ui.EaseChatFragment;
 import com.hyphenate.easeui.widget.chatrow.EaseChatRow;
 

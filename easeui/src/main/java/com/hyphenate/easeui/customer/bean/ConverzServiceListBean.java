@@ -1,4 +1,4 @@
-package com.bldby.shoplibrary.customer.bean;
+package com.hyphenate.easeui.customer.bean;
 
 public class ConverzServiceListBean {
     /**

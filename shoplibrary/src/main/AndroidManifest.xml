@@ -3,8 +3,8 @@
     package="com.bldby.shoplibrary">
 
     <application>
-        <activity android:name=".customer.ImActivity"></activity>
-        <activity android:name=".customer.CustomerserviceActivity" />
+        <activity android:name="com.hyphenate.easeui.customer.ImActivity"></activity>
+        <activity android:name="com.hyphenate.easeui.customer.CustomerserviceActivity" />
         <activity android:name=".settlement.SettlementMainActivity" />
         <activity android:name=".shopping.GoodsShoppingActivity" />
         <activity android:name=".goods.GoodsSeachActivity" />

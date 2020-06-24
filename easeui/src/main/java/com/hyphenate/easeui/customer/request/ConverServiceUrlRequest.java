@@ -1,9 +1,9 @@
-package com.bldby.shoplibrary.customer.request;
+package com.hyphenate.easeui.customer.request;
 
 import com.alibaba.fastjson.TypeReference;
 import com.bldby.baselibrary.app.network.BaseTravelUrlRequest;
 import com.bldby.baselibrary.core.network.RequestLevel;
-import com.bldby.shoplibrary.customer.bean.ConverzServiceListBean;
+import com.hyphenate.easeui.customer.bean.ConverzServiceListBean;
 
 import java.util.List;
 

@@ -11,7 +11,7 @@
  either express or implied. See the License for the specific language governing
  permissions and limitations under the License.
  */
-package com.bldby.shoplibrary.customer.runtimepermissions;
+package com.hyphenate.easeui.customer.runtimepermissions;
 
 import android.Manifest;
 import android.app.Activity;

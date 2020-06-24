@@ -7,14 +7,14 @@
     <data>
         <variable
             name="viewModel"
-            type="com.bldby.shoplibrary.customer.ImActivity" />
+            type="com.hyphenate.easeui.customer.ImActivity" />
 
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".customer.ImActivity">
+        tools:context="com.hyphenate.easeui.customer.ImActivity">
 
     </LinearLayout>
 </layout>

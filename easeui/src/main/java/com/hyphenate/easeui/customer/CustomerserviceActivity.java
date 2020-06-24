@@ -1,21 +1,17 @@
-package com.bldby.shoplibrary.customer;
+package com.hyphenate.easeui.customer;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bldby.baselibrary.constants.RouteShopConstants;
 import com.bldby.baselibrary.core.network.ApiCallBack;
 import com.bldby.baselibrary.core.ui.baseactivity.BaseActivity;
-import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
-import com.bldby.shoplibrary.R;
-import com.bldby.shoplibrary.customer.bean.ConverzServiceListBean;
-import com.bldby.shoplibrary.customer.request.ConverServiceUrlRequest;
-import com.bldby.shoplibrary.databinding.ActivityCustomerserviceBinding;
+import com.hyphenate.easeui.R;
+import com.hyphenate.easeui.customer.bean.ConverzServiceListBean;
+import com.hyphenate.easeui.customer.request.ConverServiceUrlRequest;
+import com.hyphenate.easeui.databinding.ActivityCustomerserviceBinding;
 
 import java.util.List;
 
@@ -47,7 +43,7 @@ public class CustomerserviceActivity extends BaseActivity {
 //                    intent.putExtra("name",response.get(0).getNick());
 //                    intent.putExtra("icon",response.get(0).getIcon());
 //                    intent.putExtra(EaseConstant.EXTRA_USER_ID, "688577"+"-dev");
-                intent.putExtra("userId", response.get(0).getUserId() + IMContent.IMTAG);
+                intent.putExtra("userId", response.get(0).getUserId() + IMContent.getTag());
                 startActivity(intent);
             }
         });
