@@ -117,6 +117,7 @@ public class AirReserveActivity extends BaseAirUiActivity {
     private ActivityAirReserveBinding binding;
     private UserInfo userInfo;
     private int invoicePosition;
+    private String cabinStr = "";
     private PriceDetailInfo priceDetailInfo = new PriceDetailInfo();
     private SelectPassengerAdapter mAdapter;
     private List<PassengerModel> passengerList = new ArrayList<>();
@@ -169,24 +170,24 @@ public class AirReserveActivity extends BaseAirUiActivity {
             binding.llGoPlane.setVisibility(View.VISIBLE);
             binding.llBackPlane.setVisibility(View.GONE);
             binding.goTitle.setVisibility(View.GONE);
-            binding.tvGoInfo.setText(DateUtil.strToStr(customPriceDetailInfo.customDocGoFlightInfo.date) + DateUtil.strToWeek("yyyy-MM-dd", customPriceDetailInfo.customDocGoFlightInfo.date) + customPriceDetailInfo.customDocGoFlightInfo.btime + customPriceDetailInfo.customDocGoFlightInfo.depAirport + customPriceDetailInfo.customDocGoFlightInfo.depTerminal + "-" + customPriceDetailInfo.customDocGoFlightInfo.arrAirport + customPriceDetailInfo.customDocGoFlightInfo.arrTerminal);
             binding.price.setText("¥" + MathUtils.subZero(String.valueOf(customPriceDetailInfo.customDocGoPriceInfo.barePrice)));
-            binding.arfAndTof.setText("机建+燃油 ¥" + MathUtils.subZero(String.valueOf(customPriceDetailInfo.customDocGoFlightInfo.tof + customPriceDetailInfo.customDocGoFlightInfo.arf)));
+            binding.arfAndTof.setText("¥" + MathUtils.subZero(String.valueOf(customPriceDetailInfo.customDocGoFlightInfo.tof + customPriceDetailInfo.customDocGoFlightInfo.arf)));
             if (customPriceDetailInfo.customDocGoPriceInfo.cabinType == 0) {
-                binding.tvCabinType.setText("经济舱(" + customPriceDetailInfo.customDocGoPriceInfo.cabin + ")");
+                cabinStr = "经济舱(" + customPriceDetailInfo.customDocGoPriceInfo.cabin + ")";
             } else if (customPriceDetailInfo.customDocGoPriceInfo.cabinType == 1) {
-                binding.tvCabinType.setText("头等舱(" + customPriceDetailInfo.customDocGoPriceInfo.cabin + ")");
+                cabinStr = "头等舱(" + customPriceDetailInfo.customDocGoPriceInfo.cabin + ")";
             } else if (customPriceDetailInfo.customDocGoPriceInfo.cabinType == 2) {
-                binding.tvCabinType.setText("商务舱(" + customPriceDetailInfo.customDocGoPriceInfo.cabin + ")");
+                cabinStr = "商务舱(" + customPriceDetailInfo.customDocGoPriceInfo.cabin + ")";
             } else if (customPriceDetailInfo.customDocGoPriceInfo.cabinType == 3) {
-                binding.tvCabinType.setText("经济舱精选(" + customPriceDetailInfo.customDocGoPriceInfo.cabin + ")");
+                cabinStr = "经济舱精选(" + customPriceDetailInfo.customDocGoPriceInfo.cabin + ")";
             } else if (customPriceDetailInfo.customDocGoPriceInfo.cabinType == 4) {
-                binding.tvCabinType.setText("经济舱y舱(" + customPriceDetailInfo.customDocGoPriceInfo.cabin + ")");
+                cabinStr = "经济舱y舱(" + customPriceDetailInfo.customDocGoPriceInfo.cabin + ")";
             } else if (customPriceDetailInfo.customDocGoPriceInfo.cabinType == 5) {
-                binding.tvCabinType.setText("超值头等舱(" + customPriceDetailInfo.customDocGoPriceInfo.cabin + ")");
+                cabinStr = "超值头等舱(" + customPriceDetailInfo.customDocGoPriceInfo.cabin + ")";
             } else if (customPriceDetailInfo.customDocGoPriceInfo.cabinType == -1) {
-                binding.tvCabinType.setText("未配置");
+                cabinStr = "未配置";
             }
+            binding.tvGoInfo.setText(DateUtil.strToStr(customPriceDetailInfo.customDocGoFlightInfo.date) + DateUtil.strToWeek("yyyy-MM-dd", customPriceDetailInfo.customDocGoFlightInfo.date) + "丨" + cabinStr);
         } else if (airType == 1) {
             priceDetailInfo.price = customPriceDetailInfo.customInterPriceInfo.price;
             priceDetailInfo.arf = 0;
@@ -197,20 +198,18 @@ public class AirReserveActivity extends BaseAirUiActivity {
             binding.llGoPlane.setVisibility(View.VISIBLE);
             binding.llBackPlane.setVisibility(View.GONE);
             binding.goTitle.setVisibility(View.GONE);
-            binding.tvGoInfo.setText(DateUtil.strToStr(interGo.flightSegments.get(0).depDate) + DateUtil.strToWeek("yyyy-MM-dd", interGo.flightSegments.get(0).depDate)
-                    + interGo.flightSegments.get(0).depTime + interGo.flightSegments.get(0).depAirportName + interGo.flightSegments.get(0).depTerminal + "-"
-                    + interGo.flightSegments.get(interGo.flightSegments.size() - 1).arrAirportName + interGo.flightSegments.get(interGo.flightSegments.size() - 1).arrTerminal);
             binding.price.setText("¥" + MathUtils.subZero(String.valueOf(customPriceDetailInfo.customInterPriceInfo.price)));
-            binding.arfAndTof.setText("机建+燃油 ¥0");
+            binding.arfAndTof.setText("¥0");
             if ("economy".equals(customPriceDetailInfo.customInterPriceInfo.cabinLevel)) {
-                binding.tvCabinType.setText("经济舱(" + customPriceDetailInfo.customInterPriceInfo.cabin + ")");
+                cabinStr = "经济舱(" + customPriceDetailInfo.customInterPriceInfo.cabin + ")";
             } else if ("first".equals(customPriceDetailInfo.customInterPriceInfo.cabinLevel)) {
-                binding.tvCabinType.setText("头等舱(" + customPriceDetailInfo.customInterPriceInfo.cabin + ")");
+                cabinStr = "头等舱(" + customPriceDetailInfo.customInterPriceInfo.cabin + ")";
             } else if ("business".equals(customPriceDetailInfo.customInterPriceInfo.cabinLevel)) {
-                binding.tvCabinType.setText("商务舱(" + customPriceDetailInfo.customInterPriceInfo.cabin + ")");
+                cabinStr = "商务舱(" + customPriceDetailInfo.customInterPriceInfo.cabin + ")";
             } else {
-                binding.tvCabinType.setText("未配置");
+                cabinStr = "未配置";
             }
+            binding.tvGoInfo.setText(DateUtil.strToStr(interGo.flightSegments.get(0).depDate) + DateUtil.strToWeek("yyyy-MM-dd", interGo.flightSegments.get(0).depDate) + "丨" + cabinStr);
         } else {
             setCenterImg(R.mipmap.air_search_goback_arrow);
             binding.llGoPlane.setVisibility(View.VISIBLE);
@@ -224,11 +223,10 @@ public class AirReserveActivity extends BaseAirUiActivity {
                 priceDetailInfo.cPrice = 0;
                 GoBackFlight docGoFlight = customPriceDetailInfo.customDocGoBackFlightInfo.go;
                 GoBackFlight docBackFlight = customPriceDetailInfo.customDocGoBackFlightInfo.back;
-                binding.tvGoInfo.setText(DateUtil.strToStr(customPriceDetailInfo.customFightCityInfo.goDate) + DateUtil.strToWeek("yyyy-MM-dd", customPriceDetailInfo.customFightCityInfo.goDate) + docGoFlight.depTime + docGoFlight.depAirport + docGoFlight.depTerminal + "-" + docGoFlight.arrAirport + docGoFlight.arrTerminal);
-                binding.tvBackInfo.setText(DateUtil.strToStr(customPriceDetailInfo.customFightCityInfo.backDate) + DateUtil.strToWeek("yyyy-MM-dd", customPriceDetailInfo.customFightCityInfo.backDate) + docBackFlight.depTime + docBackFlight.depAirport + docBackFlight.depTerminal + "-" + docBackFlight.arrAirport + docBackFlight.arrTerminal);
                 binding.price.setText("¥" + MathUtils.subZero(String.valueOf(customPriceDetailInfo.customDocGoBackPriceInfo.barePrice)));
-                binding.arfAndTof.setText("机建+燃油 ¥" + MathUtils.subZero(String.valueOf(customPriceDetailInfo.customDocGoBackFlightInfo.tof + customPriceDetailInfo.customDocGoBackFlightInfo.arf)));
-                binding.tvCabinType.setText(customPriceDetailInfo.customDocGoBackPriceInfo.cabinDesc);
+                binding.arfAndTof.setText("¥" + MathUtils.subZero(String.valueOf(customPriceDetailInfo.customDocGoBackFlightInfo.tof + customPriceDetailInfo.customDocGoBackFlightInfo.arf)));
+                binding.tvGoInfo.setText(DateUtil.strToStr(customPriceDetailInfo.customFightCityInfo.goDate) + DateUtil.strToWeek("yyyy-MM-dd", customPriceDetailInfo.customFightCityInfo.goDate) + "丨" + customPriceDetailInfo.customDocGoBackPriceInfo.cabinDesc);
+                binding.tvBackInfo.setText(DateUtil.strToStr(customPriceDetailInfo.customFightCityInfo.backDate) + DateUtil.strToWeek("yyyy-MM-dd", customPriceDetailInfo.customFightCityInfo.backDate) + "丨" + customPriceDetailInfo.customDocGoBackPriceInfo.cabinDesc);
             } else {
                 priceDetailInfo.price = customPriceDetailInfo.customInterPriceInfo.price;
                 priceDetailInfo.arf = 0;
@@ -236,25 +234,23 @@ public class AirReserveActivity extends BaseAirUiActivity {
                 priceDetailInfo.cPrice = customPriceDetailInfo.customInterPriceInfo.cPrice;
                 GoBackTripInfo interGo = customPriceDetailInfo.customInterFlightInfo.goTrip;
                 GoBackTripInfo interBack = customPriceDetailInfo.customInterFlightInfo.backTrip;
-                binding.tvGoInfo.setText(DateUtil.strToStr(interGo.flightSegments.get(0).depDate) + DateUtil.strToWeek("yyyy-MM-dd", interGo.flightSegments.get(0).depDate)
-                        + interGo.flightSegments.get(0).depTime + interGo.flightSegments.get(0).depAirportName + interGo.flightSegments.get(0).depTerminal + "-"
-                        + interGo.flightSegments.get(interGo.flightSegments.size() - 1).arrAirportName + interGo.flightSegments.get(interGo.flightSegments.size() - 1).arrTerminal);
-                binding.tvBackInfo.setText(DateUtil.strToStr(interBack.flightSegments.get(0).depDate) + DateUtil.strToWeek("yyyy-MM-dd", interBack.flightSegments.get(0).depDate)
-                        + interBack.flightSegments.get(0).depTime + interBack.flightSegments.get(0).depAirportName + interBack.flightSegments.get(0).depTerminal + "-"
-                        + interBack.flightSegments.get(interBack.flightSegments.size() - 1).arrAirportName + interBack.flightSegments.get(interBack.flightSegments.size() - 1).arrTerminal);
                 binding.price.setText("¥" + MathUtils.subZero(String.valueOf(customPriceDetailInfo.customInterPriceInfo.price)));
-                binding.arfAndTof.setText("机建+燃油 ¥0");
+                binding.arfAndTof.setText("¥0");
 
 
                 if ("economy".equals(customPriceDetailInfo.customInterPriceInfo.cabinLevel.split("/")[0])) {
-                    binding.tvCabinType.setText("经济舱(" + customPriceDetailInfo.customInterPriceInfo.cabin.split("/")[0] + ")");
+                    cabinStr = "经济舱(" + customPriceDetailInfo.customInterPriceInfo.cabin.split("/")[0] + ")";
                 } else if ("first".equals(customPriceDetailInfo.customInterPriceInfo.cabinLevel.split("/")[0])) {
-                    binding.tvCabinType.setText("头等舱(" + customPriceDetailInfo.customInterPriceInfo.cabin.split("/")[0] + ")");
+                    cabinStr = "头等舱(" + customPriceDetailInfo.customInterPriceInfo.cabin.split("/")[0] + ")";
                 } else if ("business".equals(customPriceDetailInfo.customInterPriceInfo.cabinLevel.split("/")[0])) {
-                    binding.tvCabinType.setText("商务舱(" + customPriceDetailInfo.customInterPriceInfo.cabin.split("/")[0] + ")");
+                    cabinStr = "商务舱(" + customPriceDetailInfo.customInterPriceInfo.cabin.split("/")[0] + ")";
                 } else {
-                    binding.tvCabinType.setText("未配置");
+                    cabinStr = "未配置";
                 }
+                binding.tvGoInfo.setText(DateUtil.strToStr(interGo.flightSegments.get(0).depDate) + DateUtil.strToWeek("yyyy-MM-dd", interGo.flightSegments.get(0).depDate)
+                        + "丨" + cabinStr);
+                binding.tvBackInfo.setText(DateUtil.strToStr(interBack.flightSegments.get(0).depDate) + DateUtil.strToWeek("yyyy-MM-dd", interBack.flightSegments.get(0).depDate)
+                        + "丨" + cabinStr);
             }
         }
 
@@ -1247,12 +1243,12 @@ public class AirReserveActivity extends BaseAirUiActivity {
         view.setText("");
         SpannableString span1 = new SpannableString(str1);
         SpannableString span3 = new SpannableString(str3);
-        ForegroundColorSpan colorSpan1 = new ForegroundColorSpan(Color.parseColor("#FF8300"));
-        span1.setSpan(new AbsoluteSizeSpan(15, true), 0, str1.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        ForegroundColorSpan colorSpan1 = new ForegroundColorSpan(Color.parseColor("#EA362C"));
+        span1.setSpan(new AbsoluteSizeSpan(12, true), 0, str1.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         span1.setSpan(colorSpan1, 0, str1.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
 
-        ForegroundColorSpan colorSpan3 = new ForegroundColorSpan(Color.parseColor("#FF8300"));
-        span3.setSpan(new AbsoluteSizeSpan(21, true), 0, str3.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        ForegroundColorSpan colorSpan3 = new ForegroundColorSpan(Color.parseColor("#EA362C"));
+        span3.setSpan(new AbsoluteSizeSpan(18, true), 0, str3.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         span3.setSpan(new StyleSpan(Typeface.BOLD), 0, str3.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         span3.setSpan(colorSpan3, 0, str3.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
 

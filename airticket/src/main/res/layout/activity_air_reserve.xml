@@ -20,11 +20,11 @@
             <RelativeLayout
                 android:id="@+id/rl_bottom"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="62dp"
                 android:layout_alignParentBottom="true"
                 android:background="@color/white"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp">
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp">
 
                 <LinearLayout
                     android:id="@+id/priceInfo"
@@ -38,7 +38,7 @@
                         android:id="@+id/totalPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginRight="20dp"
                         android:text="0"
                         android:textColor="@color/color_ff8300"
                         android:textSize="21sp" />
@@ -46,6 +46,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:drawableRight="@mipmap/air_detail_arrowimg"
+                        android:drawablePadding="2dp"
                         android:text="详情"
                         android:textColor="@color/color_666666"
                         android:textSize="13sp" />
@@ -53,15 +55,15 @@
 
                 <TextView
                     android:id="@+id/btn_submit"
-                    android:layout_width="137dp"
-                    android:layout_height="36dp"
+                    android:layout_width="@dimen/dp_140"
+                    android:layout_height="42dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:background="@drawable/shape_air_reserve_btn"
                     android:gravity="center"
                     android:onClick="@{viewModel.onClickReserve}"
-                    android:text="立即预定"
-                    android:textColor="@color/color_333333"
+                    android:text="立即预订"
+                    android:textColor="@color/color_292621"
                     android:textSize="17sp" />
 
             </RelativeLayout>
@@ -101,9 +103,9 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginRight="10dp"
-                                    android:text="去程/第一程"
-                                    android:textColor="@color/color_289cef"
-                                    android:textSize="13sp" />
+                                    android:text="去程"
+                                    android:textColor="@color/color_fcb432"
+                                    android:textSize="14sp" />
 
                                 <TextView
                                     android:id="@+id/tv_go_info"
@@ -111,9 +113,9 @@
                                     android:layout_height="wrap_content"
                                     android:ellipsize="end"
                                     android:maxLines="1"
-                                    android:text="02-18  周二 19:25  大兴国际-虹桥T2"
+                                    android:text="02-18  周二 19:25"
                                     android:textColor="@color/color_333333"
-                                    android:textSize="13sp" />
+                                    android:textSize="14sp" />
 
                             </LinearLayout>
 
@@ -121,16 +123,16 @@
                                 android:id="@+id/ll_backPlane"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
+                                android:layout_marginTop="10dp"
                                 android:orientation="horizontal">
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginRight="10dp"
-                                    android:text="返程/第二程"
-                                    android:textColor="@color/color_289cef"
-                                    android:textSize="13sp" />
+                                    android:text="返程"
+                                    android:textColor="@color/color_fcb432"
+                                    android:textSize="14sp" />
 
                                 <TextView
                                     android:id="@+id/tv_back_info"
@@ -138,9 +140,9 @@
                                     android:layout_height="wrap_content"
                                     android:ellipsize="end"
                                     android:maxLines="1"
-                                    android:text="02-18  周二 19:25  大兴国际-虹桥T2"
+                                    android:text="02-18  周二 19:25"
                                     android:textColor="@color/color_333333"
-                                    android:textSize="13sp" />
+                                    android:textSize="14sp" />
 
                             </LinearLayout>
 
@@ -171,14 +173,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="15dp"
-                            android:orientation="horizontal">
+                            android:orientation="vertical">
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center_vertical"
                                 android:orientation="vertical"
-                                android:paddingLeft="10dp"
                                 android:paddingRight="15dp">
 
                                 <LinearLayout
@@ -191,22 +192,23 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginRight="5dp"
                                         android:text="成人票"
-                                        android:textColor="@color/color_666666"
-                                        android:textSize="13sp" />
+                                        android:textColor="@color/color_333333"
+                                        android:textSize="14sp" />
 
                                     <TextView
                                         android:id="@+id/price"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginRight="20dp"
                                         android:text="0"
-                                        android:textColor="@color/color_ff8300"
+                                        android:textColor="@color/color_ED534A"
                                         android:textSize="14sp" />
 
                                     <LinearLayout
                                         android:id="@+id/ll_child_price"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginStart="10dp"
+                                        android:layout_marginRight="20dp"
                                         android:orientation="horizontal">
 
                                         <TextView
@@ -214,63 +216,44 @@
                                             android:layout_height="wrap_content"
                                             android:layout_marginEnd="5dp"
                                             android:text="儿童票"
-                                            android:textColor="@color/color_666666"
-                                            android:textSize="13sp" />
+                                            android:textColor="@color/color_333333"
+                                            android:textSize="14sp" />
 
                                         <TextView
                                             android:id="@+id/cprice"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="0"
-                                            android:textColor="@color/color_ff8300"
+                                            android:textColor="@color/color_ED534A"
                                             android:textSize="14sp" />
-                                    </LinearLayout>
-                                </LinearLayout>
 
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="8dp"
-                                    android:orientation="horizontal">
+                                    </LinearLayout>
 
                                     <TextView
-                                        android:id="@+id/tvCabinType"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="经济舱(Z)"
-                                        android:textColor="@color/color_666666"
-                                        android:textSize="13sp" />
+                                        android:layout_marginRight="5dp"
+                                        android:text="机建+燃油"
+                                        android:textColor="@color/color_333333"
+                                        android:textSize="14sp" />
+
+                                    <TextView
+                                        android:id="@+id/arfAndTof"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="¥0"
+                                        android:textColor="@color/color_ED534A"
+                                        android:textSize="14sp" />
                                 </LinearLayout>
                             </LinearLayout>
 
-                            <View
-                                android:layout_width="0.5dp"
-                                android:layout_height="match_parent"
-                                android:background="@color/color_eeeeee" />
-
-                            <LinearLayout
+                            <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:paddingLeft="15dp">
-
-                                <TextView
-                                    android:id="@+id/arfAndTof"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="机建+燃油 ¥0"
-                                    android:textColor="@color/color_666666"
-                                    android:textSize="13sp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="8dp"
-                                    android:text="支付成功后30分钟内出票"
-                                    android:textColor="@color/color_999999"
-                                    android:textSize="13sp" />
-
-                            </LinearLayout>
+                                android:layout_marginTop="8dp"
+                                android:text="支付成功后30分钟内出票"
+                                android:textColor="@color/color_999999"
+                                android:textSize="12sp" />
 
                         </LinearLayout>
 
@@ -286,7 +269,7 @@
                                 android:onClick="@{viewModel.onClickReserve}"
                                 android:text="退改签规则"
                                 android:textColor="@color/color_289cef"
-                                android:textSize="13sp" />
+                                android:textSize="12sp" />
 
                             <TextView
                                 android:id="@+id/ticketPrice_detail"
@@ -296,7 +279,7 @@
                                 android:onClick="@{viewModel.onClickReserve}"
                                 android:text="票价明细"
                                 android:textColor="@color/color_289cef"
-                                android:textSize="13sp" />
+                                android:textSize="12sp" />
 
                             <TextView
                                 android:id="@+id/luggage_buyTicket_notice"
@@ -306,7 +289,7 @@
                                 android:onClick="@{viewModel.onClickReserve}"
                                 android:text="行李及购票须知"
                                 android:textColor="@color/color_289cef"
-                                android:textSize="13sp" />
+                                android:textSize="12sp" />
 
                         </RelativeLayout>
                     </LinearLayout>
@@ -324,7 +307,7 @@
                             android:layout_centerVertical="true"
                             android:text="乘机人"
                             android:textColor="@color/color_333333"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/selectUser"
@@ -337,7 +320,7 @@
                             android:onClick="@{viewModel.onClickReserve}"
                             android:text="新增乘机人"
                             android:textColor="@color/color_289cef"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                     </RelativeLayout>
 
@@ -366,19 +349,19 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="30dp"
                                 android:text="联系人"
-                                android:textColor="@color/color_333333"
-                                android:textSize="16sp" />
+                                android:textColor="@color/color_666666"
+                                android:textSize="12sp" />
 
                             <EditText
                                 android:id="@+id/contact_name"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@null"
-                                android:hint="请填写姓名必填"
+                                android:hint="请输入姓名（必填）"
                                 android:text=""
                                 android:textColor="@color/color_333333"
-                                android:textColorHint="@color/color_666666"
-                                android:textSize="14sp" />
+                                android:textColorHint="@color/color_ADADAD"
+                                android:textSize="12sp" />
 
 
                         </LinearLayout>
@@ -400,8 +383,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="30dp"
                                 android:text="手机号"
-                                android:textColor="@color/color_333333"
-                                android:textSize="16sp" />
+                                android:textColor="@color/color_666666"
+                                android:textSize="12sp" />
 
                             <TextView
                                 android:id="@+id/phoneAreaCode"
@@ -420,11 +403,11 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@null"
-                                android:hint="接收航班短信必填"
+                                android:hint="请输入手机号（必填）"
                                 android:text=""
                                 android:textColor="@color/color_333333"
-                                android:textColorHint="@color/color_666666"
-                                android:textSize="14sp" />
+                                android:textColorHint="@color/color_ADADAD"
+                                android:textSize="12sp" />
 
                         </LinearLayout>
                     </LinearLayout>
@@ -445,13 +428,29 @@
                             android:paddingBottom="15dp"
                             android:visibility="visible">
 
-                            <TextView
-                                android:layout_width="wrap_content"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:text="报销凭证"
-                                android:textColor="@color/color_333333"
-                                android:textSize="16sp" />
+                                android:gravity="center_vertical"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="报销凭证"
+                                    android:textColor="@color/color_333333"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dp"
+                                    android:text="行程单需付邮费20元"
+                                    android:textColor="@color/color_333333"
+                                    android:textSize="10sp" />
+                            </LinearLayout>
 
                             <com.bldby.airticket.view.SwitchButton
                                 android:id="@+id/switchButton"
@@ -487,8 +486,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_centerVertical="true"
                                     android:text="发票类型"
-                                    android:textColor="@color/color_333333"
-                                    android:textSize="14sp" />
+                                    android:textColor="@color/color_666666"
+                                    android:textSize="12sp" />
 
                                 <ImageView
                                     android:layout_width="wrap_content"
@@ -526,8 +525,8 @@
                                     android:layout_width="120dp"
                                     android:layout_height="wrap_content"
                                     android:text="发票抬头"
-                                    android:textColor="@color/color_333333"
-                                    android:textSize="14sp" />
+                                    android:textColor="@color/color_666666"
+                                    android:textSize="12sp" />
 
                                 <EditText
                                     android:id="@+id/editInvoiceTitle"
@@ -576,8 +575,8 @@
                                             android:drawableRight="@mipmap/k04_03tanhao"
                                             android:drawablePadding="3dp"
                                             android:text="纳税人识别号"
-                                            android:textColor="@color/color_333333"
-                                            android:textSize="14sp" />
+                                            android:textColor="@color/color_666666"
+                                            android:textSize="12sp" />
                                     </LinearLayout>
 
                                     <EditText
@@ -611,13 +610,13 @@
                                         android:layout_width="120dp"
                                         android:layout_height="wrap_content"
                                         android:text="配送方式"
-                                        android:textColor="@color/color_333333"
-                                        android:textSize="14sp" />
+                                        android:textColor="@color/color_666666"
+                                        android:textSize="12sp" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="以邮寄方式寄出到您的地址"
+                                        android:text="邮寄方式"
                                         android:textColor="@color/color_333333"
                                         android:textSize="14sp" />
                                 </LinearLayout>
@@ -652,8 +651,8 @@
                                             android:layout_height="wrap_content"
                                             android:layout_centerVertical="true"
                                             android:text="配送地址"
-                                            android:textColor="@color/color_333333"
-                                            android:textSize="14sp" />
+                                            android:textColor="@color/color_666666"
+                                            android:textSize="12sp" />
 
                                         <ImageView
                                             android:layout_width="wrap_content"
@@ -725,8 +724,8 @@
                                             android:layout_width="120dp"
                                             android:layout_height="wrap_content"
                                             android:text="配送邮费"
-                                            android:textColor="@color/color_333333"
-                                            android:textSize="14sp" />
+                                            android:textColor="@color/color_666666"
+                                            android:textSize="12sp" />
 
                                         <LinearLayout
                                             android:layout_width="wrap_content"
@@ -763,7 +762,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="点击提交订单表示已阅读并同意"
+                                android:text="提交订单表示已阅读并同意"
                                 android:textColor="@color/color_333333"
                                 android:textSize="12sp" />
 

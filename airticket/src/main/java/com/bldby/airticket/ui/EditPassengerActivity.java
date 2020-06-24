@@ -82,9 +82,11 @@ public class EditPassengerActivity extends BaseUiActivity {
             }
             binding.editName.setText(passengerModel.name);
             if (passengerModel.sex == 0) {
-                binding.tvSexType.setText("女");
+                binding.manImg.setSelected(false);
+                binding.womenImg.setSelected(true);
             } else {
-                binding.tvSexType.setText("男");
+                binding.manImg.setSelected(true);
+                binding.womenImg.setSelected(false);
             }
             binding.tvBirthday.setText(passengerModel.birthday);
             cardType = passengerModel.cardType;
@@ -130,7 +132,7 @@ public class EditPassengerActivity extends BaseUiActivity {
             ToastUtil.show("请填写乘机人姓名");
             return;
         }
-        if (TextUtils.isEmpty(binding.tvSexType.getText().toString().trim())) {
+        if (sex == -1) {
             ToastUtil.show("请选择乘机人性别");
             return;
         }
@@ -203,19 +205,6 @@ public class EditPassengerActivity extends BaseUiActivity {
 
             new XPopup.Builder(this).enableDrag(false).asCustom(new CustomDialog(this).setContent(content)).show();
 
-        } else if (view.getId() == R.id.sex_type) {
-            String[] strings3 = new String[]{"女", "男"};
-            new XPopup.Builder(this)
-                    .asCustom(new CustomListDialog(EditPassengerActivity.this)
-                            .setData(Arrays.asList(strings3))
-                            .setOnItemClickListener(new CustomListDialog.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(int position) {
-                                    binding.tvSexType.setText(strings3[position]);
-                                    sex = position;
-                                }
-                            }))
-                    .show();
         } else if (view.getId() == R.id.rl_birthday) {
             //时间选择器
             TimePickerView pvTime = new TimePickerBuilder(EditPassengerActivity.this, new OnTimeSelectListener() {
@@ -226,6 +215,14 @@ public class EditPassengerActivity extends BaseUiActivity {
                 }
             }).setDate(calendar).build();
             pvTime.show();
+        } else if (view.getId() == R.id.ll_man) {
+            binding.manImg.setSelected(true);
+            binding.womenImg.setSelected(false);
+            sex = 1;
+        } else if (view.getId() == R.id.ll_women) {
+            binding.manImg.setSelected(false);
+            binding.womenImg.setSelected(true);
+            sex = 0;
         }
     }
 

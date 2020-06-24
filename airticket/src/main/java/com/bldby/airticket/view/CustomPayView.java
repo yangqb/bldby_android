@@ -90,11 +90,11 @@ public class CustomPayView extends BottomPopupView {
         SpannableString span1 = new SpannableString(str1);
         SpannableString span3 = new SpannableString(str3);
         ForegroundColorSpan colorSpan1 = new ForegroundColorSpan(Color.parseColor("#000000"));
-        span1.setSpan(new AbsoluteSizeSpan(24, true), 0, str1.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        span1.setSpan(new AbsoluteSizeSpan(20, true), 0, str1.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         span1.setSpan(colorSpan1, 0, str1.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
 
         ForegroundColorSpan colorSpan3 = new ForegroundColorSpan(Color.parseColor("#000000"));
-        span3.setSpan(new AbsoluteSizeSpan(47, true), 0, str3.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        span3.setSpan(new AbsoluteSizeSpan(32, true), 0, str3.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         //span3.setSpan(new StyleSpan(Typeface.BOLD), 0, str3.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         span3.setSpan(colorSpan3, 0, str3.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
 

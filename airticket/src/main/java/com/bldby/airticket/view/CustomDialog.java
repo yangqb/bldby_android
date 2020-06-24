@@ -68,18 +68,22 @@ public class CustomDialog extends CenterPopupView implements View.OnClickListene
             tvContent.setText(content);
         }
 
-        if (confirmStr == null || TextUtils.isEmpty(confirmStr)) {
+        if (confirmStr == null) {
             tvConfirm.setVisibility(GONE);
             line2.setVisibility(GONE);
         } else {
             tvConfirm.setText(confirmStr);
         }
 
-        if (cancelStr == null || TextUtils.isEmpty(cancelStr) || isHideCancel) {
+        if (cancelStr == null || isHideCancel) {
             tvCancel.setVisibility(GONE);
             line2.setVisibility(GONE);
         } else {
             tvCancel.setText(cancelStr);
+        }
+
+        if (cancelStr == null && confirmStr == null) {
+            line1.setVisibility(GONE);
         }
     }
 

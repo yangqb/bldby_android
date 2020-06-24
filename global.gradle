@@ -123,6 +123,7 @@ ext {
 
             "alertview"                      : 'com.bigkoo:alertview:1.0.3',
             "tablayout"                      : 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar',
+            "SwipeMenuLayout"                : 'com.github.anzaizai:EasySwipeMenuLayout:1.1.4',
 
 //             "butterknife"             : "com.jakewharton:butterknife:8.5.1",
 //             "butterknife-compiler"    : "com.jakewharton:butterknife-compiler:8.5.1",

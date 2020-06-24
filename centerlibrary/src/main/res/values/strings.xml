@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="address_delete">删除</string>
+    <string name="address_list_title">收货地址</string>
+    <string name="address_list_add">新增</string>
+
+</resources>

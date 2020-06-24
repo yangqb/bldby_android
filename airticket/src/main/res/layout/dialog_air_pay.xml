@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/dp_50"
+    android:paddingBottom="@dimen/dp_38"
     tools:ignore="MissingDefaultResource">
 
     <RelativeLayout
@@ -18,7 +18,7 @@
             android:layout_centerInParent="true"
             android:text="付款详情"
             android:textColor="@color/color_333333"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <RelativeLayout
             android:id="@+id/btn_cancel"
@@ -47,11 +47,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/dp_50"
+        android:layout_marginTop="@dimen/dp_30"
         android:layout_marginBottom="@dimen/dp_30"
         android:text="¥800"
         android:textColor="@color/color_000000"
-        android:textSize="47sp" />
+        android:textSize="32sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -70,7 +70,7 @@
                 android:layout_centerVertical="true"
                 android:text="订单信息"
                 android:textColor="@color/color_999999"
-                android:textSize="17sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -79,7 +79,7 @@
                 android:layout_centerVertical="true"
                 android:text="机票购买"
                 android:textColor="@color/color_333333"
-                android:textSize="17sp" />
+                android:textSize="14sp" />
 
         </RelativeLayout>
 
@@ -100,7 +100,7 @@
                 android:layout_centerVertical="true"
                 android:text="支付方式"
                 android:textColor="@color/color_999999"
-                android:textSize="17sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -109,7 +109,7 @@
                 android:layout_centerVertical="true"
                 android:text="支付宝"
                 android:textColor="@color/color_333333"
-                android:textSize="17sp" />
+                android:textSize="14sp" />
 
         </RelativeLayout>
 
@@ -124,14 +124,14 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_45"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="@dimen/dp_50"
-            android:layout_marginTop="140dp"
-            android:layout_marginEnd="@dimen/dp_50"
+            android:layout_marginStart="@dimen/dp_30"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="@dimen/dp_30"
             android:background="@drawable/shape_air_reserve_btn"
             android:gravity="center"
             android:text="立即付款"
             android:textColor="@color/color_333333"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
     </LinearLayout>
 
 

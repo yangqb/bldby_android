@@ -15,6 +15,34 @@
             android:layout_height="260dp"
             android:background="@mipmap/air_bg" />
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20">
+
+            <RelativeLayout
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{viewModel.onClickBtn}"
+                android:padding="@dimen/dp_10">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:background="@mipmap/air_home_backimg" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/home_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/air_home_title"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16" />
+        </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -223,10 +251,8 @@
                     android:id="@+id/ll_order_check"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_72"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="15dp"
                     android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@id/search">
+                    app:layout_constraintTop_toBottomOf="@id/dash_line">
 
                     <LinearLayout
                         android:id="@+id/ll_order"
@@ -250,6 +276,13 @@
                             android:textSize="14sp" />
 
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/dp_20"
+                        android:layout_marginBottom="@dimen/dp_20"
+                        android:background="@color/color_e4e4e4" />
 
                     <LinearLayout
                         android:id="@+id/ll_select_check_in"
@@ -275,6 +308,17 @@
                     </LinearLayout>
 
                 </LinearLayout>
+
+                <View
+                    android:id="@+id/dash_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:background="@drawable/shape_home_dotted_line"
+                    android:layerType="software"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/search" />
 
                 <TextView
                     android:id="@+id/search"

@@ -26,6 +26,11 @@ public class PassengerManagerAdapter extends BaseItemDraggableAdapter<PassengerM
     protected void convert(@NonNull BaseViewHolder helper, PassengerModel item) {
         helper.addOnClickListener(R.id.rl_select);
         helper.setText(R.id.name, item.name);
+        if (helper.getAdapterPosition() == getData().size() - 1) {
+            helper.setGone(R.id.line, false);
+        } else {
+            helper.setGone(R.id.line, true);
+        }
         if (item.ageType == 0) {
             helper.setText(R.id.passenger_type, "成人");
         } else {

@@ -1,329 +1,335 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
- <LinearLayout
-     android:layout_width="match_parent"
-     android:layout_height="wrap_content"
-     android:background="@color/white"
-     android:orientation="vertical">
-     <LinearLayout
-         android:layout_width="match_parent"
-         android:layout_height="28dp"
-         android:layout_marginLeft="15dp"
-         android:layout_marginTop="10dp"
-         android:layout_marginRight="15dp"
-         android:background="@drawable/shape_f7f7f7_r14"
-         android:gravity="center_vertical"
-         android:orientation="horizontal">
 
-         <TextView
-             android:id="@+id/btn_title1"
-             android:layout_width="46dp"
-             android:layout_height="20dp"
-             android:layout_marginLeft="5dp"
-             android:layout_marginRight="8dp"
-             android:background="@drawable/shape_28b5fe_r10"
-             android:gravity="center"
-             android:text="去程"
-             android:textColor="@color/white"
-             android:textSize="13sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
 
-         <TextView
-             android:id="@+id/twoWay_go_date"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_marginRight="30dp"
-             android:text="02-18 周二"
-             android:textColor="@color/color_333333"
-             android:textSize="12sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-         <TextView
-             android:id="@+id/twoWay_go_cityName"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:maxLines="1"
-             android:ellipsize="end"
-             android:layout_marginRight="10dp"
-             android:gravity="end"
-             android:text="上海-北京"
-             android:textColor="@color/color_333333"
-             android:textSize="12dp" />
+            <TextView
+                android:id="@+id/btn_title1"
+                android:layout_width="30dp"
+                android:layout_height="18dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/shape_fcb432_r2"
+                android:gravity="center"
+                android:text="去程"
+                android:textColor="@color/color_333333"
+                android:textSize="12sp" />
 
-     </LinearLayout>
+            <TextView
+                android:id="@+id/twoWay_go_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="25dp"
+                android:text="02-18 周二"
+                android:textColor="@color/color_333333"
+                android:textSize="12sp" />
 
-     <LinearLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_marginTop="15dp"
-         android:gravity="center_horizontal"
-         android:orientation="vertical">
+            <TextView
+                android:id="@+id/twoWay_go_cityName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="end"
+                android:maxLines="1"
+                android:text="上海-北京"
+                android:textColor="@color/color_333333"
+                android:textSize="12dp" />
 
-         <LinearLayout
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:orientation="horizontal">
+        </LinearLayout>
 
-             <LinearLayout
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-                 <TextView
-                     android:id="@+id/twoWay_go_depTime"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:layout_marginTop="5dp"
-                     android:layout_marginBottom="5dp"
-                     android:text="10:55"
-                     android:textColor="@color/color_000000"
-                     android:textSize="24sp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                 <TextView
-                     android:id="@+id/twoWay_go_depAirportName"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:text="虹桥机场T2"
-                     android:textColor="@color/color_666666"
-                     android:textSize="13sp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
+                    <TextView
+                        android:id="@+id/twoWay_go_depTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="10:55"
+                        android:textColor="@color/color_333333"
+                        android:textSize="16sp" />
 
-             </LinearLayout>
-
-             <LinearLayout
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_gravity="center"
-                 android:layout_marginLeft="20dp"
-                 android:layout_marginRight="20dp"
-                 android:gravity="center"
-                 android:orientation="vertical">
-
-                 <TextView
-                     android:id="@+id/twoWay_go_flightTime"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:text="2小时15分"
-                     android:textColor="@color/color_666666"
-                     android:textSize="9sp" />
-
-                 <ImageView
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:background="@mipmap/k02_11quwang" />
-
-             </LinearLayout>
-
-             <LinearLayout
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:orientation="vertical">
-
-                 <TextView
-                     android:id="@+id/twoWay_go_arrTime"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:layout_marginTop="5dp"
-                     android:layout_marginBottom="5dp"
-                     android:text="10:55"
-                     android:textColor="@color/color_000000"
-                     android:textSize="24sp" />
-
-                 <TextView
-                     android:id="@+id/twoWay_go_arrAirportName"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:text="虹桥机场T2"
-                     android:textColor="@color/color_666666"
-                     android:textSize="13sp" />
-
-             </LinearLayout>
-
-             <TextView
-                 android:id="@+id/twoWay_go_CrossDays"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="+1天"
-                 android:textColor="@color/color_289cef"
-                 android:textSize="12sp"
-                 android:visibility="gone"/>
-
-         </LinearLayout>
-
-         <TextView
-             android:id="@+id/twoWay_go_com"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_marginTop="15dp"
-             android:layout_marginBottom="15dp"
-             android:gravity="center"
-             android:text="吉祥航HO1252 空客321(中) 小食\n以下价格不含机建燃油"
-             android:textColor="@color/color_666666"
-             android:textSize="11sp" />
-
-     </LinearLayout>
-
-     <LinearLayout
-         android:layout_width="match_parent"
-         android:layout_height="28dp"
-         android:layout_marginLeft="15dp"
-         android:layout_marginRight="15dp"
-         android:background="@drawable/shape_f7f7f7_r14"
-         android:gravity="center_vertical"
-         android:orientation="horizontal">
-
-         <TextView
-             android:id="@+id/btn_title2"
-             android:layout_width="46dp"
-             android:layout_height="20dp"
-             android:layout_marginLeft="5dp"
-             android:layout_marginRight="8dp"
-             android:background="@drawable/shape_9b65ff_r10"
-             android:gravity="center"
-             android:text="返程"
-             android:textColor="@color/white"
-             android:textSize="13sp" />
-
-         <TextView
-             android:id="@+id/twoWay_back_date"
-             android:layout_width="wrap_content"
-             android:layout_marginRight="30dp"
-             android:layout_height="wrap_content"
-             android:text="02-18 周二"
-             android:textColor="@color/color_333333"
-             android:textSize="12sp" />
-
-         <TextView
-             android:id="@+id/twoWay_back_cityName"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:maxLines="1"
-             android:ellipsize="end"
-             android:layout_marginRight="10dp"
-             android:gravity="end"
-             android:text="上海-北京"
-             android:textColor="@color/color_333333"
-             android:textSize="12dp" />
-
-     </LinearLayout>
-
-     <LinearLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_marginTop="15dp"
-         android:gravity="center_horizontal"
-         android:orientation="vertical">
-
-         <LinearLayout
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:orientation="horizontal">
-
-             <LinearLayout
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:orientation="vertical">
-
-                 <TextView
-                     android:id="@+id/twoWay_back_depTime"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:layout_marginTop="5dp"
-                     android:layout_marginBottom="5dp"
-                     android:text="10:55"
-                     android:textColor="@color/color_000000"
-                     android:textSize="24sp" />
-
-                 <TextView
-                     android:id="@+id/twoWay_back_depAirportName"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:text="虹桥机场T2"
-                     android:textColor="@color/color_666666"
-                     android:textSize="13sp" />
+                    <TextView
+                        android:id="@+id/twoWay_go_depAirportName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="虹桥机场T2"
+                        android:textColor="@color/color_666666"
+                        android:textSize="12sp" />
 
 
-             </LinearLayout>
+                </LinearLayout>
 
-             <LinearLayout
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_gravity="center"
-                 android:layout_marginLeft="20dp"
-                 android:layout_marginRight="20dp"
-                 android:gravity="center"
-                 android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                 <TextView
-                     android:id="@+id/twoWay_back_flightTime"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:text="2小时15分"
-                     android:textColor="@color/color_666666"
-                     android:textSize="9sp" />
+                    <TextView
+                        android:id="@+id/twoWay_go_flightTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2小时15分"
+                        android:textColor="@color/color_999999"
+                        android:textSize="10sp" />
 
-                 <ImageView
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:background="@mipmap/k02_11quwang" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/k02_11quwang" />
 
-             </LinearLayout>
+                </LinearLayout>
 
-             <LinearLayout
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                 <TextView
-                     android:id="@+id/twoWay_back_arrTime"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:layout_marginTop="5dp"
-                     android:layout_marginBottom="5dp"
-                     android:text="10:55"
-                     android:textColor="@color/color_000000"
-                     android:textSize="24sp" />
+                    <TextView
+                        android:id="@+id/twoWay_go_arrTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="10:55"
+                        android:textColor="@color/color_333333"
+                        android:textSize="16sp" />
 
-                 <TextView
-                     android:id="@+id/twoWay_back_arrAirportName"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:text="虹桥机场T2"
-                     android:textColor="@color/color_666666"
-                     android:textSize="13sp" />
+                    <TextView
+                        android:id="@+id/twoWay_go_arrAirportName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="虹桥机场T2"
+                        android:textColor="@color/color_666666"
+                        android:textSize="12sp" />
 
-             </LinearLayout>
+                </LinearLayout>
 
-             <TextView
-                 android:id="@+id/twoWay_back_CrossDays"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="+1天"
-                 android:textColor="@color/color_289cef"
-                 android:textSize="12sp"
-                 android:visibility="gone"/>
+                <TextView
+                    android:id="@+id/twoWay_go_CrossDays"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+1天"
+                    android:textColor="@color/color_289cef"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
 
-         </LinearLayout>
+            </LinearLayout>
 
-         <TextView
-             android:id="@+id/twoWay_back_com"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_marginTop="15dp"
-             android:layout_marginBottom="17dp"
-             android:gravity="center"
-             android:text="吉祥航HO1252 空客321(中) 小食\n以下价格不含机建燃油"
-             android:textColor="@color/color_666666"
-             android:textSize="11sp" />
+            <TextView
+                android:id="@+id/twoWay_go_com"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="吉祥航HO1252 空客321(中) 小食\n以下价格不含机建燃油"
+                android:textColor="@color/color_999999"
+                android:textSize="10sp" />
 
-     </LinearLayout>
+        </LinearLayout>
 
-     <View
-         android:layout_width="match_parent"
-         android:layout_height="0.5dp"
-         android:layout_marginLeft="15dp"
-         android:layout_marginRight="15dp"
-         android:background="@color/color_eeeeee" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0_5"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:background="@color/color_eeeeee" />
 
- </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/btn_title2"
+                android:layout_width="30dp"
+                android:layout_height="18dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/shape_fcb432_r2"
+                android:gravity="center"
+                android:text="返程"
+                android:textColor="@color/color_333333"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/twoWay_back_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="25dp"
+                android:text="02-18 周二"
+                android:textColor="@color/color_333333"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/twoWay_back_cityName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="end"
+                android:maxLines="1"
+                android:text="上海-北京"
+                android:textColor="@color/color_333333"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/twoWay_back_depTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="10:55"
+                        android:textColor="@color/color_333333"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/twoWay_back_depAirportName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="虹桥机场T2"
+                        android:textColor="@color/color_666666"
+                        android:textSize="12sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/twoWay_back_flightTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2小时15分"
+                        android:textColor="@color/color_999999"
+                        android:textSize="10sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/k02_11quwang" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/twoWay_back_arrTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="10:55"
+                        android:textColor="@color/color_333333"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/twoWay_back_arrAirportName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="虹桥机场T2"
+                        android:textColor="@color/color_666666"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/twoWay_back_CrossDays"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+1天"
+                    android:textColor="@color/color_289cef"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/twoWay_back_com"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:text="吉祥航HO1252 空客321(中) 小食\n以下价格不含机建燃油"
+                android:textColor="@color/color_999999"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/color_eeeeee" />
+
+    </LinearLayout>
 
     <data>
 

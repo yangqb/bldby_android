@@ -121,6 +121,7 @@ dependencies {
     api rootProject.ext.dependencies["flexbox"]
     api rootProject.ext.dependencies["alertview"]
     api rootProject.ext.dependencies["tablayout"]
+    api rootProject.ext.dependencies["SwipeMenuLayout"]
 //    api rootProject.ext.dependencies["toast"]
 
 }

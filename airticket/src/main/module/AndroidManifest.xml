@@ -6,7 +6,9 @@
         android:allowBackup="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.bldby.airticket.ui.AirMainActivity">
+        <activity
+            android:name="com.bldby.airticket.ui.AirMainActivity"
+            android:hardwareAccelerated="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

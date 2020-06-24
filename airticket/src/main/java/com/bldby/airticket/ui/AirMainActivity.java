@@ -60,6 +60,7 @@ public class AirMainActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        dataBinding.dashLine.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);// HH:mm:ss
         //获取当前时间
         Date date = new Date(System.currentTimeMillis());
@@ -70,7 +71,9 @@ public class AirMainActivity extends BaseActivity {
 
 
     public void onClickBtn(View view) {
-        if (view.getId() == R.id.reversalCity) {
+        if (view.getId() == R.id.back) {
+            finish();
+        } else if (view.getId() == R.id.reversalCity) {
             if (reversal) {
                 dataBinding.arrCityName.setText(tvEndCity);
                 dataBinding.depCityName.setText(tvStartCity);

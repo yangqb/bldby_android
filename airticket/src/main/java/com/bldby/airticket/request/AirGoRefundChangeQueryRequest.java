@@ -40,7 +40,7 @@ public class AirGoRefundChangeQueryRequest extends BaseAirRequest {
 
     @Override
     public RequestLevel getRequestLevel() {
-        return RequestLevel.GET;
+        return RequestLevel.JSONBody;
     }
 
     @Override

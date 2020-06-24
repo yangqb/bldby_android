@@ -12,8 +12,9 @@
     <string name="air_home_go_back">往返</string>
     <string name="air_home_depcity">北京</string>
     <string name="air_home_arrcity">上海</string>
-    <string name="air_home_search">搜索</string>
+    <string name="air_home_search">搜索机票</string>
     <string name="air_home_order">机票订单</string>
     <string name="air_home_check_in">值机选座</string>
+    <string name="air_home_title">机票</string>
 
 </resources>

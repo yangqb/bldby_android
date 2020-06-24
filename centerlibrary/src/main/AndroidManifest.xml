@@ -4,6 +4,8 @@
     <application>
        <activity android:name=".MyCenterMainActivity"
            android:theme="@style/AppTheme"/>
+        <activity android:name=".address.ui.AddressManagementActivity"
+            android:theme="@style/AppTheme"/>
 
     </application>
 
