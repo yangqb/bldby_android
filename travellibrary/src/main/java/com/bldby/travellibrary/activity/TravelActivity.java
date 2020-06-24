@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 
@@ -72,7 +73,6 @@ public class TravelActivity extends BaseActivity {
         dataBinding.titleName.setText(R.string.oil_name);
         String userId = AccountManager.getInstance().getUserId();
         String token = AccountManager.getInstance().getToken();
-        Log.i("cccccccc", "initView: "+userId+"||"+token);
         dataBinding.oilOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -130,7 +130,7 @@ public class TravelActivity extends BaseActivity {
         //String string = SPUtils.getString(TravelActivity.this, Constants.USER_DATA);
         this.token = AccountManager.getInstance().getToken();
         myoiladapter = new MyOilAdapter(null);
-        myoiladapter.setEmptyView(mEmptyView);
+        //myoiladapter.setEmptyView(mEmptyView);
         dataBinding.oilrecy.setAdapter(myoiladapter);
         myoiladapter.notifyDataSetChanged();
     }
@@ -185,7 +185,6 @@ public class TravelActivity extends BaseActivity {
         oilStationsRequest.call(new ApiCallBack<List<OilListBean>>() {
             @Override
             public void onAPIResponse(List<OilListBean> response) {
-                Log.i("cccccccc", "initView: "+response.get(1).getGasName());
                 //myoiladapter.chengtextcolor1(oilnumbersum);
             /*    myoiladapter = new MyOilAdapter(response);
                 dataBinding.oilrecy.setAdapter(myoiladapter);
@@ -225,7 +224,7 @@ public class TravelActivity extends BaseActivity {
 
             @Override
             public void onAPIError(int errorCode, String errorMsg) {
-                Log.i("cccccccc", "initView111111: "+errorCode);
+
                 if (!isLoadMore) {
                     //swipeLayout.finishRefresh(false);
                 } else {
@@ -234,7 +233,6 @@ public class TravelActivity extends BaseActivity {
             }
         });
     }
-
     private void initonclick() {
           dataBinding.distancerela.setOnClickListener(new View.OnClickListener() {
               @Override

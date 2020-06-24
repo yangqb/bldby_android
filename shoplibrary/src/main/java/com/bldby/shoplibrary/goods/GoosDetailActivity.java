@@ -2,6 +2,7 @@ package com.bldby.shoplibrary.goods;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.databinding.DataBindingUtil;
 import android.databinding.ObservableField;
@@ -38,8 +39,10 @@ import com.bldby.baselibrary.core.ui.baseactivity.BaseUiActivity;
 import com.bldby.baselibrary.core.ui.basefragment.Basefragment;
 import com.bldby.baselibrary.core.util.ShareImageUtils;
 import com.bldby.baselibrary.core.util.ToastUtil;
+import com.bldby.loginlibrary.AccountManager;
 import com.bldby.shoplibrary.R;
 import com.bldby.shoplibrary.bean.News;
+import com.bldby.shoplibrary.customer.IMContent;
 import com.bldby.shoplibrary.databinding.ActivityGoosDetailBinding;
 import com.bldby.shoplibrary.goods.adapter.AdapterGoodsDetailEvaluate;
 import com.bldby.shoplibrary.goods.adapter.AdapterGoodsDetailGetDiscounts;
@@ -49,6 +52,8 @@ import com.bldby.shoplibrary.goods.model.ShopDetailModel;
 import com.bldby.shoplibrary.goods.request.GoodsDetailRequest;
 import com.bldby.shoplibrary.home.HomeFragment;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
 import com.zhpan.bannerview.BannerViewPager;
 import com.zhpan.bannerview.constants.IndicatorSlideMode;
 import com.zhpan.bannerview.constants.IndicatorStyle;
@@ -85,6 +90,7 @@ public class GoosDetailActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        String userPhone = AccountManager.getInstance().getUserPhone();
         backButton.set(getResources().getColorStateList(R.color.white));
         backBackgroundButton.set(getResources().getDrawable(R.color.goods_detail_back));
         ArrayList<String> strings = new ArrayList<>();
@@ -116,7 +122,28 @@ public class GoosDetailActivity extends BaseActivity {
         dataBinding.goodsCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                start(RouteShopConstants.SHOPGOODSCUST);
+                EMClient.getInstance().login("14701776629"+IMContent.IMTAG, "123456", new EMCallBack() {//回调
+                    @Override
+                    public void onSuccess() {
+                        EMClient.getInstance().groupManager().loadAllGroups();
+                        EMClient.getInstance().chatManager().loadAllConversations();
+                        //startActivity(new Intent(Customerservice.this,ImActivity.class));
+                        Log.d("main", "登录聊天服务器成功!");
+                        start(RouteShopConstants.SHOPGOODSCUST);
+
+                    }
+
+                    @Override
+                    public void onProgress(int progress, String status) {
+
+                    }
+
+                    @Override
+                    public void onError(int code, String message) {
+                        Log.i("onError", "onError: " + code + message);
+                        Log.d("main", "登录聊天服务器失败！");
+                    }
+                });
             }
         });
     }
